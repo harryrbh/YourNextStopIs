@@ -1,0 +1,159 @@
+iata_code,icao_code,airport_name,city_name,latitude,longitude
+KEF,BIKF,Keflavik International Airport,Reykjavik,63.985000610352,-22.605600357056
+RKV,BIRK,Reykjavik Airport,Reykjavik,64.1299972534,-21.9405994415
+YKZ,CYKZ,Buttonville Municipal Airport,Toronto,43.86220169067383,-79.37000274658203
+YTZ,CYTZ,Billy Bishop Toronto City Centre Airport,Toronto,43.627499,-79.396202
+YYZ,CYYZ,Lester B. Pearson International Airport,Toronto,43.6772003174,-79.63059997559999
+YZD,CYZD,Downsview Airport,Toronto,43.74250030517578,-79.4655990600586
+QXH,EDAZ,Schönhagen Airport,Berlin,52.203609,13.156389
+SXF,EDDB,Berlin-Schönefeld Airport,Berlin,52.380001,13.5225
+THF,EDDI,Berlin-Tempelhof International Airport,Berlin,52.47299957275391,13.403900146484377
+MUC,EDDM,Munich Airport,Munich,48.353802,11.7861
+TXL,EDDT,Berlin-Tegel Airport,Berlin,52.5597,13.2877
+AGB,EDMA,Augsburg Airport,Munich,48.425278,10.931667
+OBF,EDMO,Oberpfaffenhofen Airport,Munich,48.081402,11.2831
+LTN,EGGW,London Luton Airport,London,51.874698638916016,-0.3683330118656158
+BQH,EGKB,London Biggin Hill Airport,London,51.33079910279999,0.0324999988079
+LGW,EGKK,London Gatwick Airport,London,51.148102,-0.190278
+LCY,EGLC,London City Airport,London,51.505299,0.055278
+FAB,EGLF,Farnborough Airport,London,51.2757987976,-0.776332974434
+BBS,EGLK,Blackbushe Airport,London,51.32389831542969,-0.8475000262260437
+LHR,EGLL,London Heathrow Airport,London,51.4706,-0.461941
+SEN,EGMC,Southend Airport,London,51.5713996887207,0.6955559849739075
+EDI,EGPH,Edinburgh Airport,Edinburgh,55.95000076293945,-3.372499942779541
+DND,EGPN,Dundee Airport,Edinburgh,56.45249938964844,-3.025830030441284
+ADX,EGQL,RAF Leuchars,Edinburgh,56.37289810180664,-2.8684399127960205
+STN,EGSS,London Stansted Airport,London,51.8849983215,0.234999999404
+NHT,EGWU,RAF Northolt,London,51.5530014038,-0.418166995049
+AMS,EHAM,Amsterdam Airport Schiphol,Amsterdam,52.308601,4.76389
+LEY,EHLE,Lelystad Airport,Amsterdam,52.4603,5.52722
+RTM,EHRD,Rotterdam The Hague Airport,Amsterdam,51.956902,4.43722
+UTC,EHSB,Soesterberg Air Base,Amsterdam,52.1273002625,5.27618980408
+LID,EHVB,Valkenburg Naval Air Base,Amsterdam,52.1660995483,4.41794013977
+KRK,EPKK,Kraków John Paul II International Airport,Krakow,50.077702,19.7848
+FEL,ETSF,Fürstenfeldbruck Air Base,Munich,48.205555,11.266944
+CPT,FACT,Cape Town International Airport,Cape Town,-33.9648017883,18.6016998291
+RAK,GMMX,Menara Airport,Marrakesh,31.6068992615,-8.03629970551
+CAI,HECA,Cairo International Airport,Cairo,30.12190055847168,31.40559959411621
+CWE,HECW,Cairo West Airport,Cairo,30.116399765,30.9153995514
+DBV,LDDU,Dubrovnik Airport,Dubrovnik,42.5614013671875,18.268199920654297
+BCN,LEBL,Barcelona International Airport,Barcelona,41.2971,2.07846
+MAD,LEMD,Adolfo Suárez Madrid–Barajas Airport,Madrid,40.471926,-3.56264
+OZP,LEMO,Moron Air Base,Seville,37.17490005493164,-5.615940093994141
+TOJ,LETO,Torrejón Airport,Madrid,40.496700286865234,-3.4458699226379395
+SVQ,LEZL,Sevilla Airport,Seville,37.417999267578125,-5.8931097984313965
+CEQ,LFMD,Cannes-Mandelieu Airport,Nice,43.542,6.95348
+NCE,LFMN,Nice-Côte d'Azur Airport,Nice,43.6584014893,7.215869903560001
+LBG,LFPB,Paris-Le Bourget Airport,Paris,48.96939849853516,2.441390037536621
+CSF,LFPC,Creil Air Base,Paris,49.25350189208984,2.5191400051116943
+CDG,LFPG,Charles de Gaulle International Airport,Paris,49.012798,2.55
+TNF,LFPN,Toussus-le-Noble Airport,Paris,48.75189971923828,2.1061899662017822
+ORY,LFPO,Paris-Orly Airport,Paris,48.7233333,2.3794444
+POX,LFPT,Pontoise - Cormeilles-en-Vexin Airport,Paris,49.096667,2.040833
+VIY,LFPV,Villacoublay-Vélizy (BA 107) Air Base,Paris,48.7741667,2.1916667
+BUD,LHBP,Budapest Liszt Ferenc International Airport,Budapest,47.42976,19.261093
+TSF,LIPH,Treviso-Sant'Angelo Airport,Venice,45.648399,12.1944
+QPA,LIPU,Padova Airport,Venice,45.395802,11.8479
+VCE,LIPZ,Venice Marco Polo Airport,Venice,45.505299,12.3519
+SAY,LIQS,Siena-Ampugnano Airport,Florence,43.256302,11.255
+CIA,LIRA,Ciampino–G. B. Pastine International Airport,Rome,41.7994,12.5949
+FCO,LIRF,Leonardo da Vinci–Fiumicino Airport,Rome,41.8002778,12.2388889
+QLT,LIRL,Latina Air Base,Rome,41.5424,12.909
+FLR,LIRQ,Peretola Airport,Florence,43.810001,11.2051
+PRG,LKPR,Václav Havel Airport Prague,Prague,50.1008,14.26
+VOD,LKVO,Vodochody Airport,Prague,50.216599,14.3958
+VIE,LOWW,Vienna International Airport,Vienna,48.110298156738,16.569700241089
+AVR,LPAR,Alverca Air Base,Lisbon,38.883301,-9.0301
+BGZ,LPBR,Braga Municipal Aerodrome,Porto,41.5871009827,-8.445139884949999
+CAT,LPCS,Cascais Airport,Lisbon,38.724998,-9.35523
+OPO,LPPR,Francisco de Sá Carneiro Airport,Porto,41.2481002808,-8.68138980865
+LIS,LPPT,Humberto Delgado Airport (Lisbon Portela Airport),Lisbon,38.7813,-9.13592
+ISL,LTBA,Atatürk International Airport,Istanbul,40.976898,28.8146
+TIV,LYTV,Tivat Airport,Dubrovnik,42.40470123291016,18.72330093383789
+MEX,MMMX,Licenciado Benito Juarez International Airport,Mexico City,19.4363,-99.072098
+TLC,MMTO,Licenciado Adolfo Lopez Mateos International Airport,Mexico City,19.3370990753,-99.56600189210002
+ALR,NZLX,Alexandra Airport,Queenstown,-45.211700439453125,169.3730010986328
+ZQN,NZQN,Queenstown International Airport,Queenstown,-45.0210990906,168.738998413
+WKA,NZWF,Wanaka Airport,Queenstown,-44.722198486328,169.24600219727
+DXB,OMDB,Dubai International Airport,Dubai,25.2527999878,55.3643989563
+SHJ,OMSJ,Sharjah International Airport,Dubai,25.32859992980957,55.5172004699707
+ITM,RJOO,Osaka International Airport,Kyoto,34.785499572753906,135.43800354003906
+NJA,RJTA,Atsugi Naval Air Facility,Tokyo,35.4546012878418,139.4499969482422
+HND,RJTT,Tokyo Haneda International Airport,Tokyo,35.552299,139.779999
+OKO,RJTY,Yokota Air Base,Tokyo,35.74850082397461,139.34800720214844
+SSN,RKSM,Seoul Air Base (K-16),Seoul,37.444744,127.112718
+OSN,RKSO,Osan Air Base,Seoul,37.090599,127.029999
+GMP,RKSS,Gimpo International Airport,Seoul,37.5583,126.791
+SWU,RKSW,Suwon Airport,Seoul,37.23939895629883,127.00700378417967
+AEP,SABE,Jorge Newbery Airpark,Buenos Aires,-34.5592,-58.4156
+FDO,SADF,San Fernando Airport,Buenos Aires,-34.4532,-58.5896
+EPA,SADP,El Palomar Airport,Buenos Aires,-34.6099,-58.6126
+GIG,SBGL,Rio Galeão – Tom Jobim International Airport,Rio de Janeiro,-22.8099994659,-43.2505569458
+SDU,SBRJ,Santos Dumont Airport,Rio de Janeiro,-22.9104995728,-43.1631011963
+SNZ,SBSC,Santa Cruz Air Force Base,Rio de Janeiro,-22.9324,-43.719101
+CUZ,SPZO,Alejandro Velasco Astete International Airport,Cusco,-13.535699844400002,-71.9387969971
+JAI,VIJP,Jaipur International Airport,Jaipur,26.8242,75.812202
+DMK,VTBD,Don Mueang International Airport,Bangkok,13.9125995636,100.607002258
+HAN,VVNB,Noi Bai International Airport,Hanoi,21.221200942993164,105.80699920654295
+JHB,WMKJ,Senai International Airport,Singapore,1.64131,103.669998
+QPG,WSAP,Paya Lebar Air Base,Singapore,1.360419988632202,103.91000366210938
+TGA,WSAT,Tengah Air Base,Singapore,1.38725996017,103.708999634
+XSP,WSSL,Seletar Airport,Singapore,1.416949987411499,103.86799621582033
+SIN,WSSS,Singapore Changi Airport,Singapore,1.35019,103.994003
+AVV,YMAV,Avalon Airport,Melbourne,-38.039398,144.468994
+MEB,YMEN,Melbourne Essendon Airport,Melbourne,-37.7281,144.901993
+MBW,YMMB,Melbourne Moorabbin Airport,Melbourne,-37.97579956054688,145.1020050048828
+MEL,YMML,Melbourne International Airport,Melbourne,-37.673302,144.843002
+BWU,YSBK,Sydney Bankstown Airport,Sydney,-33.924400329589844,150.98800659179688
+CDU,YSCN,Camden Airport,Sydney,-34.04029846191406,150.68699645996094
+XRH,YSRI,RAAF Base Richmond,Sydney,-33.600601,150.781006
+SYD,YSSY,Sydney Kingsford Smith International Airport,Sydney,-33.94609832763672,151.177001953125
+PEK,ZBAA,Beijing Capital International Airport,Beijing,40.0801010131836,116.58499908447266
+OAK,KOAK,Metropolitan Oakland International Airport,San Francisco,37.721298,-122.221001
+SFO,KSFO,San Francisco International Airport,San Francisco,37.61899948120117,-122.375
+EWR,KEWR,Newark Liberty International Airport,New York,40.692501068115234,-74.168701171875
+HPN,KHPN,Westchester County Airport,New York,41.06700134277344,-73.70760345458984
+TEB,KTEB,Teterboro Airport,New York,40.85010147089999,-74.060798645
+LGA,KLGA,La Guardia Airport,New York,40.77719879,-73.87259674
+NUQ,KNUQ,Moffett Federal Airfield,San Francisco,37.4161,-122.049004
+JFK,KJFK,John F Kennedy International Airport,New York,40.63980103,-73.77890015
+BKK,VTBS,Suvarnabhumi Airport,Bangkok,13.681099891662598,100.74700164794922
+BTH,WIDD,Hang Nadim International Airport,Singapore,1.12102997303,104.119003296
+ICN,RKSI,Incheon International Airport,Seoul,37.46910095214844,126.45099639892578
+DPS,WADD,Ngurah Rai (Bali) International Airport,Bali (Denpasar),-8.7481698989868,115.16699981689
+ATH,LGAV,Eleftherios Venizelos International Airport,Athens,37.9364013672,23.9444999695
+EZE,SAEZ,Ministro Pistarini International Airport,Buenos Aires,-34.8222,-58.5358
+HEW,LGAT,Athen Helenikon Airport,Athens,37.893299,23.726101
+JRB,KJRB,Downtown-Manhattan/Wall St Heliport,New York,40.70119858,-74.00900269
+SAW,LTFJ,Sabiha Gökçen International Airport,Istanbul,40.898601532,29.3092002869
+NAY,ZBNY,Beijing Nanyuan Airport,Beijing,39.78279876708984,116.38800048828124
+QSA,LELL,Sabadell Airport,Barcelona,41.52090072631836,2.1050798892974854
+CYR,SUCA,Laguna de Los Patos International Airport,Buenos Aires,-34.456401824951,-57.770599365234
+LVK,KLVK,Livermore Municipal Airport,San Francisco,37.6934013367,-121.819999695
+MMU,KMMU,Morristown Municipal Airport,New York,40.79940032958984,-74.41490173339844
+APC,KAPC,Napa County Airport,San Francisco,38.2132,-122.280998
+QNV,SDNY,Aeroclube Airport,Rio de Janeiro,-22.74530029296875,-43.46030044555664
+SQL,KSQL,San Carlos Airport,San Francisco,37.511901855469,-122.25
+FRJ,LFTU,Fréjus Airport,Nice,43.4175,6.7357
+JRA,KJRA,West 30th St. Heliport,New York,40.754501,-74.007103
+HYC,EGTB,Wycombe Air Park,London,51.6116981506,-0.8083329796790001
+NHD,OMDM,Al Minhad Air Base,Dubai,25.0268001556,55.3661994934
+CCR,KCCR,Buchanan Field,San Francisco,37.9897003174,-122.056999207
+YOO,CYOO,Toronto/Oshawa Executive Airport,Toronto,43.922798,-78.894997
+CDW,KCDW,Essex County Airport,New York,40.875198364300005,-74.2814025879
+FRG,KFRG,Republic Airport,New York,40.7288017273,-73.4133987427
+DWC,OMDW,Al Maktoum International Airport,Dubai,24.896356,55.161389
+NOT,KDVO,Marin County Airport - Gnoss Field,San Francisco,38.143600463867,-122.55599975586
+LDJ,KLDJ,Linden Airport,New York,40.617401123,-74.2445983887
+PSL,EGPT,Perth/Scone Airport,Edinburgh,56.43920135498047,-3.372220039367676
+PAO,KPAO,Palo Alto Airport of Santa Clara County,San Francisco,37.461101532,-122.114997864
+RCS,EGTO,Rochester Airport,London,51.351898193359375,0.5033329725265503
+KRH,EGKR,Redhill Aerodrome,London,51.2136001587,-0.138611003757
+HWD,KHWD,Hayward Executive Airport,San Francisco,37.659198761,-122.122001648
+NGZ,KNGZ,Alameda Naval Air Station,San Francisco,37.78889846801758,-122.31999969482422
+YCM,CYSN,Niagara District Airport,Toronto,43.19169998168945,-79.17169952392578
+PKX,ZBAD,Beijing Daxing International Airport,Beijing,39.509945,116.41092
+HAF,KHAF,Half Moon Bay Airport,San Francisco,37.5134010315,-122.500999451
+ECV,LECU,Cuatro Vientos Airport,Madrid,40.370701,-3.78514
+TJB,WIBT,Sei Bati Airport,Singapore,1.0527,103.3931
+IST,LTFM,Istanbul Airport,Istanbul,41.275278,28.751944

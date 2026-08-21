@@ -1,0 +1,9 @@
+pandas
+SQLAlchemy
+psycopg2-binary
+scikit-learn
+networkx
+plotly
+streamlit
+python-dotenv
+pytest

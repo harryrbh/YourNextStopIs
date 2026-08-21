@@ -1,0 +1,47 @@
+name,country_name,latitude,longitude,population,timezone,iso2,geoname_id
+Paris,France,48.8566,2.3522,2140000,Europe/Paris,FR,1000001
+Nice,France,43.7102,7.262,340000,Europe/Paris,FR,1000002
+Barcelona,Spain,41.3874,2.1686,1620000,Europe/Madrid,ES,1000003
+Madrid,Spain,40.4168,-3.7038,3223000,Europe/Madrid,ES,1000004
+Seville,Spain,37.3891,-5.9845,688000,Europe/Madrid,ES,1000005
+Rome,Italy,41.9028,12.4964,2873000,Europe/Rome,IT,1000006
+Florence,Italy,43.7696,11.2558,367000,Europe/Rome,IT,1000007
+Venice,Italy,45.4408,12.3155,258000,Europe/Rome,IT,1000008
+London,United Kingdom,51.5074,-0.1278,8982000,Europe/London,GB,1000009
+Edinburgh,United Kingdom,55.9533,-3.1883,506000,Europe/London,GB,1000010
+Berlin,Germany,52.52,13.405,3645000,Europe/Berlin,DE,1000011
+Munich,Germany,48.1351,11.582,1472000,Europe/Berlin,DE,1000012
+Lisbon,Portugal,38.7223,-9.1393,545000,Europe/Lisbon,PT,1000013
+Porto,Portugal,41.1579,-8.6291,237000,Europe/Lisbon,PT,1000014
+Athens,Greece,37.9838,23.7275,664000,Europe/Athens,GR,1000015
+Amsterdam,Netherlands,52.3676,4.9041,872000,Europe/Amsterdam,NL,1000016
+Vienna,Austria,48.2082,16.3738,1897000,Europe/Vienna,AT,1000017
+Prague,Czechia,50.0755,14.4378,1309000,Europe/Prague,CZ,1000018
+Istanbul,Turkey,41.0082,28.9784,15460000,Europe/Istanbul,TR,1000019
+Marrakesh,Morocco,31.6295,-7.9811,928000,Africa/Casablanca,MA,1000020
+Cairo,Egypt,30.0444,31.2357,9540000,Africa/Cairo,EG,1000021
+Dubai,United Arab Emirates,25.2048,55.2708,3400000,Asia/Dubai,AE,1000022
+Bangkok,Thailand,13.7563,100.5018,10540000,Asia/Bangkok,TH,1000023
+Tokyo,Japan,35.6762,139.6503,13960000,Asia/Tokyo,JP,1000024
+Kyoto,Japan,35.0116,135.7681,1463000,Asia/Tokyo,JP,1000025
+Seoul,South Korea,37.5665,126.978,9776000,Asia/Seoul,KR,1000026
+Singapore,Singapore,1.3521,103.8198,5918000,Asia/Singapore,SG,1000027
+Hanoi,Vietnam,21.0278,105.8342,8246000,Asia/Ho_Chi_Minh,VN,1000028
+Bali (Denpasar),Indonesia,-8.65,115.2167,897000,Asia/Makassar,ID,1000029
+Sydney,Australia,-33.8688,151.2093,5312000,Australia/Sydney,AU,1000030
+Melbourne,Australia,-37.8136,144.9631,5078000,Australia/Melbourne,AU,1000031
+Queenstown,New Zealand,-45.0312,168.6626,16000,Pacific/Auckland,NZ,1000032
+New York,United States,40.7128,-74.006,8336000,America/New_York,US,1000033
+San Francisco,United States,37.7749,-122.4194,815000,America/Los_Angeles,US,1000034
+Toronto,Canada,43.6532,-79.3832,2930000,America/Toronto,CA,1000035
+Mexico City,Mexico,19.4326,-99.1332,9209000,America/Mexico_City,MX,1000036
+Rio de Janeiro,Brazil,-22.9068,-43.1729,6748000,America/Sao_Paulo,BR,1000037
+Buenos Aires,Argentina,-34.6037,-58.3816,3121000,America/Argentina/Buenos_Aires,AR,1000038
+Cusco,Peru,-13.532,-71.9675,428000,America/Lima,PE,1000039
+Cape Town,South Africa,-33.9249,18.4241,4618000,Africa/Johannesburg,ZA,1000040
+Reykjavik,Iceland,64.1466,-21.9426,135000,Atlantic/Reykjavik,IS,1000041
+Dubrovnik,Croatia,42.6507,18.0944,42000,Europe/Zagreb,HR,1000042
+Krakow,Poland,50.0647,19.945,780000,Europe/Warsaw,PL,1000043
+Budapest,Hungary,47.4979,19.0402,1752000,Europe/Budapest,HU,1000044
+Jaipur,India,26.9124,75.7873,3073000,Asia/Kolkata,IN,1000045
+Beijing,China,39.9042,116.4074,21540000,Asia/Shanghai,CN,1000046
