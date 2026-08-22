@@ -78,13 +78,22 @@ def main():
         )[["city_id", "month", "temperature_c", "precipitation_mm"]]
         weather.to_sql("weather", conn, if_exists="append", index=False)
 
-        # 4. Tourism, linked to country
-        tourism = tourism_raw.merge(
-            country_ids.merge(countries_raw[["iso2", "name"]], on="iso2").rename(
-                columns={"name": "country_name"}
-            ),
-            on="country_name",
-        )[["country_id", "year", "arrivals"]]
+        # 4. Tourism, linked to country.
+        # The sample tourism.csv only has a country_name column, so we
+        # match on name. If you've run fetch_tourism.py, tourism.csv
+        # also has an iso2 column — matching on that is more reliable,
+        # because country *names* don't always match exactly between
+        # different data sources (e.g. "United States" vs "United
+        # States of America"), but ISO codes always do.
+        if "iso2" in tourism_raw.columns:
+            tourism = tourism_raw.merge(country_ids, on="iso2")[["country_id", "year", "arrivals"]]
+        else:
+            tourism = tourism_raw.merge(
+                country_ids.merge(countries_raw[["iso2", "name"]], on="iso2").rename(
+                    columns={"name": "country_name"}
+                ),
+                on="country_name",
+            )[["country_id", "year", "arrivals"]]
         tourism.to_sql("tourism", conn, if_exists="append", index=False)
 
         # 5. Airports, linked to city by name (data/airports.csv already

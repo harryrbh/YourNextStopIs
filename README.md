@@ -110,12 +110,9 @@ The airport and route data in `data/airports.csv` and
 country/city/weather/culture/tourism data is a small **hand-picked
 sample** (see `pages/4_About.py` in the app for the full list) — it
 exists so you can run this project immediately without needing API
-keys. Swapping in real data from REST Countries, GeoNames, Open-Meteo
-and the World Bank (all free, no key needed except optionally
-GeoNames) is a good next step once you're comfortable with how
-`src/load_data.py` works — the pattern (read → clean → insert) stays
-the same, you'd just add a script that fetches from those APIs instead
-of reading a CSV.
+keys. **See [API_GUIDE.md](API_GUIDE.md) for a step-by-step guide to
+swapping in real data** from REST Countries, GeoNames, Open-Meteo and
+the World Bank — all free, no key needed.
 
 ## Changing what the recommender prioritises
 
