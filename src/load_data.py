@@ -1,6 +1,6 @@
 """
-load_data.py — reads the CSV files in data/ and loads them into
-PostgreSQL.
+load_data.py — reads the CSV files in data/ and loads them into the
+SQLite database.
 
 This is intentionally a straight line, top to bottom: read a CSV,
 clean it a little, insert it, move to the next one. No classes, no

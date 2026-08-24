@@ -13,8 +13,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Now copy everything else (this changes often, so it goes last).
 COPY . .
 
+# Build the database inside the image, from the CSV files, so the
+# container is ready to run the moment it starts — no extra setup
+# commands needed after `docker run`.
+RUN python src/db.py && python src/load_data.py && python src/build_features.py && python src/cluster.py
+
 # Tell Docker the app listens on this port (documentation only —
-# doesn't actually open the port; compose.yaml/docker run does that).
+# doesn't actually open the port; the -p flag on `docker run` does that).
 EXPOSE 8501
 
 # The command that runs when the container starts.

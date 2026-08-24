@@ -1,9 +1,9 @@
 """
 test_recommend.py — checks the recommender returns sensible output.
 
-These tests need a running, populated database (same as the app
-itself), so they skip automatically if one isn't available — you
-won't see a confusing failure just because Postgres isn't running.
+These tests need a populated database (same as the app itself), so
+they skip automatically if one isn't available — you won't see a
+confusing failure just because you haven't run the setup steps yet.
 """
 import sys
 from pathlib import Path

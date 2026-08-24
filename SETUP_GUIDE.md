@@ -2,8 +2,8 @@
 
 This document explains two things the README doesn't:
 
-1. **How Docker actually works** — what a container is, what each
-   line in `Dockerfile` and `compose.yaml` does, and why we need both.
+1. **How Docker actually works** — what a container is, and what
+   each line in `Dockerfile` does.
 2. **How to build this entire project yourself**, starting from an
    empty folder, including every `git` command — so you understand
    how a real project gets built up commit by commit, not just how to
@@ -17,17 +17,16 @@ This document explains two things the README doesn't:
 
 "It works on my machine" is a real problem: your laptop has a
 particular Python version, particular versions of pandas/scikit-learn,
-a particular PostgreSQL installation, maybe even a particular
-operating system. Someone else's machine has different versions of
-all of that. Code that works for you can break for them for reasons
-that have nothing to do with your code being wrong.
+maybe even a particular operating system. Someone else's machine has
+different versions of all of that. Code that works for you can break
+for them for reasons that have nothing to do with your code being
+wrong.
 
 A **container** is a way of packaging your code together with
 *everything it needs to run* — the exact Python version, the exact
-libraries, the exact OS-level dependencies — into one self-contained
-unit. That unit runs the same way on your laptop, your teammate's
-laptop, and a real server, because it's not relying on whatever
-happens to already be installed there.
+libraries — into one self-contained unit. That unit runs the same way
+on your laptop, your teammate's laptop, and a real server, because
+it's not relying on whatever happens to already be installed there.
 
 A container is **not** a virtual machine. A VM emulates an entire
 computer, including its own operating system kernel, which is slow to
@@ -45,7 +44,19 @@ milliseconds and uses a fraction of the resources of a VM.
   copies of the same document.
 
 `docker build` turns a `Dockerfile` into an image.
-`docker run` (or `docker compose up`) starts a container from an image.
+`docker run` starts a container from an image.
+
+### Why this project only needs ONE container
+
+Projects that use a database server (PostgreSQL, MySQL, ...) need
+*two* containers running together — one for the app, one for the
+database — usually coordinated with a second tool called Docker
+Compose. This project uses SQLite instead, which stores its entire
+database as a single file rather than running as a separate server.
+That means there's nothing else to coordinate: **one container is the
+whole application.** This is exactly the same reason `src/db.py`
+needs no host/port/password to connect to anything — a file doesn't
+have any of those.
 
 ### Reading our `Dockerfile` line by line
 
@@ -72,20 +83,30 @@ odd — why not copy everything at once? Docker builds images in
 **layers**, and caches each layer. If you later change a `.py` file
 but not `requirements.txt`, Docker reuses the cached "pip install"
 layer instead of re-downloading every package from scratch. Ordering
-your Dockerfile from "changes rarely" to "changes often" makes rebuilds
-much faster.
+your Dockerfile from "changes rarely" to "changes often" makes
+rebuilds much faster.
 
 ```dockerfile
 COPY . .
 ```
-Now copy everything else (your actual code) into `/app`.
+Now copy everything else (your actual code and CSV data) into `/app`.
+
+```dockerfile
+RUN python src/db.py && python src/load_data.py && python src/build_features.py && python src/cluster.py
+```
+Builds the database **while the image itself is being built**, not
+when the container later starts. This means the resulting image is
+immediately ready to serve the app the moment someone runs it — no
+"now run these four extra commands" step is needed afterwards. This
+only works because the data (`data/*.csv`) was already copied in by
+the line above.
 
 ```dockerfile
 EXPOSE 8501
 ```
 Documents that this container listens on port 8501. This line alone
 doesn't make anything reachable from outside — it's a note to humans
-(and to `compose.yaml`) about which port matters.
+(and to the `-p` flag on `docker run`) about which port matters.
 
 ```dockerfile
 CMD ["streamlit", "run", "app.py", "--server.address=0.0.0.0"]
@@ -94,106 +115,30 @@ The command that runs when a container starts from this image. Note
 `--server.address=0.0.0.0`: inside a container, Streamlit defaults to
 listening only on `localhost`, which — *inside the container* — is not
 reachable from outside it. `0.0.0.0` means "listen on every network
-interface," which is what lets `compose.yaml`'s port mapping work.
-
-### Why we need `compose.yaml` as well
-
-Our app needs **two** things running at once: PostgreSQL and the
-Streamlit app. You could start two containers by hand with two long
-`docker run` commands, remembering to connect them to the same
-network, remembering the right environment variables, in the right
-order, every single time. `compose.yaml` writes all of that down once
-so `docker compose up` can do it for you.
-
-```yaml
-services:
-  db:
-    image: postgres:16
-```
-This service doesn't build anything — it just runs the official,
-pre-built `postgres:16` image directly. We don't need our own
-Dockerfile for the database; someone already made a good one.
-
-```yaml
-    environment:
-      POSTGRES_DB: city_breaks
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-```
-Environment variables passed into the container. The official Postgres
-image is written to look for exactly these variable names and create a
-database matching them on first startup.
-
-```yaml
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-```
-Containers are meant to be disposable — stop one, throw it away, start
-a fresh one. But a *database* can't be disposable, or you'd lose all
-your data every time you restarted. A **volume** is storage that lives
-outside the container's own filesystem, on the host machine, so it
-survives even if the container is deleted. `pgdata` here is a named
-volume Docker manages for you (declared at the bottom of the file);
-`/var/lib/postgresql/data` is the path *inside the container* where
-Postgres actually writes its files.
-
-```yaml
-    ports:
-      - "5432:5432"
-```
-Format is `"host_port:container_port"`. This makes Postgres reachable
-at `localhost:5432` from your own machine (useful if you want to
-connect a database GUI tool to peek inside), not just from other
-containers.
-
-```yaml
-  app:
-    build: .
-```
-Unlike the `db` service, this one *does* build — from the `Dockerfile`
-in the current folder (`.`).
-
-```yaml
-    depends_on:
-      - db
-```
-Tells Docker Compose to start `db` before `app`. Note this only
-controls *start order*, not *readiness* — Postgres accepting
-connections can take a few seconds after the container starts, which
-is why a production setup would generally have `src/db.py` retry on
-connection failure (out of scope for this student project, but worth
-knowing).
-
-```yaml
-    environment:
-      POSTGRES_HOST: db
-```
-This is the detail that trips people up most: inside Docker's private
-network, containers reach each other **by service name**, not by
-`localhost`. From the `app` container's point of view, the database
-lives at a host literally called `db` — that's the name Docker Compose
-gives it automatically, taken straight from `services: db:` above.
-`localhost` from inside the `app` container would mean "the app
-container itself," which has no database running in it.
-
-```yaml
-    ports:
-      - "8501:8501"
-```
-Same pattern as before — makes the Streamlit app reachable at
-`localhost:8501` on your own machine.
+interface," which is what lets `docker run -p` actually work.
 
 ### The commands you'll actually type
 
 | Command | What it does |
 |---|---|
-| `docker compose up --build` | Build the `app` image (if it changed) and start both containers, logs streaming in your terminal |
-| `docker compose up -d --build` | Same, but detached — runs in the background |
-| `docker compose exec app <command>` | Run a one-off command *inside* the already-running `app` container (e.g. `docker compose exec app python src/load_data.py`) |
-| `docker compose down` | Stop and remove both containers (the `pgdata` volume survives) |
-| `docker compose down -v` | Same, but also delete the volume — **this deletes your database** |
-| `docker compose logs -f app` | Follow the app container's logs live |
-| `docker compose ps` | List running containers and their status |
+| `docker build -t city-breaks .` | Build an image from the `Dockerfile` in this folder, and name it `city-breaks` |
+| `docker run -p 8501:8501 city-breaks` | Start a container from that image, mapping container port 8501 to `localhost:8501` on your machine |
+| `docker run -p 8501:8501 -v $(pwd)/data:/app/data city-breaks` | Same, but use *your* `data/` folder instead of the one baked into the image — so changes (like a fresh database) persist after the container stops |
+| `docker ps` | List running containers |
+| `docker stop <container-id>` | Stop a running container (get the ID from `docker ps`) |
+| `docker images` | List images you've built or downloaded |
+
+### A note on volumes, since you'll see the term around Docker
+
+A **volume** is storage that lives outside a container's own
+filesystem, so it survives even after the container is deleted —
+useful for a database you don't want to lose. The `-v $(pwd)/data:/app/data`
+example above is technically a *bind mount* (mapping a folder on your
+own machine directly into the container) rather than a Docker-managed
+named volume, but it solves the same problem and is simpler to
+understand when you're starting out: whatever's in your local `data/`
+folder is what the container sees, and whatever the container writes
+to `/app/data` shows up in your local folder too.
 
 ---
 
@@ -208,8 +153,8 @@ an order that makes sense to someone reading the history later.
 
 Install:
 - Python 3.10+
-- PostgreSQL, **or** Docker Desktop (either is fine — you don't need both)
 - Git
+- Docker Desktop (optional — only needed for Part 1 above)
 
 Check they're installed:
 ```bash
@@ -217,11 +162,15 @@ python --version
 git --version
 ```
 
+Notice PostgreSQL/MySQL/any database server is **not** in this list.
+SQLite ships as part of Python's standard library — there is
+genuinely nothing extra to install for the database in this project.
+
 ### Step 1: Create the project folder and initialise git
 
 ```bash
-mkdir city-break-recommender
-cd city-break-recommender
+mkdir city-breaks
+cd city-breaks
 git init
 ```
 
@@ -243,17 +192,16 @@ __pycache__/
 *.pyc
 .venv/
 venv/
-.env
 *.joblib
 .pytest_cache/
+data/city_breaks.db
 EOF
 ```
 
-Why *before* anything else: `.env` will hold your database password
-once you create it in a later step. If you commit it once, it's in
-your git history forever, even if you delete it later — history
-doesn't forget. Getting `.gitignore` in place first means you never
-have the chance to make that mistake.
+The last line matters: the database file is *generated* from the CSVs
+in `data/` by scripts you're about to write — committing it would just
+bloat the repository with something anyone can recreate in seconds,
+and it would drift out of sync with the CSVs over time.
 
 Commit this first, tiny step:
 ```bash
@@ -284,13 +232,13 @@ Create `requirements.txt` and install it:
 cat > requirements.txt << 'EOF'
 pandas
 SQLAlchemy
-psycopg2-binary
 scikit-learn
 networkx
-plotly
+geopy
+matplotlib
 streamlit
-python-dotenv
 pytest
+requests
 EOF
 
 pip install -r requirements.txt
@@ -320,11 +268,11 @@ git commit -m "Add database schema"
 
 ### Step 5: Write the database connection helper
 
-Create `src/db.py` with one function, `get_engine()`, that reads
-connection details from environment variables and returns a
-SQLAlchemy engine. Every other script imports this instead of
-connecting to Postgres directly — so if your connection details ever
-change, there's exactly one place to update them.
+Create `src/db.py` with one function, `get_engine()`, that returns a
+SQLAlchemy engine pointing at a `.db` file, plus an `init_db()`
+function that runs `schema.sql` against it. Every other script imports
+`get_engine()` instead of opening the file directly, so if you ever
+change where the database lives, there's exactly one place to update.
 
 ```bash
 mkdir src
@@ -338,8 +286,8 @@ git commit -m "Add database connection helper"
 Collect (or generate) your raw data as CSV files in `data/`. Then
 write `src/load_data.py`: read each CSV with pandas, clean it a
 little (drop rows with missing required fields, check coordinates are
-physically valid, drop duplicates), and insert it into Postgres with
-`DataFrame.to_sql()`.
+physically valid, drop duplicates), and insert it into the database
+with `DataFrame.to_sql()`.
 
 ```bash
 mkdir data
@@ -382,32 +330,55 @@ git add src/recommend.py
 git commit -m "Add KNN recommender"
 ```
 
-### Step 9: Build the app
+### Step 9: Small shared helpers
 
-Start with `app.py` as the home page. Streamlit automatically turns
-every file inside a `pages/` folder into an extra sidebar page, in
-filename order — that's the only "magic" involved; each page is still
-just a normal Python script that runs top to bottom.
+Before building the app pages, a few small files that every page will
+share are worth writing once:
+- `labels.py` — plain-English names for every column, so nothing
+  shown on screen is a raw database column name
+- `theme.py` — one place for your app's colours
+- `distance.py` — real-world distance between two coordinates, using
+  `geopy.distance.geodesic()` rather than writing your own geographic
+  maths
+
+```bash
+git add labels.py theme.py distance.py
+git commit -m "Add shared display helpers"
+```
+
+### Step 10: Build the app
+
+Start with `app.py` as the home page, and a `data_access.py` holding
+one cached function that every page calls to load data — kept
+separate from `app.py` itself because Streamlit only allows
+`st.set_page_config()` to run once per page, and `app.py` calls it.
+
+Streamlit automatically turns every file inside a `pages/` folder into
+an extra sidebar page, in filename order — that's the only "magic"
+involved; each page is still just a normal Python script that runs top
+to bottom.
 
 ```bash
 mkdir pages
-# write app.py, then pages/1_Explore.py, pages/2_Recommend.py, ...
-git add app.py data_access.py pages/
+mkdir .streamlit
+# write .streamlit/config.toml (theme), app.py, data_access.py,
+# then pages/1_Explore.py, pages/2_Recommend.py, pages/3_Compare.py
+git add .streamlit app.py data_access.py pages/
 git commit -m "Add Streamlit app"
 ```
 
-### Step 10: Containerise it
+### Step 11: Containerise it
 
-Write `Dockerfile` and `compose.yaml` (see Part 1 above for what each
-line does), plus `.dockerignore` (same idea as `.gitignore`, but for
-what Docker should skip when building the image).
+Write `Dockerfile` (see Part 1 above for what each line does), plus
+`.dockerignore` (same idea as `.gitignore`, but for what Docker should
+skip when building the image).
 
 ```bash
-git add Dockerfile compose.yaml .dockerignore
+git add Dockerfile .dockerignore
 git commit -m "Add Docker deployment"
 ```
 
-### Step 11: Tests
+### Step 12: Tests
 
 Write a handful of `pytest` tests — pure-logic ones (like checking
 `normalise_0_100()` actually returns values between 0 and 100) don't
@@ -421,20 +392,20 @@ git add tests/
 git commit -m "Add tests"
 ```
 
-### Step 12: Documentation
+### Step 13: Documentation
 
 ```bash
-git add README.md SETUP_GUIDE.md
+git add README.md SETUP_GUIDE.md API_GUIDE.md
 git commit -m "Add documentation"
 ```
 
-### Step 13: Push to GitHub
+### Step 14: Push to GitHub
 
 Create an empty repository on GitHub first (no README, no
 `.gitignore` — you already have those), then:
 
 ```bash
-git remote add origin https://github.com/<your-username>/city-break-recommender.git
+git remote add origin https://github.com/<your-username>/city-breaks.git
 git branch -M main
 git push -u origin main
 ```
