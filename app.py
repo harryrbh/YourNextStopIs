@@ -1,5 +1,5 @@
 """
-app.py — the Streamlit app's home page.
+app.py — the app's home page.
 
 Run it with:
     streamlit run app.py
@@ -8,24 +8,26 @@ Streamlit automatically turns every file in pages/ into an extra page
 in the sidebar — that's the only "magic" in this project. Everything
 else is plain Python.
 """
-import plotly.express as px
+import matplotlib.pyplot as plt
 import streamlit as st
 
 from data_access import load_cities
+from labels import friendly
+from theme import CMAP, GREEN
 
-st.set_page_config(page_title="City Break Recommender", page_icon="🌍", layout="wide")
+st.set_page_config(page_title="City Breaks", page_icon="🧭", layout="wide")
 
 
 def main():
-    st.title("🌍 City Break Recommender")
-    st.caption("Find your next short break using real airport, weather and cultural data.")
+    st.title("🧭 City Breaks")
+    st.caption("Find your next short break using real airport, weather and travel data.")
 
     try:
         cities = load_cities()
     except Exception as e:
         st.error(
-            "Couldn't connect to the database. Is PostgreSQL running, and have you "
-            f"run `python src/load_data.py` and `python src/build_features.py` yet?\n\nError: {e}"
+            "Couldn't open the database. Have you run `python src/db.py`, "
+            f"`python src/load_data.py` and `python src/build_features.py` yet?\n\nDetails: {e}"
         )
         st.stop()
 
@@ -38,23 +40,35 @@ def main():
     col2.metric("Countries", cities["country_name"].nunique())
     col3.metric("Average score", f"{cities['overall_score'].mean():.0f}/100")
 
-    st.subheader("All cities, by overall score")
-    fig = px.scatter_geo(
-        cities, lat="latitude", lon="longitude", hover_name="city_name",
-        color="overall_score", size="tourist_arrivals",
-        color_continuous_scale="Viridis", projection="natural earth",
+    st.subheader("Where every city is")
+    fig, ax = plt.subplots(figsize=(10, 5))
+    scatter = ax.scatter(
+        cities["longitude"], cities["latitude"],
+        c=cities["overall_score"], cmap=CMAP, s=60, edgecolors="white", linewidths=0.5,
     )
-    fig.update_layout(height=500, margin=dict(l=0, r=0, t=0, b=0))
-    st.plotly_chart(fig, use_container_width=True)
+    ax.set_xlabel("Longitude")
+    ax.set_ylabel("Latitude")
+    ax.set_facecolor("#F7FAFC")
+    fig.colorbar(scatter, ax=ax, label="Overall score")
+    fig.tight_layout()
+    st.pyplot(fig)
 
-    st.subheader("Top 10 destinations right now")
+    st.subheader("Top 10 right now")
     top10 = cities.sort_values("overall_score", ascending=False).head(10)
+
+    fig2, ax2 = plt.subplots(figsize=(8, 4.5))
+    ax2.barh(top10["city_name"][::-1], top10["overall_score"][::-1], color=GREEN)
+    ax2.set_xlabel("Overall score")
+    ax2.set_xlim(0, 100)
+    fig2.tight_layout()
+    st.pyplot(fig2)
+
     st.dataframe(
-        top10[["city_name", "country_name", "overall_score", "weather_score", "cost_score"]],
+        friendly(top10[["city_name", "country_name", "overall_score", "weather_score", "cost_score"]]),
         use_container_width=True, hide_index=True,
     )
 
-    st.info("Use the sidebar to explore cities, get a personal recommendation, or compare a few side by side.")
+    st.info("Use the sidebar to explore, get a recommendation, or compare cities.")
 
 
 if __name__ == "__main__":

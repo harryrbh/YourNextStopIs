@@ -1,7 +1,7 @@
 """
 data_access.py — the one function every page needs: load every city
-with its scores from the database, cached so we don't re-query
-Postgres on every click.
+with its scores from the database, cached so we don't re-query the
+database on every click.
 
 This lives in its own file (rather than inside app.py) specifically so
 that importing it doesn't also re-run app.py's page setup — Streamlit

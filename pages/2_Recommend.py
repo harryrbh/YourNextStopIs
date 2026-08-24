@@ -8,17 +8,18 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
 from data_access import load_cities
 from recommend import recommend
+from theme import score_badge_html
 
-st.set_page_config(page_title="Recommend", page_icon="🧭", layout="wide")
-st.title("🧭 Get a personal recommendation")
-st.caption("Tell us what matters to you. We compare your preferences to every city using K-Nearest-Neighbours (cosine similarity).")
+st.set_page_config(page_title="Recommend", page_icon="🎯", layout="wide")
+st.title("🎯 Recommend")
+st.caption("Tell us what matters to you, and we'll find your closest matches.")
 
 cities = load_cities()
 if cities.empty:
     st.warning("No data yet — see README.md for setup steps.")
     st.stop()
 
-st.subheader("How much do you care about each of these? (0 = not at all, 100 = a lot)")
+st.subheader("How much do you care about each of these?")
 col1, col2 = st.columns(2)
 with col1:
     weather = st.slider("Warm weather", 0, 100, 75)
@@ -43,5 +44,5 @@ for _, row in results.iterrows():
     with st.container(border=True):
         c1, c2 = st.columns([3, 1])
         c1.markdown(f"### {row['city_name']}, {row['country_name']}")
-        c2.metric("Match", f"{row['similarity']*100:.0f}%")
+        c2.markdown(score_badge_html(row["similarity"] * 100, "%"), unsafe_allow_html=True)
         st.progress(min(max(row["overall_score"] / 100, 0), 1), text=f"Overall score: {row['overall_score']:.0f}/100")

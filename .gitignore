@@ -2,7 +2,11 @@ __pycache__/
 *.pyc
 .venv/
 venv/
-.env
 *.joblib
 .pytest_cache/
 .DS_Store
+
+# The database is generated from the CSVs in data/ by src/db.py and
+# src/load_data.py — no need to commit it, and it'll just get out of
+# sync with the CSVs if you do.
+data/city_breaks.db

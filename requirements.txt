@@ -1,9 +1,9 @@
 pandas
 SQLAlchemy
-psycopg2-binary
 scikit-learn
 networkx
-plotly
+geopy
+matplotlib
 streamlit
-python-dotenv
 pytest
+requests

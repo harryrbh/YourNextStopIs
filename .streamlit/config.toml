@@ -1,0 +1,9 @@
+# Streamlit reads this file automatically to theme the whole app —
+# no code required. Change any of these hex codes to change the
+# app's colours everywhere at once.
+[theme]
+primaryColor = "#1E8E5A"            # green — buttons, sliders, highlights
+backgroundColor = "#FFFFFF"          # plain white page background
+secondaryBackgroundColor = "#EAF2F8" # pale blue — sidebar, cards
+textColor = "#1B2A32"                # near-black, easy to read
+font = "sans serif"
