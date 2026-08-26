@@ -39,6 +39,7 @@ def clean_cities(df: pd.DataFrame, culture: pd.DataFrame) -> pd.DataFrame:
     df = df.merge(culture, left_on="name", right_on="city_name", how="left")
     df["heritage_site_count"] = df["heritage_site_count"].fillna(0)
     df["attraction_count"] = df["attraction_count"].fillna(0)
+    df["top_attraction"] = df["top_attraction"].fillna("")
     return df
 
 
@@ -67,7 +68,7 @@ def main():
         cities = cities.merge(country_ids, on="iso2", how="left")
         cities_out = cities[
             ["name", "country_id", "population", "latitude", "longitude",
-             "heritage_site_count", "attraction_count"]
+             "heritage_site_count", "attraction_count", "top_attraction"]
         ].rename(columns={"heritage_site_count": "heritage_sites", "attraction_count": "attractions"})
         cities_out.to_sql("cities", conn, if_exists="append", index=False)
         city_ids = pd.read_sql("SELECT city_id, name FROM cities", conn)

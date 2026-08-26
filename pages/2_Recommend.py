@@ -3,18 +3,20 @@ import sys
 
 import streamlit as st
 
-# See data_access.py for why src/ needs to be added to sys.path here.
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
-from data_access import load_cities
+from components import render_city_card
+from data_access import direct_flights_from, load_cities, load_direct_flights
 from recommend import recommend
-from theme import score_badge_html
+from theme import inject_css
 
 st.set_page_config(page_title="Recommend", page_icon="🎯", layout="wide")
+inject_css()
 st.title("🎯 Recommend")
 st.caption("Tell us what matters to you, and we'll find your closest matches.")
 
 cities = load_cities()
+flights = load_direct_flights()
 if cities.empty:
     st.warning("No data yet — see README.md for setup steps.")
     st.stop()
@@ -37,12 +39,18 @@ preferences = {
     "tourism_score": tourism,
 }
 
-results = recommend(preferences, top_n=8, cities=cities)
+results = recommend(preferences, top_n=9, cities=cities)
 
 st.subheader("Your top matches")
-for _, row in results.iterrows():
-    with st.container(border=True):
-        c1, c2 = st.columns([3, 1])
-        c1.markdown(f"### {row['city_name']}, {row['country_name']}")
-        c2.markdown(score_badge_html(row["similarity"] * 100, "%"), unsafe_allow_html=True)
-        st.progress(min(max(row["overall_score"] / 100, 0), 1), text=f"Overall score: {row['overall_score']:.0f}/100")
+cols_per_row = 3
+rows = [results.iloc[i:i + cols_per_row] for i in range(0, len(results), cols_per_row)]
+for chunk in rows:
+    cols = st.columns(cols_per_row)
+    for col, (_, row) in zip(cols, chunk.iterrows()):
+        with col:
+            render_city_card(
+                row,
+                direct_flights=direct_flights_from(flights, row["city_name"]),
+                badge_value=row["similarity"] * 100,
+                badge_suffix="% match",
+            )

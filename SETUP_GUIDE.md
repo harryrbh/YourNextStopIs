@@ -235,7 +235,7 @@ SQLAlchemy
 scikit-learn
 networkx
 geopy
-matplotlib
+plotly
 streamlit
 pytest
 requests
@@ -314,13 +314,17 @@ git commit -m "Add feature engineering"
 
 ### Step 8: The machine learning pieces
 
-Two small, separate scripts:
-- `src/cluster.py` — K-Means, to group similar cities
+Three small, separate scripts, each answering a different question:
+- `src/cluster.py` — K-Means, to group similar cities into
+  plain-English "travel style" categories
 - `src/recommend.py` — K-Nearest-Neighbours, to match a user's
   preferences to the closest cities
+- `src/regression.py` — linear regression, to estimate which city
+  attributes (population, airports, heritage sites...) actually
+  predict visitor numbers, and by how much
 
 Commit each separately — they're independent ideas, so they deserve
-independent commits, even though both are "machine learning":
+independent commits, even though all three are "machine learning":
 
 ```bash
 git add src/cluster.py
@@ -328,28 +332,38 @@ git commit -m "Add K-Means clustering"
 
 git add src/recommend.py
 git commit -m "Add KNN recommender"
+
+git add src/regression.py
+git commit -m "Add regression model"
 ```
 
 ### Step 9: Small shared helpers
 
 Before building the app pages, a few small files that every page will
 share are worth writing once:
-- `labels.py` — plain-English names for every column, so nothing
-  shown on screen is a raw database column name
-- `theme.py` — one place for your app's colours
+- `labels.py` — plain-English names for every column, plus rounding,
+  so nothing shown on screen is a raw database column name or a
+  15-decimal-place number
+- `theme.py` — one place for your app's colours, chart palette, and
+  a little shared CSS for a more polished look
 - `distance.py` — real-world distance between two coordinates, using
   `geopy.distance.geodesic()` rather than writing your own geographic
   maths
+- `images.py` — fetches a representative photo for a city from
+  Wikipedia's free REST API
+- `components.py` — the reusable "city card" (photo, flag, score
+  badge, key stats) that both Explore and Recommend use, so a city
+  looks the same wherever it's shown
 
 ```bash
-git add labels.py theme.py distance.py
+git add labels.py theme.py distance.py images.py components.py
 git commit -m "Add shared display helpers"
 ```
 
 ### Step 10: Build the app
 
 Start with `app.py` as the home page, and a `data_access.py` holding
-one cached function that every page calls to load data — kept
+the cached functions that every page calls to load data — kept
 separate from `app.py` itself because Streamlit only allows
 `st.set_page_config()` to run once per page, and `app.py` calls it.
 

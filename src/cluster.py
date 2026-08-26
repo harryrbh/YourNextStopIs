@@ -1,7 +1,7 @@
 """
 cluster.py — groups cities into similar "travel profiles" using
 K-Means, so the app can say things like "these 8 cities are all
-Warm & Affordable destinations".
+Warm-Weather Destinations".
 
 Run it with:
     python src/cluster.py
@@ -9,29 +9,29 @@ Run it with:
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
+from sqlalchemy import text
 
 from db import get_engine
 
 FEATURES = ["weather_score", "accessibility_score", "culture_score", "cost_score", "tourism_score"]
 
 # We tried a few values of k (2 through 8) and picked 4: enough
-# groups to be useful, few enough to stay interpretable. See
-# tests/test_features.py for how you'd measure this with a
-# silhouette score if you want to justify a different k.
+# groups to be useful, few enough to stay interpretable.
 K = 4
+
+CATEGORY_NAMES = {
+    "weather_score": "☀️ Warm-Weather Destinations",
+    "accessibility_score": "✈️ Well-Connected Cities",
+    "culture_score": "🏛️ Culture & Heritage",
+    "cost_score": "💰 Budget-Friendly",
+    "tourism_score": "🌟 Popular Hotspots",
+}
 
 
 def label_cluster(centroid: pd.Series) -> str:
     """Name a cluster after whichever score is highest in its
     centroid, rather than hard-coding four labels ourselves."""
-    names = {
-        "weather_score": "Warm-weather destinations",
-        "accessibility_score": "Easy-to-reach cities",
-        "culture_score": "Culture & heritage cities",
-        "cost_score": "Budget-friendly destinations",
-        "tourism_score": "Popular tourist hubs",
-    }
-    return names[centroid.idxmax()]
+    return CATEGORY_NAMES[centroid.idxmax()]
 
 
 def run():
@@ -48,16 +48,17 @@ def run():
 
     centroids = pd.DataFrame(model.cluster_centers_, columns=FEATURES)
     labels = {i: label_cluster(row) for i, row in centroids.iterrows()}
-    print("Cluster labels:", labels)
+    df["category"] = df["cluster"].map(labels)
+    print("Category labels:", labels)
 
     with engine.begin() as conn:
         for _, row in df.iterrows():
-            conn.exec_driver_sql(
-                f"UPDATE city_features SET cluster = {int(row['cluster'])} "
-                f"WHERE city_id = {int(row['city_id'])}"
+            conn.execute(
+                text("UPDATE city_features SET category = :category WHERE city_id = :city_id"),
+                {"category": row["category"], "city_id": int(row["city_id"])},
             )
 
-    print(f"Assigned {len(df)} cities to {K} clusters.")
+    print(f"Assigned {len(df)} cities to {K} categories.")
 
 
 if __name__ == "__main__":

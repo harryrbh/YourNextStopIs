@@ -1,21 +1,23 @@
 import os
 import sys
 
-import matplotlib.pyplot as plt
+import plotly.express as px
 import streamlit as st
 
-# See data_access.py for why src/ needs to be added to sys.path here.
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
-from data_access import load_cities
+from components import render_city_card
+from data_access import direct_flights_from, load_cities, load_direct_flights
 from distance import add_distance_column
 from labels import friendly
-from theme import GREEN
+from theme import COLORSCALE, inject_css
 
 st.set_page_config(page_title="Explore", page_icon="🔎", layout="wide")
+inject_css()
 st.title("🔎 Explore")
 
 cities = load_cities()
+flights = load_direct_flights()
 if cities.empty:
     st.warning("No data yet — see README.md for setup steps.")
     st.stop()
@@ -23,6 +25,7 @@ if cities.empty:
 with st.sidebar:
     st.header("Filters")
     search = st.text_input("Search by city name")
+    categories = st.multiselect("Travel style", sorted(cities["category"].dropna().unique()))
     countries = st.multiselect("Country", sorted(cities["country_name"].unique()))
     min_weather = st.slider("Minimum weather score", 0, 100, 0)
     min_culture = st.slider("Minimum culture score", 0, 100, 0)
@@ -35,6 +38,8 @@ with st.sidebar:
 filtered = cities.copy()
 if search:
     filtered = filtered[filtered["city_name"].str.contains(search, case=False, na=False)]
+if categories:
+    filtered = filtered[filtered["category"].isin(categories)]
 if countries:
     filtered = filtered[filtered["country_name"].isin(countries)]
 filtered = filtered[
@@ -43,36 +48,51 @@ filtered = filtered[
     & (filtered["cost_score"] >= min_cost)
 ]
 
-display_cols = [
-    "city_name", "country_name", "overall_score", "weather_score",
-    "accessibility_score", "culture_score", "cost_score",
-]
-
-# Real-world distances, calculated with geopy — see distance.py.
 if reference_city != "(none)":
     ref_row = cities[cities["city_name"] == reference_city].iloc[0]
     filtered = add_distance_column(filtered, ref_row["latitude"], ref_row["longitude"])
-    display_cols.append("distance_km")
     filtered = filtered.sort_values("distance_km")
 else:
     filtered = filtered.sort_values("overall_score", ascending=False)
 
 st.write(f"**{len(filtered)}** of {len(cities)} cities match your filters.")
 
-if not filtered.empty:
-    top = filtered.head(15).iloc[::-1]
-    fig, ax = plt.subplots(figsize=(8, max(3, len(top) * 0.35)))
-    ax.barh(top["city_name"], top["overall_score"], color=GREEN)
-    ax.set_xlabel("Overall score")
-    ax.set_xlim(0, 100)
-    fig.tight_layout()
-    st.pyplot(fig)
+view = st.radio("View as", ["Cards", "Table"], horizontal=True, label_visibility="collapsed")
 
-st.dataframe(friendly(filtered[display_cols]), use_container_width=True, hide_index=True)
+if view == "Cards":
+    cols_per_row = 3
+    rows = [filtered.iloc[i:i + cols_per_row] for i in range(0, min(len(filtered), 30), cols_per_row)]
+    for chunk in rows:
+        cols = st.columns(cols_per_row)
+        for col, (_, row) in zip(cols, chunk.iterrows()):
+            with col:
+                render_city_card(row, direct_flights=direct_flights_from(flights, row["city_name"]))
+    if len(filtered) > 30:
+        st.caption(f"Showing the first 30 of {len(filtered)} matches. Narrow your filters to see fewer, or switch to Table view for all of them.")
+else:
+    display_cols = [
+        "city_name", "country_name", "category", "overall_score", "weather_score",
+        "accessibility_score", "culture_score", "cost_score",
+    ]
+    if "distance_km" in filtered.columns:
+        display_cols.append("distance_km")
 
-st.download_button(
-    "Download results as CSV",
-    data=filtered.to_csv(index=False),
-    file_name="cities.csv",
-    mime="text/csv",
-)
+    if not filtered.empty:
+        top = filtered.head(15).iloc[::-1]
+        fig = px.bar(
+            top, x="overall_score", y="city_name", orientation="h",
+            color="overall_score", color_continuous_scale=COLORSCALE,
+            labels={"overall_score": "Overall score", "city_name": ""},
+            height=max(300, len(top) * 32),
+        )
+        fig.update_layout(coloraxis_showscale=False, margin=dict(l=0, r=10, t=10, b=0))
+        st.plotly_chart(fig, use_container_width=True)
+
+    st.dataframe(friendly(filtered[display_cols]), use_container_width=True, hide_index=True)
+
+    st.download_button(
+        "Download results as CSV",
+        data=filtered.to_csv(index=False),
+        file_name="cities.csv",
+        mime="text/csv",
+    )

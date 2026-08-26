@@ -48,6 +48,7 @@ CREATE TABLE cities (
     longitude       REAL NOT NULL,
     heritage_sites  INTEGER DEFAULT 0,        -- from data/culture.csv
     attractions     INTEGER DEFAULT 0,        -- from data/culture.csv
+    top_attraction  TEXT,                      -- from data/culture.csv
     CHECK (latitude BETWEEN -90 AND 90),
     CHECK (longitude BETWEEN -180 AND 180)
 );
@@ -114,6 +115,7 @@ CREATE TABLE city_features (
     -- the plain weighted-average overall score (see build_features.py)
     overall_score          REAL,
 
-    -- filled in later by cluster.py
-    cluster                INTEGER
+    -- filled in later by cluster.py — a plain-English travel-style
+    -- label (e.g. "Culture & Heritage"), not a raw cluster number
+    category                TEXT
 );

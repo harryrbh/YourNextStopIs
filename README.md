@@ -64,25 +64,28 @@ container actually is and what each line of the `Dockerfile` does.
 ```
 city-break-simple/
 ├── app.py               # home page (run this)
-├── data_access.py         # shared, cached database query used by every page
-├── labels.py               # plain-English names for every column shown on screen
-├── theme.py                 # shared colours for charts and badges
-├── distance.py               # real-world distance between two coordinates (geopy)
-├── pages/                     # each file here becomes a page in the sidebar
+├── data_access.py         # shared, cached database queries used by every page
+├── components.py           # the reusable "city card" (image, flag, badges, flights)
+├── labels.py                 # plain-English names + rounding for anything shown on screen
+├── theme.py                    # shared colours, chart palette, card styling
+├── distance.py                  # real-world distance between two coordinates (geopy)
+├── images.py                     # fetches a city photo from Wikipedia
+├── pages/                          # each file here becomes a page in the sidebar
 │   ├── 1_Explore.py
 │   ├── 2_Recommend.py
 │   └── 3_Compare.py
 ├── src/
-│   ├── db.py                    # database connection (one function)
-│   ├── load_data.py              # reads data/*.csv, inserts into SQLite
-│   ├── build_features.py          # turns raw data into 0-100 scores
-│   ├── cluster.py                  # K-Means: groups cities into travel profiles
-│   ├── recommend.py                 # KNN: matches your preferences to cities
-│   └── fetch_*.py                    # optional: pull real data instead of the sample CSVs
-├── data/                                # the CSV files load_data.py reads, plus the database file
-├── sql/schema.sql                        # database table definitions
-├── tests/                                 # pytest tests
-├── .streamlit/config.toml                  # app colour theme
+│   ├── db.py                          # database connection (one function)
+│   ├── load_data.py                    # reads data/*.csv, inserts into SQLite
+│   ├── build_features.py                # turns raw data into 0-100 scores
+│   ├── cluster.py                        # K-Means: groups cities into travel-style categories
+│   ├── recommend.py                       # KNN: matches your preferences to cities
+│   ├── regression.py                       # linear regression: what predicts visitor numbers
+│   └── fetch_*.py                           # optional: pull real data instead of the sample CSVs
+├── data/                                      # the CSV files load_data.py reads, plus the database file
+├── sql/schema.sql                                # database table definitions
+├── tests/                                          # pytest tests
+├── .streamlit/config.toml                            # app colour theme
 └── Dockerfile
 ```
 
@@ -113,6 +116,25 @@ needing any accounts or API keys. **See
 real data from REST Countries, GeoNames, Open-Meteo and the World
 Bank — all free, no key needed.
 
+## What's in the app
+
+- **Home** — an interactive, scrollable map of every city (hover for
+  weather, top attraction, and travel style), a "what drives
+  popularity?" chart powered by a small regression model, and quick
+  category browsing.
+- **Explore** — filter by travel style, country, or score, search by
+  name, sort by distance from a city you pick (using `geopy`), and
+  view results as photo cards or a table.
+- **Recommend** — set your preferences on five sliders and get your
+  closest-matching cities, each with a match percentage.
+- **Compare** — a radar chart, side-by-side scores, real distances
+  between cities, and whether a direct flight is tracked between them.
+
+City cards try to show a real photo, pulled live from Wikipedia
+(`images.py`) — this needs an internet connection at the time the app
+runs; if it's unavailable, the card just shows without a photo rather
+than erroring.
+
 ## Changing what the recommender prioritises
 
 Open `src/build_features.py` and edit the `WEIGHTS` dictionary near
@@ -121,5 +143,5 @@ the top — it's a plain weighted average, nothing hidden.
 ## Changing the colours
 
 Edit `.streamlit/config.toml` (controls Streamlit's own buttons and
-sliders) and `theme.py` (controls the matplotlib charts and score
+sliders) and `theme.py` (controls the Plotly charts and score
 badges) — keep the colours in both roughly matching.

@@ -1,47 +1,47 @@
-city_name,heritage_site_count,attraction_count
-Paris,5,220
-Nice,0,60
-Barcelona,3,140
-Madrid,2,120
-Seville,3,80
-Rome,7,250
-Florence,1,130
-Venice,1,110
-London,4,260
-Edinburgh,1,90
-Berlin,3,150
-Munich,0,100
-Lisbon,1,90
-Porto,1,60
-Athens,2,110
-Amsterdam,1,100
-Vienna,1,120
-Prague,1,100
-Istanbul,4,150
-Marrakesh,1,70
-Cairo,3,90
-Dubai,0,80
-Bangkok,1,140
-Tokyo,1,200
-Kyoto,3,170
-Seoul,1,130
-Singapore,1,90
-Hanoi,1,80
-Bali (Denpasar),0,100
-Sydney,1,120
-Melbourne,0,90
-Queenstown,0,30
-New York,1,220
-San Francisco,0,110
-Toronto,0,90
-Mexico City,2,130
-Rio de Janeiro,1,100
-Buenos Aires,1,90
-Cusco,1,60
-Cape Town,1,80
-Reykjavik,0,30
-Dubrovnik,1,40
-Krakow,2,60
-Budapest,1,90
-Jaipur,3,80
-Beijing,7,130
+city_name,heritage_site_count,attraction_count,top_attraction
+Paris,5,220,Eiffel Tower
+Nice,0,60,Promenade des Anglais
+Barcelona,3,140,Sagrada Familia
+Madrid,2,120,Prado Museum
+Seville,3,80,Seville Cathedral
+Rome,7,250,Colosseum
+Florence,1,130,Uffizi Gallery
+Venice,1,110,St Mark's Square
+London,4,260,British Museum
+Edinburgh,1,90,Edinburgh Castle
+Berlin,3,150,Brandenburg Gate
+Munich,0,100,Marienplatz
+Lisbon,1,90,Belem Tower
+Porto,1,60,Livraria Lello
+Athens,2,110,Acropolis
+Amsterdam,1,100,Anne Frank House
+Vienna,1,120,Schonbrunn Palace
+Prague,1,100,Charles Bridge
+Istanbul,4,150,Hagia Sophia
+Marrakesh,1,70,Jemaa el-Fnaa
+Cairo,3,90,Pyramids of Giza
+Dubai,0,80,Burj Khalifa
+Bangkok,1,140,Grand Palace
+Tokyo,1,200,Senso-ji Temple
+Kyoto,3,170,Fushimi Inari Shrine
+Seoul,1,130,Gyeongbokgung Palace
+Singapore,1,90,Gardens by the Bay
+Hanoi,1,80,Hoan Kiem Lake
+Bali (Denpasar),0,100,Uluwatu Temple
+Sydney,1,120,Sydney Opera House
+Melbourne,0,90,Federation Square
+Queenstown,0,30,Lake Wakatipu
+New York,1,220,Statue of Liberty
+San Francisco,0,110,Golden Gate Bridge
+Toronto,0,90,CN Tower
+Mexico City,2,130,Zocalo
+Rio de Janeiro,1,100,Christ the Redeemer
+Buenos Aires,1,90,La Boca
+Cusco,1,60,Sacsayhuaman
+Cape Town,1,80,Table Mountain
+Reykjavik,0,30,Hallgrimskirkja
+Dubrovnik,1,40,Old City Walls
+Krakow,2,60,Wawel Castle
+Budapest,1,90,Fisherman's Bastion
+Jaipur,3,80,Hawa Mahal
+Beijing,7,130,Forbidden City

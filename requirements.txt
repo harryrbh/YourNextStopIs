@@ -3,7 +3,7 @@ SQLAlchemy
 scikit-learn
 networkx
 geopy
-matplotlib
+plotly
 streamlit
 pytest
 requests
