@@ -57,6 +57,31 @@ def recommend(preferences: dict, top_n: int = 10, cities: pd.DataFrame | None = 
     return result.sort_values("similarity", ascending=False)
 
 
+def most_similar_cities(city_id: int, n: int = 3, cities: pd.DataFrame | None = None) -> pd.DataFrame:
+    """The n cities whose own scores are closest to a GIVEN city's
+    scores — not a user's preferences this time, but one city
+    compared to every other. Same technique as recommend(): scale
+    the five scores, then use cosine-similarity nearest neighbours.
+    """
+    cities = cities if cities is not None else load_cities_with_scores()
+    target = cities[cities["city_id"] == city_id]
+    if target.empty:
+        return cities.iloc[0:0]
+
+    others = cities[cities["city_id"] != city_id].reset_index(drop=True)
+    scaler = StandardScaler()
+    X = scaler.fit_transform(others[FEATURES])
+    target_scaled = scaler.transform(target[FEATURES])
+
+    model = NearestNeighbors(n_neighbors=min(n, len(others)), metric="cosine")
+    model.fit(X)
+    distances, indices = model.kneighbors(target_scaled)
+
+    result = others.iloc[indices[0]].copy()
+    result["similarity"] = 1 - distances[0]
+    return result.sort_values("similarity", ascending=False)
+
+
 if __name__ == "__main__":
     example_prefs = {"weather_score": 85, "cost_score": 70, "culture_score": 60}
     top_cities = recommend(example_prefs, top_n=5)
