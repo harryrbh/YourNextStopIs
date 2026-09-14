@@ -28,14 +28,15 @@ DROP TABLE IF EXISTS countries;
 
 -- One row per country.
 CREATE TABLE countries (
-    country_id      INTEGER PRIMARY KEY AUTOINCREMENT,
-    iso2            TEXT UNIQUE NOT NULL,   -- e.g. 'FR'
-    name            TEXT NOT NULL,
-    region          TEXT,
-    population      INTEGER,
-    gdp_per_capita  REAL,                    -- used as a "cost" proxy
-    latitude        REAL,
-    longitude       REAL
+    country_id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    iso2                TEXT UNIQUE NOT NULL,  -- e.g. 'FR'
+    name                TEXT NOT NULL,
+    region               TEXT,
+    population           INTEGER,
+    gdp_per_capita        REAL,                -- used as a "cost" proxy
+    urban_population_pct   REAL,               -- % of the country living in urban areas
+    latitude                REAL,
+    longitude                REAL
 );
 
 -- One row per city. Every city belongs to one country.
@@ -46,9 +47,11 @@ CREATE TABLE cities (
     population      INTEGER,
     latitude        REAL NOT NULL,
     longitude       REAL NOT NULL,
-    heritage_sites  INTEGER DEFAULT 0,        -- from data/culture.csv
-    attractions     INTEGER DEFAULT 0,        -- from data/culture.csv
-    top_attraction  TEXT,                      -- from data/culture.csv
+    heritage_sites  INTEGER DEFAULT 0,   -- from data/culture.csv
+    attractions     INTEGER DEFAULT 0,   -- from data/culture.csv
+    attraction_1    TEXT,                -- from data/culture.csv
+    attraction_2    TEXT,                -- from data/culture.csv
+    attraction_3    TEXT,                -- from data/culture.csv
     CHECK (latitude BETWEEN -90 AND 90),
     CHECK (longitude BETWEEN -180 AND 180)
 );
@@ -63,12 +66,15 @@ CREATE TABLE weather (
     UNIQUE (city_id, month)
 );
 
--- One row per country per year (our sample data only has one year).
+-- One row per country per year. Our sample data has one year plus a
+-- growth percentage, which build_features.py uses to derive what the
+-- previous year's figure would have been (see that file for how).
 CREATE TABLE tourism (
-    tourism_id  INTEGER PRIMARY KEY AUTOINCREMENT,
-    country_id  INTEGER REFERENCES countries(country_id),
-    year        INTEGER NOT NULL,
-    arrivals    INTEGER
+    tourism_id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    country_id         INTEGER REFERENCES countries(country_id),
+    year                INTEGER NOT NULL,
+    arrivals             INTEGER,
+    tourism_growth_pct    REAL   -- year-on-year change in arrivals, %
 );
 
 -- Real airports, from the OpenFlights dataset, matched to our cities.
@@ -90,32 +96,46 @@ CREATE TABLE routes (
 );
 
 -- The "ready to use" table: one row per city with every calculated
--- feature and score. Everything in the app reads from here.
+-- feature, score, and classification. Everything in the app reads
+-- from here.
 CREATE TABLE city_features (
-    city_id              INTEGER PRIMARY KEY REFERENCES cities(city_id),
+    city_id               INTEGER PRIMARY KEY REFERENCES cities(city_id),
 
     -- raw numbers, calculated from the tables above
-    avg_temperature_c    REAL,
-    avg_precipitation_mm REAL,
-    airport_count        INTEGER DEFAULT 0,
-    route_count          INTEGER DEFAULT 0,
-    connectivity         REAL DEFAULT 0,      -- from NetworkX, see build_features.py
-    heritage_sites       INTEGER DEFAULT 0,
-    attractions          INTEGER DEFAULT 0,
-    gdp_per_capita        REAL,
-    tourist_arrivals      INTEGER,
+    avg_temperature_c     REAL,
+    avg_precipitation_mm  REAL,
+    airport_count         INTEGER DEFAULT 0,
+    route_count           INTEGER DEFAULT 0,
+    connectivity          REAL DEFAULT 0,   -- from NetworkX, see build_features.py
+    heritage_sites        INTEGER DEFAULT 0,
+    attractions            INTEGER DEFAULT 0,
+    gdp_per_capita          REAL,
+    urban_population_pct     REAL,
+    tourist_arrivals           INTEGER,
+    previous_arrivals            INTEGER,   -- derived from tourism_growth_pct
+    tourism_growth_pct             REAL,
+
+    -- nearest real airport to this city, calculated with geopy —
+    -- see build_features.py's nearest_airport() function
+    nearest_airport_name  TEXT,
+    nearest_airport_km    REAL,
 
     -- every score below is rescaled to 0-100, higher = better
     weather_score        REAL,
     accessibility_score  REAL,
     culture_score        REAL,
     cost_score            REAL,   -- higher score = cheaper
-    tourism_score         REAL,
+    tourism_score           REAL,
 
     -- the plain weighted-average overall score (see build_features.py)
-    overall_score          REAL,
+    overall_score            REAL,
 
-    -- filled in later by cluster.py — a plain-English travel-style
-    -- label (e.g. "Culture & Heritage"), not a raw cluster number
-    category                TEXT
+    -- filled in by cluster.py — an unsupervised, descriptive grouping
+    category                   TEXT,
+
+    -- filled in by classify.py — a supervised prediction, trained on
+    -- constructed labels. See classify.py's docstring for exactly how
+    -- the labels were built and why they are a proxy, not verified
+    -- ground truth.
+    price_tier                    TEXT
 );

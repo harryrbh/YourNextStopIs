@@ -1,6 +1,7 @@
 """
 build_features.py — turns the raw tables into one row per city with
-every score the app needs, saved into city_features.
+every score, and every extra fact (nearest airport, previous year's
+visitor numbers...), saved into city_features.
 
 Five feature "groups", each computed with plain pandas:
     1. weather      -> weather_score
@@ -16,6 +17,7 @@ Run it with:
 """
 import networkx as nx
 import pandas as pd
+from geopy.distance import geodesic
 
 from db import get_engine
 
@@ -44,9 +46,9 @@ def normalise_0_100(series: pd.Series, invert: bool = False) -> pd.Series:
 
 def compute_connectivity(engine) -> pd.DataFrame:
     """Model the airport route network as a graph and measure how
-    'central' each city's airport(s) are. This is the one bit of
-    network science in the project — everything else here is just
-    pandas — because airport connectivity genuinely is a network
+    'central' each city's airport(s) are. This is one of two bits of
+    geo/network science in this file — the other is nearest_airport()
+    below — because airport connectivity genuinely is a network
     problem: a city with one route to a huge hub can be more
     accessible than a city with five routes to nowhere.
     """
@@ -61,6 +63,51 @@ def compute_connectivity(engine) -> pd.DataFrame:
     return airports.groupby("city_id")["centrality"].sum().reset_index(name="connectivity")
 
 
+def nearest_airport(cities: pd.DataFrame, airports: pd.DataFrame) -> pd.DataFrame:
+    """For every city, find the closest real airport BY DISTANCE —
+    not just "whichever airport got matched to this city earlier" (a
+    city and its nearest airport aren't always the same thing: think
+    of a small town 20km from a regional airport that officially
+    "belongs" to a bigger neighbouring city).
+
+    Uses geopy's geodesic distance, which accounts for the Earth's
+    curvature rather than treating latitude/longitude like flat x/y
+    coordinates.
+    """
+    results = []
+    for _, city in cities.iterrows():
+        best_name, best_km = None, None
+        for _, airport in airports.iterrows():
+            km = geodesic(
+                (city["latitude"], city["longitude"]), (airport["latitude"], airport["longitude"])
+            ).km
+            if best_km is None or km < best_km:
+                best_km, best_name = km, airport["name"]
+        results.append({"city_id": city["city_id"], "nearest_airport_name": best_name, "nearest_airport_km": best_km})
+    return pd.DataFrame(results)
+
+
+def add_tourism_history(tourism: pd.DataFrame) -> pd.DataFrame:
+    """Our sample tourism data has one year's arrivals plus a growth
+    percentage, rather than several years of history. We use that
+    growth percentage to work out what LAST year's arrivals would
+    have been: if arrivals grew by g% to reach this year's number,
+    last year's number was this_year / (1 + g/100).
+
+    If you've swapped in real data via fetch_tourism.py, there is no
+    growth percentage (the World Bank endpoint we use there only
+    returns one year), so previous_arrivals ends up equal to the
+    current figure and tourism_growth_pct stays 0 — see API_GUIDE.md
+    for how you'd extend fetch_tourism.py to pull two years instead.
+    """
+    tourism = tourism.copy()
+    if "tourism_growth_pct" not in tourism.columns:
+        tourism["tourism_growth_pct"] = 0.0
+    tourism["tourism_growth_pct"] = tourism["tourism_growth_pct"].fillna(0.0)
+    tourism["previous_arrivals"] = tourism["arrivals"] / (1 + tourism["tourism_growth_pct"] / 100)
+    return tourism
+
+
 def build():
     engine = get_engine()
 
@@ -71,6 +118,8 @@ def build():
     countries = pd.read_sql("SELECT * FROM countries", engine)
     tourism = pd.read_sql("SELECT * FROM tourism", engine)
     connectivity = compute_connectivity(engine)
+    nearest = nearest_airport(cities, airports)
+    tourism = add_tourism_history(tourism)
 
     # --- 1. weather: average temperature/rain across all 12 months ---
     weather_avg = weather.groupby("city_id").agg(
@@ -90,12 +139,17 @@ def build():
     df = df.merge(airport_counts, on="city_id", how="left")
     df = df.merge(route_counts, on="city_id", how="left")
     df = df.merge(connectivity, on="city_id", how="left")
-    df = df.merge(countries[["country_id", "gdp_per_capita"]], on="country_id", how="left")
+    df = df.merge(nearest, on="city_id", how="left")
+    df = df.merge(countries[["country_id", "gdp_per_capita", "urban_population_pct"]], on="country_id", how="left")
 
-    tourism_by_country = tourism.groupby("country_id")["arrivals"].mean().reset_index()
-    df = df.merge(tourism_by_country, left_on="country_id", right_on="country_id", how="left")
+    tourism_by_country = tourism.groupby("country_id").agg(
+        arrivals=("arrivals", "mean"),
+        previous_arrivals=("previous_arrivals", "mean"),
+        tourism_growth_pct=("tourism_growth_pct", "mean"),
+    ).reset_index()
+    df = df.merge(tourism_by_country, on="country_id", how="left")
 
-    for col in ["airport_count", "route_count", "connectivity", "arrivals"]:
+    for col in ["airport_count", "route_count", "connectivity", "arrivals", "previous_arrivals", "tourism_growth_pct"]:
         df[col] = df[col].fillna(0)
 
     # weather comfort: closest to 22C with lower rainfall scores higher
@@ -117,8 +171,10 @@ def build():
     out = df[[
         "city_id", "avg_temperature_c", "avg_precipitation_mm", "airport_count",
         "route_count", "connectivity", "heritage_sites", "attractions",
-        "gdp_per_capita", "arrivals", "weather_score", "accessibility_score",
-        "culture_score", "cost_score", "tourism_score", "overall_score",
+        "gdp_per_capita", "urban_population_pct", "arrivals", "previous_arrivals",
+        "tourism_growth_pct", "nearest_airport_name", "nearest_airport_km",
+        "weather_score", "accessibility_score", "culture_score", "cost_score",
+        "tourism_score", "overall_score",
     ]].rename(columns={"arrivals": "tourist_arrivals"})
 
     with engine.begin() as conn:

@@ -28,9 +28,9 @@ def clean_countries(df: pd.DataFrame) -> pd.DataFrame:
     df = df.dropna(subset=["name", "iso2", "latitude", "longitude"])
     df = df[df["latitude"].between(-90, 90) & df["longitude"].between(-180, 180)]
     df = df.drop_duplicates(subset=["iso2"])
-    return df[["iso2", "name", "region", "population", "gdp_per_capita_usd", "latitude", "longitude"]].rename(
-        columns={"gdp_per_capita_usd": "gdp_per_capita"}
-    )
+    return df[
+        ["iso2", "name", "region", "population", "gdp_per_capita_usd", "urban_population_pct", "latitude", "longitude"]
+    ].rename(columns={"gdp_per_capita_usd": "gdp_per_capita"})
 
 
 def clean_cities(df: pd.DataFrame, culture: pd.DataFrame) -> pd.DataFrame:
@@ -39,7 +39,8 @@ def clean_cities(df: pd.DataFrame, culture: pd.DataFrame) -> pd.DataFrame:
     df = df.merge(culture, left_on="name", right_on="city_name", how="left")
     df["heritage_site_count"] = df["heritage_site_count"].fillna(0)
     df["attraction_count"] = df["attraction_count"].fillna(0)
-    df["top_attraction"] = df["top_attraction"].fillna("")
+    for col in ["attraction_1", "attraction_2", "attraction_3"]:
+        df[col] = df[col].fillna("")
     return df
 
 
@@ -68,7 +69,7 @@ def main():
         cities = cities.merge(country_ids, on="iso2", how="left")
         cities_out = cities[
             ["name", "country_id", "population", "latitude", "longitude",
-             "heritage_site_count", "attraction_count", "top_attraction"]
+             "heritage_site_count", "attraction_count", "attraction_1", "attraction_2", "attraction_3"]
         ].rename(columns={"heritage_site_count": "heritage_sites", "attraction_count": "attractions"})
         cities_out.to_sql("cities", conn, if_exists="append", index=False)
         city_ids = pd.read_sql("SELECT city_id, name FROM cities", conn)
@@ -86,15 +87,18 @@ def main():
         # because country *names* don't always match exactly between
         # different data sources (e.g. "United States" vs "United
         # States of America"), but ISO codes always do.
+        tourism_cols = ["country_id", "year", "arrivals"]
+        if "tourism_growth_pct" in tourism_raw.columns:
+            tourism_cols.append("tourism_growth_pct")
         if "iso2" in tourism_raw.columns:
-            tourism = tourism_raw.merge(country_ids, on="iso2")[["country_id", "year", "arrivals"]]
+            tourism = tourism_raw.merge(country_ids, on="iso2")[tourism_cols]
         else:
             tourism = tourism_raw.merge(
                 country_ids.merge(countries_raw[["iso2", "name"]], on="iso2").rename(
                     columns={"name": "country_name"}
                 ),
                 on="country_name",
-            )[["country_id", "year", "arrivals"]]
+            )[tourism_cols]
         tourism.to_sql("tourism", conn, if_exists="append", index=False)
 
         # 5. Airports, linked to city by name (data/airports.csv already

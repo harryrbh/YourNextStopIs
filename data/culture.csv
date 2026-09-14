@@ -1,47 +1,47 @@
-city_name,heritage_site_count,attraction_count,top_attraction
-Paris,5,220,Eiffel Tower
-Nice,0,60,Promenade des Anglais
-Barcelona,3,140,Sagrada Familia
-Madrid,2,120,Prado Museum
-Seville,3,80,Seville Cathedral
-Rome,7,250,Colosseum
-Florence,1,130,Uffizi Gallery
-Venice,1,110,St Mark's Square
-London,4,260,British Museum
-Edinburgh,1,90,Edinburgh Castle
-Berlin,3,150,Brandenburg Gate
-Munich,0,100,Marienplatz
-Lisbon,1,90,Belem Tower
-Porto,1,60,Livraria Lello
-Athens,2,110,Acropolis
-Amsterdam,1,100,Anne Frank House
-Vienna,1,120,Schonbrunn Palace
-Prague,1,100,Charles Bridge
-Istanbul,4,150,Hagia Sophia
-Marrakesh,1,70,Jemaa el-Fnaa
-Cairo,3,90,Pyramids of Giza
-Dubai,0,80,Burj Khalifa
-Bangkok,1,140,Grand Palace
-Tokyo,1,200,Senso-ji Temple
-Kyoto,3,170,Fushimi Inari Shrine
-Seoul,1,130,Gyeongbokgung Palace
-Singapore,1,90,Gardens by the Bay
-Hanoi,1,80,Hoan Kiem Lake
-Bali (Denpasar),0,100,Uluwatu Temple
-Sydney,1,120,Sydney Opera House
-Melbourne,0,90,Federation Square
-Queenstown,0,30,Lake Wakatipu
-New York,1,220,Statue of Liberty
-San Francisco,0,110,Golden Gate Bridge
-Toronto,0,90,CN Tower
-Mexico City,2,130,Zocalo
-Rio de Janeiro,1,100,Christ the Redeemer
-Buenos Aires,1,90,La Boca
-Cusco,1,60,Sacsayhuaman
-Cape Town,1,80,Table Mountain
-Reykjavik,0,30,Hallgrimskirkja
-Dubrovnik,1,40,Old City Walls
-Krakow,2,60,Wawel Castle
-Budapest,1,90,Fisherman's Bastion
-Jaipur,3,80,Hawa Mahal
-Beijing,7,130,Forbidden City
+city_name,heritage_site_count,attraction_count,attraction_1,attraction_2,attraction_3
+Paris,5,220,Eiffel Tower,Louvre Museum,Notre-Dame Cathedral
+Nice,0,60,Promenade des Anglais,Old Town (Vieux Nice),Castle Hill
+Barcelona,3,140,Sagrada Familia,Park Guell,Gothic Quarter
+Madrid,2,120,Prado Museum,Retiro Park,Royal Palace
+Seville,3,80,Seville Cathedral,Alcazar of Seville,Plaza de Espana
+Rome,7,250,Colosseum,Trevi Fountain,Vatican Museums
+Florence,1,130,Uffizi Gallery,Florence Cathedral,Ponte Vecchio
+Venice,1,110,St Mark's Square,Grand Canal,Doge's Palace
+London,4,260,British Museum,Tower of London,Buckingham Palace
+Edinburgh,1,90,Edinburgh Castle,Royal Mile,Arthur's Seat
+Berlin,3,150,Brandenburg Gate,Museum Island,Berlin Wall Memorial
+Munich,0,100,Marienplatz,Nymphenburg Palace,English Garden
+Lisbon,1,90,Belem Tower,Jeronimos Monastery,Alfama District
+Porto,1,60,Livraria Lello,Dom Luis I Bridge,Ribeira District
+Athens,2,110,Acropolis,Parthenon,Ancient Agora
+Amsterdam,1,100,Anne Frank House,Van Gogh Museum,Rijksmuseum
+Vienna,1,120,Schonbrunn Palace,St Stephen's Cathedral,Belvedere Palace
+Prague,1,100,Charles Bridge,Prague Castle,Old Town Square
+Istanbul,4,150,Hagia Sophia,Blue Mosque,Topkapi Palace
+Marrakesh,1,70,Jemaa el-Fnaa,Bahia Palace,Majorelle Garden
+Cairo,3,90,Pyramids of Giza,Egyptian Museum,Khan el-Khalili
+Dubai,0,80,Burj Khalifa,Dubai Mall,Palm Jumeirah
+Bangkok,1,140,Grand Palace,Wat Arun,Wat Pho
+Tokyo,1,200,Senso-ji Temple,Shibuya Crossing,Tokyo Tower
+Kyoto,3,170,Fushimi Inari Shrine,Kinkaku-ji (Golden Pavilion),Arashiyama Bamboo Grove
+Seoul,1,130,Gyeongbokgung Palace,Bukchon Hanok Village,N Seoul Tower
+Singapore,1,90,Gardens by the Bay,Marina Bay Sands,Sentosa Island
+Hanoi,1,80,Hoan Kiem Lake,Temple of Literature,Old Quarter
+Bali (Denpasar),0,100,Uluwatu Temple,Tanah Lot,Ubud
+Sydney,1,120,Sydney Opera House,Sydney Harbour Bridge,Bondi Beach
+Melbourne,0,90,Federation Square,Queen Victoria Market,Royal Botanic Gardens
+Queenstown,0,30,Lake Wakatipu,Skyline Gondola,Shotover River
+New York,1,220,Statue of Liberty,Central Park,Times Square
+San Francisco,0,110,Golden Gate Bridge,Alcatraz Island,Fisherman's Wharf
+Toronto,0,90,CN Tower,Royal Ontario Museum,Distillery District
+Mexico City,2,130,Zocalo,Chapultepec Castle,Frida Kahlo Museum
+Rio de Janeiro,1,100,Christ the Redeemer,Copacabana Beach,Sugarloaf Mountain
+Buenos Aires,1,90,La Boca,Recoleta Cemetery,Teatro Colon
+Cusco,1,60,Sacsayhuaman,Plaza de Armas,San Pedro Market
+Cape Town,1,80,Table Mountain,V&A Waterfront,Robben Island
+Reykjavik,0,30,Hallgrimskirkja,Sun Voyager,Perlan
+Dubrovnik,1,40,Old City Walls,Stradun,Lovrijenac Fortress
+Krakow,2,60,Wawel Castle,Main Market Square,St Mary's Basilica
+Budapest,1,90,Fisherman's Bastion,Buda Castle,Szechenyi Thermal Bath
+Jaipur,3,80,Hawa Mahal,Amber Fort,City Palace
+Beijing,7,130,Forbidden City,Great Wall (nearby),Temple of Heaven
