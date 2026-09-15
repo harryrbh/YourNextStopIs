@@ -19,6 +19,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src"))
 
 import pandas as pd
 import streamlit as st
+from sqlalchemy import text
 
 from db import get_engine
 
@@ -62,3 +63,26 @@ def load_direct_flights() -> pd.DataFrame:
 def direct_flights_from(flights: pd.DataFrame, city_name: str) -> list[str]:
     """Every city with at least one direct route from `city_name`."""
     return sorted(flights.loc[flights["from_city"] == city_name, "to_city"].unique().tolist())
+
+
+@st.cache_data(ttl=300)
+def load_country_indicators(city_id: int) -> pd.DataFrame:
+    """One row: the country-level indicators for whichever country a
+    given city belongs to (population, GDP per person, urbanisation).
+    """
+    engine = get_engine()
+    query = """
+        SELECT co.population, co.gdp_per_capita, co.urban_population_pct
+        FROM countries co
+        JOIN cities c ON c.country_id = co.country_id
+        WHERE c.city_id = :city_id
+    """
+    return pd.read_sql(text(query), engine, params={"city_id": city_id})
+
+
+@st.cache_data(ttl=300)
+def load_monthly_weather(city_id: int) -> pd.DataFrame:
+    """Twelve rows: one month's temperature/rainfall average each."""
+    engine = get_engine()
+    query = "SELECT month, temperature_c, precipitation_mm FROM weather WHERE city_id = :city_id ORDER BY month"
+    return pd.read_sql(text(query), engine, params={"city_id": city_id})
