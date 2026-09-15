@@ -39,8 +39,11 @@ def to_dataframe(raw: list[dict]) -> pd.DataFrame:
                 "iso2": country.get("cca2"),
                 "region": country.get("region"),
                 "population": country.get("population"),
-                # REST Countries doesn't include GDP — see NOTE below.
+                # REST Countries doesn't include GDP or urbanisation —
+                # see NOTE below. fetch_tourism.py fills both in later
+                # from the World Bank.
                 "gdp_per_capita_usd": None,
+                "urban_population_pct": None,
                 "latitude": latlng[0],
                 "longitude": latlng[1],
             }
@@ -56,12 +59,12 @@ def main():
     df.to_csv(out_path, index=False)
     print(f"Saved {len(df)} rows to {out_path}")
     print(
-        "\nNOTE: REST Countries doesn't provide GDP per capita, so "
-        "gdp_per_capita_usd is empty for every row. src/build_features.py "
-        "handles missing values by filling them with the median, so the "
-        "pipeline still runs — but cost_score will be meaningless until "
-        "you fill this column in. See fetch_tourism.py's docstring for "
-        "where World Bank GDP data would plug in instead."
+        "\nNOTE: REST Countries doesn't provide GDP per capita or urban "
+        "population %, so both columns are empty for every row. "
+        "src/build_features.py fills missing GDP with the median so the "
+        "pipeline still runs, but cost_score will be meaningless until you "
+        "run fetch_tourism.py next — that script fills both columns in "
+        "from the World Bank."
     )
 
 
