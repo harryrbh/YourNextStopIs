@@ -16,7 +16,7 @@ COPY . .
 # Build the database inside the image, from the CSV files, so the
 # container is ready to run the moment it starts — no extra setup
 # commands needed after `docker run`.
-RUN python src/db.py && python src/load_data.py && python src/build_features.py && python src/cluster.py
+RUN python src/db.py && python src/load_data.py && python src/build_features.py && python src/cluster.py && python src/classify.py
 
 # Tell Docker the app listens on this port (documentation only —
 # doesn't actually open the port; the -p flag on `docker run` does that).
