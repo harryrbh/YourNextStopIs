@@ -10,9 +10,9 @@ from data_access import direct_flights_from, load_cities, load_direct_flights
 from recommend import recommend
 from theme import inject_css
 
-st.set_page_config(page_title="Recommend", page_icon="🎯", layout="wide")
+st.set_page_config(page_title="Recommend", layout="wide")
 inject_css()
-st.title("🎯 Recommend")
+st.title("Recommend")
 st.caption("Tell us what matters to you, and we'll find your closest matches.")
 
 cities = load_cities()

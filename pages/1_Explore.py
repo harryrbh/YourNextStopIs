@@ -12,9 +12,9 @@ from distance import add_distance_column
 from labels import friendly
 from theme import COLORSCALE, inject_css
 
-st.set_page_config(page_title="Explore", page_icon="🔎", layout="wide")
+st.set_page_config(page_title="Explore", layout="wide")
 inject_css()
-st.title("🔎 Explore")
+st.title("Explore")
 
 cities = load_cities()
 flights = load_direct_flights()
@@ -26,6 +26,7 @@ with st.sidebar:
     st.header("Filters")
     search = st.text_input("Search by city name")
     categories = st.multiselect("Travel style", sorted(cities["category"].dropna().unique()))
+    price_tiers = st.multiselect("Price tier", sorted(cities["price_tier"].dropna().unique()))
     countries = st.multiselect("Country", sorted(cities["country_name"].unique()))
     min_weather = st.slider("Minimum weather score", 0, 100, 0)
     min_culture = st.slider("Minimum culture score", 0, 100, 0)
@@ -40,6 +41,8 @@ if search:
     filtered = filtered[filtered["city_name"].str.contains(search, case=False, na=False)]
 if categories:
     filtered = filtered[filtered["category"].isin(categories)]
+if price_tiers:
+    filtered = filtered[filtered["price_tier"].isin(price_tiers)]
 if countries:
     filtered = filtered[filtered["country_name"].isin(countries)]
 filtered = filtered[
@@ -71,7 +74,7 @@ if view == "Cards":
         st.caption(f"Showing the first 30 of {len(filtered)} matches. Narrow your filters to see fewer, or switch to Table view for all of them.")
 else:
     display_cols = [
-        "city_name", "country_name", "category", "overall_score", "weather_score",
+        "city_name", "country_name", "category", "price_tier", "overall_score", "weather_score",
         "accessibility_score", "culture_score", "cost_score",
     ]
     if "distance_km" in filtered.columns:
@@ -88,7 +91,15 @@ else:
         fig.update_layout(coloraxis_showscale=False, margin=dict(l=0, r=10, t=10, b=0))
         st.plotly_chart(fig, use_container_width=True)
 
-    st.dataframe(friendly(filtered[display_cols]), use_container_width=True, hide_index=True)
+    table = filtered[display_cols].copy()
+    table.insert(1, "flag_url", filtered["iso2"].str.lower().apply(
+        lambda code: f"https://flagcdn.com/w40/{code}.png" if isinstance(code, str) and len(code) == 2 else None
+    ))
+    st.dataframe(
+        friendly(table),
+        use_container_width=True, hide_index=True,
+        column_config={"flag_url": st.column_config.ImageColumn("Flag", width="small")},
+    )
 
     st.download_button(
         "Download results as CSV",

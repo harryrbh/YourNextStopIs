@@ -2,12 +2,23 @@
 labels.py — plain-English names for every column, so nothing shown on
 screen is a raw database/code name like `cost_score` or
 `avg_temperature_c`. Also handles rounding (so users see "72" and
-"18.4°C", never "71.83333333") and country flag emoji.
+"18.4°C", never "71.83333333") and country flags.
 
 Use `friendly(df)` right before displaying a DataFrame (in a table, a
 chart, a download button) — never rename columns this way earlier in
 the pipeline, or the rest of the code has to work with the renamed
 (and less predictable) versions.
+
+A note on flags: emoji flags (built from Unicode "regional indicator"
+characters) depend entirely on the browser/operating system having a
+font that renders them as flags — some systems instead show the raw
+two-letter code or a blank box. That isn't something this app's code
+can fix directly, so for anywhere the flag needs to reliably show up
+(city cards, headings), we use a real flag ICON IMAGE instead, from
+flagcdn.com (a free, keyless flag-icon service) — see
+`flag_image_html()`. The plain emoji character (`flag_emoji()`) is
+kept for places an image can't go, like a CSV export or dataframe
+cell.
 """
 import pandas as pd
 
@@ -29,12 +40,20 @@ FRIENDLY_NAMES = {
     "airport_count": "Airports Nearby",
     "route_count": "Flight Routes",
     "connectivity": "Flight Network Score",
+    "nearest_airport_name": "Nearest Airport",
+    "nearest_airport_km": "Distance to Nearest Airport (km)",
     "heritage_sites": "Heritage Sites",
     "attractions": "Attractions",
-    "top_attraction": "Top Attraction",
+    "attraction_1": "Top Attraction",
+    "attraction_2": "2nd Attraction",
+    "attraction_3": "3rd Attraction",
     "gdp_per_capita": "GDP per Person",
+    "urban_population_pct": "Urban Population (%)",
     "tourist_arrivals": "Yearly Visitors",
+    "previous_arrivals": "Previous Year's Visitors",
+    "tourism_growth_pct": "Visitor Growth (%)",
     "category": "Travel Style",
+    "price_tier": "Price Tier",
     "similarity": "Match",
     "distance_km": "Distance (km)",
 }
@@ -57,6 +76,8 @@ DECIMAL_PLACES = {
     "latitude": 2,
     "longitude": 2,
     "similarity": 0,
+    "urban_population_pct": 0,
+    "tourism_growth_pct": 1,
 }
 
 
@@ -79,12 +100,26 @@ def friendly(df: pd.DataFrame) -> pd.DataFrame:
 
 def flag_emoji(iso2: str) -> str:
     """Turn a two-letter country code ('FR') into its flag emoji
-    ('🇫🇷'). Works by shifting each letter into the Unicode "regional
-    indicator symbol" range — no image file or lookup table needed.
-    Renders as a real flag on most systems; a couple of older/Windows
-    setups show the two letters instead, which still reads fine.
+    character ('🇫🇷'), for contexts that only accept plain text (a
+    dataframe cell, a CSV). See the module docstring for why the
+    visual card display uses flag_image_html() instead.
     """
     if not isinstance(iso2, str) or len(iso2) != 2:
         return ""
     return "".join(chr(0x1F1E6 + ord(c.upper()) - ord("A")) for c in iso2)
 
+
+def flag_image_html(iso2: str, height: int = 16) -> str:
+    """A real flag icon (an <img> tag), which renders reliably in
+    every browser regardless of emoji font support. Source:
+    flagcdn.com — free, no key required. Pass into
+    st.markdown(..., unsafe_allow_html=True).
+    """
+    if not isinstance(iso2, str) or len(iso2) != 2:
+        return ""
+    code = iso2.lower()
+    return (
+        f'<img src="https://flagcdn.com/{code}.svg" alt="{iso2}" '
+        f'height="{height}" style="vertical-align:middle; border-radius:2px; '
+        f'box-shadow: 0 0 1px rgba(0,0,0,0.3);">'
+    )

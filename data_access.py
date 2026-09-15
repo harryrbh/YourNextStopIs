@@ -28,7 +28,8 @@ def load_cities() -> pd.DataFrame:
     engine = get_engine()
     query = """
         SELECT cf.*, c.name AS city_name, c.latitude, c.longitude,
-               c.top_attraction, co.name AS country_name, co.iso2, co.region
+               c.attraction_1, c.attraction_2, c.attraction_3,
+               co.name AS country_name, co.iso2, co.region
         FROM city_features cf
         JOIN cities c ON c.city_id = cf.city_id
         JOIN countries co ON co.country_id = c.country_id
@@ -40,11 +41,14 @@ def load_cities() -> pd.DataFrame:
 def load_direct_flights() -> pd.DataFrame:
     """One row per (origin city, destination city) with a direct
     route between them, according to the real OpenFlights data. Used
-    to show "Direct flights to: ..." on a city's card.
+    to show "Direct flights to: ..." on a city's card and to draw
+    flight-route lines on a map.
     """
     engine = get_engine()
     query = """
-        SELECT DISTINCT c1.name AS from_city, c2.name AS to_city
+        SELECT DISTINCT c1.name AS from_city, c2.name AS to_city,
+               c1.latitude AS from_lat, c1.longitude AS from_lon,
+               c2.latitude AS to_lat, c2.longitude AS to_lon
         FROM routes r
         JOIN airports a1 ON a1.airport_id = r.source_airport_id
         JOIN airports a2 ON a2.airport_id = r.destination_airport_id

@@ -20,11 +20,11 @@ FEATURES = ["weather_score", "accessibility_score", "culture_score", "cost_score
 K = 4
 
 CATEGORY_NAMES = {
-    "weather_score": "☀️ Warm-Weather Destinations",
-    "accessibility_score": "✈️ Well-Connected Cities",
-    "culture_score": "🏛️ Culture & Heritage",
-    "cost_score": "💰 Budget-Friendly",
-    "tourism_score": "🌟 Popular Hotspots",
+    "weather_score": "Warm-Weather Destinations",
+    "accessibility_score": "Well-Connected Cities",
+    "culture_score": "Culture & Heritage",
+    "cost_score": "Budget-Friendly",
+    "tourism_score": "Popular Hotspots",
 }
 
 

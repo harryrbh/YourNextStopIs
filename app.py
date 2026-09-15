@@ -11,23 +11,21 @@ else is plain Python.
 import os
 import sys
 
-import pandas as pd
 import plotly.express as px
 import streamlit as st
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src"))
 
 from data_access import load_cities
-from labels import flag_emoji, friendly
-from regression import feature_importance, fit_model, load_training_data
-from theme import COLORSCALE, GREEN, inject_css
+from labels import flag_emoji
+from theme import COLORSCALE, inject_css
 
-st.set_page_config(page_title="City Breaks", page_icon="🧭", layout="wide")
+st.set_page_config(page_title="City Breaks", layout="wide")
 inject_css()
 
 
 def main():
-    st.title("🧭 City Breaks")
+    st.title("City Breaks")
     st.caption("Find your next short break using real airport, weather and travel data.")
 
     try:
@@ -63,7 +61,7 @@ def main():
         color_continuous_scale=COLORSCALE,
         size_max=22, zoom=1, height=560,
         hover_name="city_name",
-        custom_data=["flag", "country_name", "hover_score", "hover_temp", "top_attraction", "category"],
+        custom_data=["flag", "country_name", "hover_score", "hover_temp", "attraction_1", "category"],
     )
     fig.update_traces(
         hovertemplate=(
@@ -101,29 +99,10 @@ def main():
     fig2.update_layout(coloraxis_showscale=False, margin=dict(l=0, r=10, t=10, b=0))
     st.plotly_chart(fig2, use_container_width=True)
 
-    with st.expander("📈 What drives a city's popularity?"):
-        st.caption(
-            "A regression model, trained on these 46 cities, estimating which "
-            "attributes best predict yearly visitor numbers."
-        )
-        try:
-            data = load_training_data()
-            model, scaler, r2 = fit_model(data)
-            importance = feature_importance(model)
-            importance["direction"] = importance["effect"].apply(lambda x: "Increases visitors" if x > 0 else "Decreases visitors")
-            fig3 = px.bar(
-                importance, x="effect", y="feature", orientation="h", color="direction",
-                color_discrete_map={"Increases visitors": GREEN, "Decreases visitors": "#EF4444"},
-                labels={"effect": "Effect on visitor numbers", "feature": ""},
-                height=300,
-            )
-            fig3.update_layout(margin=dict(l=0, r=10, t=10, b=0))
-            st.plotly_chart(fig3, use_container_width=True)
-            st.caption(f"Model fit: R² = {r2:.2f} (small sample — treat as illustrative, not exact).")
-        except Exception:
-            st.info("Not enough data yet to train the model — run the setup steps first.")
-
-    st.info("Use the sidebar to explore, get a recommendation, or compare cities.")
+    st.info(
+        "Use the sidebar to explore, get a recommendation, compare cities, "
+        "see tourism trends, or look up full details for one city."
+    )
 
 
 if __name__ == "__main__":
