@@ -36,11 +36,22 @@ def normalise_0_100(series: pd.Series, invert: bool = False) -> pd.Series:
     """Rescale any column so the lowest value becomes 0 and the
     highest becomes 100. `invert=True` for columns where *lower* is
     better (like cost), so the resulting score still means 'better'.
+
+    Missing values become a neutral 50 rather than staying blank —
+    important because if a whole column happens to be missing (e.g.
+    you've run fetch_countries.py but not fetch_tourism.py yet, so
+    every gdp_per_capita is empty), a plain min-max scale would
+    divide 0 by 0 and turn EVERY city's score into NaN, which then
+    breaks every downstream model (clustering, classification,
+    recommendations) rather than just one column looking bland.
     """
     s = series.astype(float)
+    if s.notna().sum() == 0:
+        return pd.Series(50.0, index=s.index)  # no information at all -> neutral score
     if s.max() == s.min():
         return pd.Series(50.0, index=s.index)  # everyone's equal -> neutral score
     scaled = (s - s.min()) / (s.max() - s.min()) * 100
+    scaled = scaled.fillna(50.0)  # individual missing values also become neutral
     return 100 - scaled if invert else scaled
 
 

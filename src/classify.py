@@ -73,7 +73,19 @@ def load_data() -> pd.DataFrame:
 
 def build_labels(df: pd.DataFrame) -> pd.Series:
     """Bottom/middle/top third of gdp_per_capita -> Budget/Mid-range/Luxury.
-    See the module docstring for why this is a proxy, not ground truth."""
+    See the module docstring for why this is a proxy, not ground truth.
+    """
+    if df["gdp_per_capita"].nunique() < 3:
+        raise RuntimeError(
+            "Can't build Budget/Mid-range/Luxury labels: there isn't enough "
+            "GDP-per-person data loaded to split cities into three groups "
+            f"(only {df['gdp_per_capita'].nunique()} distinct value(s) found, need at least 3).\n\n"
+            "This almost always means gdp_per_capita is empty for most or all "
+            "cities — which is expected right after running fetch_countries.py "
+            "on its own, since that API doesn't provide GDP. Run "
+            "fetch_tourism.py next (it fills gdp_per_capita in from the World "
+            "Bank), then re-run src/build_features.py before this script."
+        )
     return pd.qcut(df["gdp_per_capita"], q=3, labels=["Budget", "Mid-range", "Luxury"])
 
 

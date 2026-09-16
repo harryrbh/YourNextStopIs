@@ -6,11 +6,21 @@ real data from a live API — one API at a time, in the order you should
 do them, with exactly what each step does, why, what the response
 looks like, and what's honestly still missing afterwards.
 
-**Important — do these in order.** `fetch_weather.py` needs
-`data/cities.csv` to already exist (it looks up each city's
-coordinates), and `fetch_tourism.py` needs `data/countries.csv` to
-already exist (it fills in two columns on it). Skipping ahead will
-either fail outright or quietly leave columns empty.
+**Important — do these in order, and run ALL FOUR before touching the
+ML scripts.** `fetch_weather.py` needs `data/cities.csv` to already
+exist (it looks up each city's coordinates), and `fetch_tourism.py`
+needs `data/countries.csv` to already exist (it fills in two columns
+on it). Skipping ahead will either fail outright or quietly leave
+columns empty — and a couple of downstream scripts are less forgiving
+about that than you might expect: `src/classify.py` builds its
+Budget/Mid-range/Luxury labels directly from `gdp_per_capita`, so if
+you run `python src/build_features.py` and `python src/classify.py`
+**before** Step 4 has filled that column in, `classify.py` will stop
+with a clear error telling you to run `fetch_tourism.py` first (it
+used to fail with a confusing raw pandas error — see that script's
+`build_labels()` for the fix). The short version: run all four fetch
+scripts below, *then* run the whole `db.py` -> `classify.py` pipeline
+once, not interleaved.
 
 | Step | Script | Writes to | Needs run first |
 |---|---|---|---|
@@ -32,36 +42,50 @@ cp -r data data_sample_backup
 
 ---
 
-## Step 1: Countries — REST Countries
+## Step 1: Countries — countries.dev
+
+**A note on which API this is, and why it changed:** this step
+originally used REST Countries (restcountries.com) v3.1, which was
+genuinely free and keyless. As of 2026, REST Countries v1-v4 are
+**deprecated** — the old endpoint now returns an error object instead
+of data — and the replacement, v5, requires creating a free account
+and an API key. Since this project is specifically built so nobody
+needs to sign up for anything, `fetch_countries.py` now uses
+[countries.dev](https://countries.dev) instead: a free, keyless API
+returning equivalent country data. If you'd rather use the more
+established REST Countries v5 and don't mind a free signup, see the
+comment at the top of `fetch_countries.py` for exactly what to change.
 
 **What it is:** a free, keyless API that returns country-level facts
 (name, region, population, coordinates) for every country in the
-world, maintained as an open-source project on GitHub.
+world.
 
-**Endpoint:** `https://restcountries.com/v3.1/all`
+**Endpoint:** `https://countries.dev/countries`
 
 **Try it yourself first**, before running any code, just to see the
 shape of the data — paste this into your browser:
 ```
-https://restcountries.com/v3.1/all?fields=name,cca2,population
+https://countries.dev/countries?fields=name,alpha2Code,population
 ```
 
 You'll get back a big JSON array, one object per country, that looks
-roughly like:
+like:
 ```json
 [
   {
-    "name": {"common": "France", "official": "French Republic", "nativeName": {"...": "..."}},
-    "cca2": "FR",
+    "name": "France",
+    "alpha2Code": "FR",
     "population": 67391582
   }
 ]
 ```
 Getting comfortable reading a raw API response before writing code
-around it is a habit worth building — notice `name` is a nested
-object, not a plain string, which is why `to_dataframe()` in the
-script reaches into it with `country.get("name", {}).get("common")`
-rather than `country["name"]`.
+around it is a habit worth building — notice `name` here is a plain
+string, not a nested object (some country APIs, including REST
+Countries, nest it as `{"common": "France", "official": "..."}`
+instead) — which is why `to_dataframe()` in the script reads it
+directly with `country.get("name")` rather than reaching into a
+sub-dictionary.
 
 **Run it:**
 ```bash
@@ -72,32 +96,46 @@ python src/fetch_countries.py
 to follow along):
 1. `requests.get(URL, params={"fields": FIELDS})` sends the HTTP
    request. The `fields` parameter matters a lot here: without it,
-   REST Countries returns *everything* it knows about each country —
-   flags, borders, currencies, languages, timezones, car-driving
-   side, and more — several times bigger than we need, and slower to
-   download and parse for no benefit.
+   the API returns *everything* it knows about each country — flags,
+   currencies, languages, calling codes, and more — several times
+   bigger than we need, and slower to download and parse for no
+   benefit.
 2. `response.raise_for_status()` — if the request failed (wrong URL,
    no internet, the API is down, you've been rate-limited), this
    raises a clear error immediately, rather than the script silently
    continuing with no data and failing confusingly three steps later.
 3. `response.json()` turns the response body into a Python list of
    dictionaries — `requests` handles the JSON parsing for you.
-4. `to_dataframe()` picks out just the fields our database needs,
+4. **The script then checks `isinstance(data, list)`** before doing
+   anything else with it. This isn't defensive paranoia for its own
+   sake — it's there because this exact failure already happened once
+   while building this project: an API changed/deprecated and started
+   returning an error *object* (e.g.
+   `{"success": False, "errors": [...]}`) instead of the expected
+   *list*, and without this check, the next line silently iterated
+   over that object's keys as if they were countries and crashed
+   three function calls later with a confusing `AttributeError`. If
+   this ever happens again (the API changes again, is temporarily
+   down, etc.), you'll now see the API's own error message directly,
+   plus the exact URL to open in your browser to see the live
+   response yourself.
+5. `to_dataframe()` picks out just the fields our database needs,
    pulls `latlng` apart into separate `latitude`/`longitude` columns,
    and renames things to match what `data/countries.csv` needs.
-5. `df.to_csv(...)` writes the result, overwriting the sample file.
+6. `df.to_csv(...)` writes the result, overwriting the sample file.
 
-**Error handling to be aware of:** if REST Countries is temporarily
+**Error handling to be aware of:** if the API is temporarily
 unreachable, `requests.get` will eventually raise a
 `requests.exceptions.ConnectionError` (not caught here on purpose —
 for a one-off script, letting it crash with Python's own clear
 traceback is more useful than swallowing the error and continuing
 with bad data).
 
-**Two gaps you'll hit immediately:** REST Countries doesn't provide
-GDP per capita or urban population percentage. The script leaves both
-`gdp_per_capita_usd` and `urban_population_pct` empty for now — Step
-4 (World Bank) fills both back in. This is a completely normal part
+**Two gaps you'll hit immediately:** this API doesn't provide GDP per
+capita or urban population percentage (neither did REST Countries).
+The script leaves both `gdp_per_capita_usd` and `urban_population_pct`
+empty for now — Step 4 (World Bank) fills both back in. This is a
+completely normal part
 of working with real APIs: no single free source has everything, so
 real projects nearly always combine two or three.
 
@@ -154,10 +192,11 @@ python src/fetch_cities.py
    recommender. Raise the number in the script once you're happy with
    everything else.
 4. Renames `country_code` to `iso2` (GeoNames' name for the column
-   happens to already use the same two-letter codes as REST Countries
-   — a small stroke of luck that makes joining the two data sources
-   together later completely trivial, rather than needing a lookup
-   table to translate between different country-coding systems).
+   happens to already use the same standard two-letter ISO codes as
+   countries.dev's `alpha2Code` — a small stroke of luck that makes
+   joining the two data sources together later completely trivial,
+   rather than needing a lookup table to translate between different
+   country-coding systems).
 
 **A gap you'll hit:** the sample `data/culture.csv` — heritage-site
 counts, attraction counts, and the three named top attractions — is a
