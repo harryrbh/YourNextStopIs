@@ -25,6 +25,26 @@ def fetch() -> list[dict]:
     response = requests.get(URL, params={"fields": FIELDS}, timeout=30)
     response.raise_for_status()  # stop here with a clear error if the request failed
     data = response.json()
+
+    # The API should return a JSON *list*, one object per country. If
+    # something went wrong on the server's end (a bad request, a rate
+    # limit, a temporary error), it instead returns a JSON *object*
+    # (e.g. {"status": 400, "message": "..."}) — and without this
+    # check, the code below would silently iterate over that object's
+    # keys as if they were countries and crash confusingly several
+    # calls later. Catching it here means you see the server's own
+    # explanation immediately instead.
+    if not isinstance(data, list):
+        raise RuntimeError(
+            "REST Countries didn't return the country list we expected. "
+            f"Here's exactly what it sent back instead:\n\n{data}\n\n"
+            "This usually means either a temporary problem with the API "
+            "itself, or that its request format has changed since this "
+            "script was written. Try opening this URL in your browser to "
+            "see the current, live response:\n"
+            f"{response.url}"
+        )
+
     print(f"Got {len(data)} countries.")
     return data
 

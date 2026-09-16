@@ -42,7 +42,23 @@ def fetch_indicator(code: str, most_recent: int = 1) -> pd.DataFrame:
         url, params={"format": "json", "per_page": "20000", "mrnev": str(most_recent)}, timeout=30
     )
     response.raise_for_status()
-    records = response.json()[1] or []
+    payload = response.json()
+
+    # A healthy response is [metadata, records] — a two-item list. If
+    # the indicator code is wrong, or the API is having a bad day, it
+    # can instead return something else (e.g. a one-item list with an
+    # error message inside). Checking this explicitly means you see
+    # that error message directly, rather than a confusing
+    # IndexError/TypeError from indexing into the wrong shape.
+    if not (isinstance(payload, list) and len(payload) == 2 and isinstance(payload[1], list)):
+        raise RuntimeError(
+            f"World Bank didn't return the [metadata, records] shape we expected "
+            f"for indicator '{code}'. Here's exactly what it sent back instead:\n\n"
+            f"{payload}\n\nOpen this URL in your browser to see the current, live "
+            f"response:\n{response.url}"
+        )
+
+    records = payload[1] or []
 
     rows = [
         {
