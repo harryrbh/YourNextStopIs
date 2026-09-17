@@ -78,7 +78,7 @@ def main():
         margin=dict(l=0, r=0, t=0, b=0),
         coloraxis_colorbar=dict(title="Score"),
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     st.subheader("Browse by travel style")
     categories = sorted(cities["category"].dropna().unique())
@@ -97,7 +97,7 @@ def main():
         height=420,
     )
     fig2.update_layout(coloraxis_showscale=False, margin=dict(l=0, r=10, t=10, b=0))
-    st.plotly_chart(fig2, use_container_width=True)
+    st.plotly_chart(fig2, width="stretch")
 
     st.info(
         "Use the sidebar to explore, get a recommendation, compare cities, "

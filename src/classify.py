@@ -86,7 +86,19 @@ def build_labels(df: pd.DataFrame) -> pd.Series:
             "fetch_tourism.py next (it fills gdp_per_capita in from the World "
             "Bank), then re-run src/build_features.py before this script."
         )
-    return pd.qcut(df["gdp_per_capita"], q=3, labels=["Budget", "Mid-range", "Luxury"])
+    # gdp_per_capita is a COUNTRY-level number, so many cities in the same
+    # country share the exact same value — with real data, that can put
+    # several cities exactly on a tercile boundary, which qcut refuses to
+    # split ("bin edges must be unique") unless told to drop the tie. We
+    # can't combine duplicates="drop" with fixed labels=[...] directly,
+    # though — if a boundary does get dropped, there'd be fewer bins than
+    # labels, and qcut would raise a *different* error about that
+    # mismatch. So we bin first without names, then name whatever number
+    # of bins actually came out the other side.
+    bins = pd.qcut(df["gdp_per_capita"], q=3, duplicates="drop")
+    tier_names = {3: ["Budget", "Mid-range", "Luxury"], 2: ["Budget", "Luxury"], 1: ["Mid-range"]}
+    names = tier_names.get(len(bins.cat.categories), [f"Tier {i + 1}" for i in range(len(bins.cat.categories))])
+    return bins.cat.codes.map(dict(enumerate(names)))
 
 
 def compare_models(df: pd.DataFrame, labels: pd.Series, folds: int = 5) -> pd.DataFrame:

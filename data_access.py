@@ -27,13 +27,25 @@ from db import get_engine
 @st.cache_data(ttl=300)  # re-query the database at most once every 5 minutes
 def load_cities() -> pd.DataFrame:
     engine = get_engine()
+    # LEFT JOIN to countries (not a plain JOIN/INNER JOIN): if a city's
+    # country_id never matched anything in the countries table — which
+    # happens whenever a real-data country isn't in your countries.csv,
+    # e.g. right after running fetch_cities.py with a bigger city list
+    # than fetch_countries.py's country list covers — an inner join
+    # would silently DROP that city from the entire app, even though
+    # city_features has a perfectly good row for it. That previously
+    # meant the app could show "46 cities" while the pipeline scripts
+    # had genuinely built features for 200 — very confusing to debug.
+    # COALESCE gives those cities a visible "Unknown" instead of a
+    # blank country, rather than disappearing.
     query = """
-        SELECT cf.*, c.name AS city_name, c.latitude, c.longitude,
+        SELECT cf.*, c.name AS city_name, c.population, c.latitude, c.longitude,
                c.attraction_1, c.attraction_2, c.attraction_3,
-               co.name AS country_name, co.iso2, co.region
+               COALESCE(co.name, 'Unknown') AS country_name,
+               co.iso2, COALESCE(co.region, 'Unknown') AS region
         FROM city_features cf
         JOIN cities c ON c.city_id = cf.city_id
-        JOIN countries co ON co.country_id = c.country_id
+        LEFT JOIN countries co ON co.country_id = c.country_id
     """
     return pd.read_sql(query, engine)
 

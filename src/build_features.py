@@ -85,6 +85,11 @@ def nearest_airport(cities: pd.DataFrame, airports: pd.DataFrame) -> pd.DataFram
     curvature rather than treating latitude/longitude like flat x/y
     coordinates.
     """
+    # geopy raises an error on missing coordinates rather than just
+    # skipping them, so filter those out up front — cheap insurance
+    # against a stray blank row in whatever airports data you're using.
+    airports = airports.dropna(subset=["latitude", "longitude"])
+
     results = []
     for _, city in cities.iterrows():
         best_name, best_km = None, None

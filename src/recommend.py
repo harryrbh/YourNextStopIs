@@ -41,6 +41,12 @@ def recommend(preferences: dict, top_n: int = 10, cities: pd.DataFrame | None = 
     Any score you leave out defaults to 50 (neutral).
     """
     cities = cities if cities is not None else load_cities_with_scores()
+    # Whether `cities` was just loaded above or handed to us by the
+    # caller (the Streamlit pages all pass in their own already-loaded
+    # DataFrame), NearestNeighbors cannot handle any NaN at all — so
+    # we drop incomplete rows here too, rather than trusting every
+    # caller to have done it already.
+    cities = cities.dropna(subset=FEATURES)
 
     pref_row = [preferences.get(f, 50) for f in FEATURES]
 
@@ -64,6 +70,7 @@ def most_similar_cities(city_id: int, n: int = 3, cities: pd.DataFrame | None = 
     the five scores, then use cosine-similarity nearest neighbours.
     """
     cities = cities if cities is not None else load_cities_with_scores()
+    cities = cities.dropna(subset=FEATURES)
     target = cities[cities["city_id"] == city_id]
     if target.empty:
         return cities.iloc[0:0]

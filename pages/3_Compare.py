@@ -51,12 +51,12 @@ fig.update_layout(
     polar=dict(radialaxis=dict(visible=True, range=[0, 100])),
     height=480, margin=dict(t=30, b=10),
 )
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width="stretch")
 
 st.subheader("Side-by-side scores")
 table = subset.set_index("city_name")[["country_name", "overall_score"] + score_cols].round(0).T
 table.index = table.index.map(lambda c: FRIENDLY_NAMES.get(c, c))
-st.dataframe(table, use_container_width=True)
+st.dataframe(table, width="stretch")
 
 # Real-world distances between each pair, calculated with geopy — see distance.py.
 st.subheader("Distance between cities")
@@ -66,7 +66,7 @@ for city_a, city_b in itertools.combinations(names, 2):
     row_b = subset[subset["city_name"] == city_b].iloc[0]
     km = km_between(row_a["latitude"], row_a["longitude"], row_b["latitude"], row_b["longitude"])
     distance_rows.append({"City A": city_a, "City B": city_b, "Distance (km)": round(km)})
-st.dataframe(distance_rows, use_container_width=True, hide_index=True)
+st.dataframe(distance_rows, width="stretch", hide_index=True)
 
 # Real flight-route data — see data_access.load_direct_flights() — shown
 # both as a table and, since routes are inherently geographic, as lines
@@ -81,7 +81,7 @@ for city_a, city_b in itertools.combinations(names, 2):
     flight_rows.append({"Route": f"{city_a} - {city_b}", "Direct flight tracked": "Yes" if is_connected else "No"})
     if is_connected:
         connected_pairs.append((city_a, city_b))
-st.dataframe(flight_rows, use_container_width=True, hide_index=True)
+st.dataframe(flight_rows, width="stretch", hide_index=True)
 
 st.subheader("Flight connections on the map")
 map_fig = go.Figure()
@@ -104,6 +104,6 @@ map_fig.update_layout(
     map=dict(style="open-street-map", zoom=1, center=dict(lat=subset["latitude"].mean(), lon=subset["longitude"].mean())),
     height=450, margin=dict(l=0, r=0, t=0, b=0),
 )
-st.plotly_chart(map_fig, use_container_width=True)
+st.plotly_chart(map_fig, width="stretch")
 if not connected_pairs:
     st.caption("No direct flights tracked between any of the selected cities — the map shows their locations only.")

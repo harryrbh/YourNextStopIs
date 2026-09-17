@@ -49,11 +49,10 @@ score_cols[3].metric("Culture", f"{row['culture_score']:.0f}")
 score_cols[4].metric("Affordability", f"{row['cost_score']:.0f}")
 score_cols[5].metric("Popularity", f"{row['tourism_score']:.0f}")
 
-st.markdown(f"**Travel style:** {row['category']}   |   **Price tier:** {row['price_tier']}")
+st.markdown(f"**Travel style:** {row['category']}")
 st.caption(
-    "Travel style is an unsupervised grouping (K-Means) of cities with similar scores. "
-    "Price tier is a supervised prediction trained on a constructed proxy label — see "
-    "src/classify.py for exactly how, and treat both as estimates, not verified facts."
+    "Travel style is an unsupervised grouping (K-Means) of cities with similar scores — "
+    "a descriptive label, not a verified fact."
 )
 
 st.divider()
@@ -106,7 +105,7 @@ if not monthly.empty:
         yaxis2=dict(title="Rainfall (mm)", overlaying="y", side="right"),
         legend=dict(orientation="h", y=1.15),
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 st.divider()
 
@@ -162,7 +161,7 @@ map_fig.update_layout(
     map=dict(style="open-street-map", zoom=1, center=dict(lat=row["latitude"], lon=row["longitude"])),
     height=420, margin=dict(l=0, r=0, t=0, b=0),
 )
-st.plotly_chart(map_fig, use_container_width=True)
+st.plotly_chart(map_fig, width="stretch")
 
 st.divider()
 

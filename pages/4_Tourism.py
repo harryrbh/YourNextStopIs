@@ -34,7 +34,7 @@ fig = px.bar(
     height=500,
 )
 fig.update_layout(coloraxis_showscale=False, margin=dict(l=0, r=10, t=10, b=0))
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width="stretch")
 
 st.subheader("Fastest-growing and fastest-shrinking destinations")
 growth_sorted = by_country.dropna(subset=["tourism_growth_pct"]).sort_values("tourism_growth_pct", ascending=False)
@@ -43,13 +43,13 @@ with col1:
     st.markdown("**Growing fastest**")
     st.dataframe(
         friendly(growth_sorted.head(6)[["country_name", "tourism_growth_pct", "tourist_arrivals"]]),
-        use_container_width=True, hide_index=True,
+        width="stretch", hide_index=True,
     )
 with col2:
     st.markdown("**Growing slowest**")
     st.dataframe(
         friendly(growth_sorted.tail(6)[["country_name", "tourism_growth_pct", "tourist_arrivals"]]),
-        use_container_width=True, hide_index=True,
+        width="stretch", hide_index=True,
     )
 
 st.divider()

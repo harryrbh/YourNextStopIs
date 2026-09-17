@@ -53,7 +53,6 @@ FRIENDLY_NAMES = {
     "previous_arrivals": "Previous Year's Visitors",
     "tourism_growth_pct": "Visitor Growth (%)",
     "category": "Travel Style",
-    "price_tier": "Price Tier",
     "similarity": "Match",
     "distance_km": "Distance (km)",
 }

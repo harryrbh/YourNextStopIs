@@ -19,8 +19,8 @@ def render_city_card(
     badge_suffix: str = "/100",
 ):
     """row needs: city_name, country_name, iso2, overall_score,
-    avg_temperature_c, attraction_1, category, price_tier,
-    airport_count. `direct_flights` is an optional list of city names
+    avg_temperature_c, attraction_1, category,
+    airport_count, and route_count. `direct_flights` is an optional list of city names
     with a direct route from this city (see pages for how it's built).
     By default the top-right badge shows the overall score; pass
     `badge_value`/`badge_suffix` to show something else instead (e.g.
@@ -29,7 +29,7 @@ def render_city_card(
     with st.container(border=True):
         image_url = get_city_image_url(row["city_name"], row.get("country_name", ""))
         if image_url:
-            st.image(image_url, use_container_width=True)
+            st.image(image_url, width="stretch")
 
         top = st.columns([4, 1])
         flag = flag_image_html(row.get("iso2", ""))
@@ -45,9 +45,8 @@ def render_city_card(
             unsafe_allow_html=True,
         )
 
-        caption_bits = [b for b in [row.get("category"), row.get("price_tier")] if b]
-        if caption_bits:
-            st.caption(" · ".join(caption_bits))
+        if row.get("category"):
+            st.caption(row["category"])
 
         chips = []
         if pd.notna(row.get("avg_temperature_c")):

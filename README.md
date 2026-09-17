@@ -28,12 +28,11 @@ source .venv/bin/activate        # Windows: .venv\Scripts\activate
 # 2. Install dependencies
 pip install -r requirements.txt
 
-# 3. Create the database, load data, and run every model
+# 3. Create the database, load data, and run the models
 python src/db.py
 python src/load_data.py
 python src/build_features.py
 python src/cluster.py
-python src/classify.py
 
 # 4. Run the app
 streamlit run app.py
@@ -110,10 +109,10 @@ city-break-simple/
 │   ├── load_data.py                      # reads data/*.csv, inserts into SQLite
 │   ├── build_features.py                  # turns raw data into 0-100 scores + nearest airport
 │   ├── cluster.py                          # K-Means: unsupervised travel-style categories
-│   ├── classify.py                          # supervised price-tier prediction (documented labels)
-│   ├── recommend.py                          # KNN: matches preferences to cities, and city-to-city similarity
+│   ├── recommend.py                         # KNN: matches preferences to cities, and city-to-city similarity
 │   ├── regression.py                          # predicts visitor numbers from city/country attributes
-│   └── fetch_*.py                              # optional: pull real data instead of the sample CSVs
+│   ├── classify.py                              # optional, not run by default — see note below
+│   └── fetch_*.py                                # optional: pull real data instead of the sample CSVs
 ├── data/                                          # the CSV files load_data.py reads, plus the database file
 ├── sql/schema.sql                                    # database table definitions
 ├── tests/                                              # pytest tests
@@ -129,7 +128,6 @@ Whenever you change `data/*.csv` or the scoring logic, re-run:
 python src/load_data.py        # only if the CSVs changed
 python src/build_features.py   # always, after any change
 python src/cluster.py          # refreshes the travel-style categories
-python src/classify.py         # refreshes the price-tier predictions
 ```
 
 `build_features.py` recalculates the whole `city_features` table from
@@ -146,27 +144,26 @@ country/city/weather/culture/tourism data is a small **hand-picked
 sample** — it exists so you can run this project immediately without
 needing any accounts or API keys. **See
 [API_GUIDE.md](API_GUIDE.md)** for a step-by-step guide to swapping in
-real data from REST Countries, GeoNames, Open-Meteo and the World
+real data from countries.dev, GeoNames, Open-Meteo and the World
 Bank — all free, no key needed — and for what's honestly missing from
 the sample data (museum/park/restaurant-level detail, multi-year
 tourism history).
 
-## A note on the two classification-style features
+## A note on `classify.py` (not run by default)
 
-This app has two different ways of grouping cities, and they mean
-different things:
-
-- **Travel style** (`cluster.py`) is *unsupervised* — K-Means finds
-  groups of cities with similar scores and we name each group after
-  its most dominant trait. There's no "correct" grouping being
-  learned here, just a useful way to browse.
-- **Price tier** (`classify.py`) is *supervised* — Budget/Mid-range/
-  Luxury labels are first constructed from a rule (country GDP per
-  person, split into thirds), then a model is trained to predict that
-  label from *other* attributes. The label is a proxy, not a verified
-  fact, and the module's docstring explains exactly why and how it
-  was built — read it before treating "price tier" as ground truth
-  for a real decision.
+`src/classify.py` predicts a Budget/Mid-range/Luxury "price tier" for
+each city — a *supervised* model, trained on labels constructed from
+a rule (country GDP per person, split into thirds), which the module's
+docstring documents in full, including why that's a proxy and not a
+verified fact. It's disabled by default in this app's pipeline and UI:
+because gdp_per_capita is a country-level number, many cities in the
+same country share the exact same value, which can occasionally put
+several cities exactly on a tercile boundary — `build_labels()` now
+handles that gracefully rather than crashing, but the feature adds
+real complexity for a proxy label. If you want it back, run
+`python src/classify.py` after `cluster.py`, and re-add the
+`price_tier` displays this project previously had in `components.py`,
+`pages/1_Explore.py`, and `pages/5_City_Details.py`.
 
 ## Changing what the recommender prioritises
 

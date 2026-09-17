@@ -6,21 +6,19 @@ real data from a live API — one API at a time, in the order you should
 do them, with exactly what each step does, why, what the response
 looks like, and what's honestly still missing afterwards.
 
-**Important — do these in order, and run ALL FOUR before touching the
-ML scripts.** `fetch_weather.py` needs `data/cities.csv` to already
+**Important — do these in order, and run all four before the rest of
+the pipeline.** `fetch_weather.py` needs `data/cities.csv` to already
 exist (it looks up each city's coordinates), and `fetch_tourism.py`
 needs `data/countries.csv` to already exist (it fills in two columns
 on it). Skipping ahead will either fail outright or quietly leave
-columns empty — and a couple of downstream scripts are less forgiving
-about that than you might expect: `src/classify.py` builds its
-Budget/Mid-range/Luxury labels directly from `gdp_per_capita`, so if
-you run `python src/build_features.py` and `python src/classify.py`
-**before** Step 4 has filled that column in, `classify.py` will stop
-with a clear error telling you to run `fetch_tourism.py` first (it
-used to fail with a confusing raw pandas error — see that script's
-`build_labels()` for the fix). The short version: run all four fetch
-scripts below, *then* run the whole `db.py` -> `classify.py` pipeline
-once, not interleaved.
+columns empty. The short version: run all four fetch scripts below,
+*then* run the whole `db.py` -> `build_features.py` -> `cluster.py`
+pipeline once, not interleaved. (If you also use the optional
+`src/classify.py` — not run by default; see README.md's note on it —
+the same rule applies even more strictly: it builds its price-tier
+labels directly from `gdp_per_capita`, so running it before Step 4 has
+filled that column in will stop with a clear error telling you to run
+`fetch_tourism.py` first.)
 
 | Step | Script | Writes to | Needs run first |
 |---|---|---|---|
@@ -387,7 +385,6 @@ python src/db.py             # wipes and recreates the tables
 python src/load_data.py      # reads the new CSVs
 python src/build_features.py
 python src/cluster.py
-python src/classify.py
 streamlit run app.py
 ```
 
