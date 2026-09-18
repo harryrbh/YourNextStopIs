@@ -49,10 +49,12 @@ score_cols[3].metric("Culture", f"{row['culture_score']:.0f}")
 score_cols[4].metric("Affordability", f"{row['cost_score']:.0f}")
 score_cols[5].metric("Popularity", f"{row['tourism_score']:.0f}")
 
-st.markdown(f"**Travel style:** {row['category']}")
+price_tier_text = f"   |   **Price tier:** {row['price_tier']}" if pd.notna(row.get("price_tier")) else ""
+st.markdown(f"**Travel style:** {row['category']}{price_tier_text}")
 st.caption(
-    "Travel style is an unsupervised grouping (K-Means) of cities with similar scores — "
-    "a descriptive label, not a verified fact."
+    "Travel style is an unsupervised grouping (K-Means) of cities with similar scores. "
+    "Price tier is a supervised prediction trained on a constructed proxy label — see "
+    "src/classify.py for exactly how, and treat both as estimates, not verified facts."
 )
 
 st.divider()

@@ -13,12 +13,11 @@ needs `data/countries.csv` to already exist (it fills in two columns
 on it). Skipping ahead will either fail outright or quietly leave
 columns empty. The short version: run all four fetch scripts below,
 *then* run the whole `db.py` -> `build_features.py` -> `cluster.py`
-pipeline once, not interleaved. (If you also use the optional
-`src/classify.py` — not run by default; see README.md's note on it —
-the same rule applies even more strictly: it builds its price-tier
-labels directly from `gdp_per_capita`, so running it before Step 4 has
-filled that column in will stop with a clear error telling you to run
-`fetch_tourism.py` first.)
+-> `classify.py` pipeline once, not interleaved. `classify.py` is the
+strictest about this: it builds its price-tier labels directly from
+`gdp_per_capita`, so running it before Step 4 has filled that column
+in will stop with a clear error telling you to run `fetch_tourism.py`
+first, rather than a confusing crash.
 
 | Step | Script | Writes to | Needs run first |
 |---|---|---|---|
@@ -385,6 +384,7 @@ python src/db.py             # wipes and recreates the tables
 python src/load_data.py      # reads the new CSVs
 python src/build_features.py
 python src/cluster.py
+python src/classify.py
 streamlit run app.py
 ```
 

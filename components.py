@@ -45,8 +45,9 @@ def render_city_card(
             unsafe_allow_html=True,
         )
 
-        if row.get("category"):
-            st.caption(row["category"])
+        caption_bits = [b for b in [row.get("category"), row.get("price_tier")] if b]
+        if caption_bits:
+            st.caption(" · ".join(caption_bits))
 
         chips = []
         if pd.notna(row.get("avg_temperature_c")):
