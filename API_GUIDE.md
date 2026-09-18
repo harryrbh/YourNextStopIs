@@ -182,12 +182,14 @@ python src/fetch_cities.py
 2. Opens the file *inside* the zip archive without extracting it
    first (`zipfile.ZipFile(...).open(...)`), and reads it as
    tab-separated values using the column names above.
-3. Sorts by population and keeps only the biggest `MAX_CITIES` (200
-   by default) — the full 25,000-city file works too, but is slower
-   to experiment with while you're learning, and most of those rows
-   are small towns you'd filter out anyway for a "city break"
-   recommender. Raise the number in the script once you're happy with
-   everything else.
+3. **Picks which cities to keep — not just the biggest.** An earlier
+   version of this script took the biggest `MAX_CITIES` by population,
+   full stop. That fills the list with the world's largest
+   administrative/industrial megacities (Shanghai, Lagos, Kinshasa,
+   Dhaka...) — technically real "cities," but not what most people
+   picture for a city-break app, and it crowds out smaller places
+   that are genuinely popular with tourists. See "How cities are
+   chosen" below for what it does instead, and why.
 4. Renames `country_code` to `iso2` (GeoNames' name for the column
    happens to already use the same standard two-letter ISO codes as
    countries.dev's `alpha2Code` — a small stroke of luck that makes
@@ -195,12 +197,46 @@ python src/fetch_cities.py
    rather than needing a lookup table to translate between different
    country-coding systems).
 
+**How cities are chosen — "hidden gems," honestly:**
+GeoNames has no "how popular is this with tourists" field at all —
+nothing to sort by even if we wanted to. So `fetch_cities.py` uses two
+disclosed, editable rules instead of pretending population size means
+tourism relevance:
+1. `TOURIST_CITIES` near the top of the script is a hand-picked list
+   of `(name, country code)` pairs — real places broadly known for
+   tourism (Dubrovnik, Kyoto, Cusco, Queenstown, and around 80 more),
+   written as an editorial judgement call by whoever set up this
+   project, not measured from any dataset. Each one is matched against
+   the real GeoNames row for that name+country, so its population and
+   coordinates are still live, real data — only the *selection* is
+   curated. A city not in GeoNames at all (below the 15,000-population
+   floor, or a name that doesn't match exactly) is skipped, and the
+   script tells you which ones and why when that happens.
+2. The remaining slots are filled from GeoNames by population, but
+   restricted to a **band** (`MIN_FILLER_POPULATION` to
+   `MAX_FILLER_POPULATION`, 20,000-3,000,000 by default) — this is
+   what keeps the very largest megacities out of the "filler" portion,
+   without pretending "mid-sized" is itself a measure of how touristy
+   somewhere is.
+
+Both are just constants at the top of the file — edit `TOURIST_CITIES`
+to reflect your own picks, or change the population band, and re-run.
+If you'd rather use a real, *measured* tourism-popularity signal
+instead of an editorial list, Wikipedia's pageviews API
+(`https://wikimedia.org/api/rest_v1/#/Pageviews%20data`) is a
+reasonable free, keyless proxy — a city getting far more Wikipedia
+views than its population would suggest is a genuinely interesting,
+data-backed sign of tourist interest, and could replace
+`TOURIST_CITIES` with something you didn't have to hand-pick. That
+integration isn't built here, but the read-clean-insert pattern every
+other `fetch_*.py` script follows is the template for adding it.
+
 **A gap you'll hit:** the sample `data/culture.csv` — heritage-site
 counts, attraction counts, and the three named top attractions — is a
 small, hand-picked file matching only the original 46 sample cities
-by name. Once you swap in 200 real GeoNames cities, `load_data.py`'s
-merge in `clean_cities()` will only find a match for the ~46 cities
-that happen to overlap; every other city gets `heritage_sites = 0`,
+by name. Once you swap in real GeoNames cities, `load_data.py`'s
+merge in `clean_cities()` will only find a match for the cities that
+happen to overlap by name; every other city gets `heritage_sites = 0`,
 `attractions = 0`, and empty attraction names (the merge is
 `how="left"`, and missing values are filled with 0/""). This isn't a
 bug — `load_data.py` handles it gracefully — but it does mean
