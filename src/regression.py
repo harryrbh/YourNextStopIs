@@ -96,7 +96,21 @@ def load_training_data() -> pd.DataFrame:
         JOIN cities c ON c.city_id = cf.city_id
     """
     df = pd.read_sql(query, engine)
-    return df.dropna()
+
+    # Only the TARGET (tourist_arrivals) is truly required — a city
+    # missing that can't be used to train or evaluate the model at
+    # all. A missing PREDICTOR (say, avg_temperature_c for a city
+    # Open-Meteo rate-limited, or previous_arrivals for a country
+    # World Bank has no data for) shouldn't drop the whole city from
+    # training, the same "unknown → neutral" approach used elsewhere
+    # in this project (see build_features.py's normalise_0_100 and
+    # classify.py's load_data() for the same reasoning) — a plain
+    # `.dropna()` here used to throw away every city missing even one
+    # predictor, which with real API data can be most of them.
+    df = df.dropna(subset=[TARGET])
+    for col in PREDICTORS:
+        df[col] = df[col].fillna(df[col].median())
+    return df
 
 
 def fit_model(df: pd.DataFrame, predictors: list[str] = PREDICTORS) -> tuple[LinearRegression, StandardScaler, float]:

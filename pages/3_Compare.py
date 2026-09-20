@@ -54,8 +54,21 @@ fig.update_layout(
 st.plotly_chart(fig, width="stretch")
 
 st.subheader("Side-by-side scores")
-table = subset.set_index("city_name")[["country_name", "overall_score"] + score_cols].round(0).T
+table = subset.set_index("city_name")[["country_name", "overall_score"] + score_cols].copy()
+for col in ["overall_score"] + score_cols:
+    table[col] = table[col].round(0)
+table = table.T
 table.index = table.index.map(lambda c: FRIENDLY_NAMES.get(c, c))
+# After the transpose above, every COLUMN is one city, and each city's
+# column holds a mix of text (its country name) and numbers (every
+# score) together — a genuinely mixed-type column. st.dataframe uses
+# PyArrow to render tables, and PyArrow can't reliably serialize a
+# column like that (it crashes with "Expected bytes, got a 'float'
+# object" on whichever city happens to trip it). Formatting everything
+# as plain text sidesteps this entirely; this table is for reading,
+# not further computation, so losing native numeric typing costs
+# nothing here.
+table = table.fillna("N/A").astype(str)
 st.dataframe(table, width="stretch")
 
 # Real-world distances between each pair, calculated with geopy — see distance.py.

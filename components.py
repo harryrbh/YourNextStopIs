@@ -45,14 +45,19 @@ def render_city_card(
             unsafe_allow_html=True,
         )
 
-        caption_bits = [b for b in [row.get("category"), row.get("price_tier")] if b]
+        # NaN is truthy in Python (`bool(float("nan"))` is True), so a
+        # plain `if b` check does NOT filter out a missing category/
+        # price_tier — it has to be an explicit not-NaN check, or a
+        # missing value sneaks into the list and crashes str.join()
+        # with "expected str instance, float found".
+        caption_bits = [str(b) for b in [row.get("category"), row.get("price_tier")] if pd.notna(b)]
         if caption_bits:
             st.caption(" · ".join(caption_bits))
 
         chips = []
         if pd.notna(row.get("avg_temperature_c")):
             chips.append(f"{row['avg_temperature_c']:.0f}°C avg")
-        if row.get("attraction_1"):
+        if pd.notna(row.get("attraction_1")):
             chips.append(f"Top sight: {row['attraction_1']}")
         if pd.notna(row.get("airport_count")):
             chips.append(f"{int(row['airport_count'])} airports")

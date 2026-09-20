@@ -250,13 +250,11 @@ how you'd genuinely fix that.
 ## Step 3: Weather — Open-Meteo
 
 **What it is:** a free, keyless historical weather API covering the
-whole globe from satellite/reanalysis data. Unlike the previous two,
-this one needs coordinates *per city*, so it makes one request per
-row in `data/cities.csv` — run Step 2 first.
+whole globe from satellite/reanalysis data.
 
 **Endpoint:** `https://archive-api.open-meteo.com/v1/archive`
 
-**Try it yourself first:**
+**Try it yourself first, one city at a time:**
 ```
 https://archive-api.open-meteo.com/v1/archive?latitude=48.85&longitude=2.35&start_date=2023-01-01&end_date=2023-01-31&daily=temperature_2m_mean,precipitation_sum&timezone=UTC
 ```
@@ -280,33 +278,63 @@ DataFrame directly from those three arrays
 (`pd.DataFrame({"date": ..., "temperature_c": ..., ...})`) rather than
 looping through records one at a time.
 
+**Now try it for TWO cities at once** — this is the part that matters
+for how the script actually works:
+```
+https://archive-api.open-meteo.com/v1/archive?latitude=48.85,41.9&longitude=2.35,12.5&start_date=2023-01-01&end_date=2023-01-31&daily=temperature_2m_mean,precipitation_sum&timezone=UTC
+```
+Same URL, but `latitude`/`longitude` are now comma-separated lists
+(Paris, then Rome). The response is no longer a single `{"daily": ...}`
+object — it's a JSON **array**, one result per location, in the same
+order you asked for them:
+```json
+[
+  {"latitude": 48.8, "longitude": 2.35, "daily": {"...": "..."}},
+  {"latitude": 41.9, "longitude": 12.5, "daily": {"...": "..."}}
+]
+```
+Open-Meteo allows up to **1,000 locations in one request** this way
+(documented at `https://open-meteo.com/en/features`). This matters a
+lot in practice: an earlier version of this script requested one city
+at a time — 200 cities meant 200 HTTP requests, and Open-Meteo's free
+tier (a shared, sometimes-congested service) would return 429 (Too
+Many Requests) for a large chunk of them partway through nearly every
+run, no matter how the retry logic was tuned. Batching cities into one
+request each turns 200 requests into about 7, which is both far less
+likely to be rate limited in the first place, and much faster.
+
 **Run it:**
 ```bash
 python src/fetch_weather.py
 ```
-This takes a few minutes for 200 cities — one HTTP request per city,
-with a short `time.sleep(0.2)` pause between each so the script
-doesn't hammer a free API that other people also rely on. If you're
-impatient while learning, temporarily lower `MAX_CITIES` in
-`fetch_cities.py` to something like 20 first.
 
 **What the script does:**
-1. For each city, requests ten years of daily temperature and
-   rainfall (`START_YEAR` to `END_YEAR` — 2015 to 2024 by default).
-   One single year wouldn't tell you much about a "typical" month
-   (a freak heatwave or a record-dry January would skew the whole
-   result); ten years averaged together smooths that out.
-2. Groups the resulting ~3,650 daily rows by calendar month
-   (`df["month"] = df["date"].dt.month`, then `.groupby("month")`)
-   and averages each group — turning "ten years of daily data" into
-   "12 typical monthly numbers," which is exactly the shape
-   `weather.csv` and the `weather` database table expect (one row per
-   city per month, 1-12).
-3. If one city's request fails (a network hiccup, a coordinate that
-   somehow errors), the script catches the exception, prints a
-   warning naming that city, and **keeps going** rather than crashing
-   the whole run — you don't want to lose 199 good results because 1
-   request failed partway through a multi-minute run.
+1. Splits `data/cities.csv` into batches of `BATCH_SIZE` cities (30 by
+   default) and sends **one request per batch** — comma-joining that
+   batch's latitudes and longitudes — rather than one request per
+   city.
+2. For each city in a batch's response, groups its ~3,650 daily rows
+   (ten years, `START_YEAR` to `END_YEAR`) by calendar month and
+   averages each group — turning "ten years of daily data" into "12
+   typical monthly numbers," which is what `weather.csv` and the
+   `weather` database table expect.
+3. If Open-Meteo still returns 429 for a whole batch (it's a shared
+   free service — this can happen even at a modest pace), that batch
+   is *not* retried immediately in a tight loop (which tends to hit
+   the same still-limited window and fail anyway). Instead, the whole
+   script does another pass afterwards, waiting longer before each
+   pass, retrying only the batches that are still missing — see
+   `fetch_weather.py`'s own comments for the full reasoning.
+4. A single-city "batch" (whenever the city count doesn't divide
+   evenly by `BATCH_SIZE`) gets back a plain object rather than a
+   one-item array — Open-Meteo only switches to the array shape once
+   more than one location is requested — so the script normalises
+   both shapes to always be a list before processing them the same
+   way.
+
+If you're impatient while learning, temporarily lower `MAX_CITIES` in
+`fetch_cities.py` to something like 20 first — fewer cities means
+fewer batches means a much faster run.
 
 ---
 

@@ -68,7 +68,22 @@ def load_data() -> pd.DataFrame:
         JOIN cities c ON c.city_id = cf.city_id
     """
     df = pd.read_sql(query, engine)
-    return df.dropna()
+
+    # Only gdp_per_capita is truly required here — it's what the label
+    # itself is built from (see build_labels()), so a city genuinely
+    # missing it can't get a label at all. But a missing PREDICTOR
+    # value (say, avg_temperature_c because Open-Meteo rate-limited
+    # that particular city) shouldn't disqualify a city from getting a
+    # prediction anyway — a plain `.dropna()` here used to drop the
+    # WHOLE row over a single missing predictor, which is why cities
+    # could end up with no price_tier at all even though they had
+    # perfectly good GDP data. Impute missing predictors with the
+    # column median instead, the same "unknown → neutral" approach
+    # build_features.py uses for the 0-100 scores.
+    df = df.dropna(subset=["gdp_per_capita"])
+    for col in FEATURES:
+        df[col] = df[col].fillna(df[col].median())
+    return df
 
 
 def build_labels(df: pd.DataFrame) -> pd.Series:

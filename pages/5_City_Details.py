@@ -117,7 +117,7 @@ st.write(f"Heritage sites nearby: {int(row['heritage_sites'])}")
 st.write(f"Total attractions tracked: {int(row['attractions'])}")
 st.markdown("**Three largest / best-known attractions:**")
 for i, col in enumerate(["attraction_1", "attraction_2", "attraction_3"], start=1):
-    if row.get(col):
+    if pd.notna(row.get(col)):
         st.write(f"{i}. {row[col]}")
 st.caption(
     "Museums, parks, restaurants, railway stations, and other fine-grained points of "
@@ -134,7 +134,7 @@ with col1:
     st.write(f"Airports nearby: {int(row['airport_count'])}")
     st.write(f"Flight routes tracked: {int(row['route_count'])}")
     st.write(f"Flight network score: {row['connectivity']:.2f}")
-    if row.get("nearest_airport_name"):
+    if pd.notna(row.get("nearest_airport_name")):
         st.write(f"Nearest airport (of any tracked): {row['nearest_airport_name']} ({row['nearest_airport_km']:.1f} km away)")
 with col2:
     destinations = direct_flights_from(flights, city_name)

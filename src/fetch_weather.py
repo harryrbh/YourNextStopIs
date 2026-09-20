@@ -3,28 +3,26 @@ fetch_weather.py — replaces data/weather.csv with real monthly climate
 data from Open-Meteo. No API key needed.
 
 This one is different from the others: it needs data/cities.csv to
-already exist (so it knows which coordinates to ask about), and it
-makes ONE request per city. Run fetch_cities.py first.
+already exist (so it knows which coordinates to ask about).
 
-A NOTE ON RATE LIMITING, AND WHY THIS SCRIPT RETRIES IN ROUNDS
+WHY THIS SENDS ONE REQUEST PER BATCH OF CITIES, NOT ONE PER CITY
 ------------------------------------------------------------------
-Open-Meteo's published free-tier limit is generous (600 calls/minute,
-per their terms page), but the "archive" endpoint this script uses is
-much heavier per call than a normal forecast request — it's pulling
-ten years of daily history each time — and it's a shared, sometimes
-congested free service, so 429 (Too Many Requests) responses can
-happen even at a modest pace.
+An earlier version of this script made one HTTP request per city —
+200 cities meant 200 requests, and Open-Meteo's free tier (a shared,
+sometimes-congested service) started returning 429 (Too Many
+Requests) partway through nearly every run, no matter how the retries
+were tuned.
 
-The natural first instinct is "retry the same city a few times before
-giving up" — but if the *whole* window (e.g. the last minute) is rate
-limited, retrying the SAME city four times in the next thirty seconds
-just burns through those retries inside the same still-limited window
-and gives up anyway, taking a long time to fail. This script instead
-does a full PASS over every city first (skipping — not retrying — any
-that get a 429, so the pass stays quick), then does further ROUNDS
-that retry only the cities still missing, with a real cooldown before
-each round starts. That cooldown is what actually lets the rate limit
-recover, which repeatedly retrying in place doesn't.
+Open-Meteo's archive endpoint actually supports asking for MANY
+locations in a single request: pass comma-separated lists for
+`latitude`/`longitude` (e.g. `latitude=48.85,41.9&longitude=2.35,12.5`)
+instead of one pair, and it replies with a JSON *array* of results —
+one per location, in the same order you asked — instead of a single
+object. Documented at https://open-meteo.com/en/features (up to 1,000
+locations per call). This script batches cities into groups of
+BATCH_SIZE and sends one request per batch, so 200 cities becomes
+around 7 requests instead of 200 — both far less likely to be rate
+limited, and far faster.
 
 Run it with:
     python src/fetch_weather.py
@@ -44,38 +42,47 @@ URL = "https://archive-api.open-meteo.com/v1/archive"
 START_YEAR = 2015
 END_YEAR = 2024
 
-# Be polite to the API between requests within a pass.
-REQUEST_DELAY_SECONDS = 0.5
-# How many times to sweep back through the cities that are still
-# missing weather data. Each round after the first starts with a real
-# wait, giving the rate limit time to actually reset.
-MAX_ROUNDS = 4
-# Cooldown before round 2, 3, 4, ... — increasing, since if the first
-# retry round still hits 429s, the window needs longer to clear.
-COOLDOWN_SECONDS = [0, 45, 90, 150]
+# How many cities go in one request. Open-Meteo allows up to 1,000,
+# but the archive endpoint returns ten years of DAILY data per city,
+# so a very large batch means a very large (slow to download, easy to
+# time out) response. 30 is a conservative middle ground — tune it up
+# if you want fewer, bigger requests, or down if a batch times out.
+BATCH_SIZE = 30
+# Be polite to the API between batches.
+REQUEST_DELAY_SECONDS = 1.0
+# If a whole batch gets rate limited (429), how many times to retry
+# it, waiting longer each time.
+MAX_RETRIES_PER_BATCH = 4
+RETRY_BACKOFF_SECONDS = 20
 
 
-def fetch_one_city(name: str, lat: float, lon: float) -> pd.DataFrame | None:
-    """Returns a DataFrame of monthly weather for this city, or None
-    if the request was rate-limited (429) — the caller decides whether
-    to retry it in a later round. Any other failure (a genuine HTTP
-    error, a network problem) is raised normally rather than silently
-    treated the same as a 429, since those aren't fixed by waiting.
+def fetch_batch(cities: pd.DataFrame) -> list[dict] | None:
+    """Fetch weather for every city in this batch in ONE request.
+    Returns a list of Open-Meteo's per-location result objects (same
+    order as `cities`), or None if the whole batch was rate limited.
     """
     params = {
-        "latitude": lat,
-        "longitude": lon,
+        "latitude": ",".join(str(v) for v in cities["latitude"]),
+        "longitude": ",".join(str(v) for v in cities["longitude"]),
         "start_date": f"{START_YEAR}-01-01",
         "end_date": f"{END_YEAR}-12-31",
         "daily": "temperature_2m_mean,precipitation_sum",
         "timezone": "UTC",
     }
-    response = requests.get(URL, params=params, timeout=30)
+    response = requests.get(URL, params=params, timeout=120)
     if response.status_code == 429:
         return None
     response.raise_for_status()
-    daily = response.json()["daily"]
+    data = response.json()
 
+    # A single-city batch (the last, odd-sized one) gets back a plain
+    # object, not a list of one — Open-Meteo only switches to a list
+    # once more than one location is requested. Normalise both shapes
+    # to always be a list here, so the rest of the code doesn't care.
+    return data if isinstance(data, list) else [data]
+
+
+def monthly_from_daily(city_name: str, daily: dict) -> pd.DataFrame:
     df = pd.DataFrame(
         {
             "date": pd.to_datetime(daily["time"]),
@@ -84,38 +91,44 @@ def fetch_one_city(name: str, lat: float, lon: float) -> pd.DataFrame | None:
         }
     )
     df["month"] = df["date"].dt.month
-
     monthly = df.groupby("month", as_index=False).agg(
         temperature_c=("temperature_c", "mean"),
         precipitation_mm=("precipitation_mm", "mean"),
     )
-    monthly.insert(0, "city_name", name)
+    monthly.insert(0, "city_name", city_name)
     return monthly
 
 
-def run_one_round(cities: pd.DataFrame, round_num: int) -> tuple[list[pd.DataFrame], pd.DataFrame]:
-    """Try every city in `cities`. Returns (results, still_missing) —
-    the DataFrames for cities that succeeded, and the rows for cities
-    that got rate-limited and should be tried again next round."""
+def run_batches(cities: pd.DataFrame) -> tuple[list[pd.DataFrame], pd.DataFrame]:
+    """Try every batch once. Returns (results, still_missing) — the
+    monthly DataFrames for cities that succeeded, and the rows for
+    cities in batches that got rate-limited and should be retried."""
     results = []
     missing_rows = []
-    for i, row in cities.iterrows():
-        print(f"  [round {round_num}] [{i + 1}/{len(cities)}] {row['name']}...", end=" ")
+    batches = [cities.iloc[i:i + BATCH_SIZE] for i in range(0, len(cities), BATCH_SIZE)]
+
+    for batch_num, batch in enumerate(batches, start=1):
+        print(f"  Batch {batch_num}/{len(batches)} ({len(batch)} cities)...", end=" ")
         try:
-            monthly = fetch_one_city(row["name"], row["latitude"], row["longitude"])
+            locations = fetch_batch(batch)
         except requests.RequestException as e:
-            # A real error, not a rate limit — no point retrying this
-            # one in a later round, so just skip it for good.
-            print(f"failed ({e})")
+            print(f"failed ({e}) — will not retry this batch")
             continue
-        if monthly is None:
+
+        if locations is None:
             print("rate limited, will retry later")
-            missing_rows.append(row)
+            missing_rows.append(batch)
         else:
-            print("ok")
-            results.append(monthly)
+            ok = 0
+            for (_, row), location in zip(batch.iterrows(), locations):
+                daily = location.get("daily")
+                if daily:
+                    results.append(monthly_from_daily(row["name"], daily))
+                    ok += 1
+            print(f"ok ({ok}/{len(batch)})")
         time.sleep(REQUEST_DELAY_SECONDS)
-    still_missing = pd.DataFrame(missing_rows) if missing_rows else cities.iloc[0:0]
+
+    still_missing = pd.concat(missing_rows, ignore_index=True) if missing_rows else cities.iloc[0:0]
     return results, still_missing
 
 
@@ -124,14 +137,15 @@ def main():
     remaining = cities
     all_results = []
 
-    for round_num in range(1, MAX_ROUNDS + 1):
+    for attempt in range(1, MAX_RETRIES_PER_BATCH + 1):
         if remaining.empty:
             break
-        cooldown = COOLDOWN_SECONDS[round_num - 1] if round_num - 1 < len(COOLDOWN_SECONDS) else COOLDOWN_SECONDS[-1]
-        if cooldown:
-            print(f"\nCooling down {cooldown}s before round {round_num} ({len(remaining)} cities left)...")
-            time.sleep(cooldown)
-        results, remaining = run_one_round(remaining, round_num)
+        if attempt > 1:
+            wait = RETRY_BACKOFF_SECONDS * attempt
+            print(f"\nRetry {attempt}/{MAX_RETRIES_PER_BATCH}: waiting {wait}s before "
+                  f"re-trying {len(remaining)} cities still missing...")
+            time.sleep(wait)
+        results, remaining = run_batches(remaining)
         all_results.extend(results)
 
     result = pd.concat(all_results, ignore_index=True) if all_results else pd.DataFrame(
@@ -144,14 +158,13 @@ def main():
 
     if not remaining.empty:
         print(
-            f"\n{len(remaining)} cities still have no weather data after {MAX_ROUNDS} rounds "
-            f"and will get a neutral weather score (50/100) rather than a real one: "
+            f"\n{len(remaining)} cities still have no weather data and will get a "
+            f"neutral weather score (50/100) rather than a real one: "
             f"{', '.join(remaining['name'])}\n"
-            "Open-Meteo's free tier is especially congested right now if this list is "
-            "long. You can just re-run this script — it always rewrites the whole "
-            "file, so re-fetching cities that already worked costs nothing — or raise "
-            "MAX_ROUNDS / COOLDOWN_SECONDS near the top of this file for a longer, "
-            "more patient run."
+            "You can just re-run this script — it always rewrites the whole file, "
+            "so re-fetching cities that already worked costs nothing — or lower "
+            "BATCH_SIZE near the top of this file if requests are timing out rather "
+            "than being rate limited."
         )
 
 
