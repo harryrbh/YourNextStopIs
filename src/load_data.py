@@ -14,6 +14,7 @@ import os
 import pandas as pd
 
 from db import get_engine
+from select_cities import TARGET_CITY_COUNT, select_cities
 
 # Always resolve data/ relative to this file, not the current working
 # directory — so `python src/load_data.py` works the same whether you
@@ -48,13 +49,31 @@ def main():
     engine = get_engine()
 
     print("Reading CSV files...")
-    countries_raw = pd.read_csv(f"{DATA_DIR}/countries.csv")
-    cities_raw = pd.read_csv(f"{DATA_DIR}/cities.csv")
+    # keep_default_na=False: pandas would otherwise read Namibia's ISO code "NA" as missing.
+    csv_opts = dict(keep_default_na=False, na_values=[""])
+    countries_raw = pd.read_csv(f"{DATA_DIR}/countries.csv", **csv_opts)
+    cities_raw = pd.read_csv(f"{DATA_DIR}/cities.csv", **csv_opts)
     weather_raw = pd.read_csv(f"{DATA_DIR}/weather.csv")
     culture_raw = pd.read_csv(f"{DATA_DIR}/culture.csv")
     tourism_raw = pd.read_csv(f"{DATA_DIR}/tourism.csv")
     airports_raw = pd.read_csv(f"{DATA_DIR}/airports.csv")
     routes_raw = pd.read_csv(f"{DATA_DIR}/routes.csv")
+
+    print(f"Selecting up to {TARGET_CITY_COUNT} cities with complete data...")
+    kept, dropped = select_cities(
+        cities_raw, countries_raw, tourism_raw, weather_raw, culture_raw, airports_raw, routes_raw
+    )
+    if len(dropped):
+        print(f"  Dropped {len(dropped)} of {len(cities_raw)} candidates for incomplete data:")
+        for _, d in dropped.iterrows():
+            print(f"    - {d['name']} ({d['iso2']}): {d['problem']}")
+    if len(kept) < TARGET_CITY_COUNT:
+        print(f"  WARNING: only {len(kept)} complete cities available (target {TARGET_CITY_COUNT}). "
+              "Run the fetch_*.py scripts (see README) or add more cities to src/tourist_cities.py.")
+    cities_raw = cities_raw[cities_raw["name"].isin(kept)].copy()
+    cities_raw["_order"] = cities_raw["name"].map({n: i for i, n in enumerate(kept)})
+    cities_raw = cities_raw.sort_values("_order").drop(columns="_order")
+    weather_raw = weather_raw[weather_raw["city_name"].isin(kept)]
 
     print("Cleaning...")
     countries = clean_countries(countries_raw)

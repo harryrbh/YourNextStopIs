@@ -48,6 +48,13 @@ def run():
 
     centroids = pd.DataFrame(model.cluster_centers_, columns=FEATURES)
     labels = {i: label_cluster(row) for i, row in centroids.iterrows()}
+    # Two clusters can share the same top score and so the same name, which
+    # makes "Travel style" filters ambiguous. Number any duplicates.
+    seen = {}
+    for i, name in list(labels.items()):
+        seen[name] = seen.get(name, 0) + 1
+        if list(labels.values()).count(name) > 1:
+            labels[i] = f"{name} ({seen[name]})"
     df["category"] = df["cluster"].map(labels)
     print("Category labels:", labels)
 
