@@ -113,6 +113,7 @@ city-break-simple/
 │   ├── recommend.py                         # KNN: matches preferences to cities, and city-to-city similarity
 │   ├── regression.py                          # predicts visitor numbers from city/country attributes
 │   ├── classify.py                              # Budget/Mid-range/Luxury price-tier prediction
+│   ├── tourist_cities.py, select_cities.py, http_util.py
 │   └── fetch_*.py                                # optional: pull real data instead of the sample CSVs
 ├── data/                                          # the CSV files load_data.py reads, plus the database file
 ├── sql/schema.sql                                    # database table definitions
@@ -120,6 +121,29 @@ city-break-simple/
 ├── .streamlit/config.toml                                # app colour theme
 └── Dockerfile
 ```
+
+
+## Using real data (250 tourist cities)
+
+The repo ships a 46-city sample so the app runs immediately. To build the real
+dataset, follow **[DATA_SOURCES.md](DATA_SOURCES.md)** (exactly which extracts to
+download and how each file is interpreted). In short:
+
+```bash
+python src/fetch_cities.py       # ~370 curated tourist candidates, matched to GeoNames
+python src/fetch_countries.py    # country facts
+python src/fetch_tourism.py      # visitor numbers + GDP + urbanisation (World Bank)
+python src/fetch_weather.py      # NASA POWER monthly climate normals (1 request/city, resumable)
+python src/download_raw_data.py  # GeoNames per-country files, OpenFlights, UNESCO -> data/raw/
+python src/fetch_airports.py     # airports + routes, matched to cities by distance
+python src/build_culture.py      # UNESCO sites + attractions + top-3 sights per city
+python src/db.py && python src/load_data.py && python src/build_features.py
+python src/cluster.py && python src/classify.py
+```
+
+`load_data.py` keeps the first 250 candidates (in `src/tourist_cities.py` order) that have
+complete data for every tourist attribute, and prints why each dropped city was dropped.
+Full from-scratch build instructions (including git commits): **[SETUP_GUIDE.md](SETUP_GUIDE.md)**.
 
 ## Re-running the pipeline
 

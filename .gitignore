@@ -10,3 +10,6 @@ venv/
 # src/load_data.py — no need to commit it, and it'll just get out of
 # sync with the CSVs if you do.
 data/city_breaks.db
+
+# Raw downloaded extracts (large; re-create with python src/download_raw_data.py)
+data/raw/
