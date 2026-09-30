@@ -1,170 +1,149 @@
 """
 fetch_weather.py — replaces data/weather.csv with real monthly climate
-data from Open-Meteo. No API key needed.
+normals (temperature and rainfall) for every city in data/cities.csv.
+No API key needed.
 
-This one is different from the others: it needs data/cities.csv to
-already exist (so it knows which coordinates to ask about).
-
-WHY THIS SENDS ONE REQUEST PER BATCH OF CITIES, NOT ONE PER CITY
+WHY THIS NO LONGER USES OPEN-METEO'S ARCHIVE API
 ------------------------------------------------------------------
-An earlier version of this script made one HTTP request per city —
-200 cities meant 200 requests, and Open-Meteo's free tier (a shared,
-sometimes-congested service) started returning 429 (Too Many
-Requests) partway through nearly every run, no matter how the retries
-were tuned.
+Open-Meteo's free tier doesn't count "1 request = 1 call". Each request
+is weighted by how much data it asks for — roughly (locations) x (days of
+history / 14). Ten years of daily data for 30 cities is on the order of
+8,000 weighted calls in a single request, against free limits of about
+600 per minute / 5,000 per hour / 10,000 per day. That is why exactly one
+batch got through before every other one was rejected (429), and why no
+amount of retry tuning could fix it: the whole job was simply bigger than
+the quota. Even one city at a time, ~300 cities would cost ~80,000
+weighted calls.
 
-Open-Meteo's archive endpoint actually supports asking for MANY
-locations in a single request: pass comma-separated lists for
-`latitude`/`longitude` (e.g. `latitude=48.85,41.9&longitude=2.35,12.5`)
-instead of one pair, and it replies with a JSON *array* of results —
-one per location, in the same order you asked — instead of a single
-object. Documented at https://open-meteo.com/en/features (up to 1,000
-locations per call). This script batches cities into groups of
-BATCH_SIZE and sends one request per batch, so 200 cities becomes
-around 7 requests instead of 200 — both far less likely to be rate
-limited, and far faster.
+NASA POWER already publishes what we were computing by hand — 30-year
+MONTHLY climatology (average temperature and rainfall for each calendar
+month) at any coordinate — so we need ONE small request per city (~300
+in total), with nothing to average ourselves.
+
+    https://power.larc.nasa.gov/api/temporal/climatology/point
+        parameters=T2M,PRECTOTCORR  community=RE  latitude=..  longitude=..
+
+  T2M          mean air temperature at 2 m, degrees C
+  PRECTOTCORR  bias-corrected precipitation, mm PER DAY (monthly average)
+
+RESUMABLE + POLITE
+------------------------------------------------------------------
+* Every request goes through http_util.get_json(): a 429/5xx retries THAT
+  request in place (obeying Retry-After, else exponential backoff) and the
+  request pace adapts to what the server tolerates.
+* Results are appended to data/weather.csv after every city, and cities
+  already in it are skipped — if you're interrupted, or a few cities fail,
+  just run the script again and it carries on where it left off.
+  Use --fresh to start over.
+
+Precipitation is stored as TOTAL mm PER MONTH (daily average x days in the
+month), which is what build_features.py's comfort formula and the City
+Details chart ("Rainfall (mm)") both assume. The old script stored a
+per-DAY average (~2 mm instead of ~60 mm), so the rain penalty in the
+weather score was effectively switched off.
 
 Run it with:
-    python src/fetch_weather.py
+    python src/fetch_weather.py           # resume / fill in what's missing
+    python src/fetch_weather.py --fresh   # start from scratch
 """
+import calendar
 import os
-import time
+import sys
 
 import pandas as pd
-import requests
+
+from http_util import RequestFailed, Throttle, get_json
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
-URL = "https://archive-api.open-meteo.com/v1/archive"
+URL = "https://power.larc.nasa.gov/api/temporal/climatology/point"
+COLUMNS = ["city_name", "month", "temperature_c", "precipitation_mm"]
+MONTHS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+MISSING_VALUE = -999  # NASA POWER's "no data" marker
 
-# We ask for ten years of daily history and average it ourselves into
-# monthly numbers — Open-Meteo doesn't have a "monthly normals"
-# endpoint, so this is the standard way to build one.
-START_YEAR = 2015
-END_YEAR = 2024
-
-# How many cities go in one request. Open-Meteo allows up to 1,000,
-# but the archive endpoint returns ten years of DAILY data per city,
-# so a very large batch means a very large (slow to download, easy to
-# time out) response. 30 is a conservative middle ground — tune it up
-# if you want fewer, bigger requests, or down if a batch times out.
-BATCH_SIZE = 30
-# Be polite to the API between batches.
-REQUEST_DELAY_SECONDS = 1.0
-# If a whole batch gets rate limited (429), how many times to retry
-# it, waiting longer each time.
-MAX_RETRIES_PER_BATCH = 4
-RETRY_BACKOFF_SECONDS = 20
+# Minimum gap between requests; http_util widens it automatically if the
+# server pushes back.
+REQUEST_DELAY_SECONDS = 0.5
 
 
-def fetch_batch(cities: pd.DataFrame) -> list[dict] | None:
-    """Fetch weather for every city in this batch in ONE request.
-    Returns a list of Open-Meteo's per-location result objects (same
-    order as `cities`), or None if the whole batch was rate limited.
-    """
-    params = {
-        "latitude": ",".join(str(v) for v in cities["latitude"]),
-        "longitude": ",".join(str(v) for v in cities["longitude"]),
-        "start_date": f"{START_YEAR}-01-01",
-        "end_date": f"{END_YEAR}-12-31",
-        "daily": "temperature_2m_mean,precipitation_sum",
-        "timezone": "UTC",
-    }
-    response = requests.get(URL, params=params, timeout=120)
-    if response.status_code == 429:
-        return None
-    response.raise_for_status()
-    data = response.json()
+def parse_climatology(city_name: str, payload: dict) -> pd.DataFrame:
+    """Turn NASA POWER's response into 12 rows (one per month). Raises
+    ValueError if any month is missing, so we never store half a year."""
+    try:
+        params = payload["properties"]["parameter"]
+        temps, rain = params["T2M"], params["PRECTOTCORR"]
+    except (KeyError, TypeError) as e:
+        raise ValueError(f"unexpected response shape (missing {e})") from e
 
-    # A single-city batch (the last, odd-sized one) gets back a plain
-    # object, not a list of one — Open-Meteo only switches to a list
-    # once more than one location is requested. Normalise both shapes
-    # to always be a list here, so the rest of the code doesn't care.
-    return data if isinstance(data, list) else [data]
+    rows = []
+    for month_number, key in enumerate(MONTHS, start=1):
+        t, p = temps.get(key), rain.get(key)
+        if t is None or p is None or t == MISSING_VALUE or p == MISSING_VALUE:
+            raise ValueError(f"no data for {key}")
+        # A 'normal' month: use 28.25 days for February (leap-year average).
+        days = 28.25 if month_number == 2 else calendar.monthrange(2001, month_number)[1]
+        rows.append({
+            "city_name": city_name,
+            "month": month_number,
+            "temperature_c": round(float(t), 2),
+            "precipitation_mm": round(float(p) * days, 1),
+        })
+    return pd.DataFrame(rows, columns=COLUMNS)
 
 
-def monthly_from_daily(city_name: str, daily: dict) -> pd.DataFrame:
-    df = pd.DataFrame(
-        {
-            "date": pd.to_datetime(daily["time"]),
-            "temperature_c": daily["temperature_2m_mean"],
-            "precipitation_mm": daily["precipitation_sum"],
-        }
+def fetch_city(city: pd.Series, throttle: Throttle) -> pd.DataFrame:
+    payload = get_json(
+        URL,
+        params={
+            "parameters": "T2M,PRECTOTCORR",
+            "community": "RE",
+            "latitude": round(float(city["latitude"]), 4),
+            "longitude": round(float(city["longitude"]), 4),
+            "format": "JSON",
+        },
+        throttle=throttle,
+        label=city["name"],
     )
-    df["month"] = df["date"].dt.month
-    monthly = df.groupby("month", as_index=False).agg(
-        temperature_c=("temperature_c", "mean"),
-        precipitation_mm=("precipitation_mm", "mean"),
-    )
-    monthly.insert(0, "city_name", city_name)
-    return monthly
-
-
-def run_batches(cities: pd.DataFrame) -> tuple[list[pd.DataFrame], pd.DataFrame]:
-    """Try every batch once. Returns (results, still_missing) — the
-    monthly DataFrames for cities that succeeded, and the rows for
-    cities in batches that got rate-limited and should be retried."""
-    results = []
-    missing_rows = []
-    batches = [cities.iloc[i:i + BATCH_SIZE] for i in range(0, len(cities), BATCH_SIZE)]
-
-    for batch_num, batch in enumerate(batches, start=1):
-        print(f"  Batch {batch_num}/{len(batches)} ({len(batch)} cities)...", end=" ")
-        try:
-            locations = fetch_batch(batch)
-        except requests.RequestException as e:
-            print(f"failed ({e}) — will not retry this batch")
-            continue
-
-        if locations is None:
-            print("rate limited, will retry later")
-            missing_rows.append(batch)
-        else:
-            ok = 0
-            for (_, row), location in zip(batch.iterrows(), locations):
-                daily = location.get("daily")
-                if daily:
-                    results.append(monthly_from_daily(row["name"], daily))
-                    ok += 1
-            print(f"ok ({ok}/{len(batch)})")
-        time.sleep(REQUEST_DELAY_SECONDS)
-
-    still_missing = pd.concat(missing_rows, ignore_index=True) if missing_rows else cities.iloc[0:0]
-    return results, still_missing
+    return parse_climatology(city["name"], payload)
 
 
 def main():
-    cities = pd.read_csv(f"{DATA_DIR}/cities.csv")
-    remaining = cities
-    all_results = []
-
-    for attempt in range(1, MAX_RETRIES_PER_BATCH + 1):
-        if remaining.empty:
-            break
-        if attempt > 1:
-            wait = RETRY_BACKOFF_SECONDS * attempt
-            print(f"\nRetry {attempt}/{MAX_RETRIES_PER_BATCH}: waiting {wait}s before "
-                  f"re-trying {len(remaining)} cities still missing...")
-            time.sleep(wait)
-        results, remaining = run_batches(remaining)
-        all_results.extend(results)
-
-    result = pd.concat(all_results, ignore_index=True) if all_results else pd.DataFrame(
-        columns=["city_name", "month", "temperature_c", "precipitation_mm"]
-    )
+    fresh = "--fresh" in sys.argv
+    cities = pd.read_csv(f"{DATA_DIR}/cities.csv", keep_default_na=False, na_values=[""])
     out_path = f"{DATA_DIR}/weather.csv"
-    result.to_csv(out_path, index=False)
-    fetched_cities = result["city_name"].nunique() if not result.empty else 0
-    print(f"\nSaved {len(result)} monthly rows ({fetched_cities} cities) to {out_path}")
 
-    if not remaining.empty:
+    done = set()
+    if os.path.exists(out_path) and not fresh:
+        existing = pd.read_csv(out_path)
+        counts = existing.groupby("city_name")["month"].nunique()
+        done = set(counts[counts == 12].index)
+        # rewrite the file with only complete cities (drops any half-written city)
+        existing[existing["city_name"].isin(done)].to_csv(out_path, index=False)
+    else:
+        pd.DataFrame(columns=COLUMNS).to_csv(out_path, index=False)
+
+    todo = cities[~cities["name"].isin(done)]
+    print(f"{len(done)} cities already have weather; fetching {len(todo)} more.")
+
+    throttle = Throttle(min_interval=REQUEST_DELAY_SECONDS, max_interval=30.0)
+    failed = []
+    for i, (_, city) in enumerate(todo.iterrows(), start=1):
+        try:
+            monthly = fetch_city(city, throttle)
+        except (RequestFailed, ValueError) as e:
+            print(f"  [{i}/{len(todo)}] {city['name']}: FAILED ({e})")
+            failed.append(city["name"])
+            continue
+        monthly.to_csv(out_path, mode="a", header=False, index=False)  # save as we go
+        if i % 25 == 0 or i == len(todo):
+            print(f"  [{i}/{len(todo)}] done (request gap now {throttle.interval:.1f}s)")
+
+    total = pd.read_csv(out_path)["city_name"].nunique()
+    print(f"\nweather.csv now covers {total} of {len(cities)} cities.")
+    if failed:
         print(
-            f"\n{len(remaining)} cities still have no weather data and will get a "
-            f"neutral weather score (50/100) rather than a real one: "
-            f"{', '.join(remaining['name'])}\n"
-            "You can just re-run this script — it always rewrites the whole file, "
-            "so re-fetching cities that already worked costs nothing — or lower "
-            "BATCH_SIZE near the top of this file if requests are timing out rather "
-            "than being rate limited."
+            f"{len(failed)} failed: {', '.join(failed)}\n"
+            "Re-run this script to retry just those. Cities that still have no "
+            "weather are dropped by load_data.py (they are never given a fake score)."
         )
 
 
