@@ -13,7 +13,7 @@ Prerequisites: Python 3.12, git, and (optional, for the last part) Docker.
 
 ```
 city-break-simple/
-├── app.py                      # Streamlit home page
+├── app.py                      # navigation entry point
 ├── pages/                      # one file per page, registered in app.py
 ├── uiComponents.py displayLabels.py themeStyles.py cityImages.py distanceCalculator.py dataAccess.py   # UI helpers
 ├── src/
