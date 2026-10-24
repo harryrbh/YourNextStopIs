@@ -44,7 +44,7 @@ does all of this for you and prints the manual steps for anything it can't fetch
   list** (XML or Excel). Save as `data/raw/unesco_whc.xml`; if you get Excel/CSV, save as
   `unesco_whc.xlsx` / `unesco_whc.csv`.
 * **What is needed from it:** one row per site with a name and latitude/longitude.
-  `load_unesco()` finds those columns by name (`site`/`name`, `latitude`/`lat`, `longitude`/`lon`) and
+  `load_unesco()` reads coordinates from `<latitude>/<longitude>`, or from the `<geolocations>` element used by current exports (nested elements, attributes or plain "lat, lon" text), or from CSV/Excel columns by name (`site`/`name`, `latitude`/`lat`, `longitude`/`lon`) and
   raises an error listing the columns it saw if UNESCO changes its layout — then add the new names to
   that function.
 * **Derived column:** `heritage_site_count` = UNESCO sites within 25 km of the city centre. Sites with
@@ -58,7 +58,7 @@ does all of this for you and prints the manual steps for anything it can't fetch
   ICAO, latitude, longitude, altitude, tz offset, DST, tz name, type, source. Routes: airline, airline id,
   source IATA, source id, destination IATA, destination id, codeshare, stops, equipment.
 * **How it is read (`fetch_airports.py`):** every airport with a 3-letter IATA code is attached to the
-  **nearest** city in `cities.csv` if within 100 km (so Orly/CDG -> Paris, Bergamo -> Milan). A route is kept
+  **every** city in `cities.csv` within 100 km (so Orly/CDG -> Paris, Bergamo -> Milan, and Kansai -> both Osaka and Kyoto). `airports.csv` has one row per airport-city pair, with `distance_km` and `is_nearest` columns. A route is kept
   only if both ends were attached to a city. The output is `data/airports.csv` and `data/routes.csv`.
 * **Caveat:** OpenFlights' route data stops around 2014, so treat connectivity as relative, not current.
 

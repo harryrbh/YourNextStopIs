@@ -120,9 +120,9 @@ git add . && git commit -m "Rate-limit-aware HTTP helper; countries, tourism and
 
 ### 8. Real data: airports and flights
 Follow `DATA_SOURCES.md` #7-8. `src/download_raw_data.py` saves OpenFlights `airports.dat` and `routes.dat` into `data/raw/`
-(or download them by hand). `src/fetch_airports.py` attaches each airport to its **nearest** city within 100 km and keeps routes between
+(or download them by hand). `src/fetch_airports.py` attaches each airport to **every** city within 100 km (an airport can serve several cities) and keeps routes between
 matched airports, writing `data/airports.csv` and `data/routes.csv`.
-Check: it prints "Matched N airports to M of K cities".
+Check: it prints "Matched N airports to M of K cities". If a city you expected is dropped, run `python src/diagnose_airports.py CityName`.
 ```bash
 git add . && git commit -m "Airports and routes from OpenFlights, matched to cities by distance"
 ```
@@ -164,7 +164,7 @@ python src/fetch_weather.py           # 4. resumable; --fresh restarts
 python src/download_raw_data.py       # 5. extracts into data/raw/
 python src/fetch_airports.py          # 6.
 python src/build_culture.py           # 7.
-rm -f data/city_breaks.db
+rm -f data/city_breaks.db        # Windows: del data\city_breaks.db
 python src/db.py && python src/load_data.py && python src/build_features.py
 python src/cluster.py && python src/classify.py
 streamlit run app.py

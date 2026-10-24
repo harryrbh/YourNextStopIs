@@ -135,7 +135,7 @@ python src/fetch_countries.py    # country facts
 python src/fetch_tourism.py      # visitor numbers + GDP + urbanisation (World Bank)
 python src/fetch_weather.py      # NASA POWER monthly climate normals (1 request/city, resumable)
 python src/download_raw_data.py  # GeoNames per-country files, OpenFlights, UNESCO -> data/raw/
-python src/fetch_airports.py     # airports + routes, matched to cities by distance
+python src/fetch_airports.py     # airports + routes; an airport serves every city within 100 km
 python src/build_culture.py      # UNESCO sites + attractions + top-3 sights per city
 python src/db.py && python src/load_data.py && python src/build_features.py
 python src/cluster.py && python src/classify.py
@@ -208,3 +208,5 @@ the top — it's a plain weighted average, nothing hidden.
 Edit `.streamlit/config.toml` (controls Streamlit's own buttons and
 sliders) and `theme.py` (controls the Plotly charts, score badges,
 and card styling) — keep the colours in both roughly matching.
+
+> **Windows:** run each command on its own line and don't paste the `# comments` (cmd.exe treats them as arguments, e.g. `python -m pytest -q # ...` fails). Use `del data\city_breaks.db` instead of `rm`.
