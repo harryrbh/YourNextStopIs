@@ -8,8 +8,9 @@ The shipped airports.csv linked airports to cities by a hand-typed
 `city_name`, so it only worked for the ~46 sample cities. Any other city
 got airport_count = 0, route_count = 0, connectivity = 0 — the "Ease of
 Travel" score was empty for them. Here every real airport with a 3-letter
-IATA code is attached to the NEAREST city in data/cities.csv, provided
-that city is within MAX_AIRPORT_KM. A city with no airport in range simply
+IATA code is attached to EVERY city in data/cities.csv within MAX_AIRPORT_KM
+(so Kansai airport serves both Osaka and Kyoto; nearest-only left the smaller
+neighbour with nothing). A city with no airport in range simply
 has none (and load_data.py drops it, since ease of travel can't be
 scored honestly).
 
@@ -66,7 +67,16 @@ def haversine_km(lat1, lon1, lat2, lon2):
 
 
 def match_airports(airports: pd.DataFrame, cities: pd.DataFrame, max_km: float = MAX_AIRPORT_KM) -> pd.DataFrame:
-    """Attach each airport to its nearest city (within max_km)."""
+    """Link airports to cities: an airport serves EVERY city within max_km.
+
+    One output row per (airport, city) pair, so the same IATA code can appear
+    several times — e.g. Osaka's Kansai (KIX) is a row for Osaka AND for Kyoto.
+    The old rule (each airport belongs only to its single nearest city) left
+    Kyoto, Cannes, Lucerne, Padua, Siena... with no airport at all, because a
+    bigger neighbour always won. Extra columns:
+      distance_km : airport to city centre
+      is_nearest  : True for the one city this airport is closest to
+    """
     airports = airports.dropna(subset=["iata_code", "latitude", "longitude"]).copy()
     airports = airports[airports["iata_code"].str.fullmatch(r"[A-Z]{3}", na=False)]
     if "type" in airports.columns:
@@ -74,13 +84,17 @@ def match_airports(airports: pd.DataFrame, cities: pd.DataFrame, max_km: float =
     airports = airports.drop_duplicates("iata_code")
 
     city_lat, city_lon = cities["latitude"].to_numpy(), cities["longitude"].to_numpy()
-    names = []
+    city_names = cities["name"].to_numpy()
+    rows = []
     for _, a in airports.iterrows():
         d = haversine_km(a["latitude"], a["longitude"], city_lat, city_lon)
-        i = int(np.argmin(d))
-        names.append(cities["name"].iloc[i] if d[i] <= max_km else None)
-    airports["city_name"] = names
-    return airports.dropna(subset=["city_name"])
+        nearest = int(np.argmin(d))
+        for i in np.flatnonzero(d <= max_km):
+            row = a.to_dict()
+            row.update(city_name=city_names[i], distance_km=round(float(d[i]), 1), is_nearest=bool(i == nearest))
+            rows.append(row)
+    out = pd.DataFrame(rows, columns=list(airports.columns) + ["city_name", "distance_km", "is_nearest"])
+    return out.reset_index(drop=True)
 
 
 def main():
@@ -88,17 +102,23 @@ def main():
     airports = match_airports(_download("airports.dat", AIRPORT_COLS), cities)
     routes = _download("routes.dat", ROUTE_COLS)
 
-    keep = set(airports["iata_code"])
+    keep = set(airports["iata_code"])  # an airport counts once here, however many cities it serves
     routes = routes[routes["source_iata"].isin(keep) & routes["destination_iata"].isin(keep)]
     routes = routes[["source_iata", "destination_iata", "airline", "stops"]].drop_duplicates()
 
-    airports[["iata_code", "icao_code", "airport_name", "city_name", "latitude", "longitude"]].to_csv(
+    airports[["iata_code", "icao_code", "airport_name", "city_name", "latitude", "longitude",
+              "distance_km", "is_nearest"]].to_csv(
         f"{DATA_DIR}/airports.csv", index=False)
     routes.to_csv(f"{DATA_DIR}/routes.csv", index=False)
 
     covered = airports["city_name"].nunique()
-    print(f"Matched {len(airports)} airports to {covered} of {len(cities)} cities "
-          f"(within {MAX_AIRPORT_KM} km); kept {len(routes)} routes between them.")
+    shared = int((airports.groupby("iata_code")["city_name"].nunique() > 1).sum())
+    print(f"Matched {airports['iata_code'].nunique()} airports to {covered} of {len(cities)} cities "
+          f"(every city within {MAX_AIRPORT_KM} km of an airport; {shared} airports serve more than one city); "
+          f"kept {len(routes)} routes between them.")
+    uncovered = sorted(set(cities["name"]) - set(airports["city_name"]))
+    if uncovered:
+        print(f"No airport within {MAX_AIRPORT_KM} km: {', '.join(uncovered)}")
 
 
 if __name__ == "__main__":

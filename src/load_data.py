@@ -53,11 +53,11 @@ def main():
     csv_opts = dict(keep_default_na=False, na_values=[""])
     countries_raw = pd.read_csv(f"{DATA_DIR}/countries.csv", **csv_opts)
     cities_raw = pd.read_csv(f"{DATA_DIR}/cities.csv", **csv_opts)
-    weather_raw = pd.read_csv(f"{DATA_DIR}/weather.csv")
-    culture_raw = pd.read_csv(f"{DATA_DIR}/culture.csv")
-    tourism_raw = pd.read_csv(f"{DATA_DIR}/tourism.csv")
-    airports_raw = pd.read_csv(f"{DATA_DIR}/airports.csv")
-    routes_raw = pd.read_csv(f"{DATA_DIR}/routes.csv")
+    weather_raw = pd.read_csv(f"{DATA_DIR}/weather.csv", **csv_opts)
+    culture_raw = pd.read_csv(f"{DATA_DIR}/culture.csv", **csv_opts)
+    tourism_raw = pd.read_csv(f"{DATA_DIR}/tourism.csv", **csv_opts)
+    airports_raw = pd.read_csv(f"{DATA_DIR}/airports.csv", **csv_opts)
+    routes_raw = pd.read_csv(f"{DATA_DIR}/routes.csv", **csv_opts)
 
     print(f"Selecting up to {TARGET_CITY_COUNT} cities with complete data...")
     kept, dropped = select_cities(
@@ -120,8 +120,9 @@ def main():
             )[tourism_cols]
         tourism.to_sql("tourism", conn, if_exists="append", index=False)
 
-        # 5. Airports, linked to city by name (data/airports.csv already
-        #    has a city_name column — see NOTES.md for how it was made)
+        # 5. Airports, linked to city by name (data/airports.csv has a city_name column).
+        #    An airport serving several cities appears once per city (its own airport_id
+        #    each), so every city's airport_count / route_count / connectivity is complete.
         airports = airports_raw.dropna(subset=["iata_code"]).merge(
             city_ids.rename(columns={"name": "city_name"}), on="city_name", how="inner"
         )
@@ -129,18 +130,21 @@ def main():
             columns={"airport_name": "name"}
         )
         airports_out.to_sql("airports", conn, if_exists="append", index=False)
-        airport_ids = pd.read_sql("SELECT airport_id, iata_code FROM airports", conn)
+        airport_ids = pd.read_sql("SELECT airport_id, iata_code, city_id FROM airports", conn)
 
         # 6. Routes, linked to airports by IATA code
         routes = routes_raw.merge(
-            airport_ids.rename(columns={"airport_id": "source_airport_id", "iata_code": "source_iata"}),
+            airport_ids.rename(columns={"airport_id": "source_airport_id", "iata_code": "source_iata", "city_id": "source_city"}),
             on="source_iata",
         ).merge(
             airport_ids.rename(
-                columns={"airport_id": "destination_airport_id", "iata_code": "destination_iata"}
+                columns={"airport_id": "destination_airport_id", "iata_code": "destination_iata", "city_id": "destination_city"}
             ),
             on="destination_iata",
         )
+        # Shared airports make "routes" between two airports serving the SAME city
+        # (e.g. Kansai -> Itami, both Osaka and Kyoto). Those aren't trips to somewhere else.
+        routes = routes[routes["source_city"] != routes["destination_city"]]
         routes_out = routes[["source_airport_id", "destination_airport_id", "airline"]]
         routes_out.to_sql("routes", conn, if_exists="append", index=False)
 
