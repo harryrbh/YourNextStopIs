@@ -210,3 +210,7 @@ sliders) and `theme.py` (controls the Plotly charts, score badges,
 and card styling) — keep the colours in both roughly matching.
 
 > **Windows:** run each command on its own line and don't paste the `# comments` (cmd.exe treats them as arguments, e.g. `python -m pytest -q # ...` fails). Use `del data\city_breaks.db` instead of `rm`.
+
+## Tuning the scores
+
+`src/build_features.py` has two constants near the top: `CLIP_PERCENT` (default 5) and `LOG_SCALE` (default True). They stop one outlier city (a mega-hub airport, a country with huge visitor numbers) from squashing every other city's score towards 0. Set `CLIP_PERCENT = 0` and `LOG_SCALE = False` for the old plain min-max behaviour; raise `CLIP_PERCENT` for more generous scores. `WEIGHTS` controls the overall score. Re-run `build_features.py`, `cluster.py` and `classify.py` after changing them.
