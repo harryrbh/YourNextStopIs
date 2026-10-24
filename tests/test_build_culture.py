@@ -55,3 +55,25 @@ def test_city_without_geonames_file_gets_zero_sights(tmp_path):
     unesco = pd.DataFrame({"site": [], "latitude": [], "longitude": []})
     out = bc.build_culture(cities, unesco, {})
     assert out.loc[0, "attraction_count"] == 0 and out.loc[0, "attraction_1"] == ""
+
+
+def test_unesco_xml_with_geolocations_element(tmp_path):
+    """Newer UNESCO exports have no <latitude>/<longitude>; coordinates live under <geolocations>."""
+    xml = tmp_path / "whc.xml"
+    xml.write_text("""<query>
+    <row><site>Banks of the Seine</site><geolocations><geolocation><latitude>48.86</latitude><longitude>2.33</longitude></geolocation></geolocations></row>
+    <row><site>Serial A</site><geolocations><geolocation lat="48.85" lon="2.30"/><geolocation lat="10.0" lon="10.0"/></geolocations></row>
+    <row><site>Text style</site><geolocations>48.87, 2.34</geolocations></row>
+    <row><site>No coords</site><geolocations></geolocations></row></query>""", encoding="utf-8")
+    unesco = bc.load_unesco(str(xml))
+    assert set(unesco["site"]) == {"Banks of the Seine", "Serial A", "Text style"}
+    cities = pd.DataFrame({"name": ["Paris"], "latitude": [48.8566], "longitude": [2.3522]})
+    assert bc.count_heritage(cities, unesco)["Paris"] == 3  # serial site counted once
+
+
+def test_unesco_xml_without_coordinates_explains_layout(tmp_path):
+    import pytest
+    xml = tmp_path / "whc.xml"
+    xml.write_text("<query><row><site>X</site><geolocations>unparseable</geolocations></row></query>", encoding="utf-8")
+    with pytest.raises(ValueError, match="First record"):
+        bc.load_unesco(str(xml))

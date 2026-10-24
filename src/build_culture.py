@@ -69,7 +69,6 @@ SIGHT_FEATURE_CODES = {
     "ARCH",  # arch
     "AMTH",  # amphitheater
     "CH",    # church
-    "CTHRL", # cathedral
     "MSQE",  # mosque
     "TMPL",  # temple
     "SHRN",  # shrine
@@ -103,19 +102,81 @@ def _find_col(columns, candidates):
     return None
 
 
+_NUM = re.compile(r"-?\d+(?:\.\d+)?")
+
+
+def _points_from_text(text: str) -> list[tuple[float, float]]:
+    """Pull (lat, lon) pairs out of free text like '48.8584, 2.2945' or 'lat: 48.8 lon: 2.3'.
+    Numbers are read in order and taken two at a time; pairs outside valid ranges are ignored."""
+    nums = [float(n) for n in _NUM.findall(text or "")]
+    pairs = list(zip(nums[0::2], nums[1::2]))
+    return [(la, lo) for la, lo in pairs if -90 <= la <= 90 and -180 <= lo <= 180]
+
+
+def _points_from_element(el) -> list[tuple[float, float]]:
+    """All coordinates under an XML element. Handles <latitude>/<longitude> children or
+    attributes (on the element or any descendant); falls back to reading numbers from its text."""
+    points = []
+    for node in el.iter():
+        keyed = {k.lower(): v for k, v in node.attrib.items()}
+        keyed.update({c.tag.lower(): (c.text or "").strip() for c in node if len(c) == 0})
+        lat = next((v for k, v in keyed.items() if k in ("lat", "latitude", "y")), None)
+        lon = next((v for k, v in keyed.items() if k in ("lon", "long", "lng", "longitude", "x")), None)
+        try:
+            points.append((float(lat), float(lon)))
+        except (TypeError, ValueError):
+            pass
+    if points:
+        return points
+    return _points_from_text(" ".join(t.strip() for t in el.itertext() if t.strip()))
+
+
+def _load_unesco_xml(path: str) -> pd.DataFrame:
+    """One output row per (site, coordinate). Serial sites (several locations) give several rows."""
+    out = []
+    for row in ET.parse(path).getroot().iter("row"):
+        kids = {c.tag.lower(): c for c in row}
+        name_el = next((kids[k] for k in ("site", "name", "name_en", "title") if k in kids), None)
+        if name_el is None:
+            continue
+        name = (name_el.text or "").strip()
+        points = []
+        # Try the dedicated coordinate fields first, then the plain location text as a last resort.
+        for key in ("geolocations", "geolocation", "coordinates", "latitude"):
+            if key in kids:
+                if key == "latitude" and "longitude" in kids:
+                    try:
+                        points = [(float((kids["latitude"].text or "").strip()), float((kids["longitude"].text or "").strip()))]
+                    except ValueError:
+                        points = []
+                else:
+                    points = _points_from_element(kids[key])
+                if points:
+                    break
+        if not points and "location" in kids:
+            points = _points_from_element(kids["location"])
+        out.extend({"site": name, "latitude": la, "longitude": lo} for la, lo in points)
+    return pd.DataFrame(out, columns=["site", "latitude", "longitude"])
+
+
 def load_unesco(path: str) -> pd.DataFrame:
-    """Read the UNESCO list (.xml, .csv, .xls/.xlsx) into columns site, latitude, longitude.
-    Column names are matched flexibly because UNESCO's export layout has changed over time."""
+    """Read the UNESCO list (.xml, .csv, .xls/.xlsx) into columns site, latitude, longitude
+    (one row per site location). Layouts vary, so columns/elements are matched flexibly."""
     ext = os.path.splitext(path)[1].lower()
     if ext == ".xml":
-        rows = [{child.tag.lower(): (child.text or "").strip() for child in row}
-                for row in ET.parse(path).getroot().iter("row")]
-        df = pd.DataFrame(rows)
-    elif ext in (".xls", ".xlsx"):
-        df = pd.read_excel(path)
-    else:
-        df = pd.read_csv(path)
+        out = _load_unesco_xml(path)
+        if out.empty:
+            # Show the first record so the layout can be inspected, instead of failing blindly.
+            first = next(ET.parse(path).getroot().iter("row"), None)
+            sample = ET.tostring(first, encoding="unicode")[:1500] if first is not None else "(no <row> elements)"
+            raise ValueError(
+                f"Found no coordinates in {path}. First record:\n{sample}\n"
+                "Adapt _load_unesco_xml() to this layout, or save the list as CSV/Excel with "
+                "site, latitude, longitude columns (see DATA_SOURCES.md)."
+            )
+        return out.reset_index(drop=True)
 
+    df = pd.read_excel(path) if ext in (".xls", ".xlsx") else pd.read_csv(path)
     site = _find_col(df.columns, ["site", "name", "name_en", "site_name", "title"])
     lat = _find_col(df.columns, ["latitude", "lat", "y"])
     lon = _find_col(df.columns, ["longitude", "lon", "long", "lng", "x"])
@@ -129,17 +190,17 @@ def load_unesco(path: str) -> pd.DataFrame:
         "latitude": pd.to_numeric(df[lat], errors="coerce"),
         "longitude": pd.to_numeric(df[lon], errors="coerce"),
     })
-    # Some sites (serial/transboundary) have no single coordinate: they can't be placed near a city.
     return out.dropna(subset=["latitude", "longitude"]).reset_index(drop=True)
 
 
 def count_heritage(cities: pd.DataFrame, unesco: pd.DataFrame, radius_km: float = HERITAGE_RADIUS_KM) -> pd.Series:
-    """UNESCO sites within radius_km of each city, indexed by city name."""
+    """DISTINCT UNESCO sites with at least one location within radius_km, indexed by city name."""
     lat, lon = unesco["latitude"].to_numpy(), unesco["longitude"].to_numpy()
+    sites = unesco["site"].to_numpy()
     counts = {}
     for _, c in cities.iterrows():
         d = haversine_km(c["latitude"], c["longitude"], lat, lon)
-        counts[c["name"]] = int((d <= radius_km).sum())
+        counts[c["name"]] = len(set(sites[d <= radius_km]))
     return pd.Series(counts)
 
 
