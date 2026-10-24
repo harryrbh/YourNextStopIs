@@ -34,3 +34,16 @@ def test_normalise_handles_identical_values():
     # than anyone else — everyone gets a neutral 50.
     result = normalise_0_100(pd.Series([7, 7, 7]))
     assert (result == 50.0).all()
+
+
+def test_clipping_stops_one_outlier_squashing_everyone():
+    s = pd.Series([1, 2, 3, 4, 5, 6, 7, 8, 9, 10_000])
+    plain = normalise_0_100(s)
+    robust = normalise_0_100(s, log=True, clip_percent=10)
+    assert plain.iloc[:9].max() < 1          # old behaviour: nine cities all score ~0
+    assert robust.iloc[:9].median() > 20     # spread out
+    assert robust.min() == 0 and robust.max() == 100
+
+
+def test_defaults_still_plain_min_max():
+    assert list(normalise_0_100(pd.Series([10, 20, 30]))) == [0, 50, 100]

@@ -16,6 +16,7 @@ Run it with:
     python src/build_features.py
 """
 import networkx as nx
+import numpy as np
 import pandas as pd
 from geopy.distance import geodesic
 
@@ -32,7 +33,18 @@ WEIGHTS = {
 }
 
 
-def normalise_0_100(series: pd.Series, invert: bool = False) -> pd.Series:
+# HOW RAW NUMBERS BECOME 0-100 SCORES — change these to make scores more/less generous.
+#   CLIP_PERCENT : values below the Nth percentile score 0, above the (100-N)th score 100.
+#                  Without this ONE outlier (a mega-hub airport, Paris's sight count, a
+#                  country with 80M visitors) is the "100" and everyone else is squashed
+#                  towards 0. 0 = plain min-max (the old behaviour).
+#   LOG_SCALE    : take log(1 + x) first for counts/money that are hugely right-skewed, so
+#                  "10x more routes" is worth the same step at the bottom as at the top.
+CLIP_PERCENT = 5
+LOG_SCALE = True
+
+
+def normalise_0_100(series: pd.Series, invert: bool = False, log: bool = False, clip_percent: float = 0) -> pd.Series:
     """Rescale any column so the lowest value becomes 0 and the
     highest becomes 100. `invert=True` for columns where *lower* is
     better (like cost), so the resulting score still means 'better'.
@@ -46,6 +58,12 @@ def normalise_0_100(series: pd.Series, invert: bool = False) -> pd.Series:
     recommendations) rather than just one column looking bland.
     """
     s = series.astype(float)
+    if log:
+        s = np.log1p(s.clip(lower=0))
+    if clip_percent > 0 and s.notna().sum() > 2:
+        lo, hi = s.quantile(clip_percent / 100), s.quantile(1 - clip_percent / 100)
+        if hi > lo:  # if clipping would flatten everyone, fall back to the full range
+            s = s.clip(lower=lo, upper=hi)
     if s.notna().sum() == 0:
         return pd.Series(50.0, index=s.index)  # no information at all -> neutral score
     if s.max() == s.min():
@@ -173,13 +191,14 @@ def build():
     df["weather_comfort"] = df["weather_comfort"].clip(lower=0)
 
     # --- normalise every raw number to a 0-100 score ---
-    df["weather_score"] = normalise_0_100(df["weather_comfort"])
+    scale = dict(log=LOG_SCALE, clip_percent=CLIP_PERCENT)
+    df["weather_score"] = normalise_0_100(df["weather_comfort"], clip_percent=CLIP_PERCENT)  # already roughly bell-shaped: no log
     df["accessibility_score"] = normalise_0_100(
-        df["airport_count"] * 2 + df["route_count"] * 0.1 + df["connectivity"] * 100
+        df["airport_count"] * 2 + df["route_count"] * 0.1 + df["connectivity"] * 100, **scale
     )
-    df["culture_score"] = normalise_0_100(df["heritage_sites"] * 3 + df["attractions"] / 20)
-    df["cost_score"] = normalise_0_100(df["gdp_per_capita"].fillna(df["gdp_per_capita"].median()), invert=True)
-    df["tourism_score"] = normalise_0_100(df["arrivals"])
+    df["culture_score"] = normalise_0_100(df["heritage_sites"] * 3 + df["attractions"] / 20, **scale)
+    df["cost_score"] = normalise_0_100(df["gdp_per_capita"].fillna(df["gdp_per_capita"].median()), invert=True, **scale)
+    df["tourism_score"] = normalise_0_100(df["arrivals"], **scale)
 
     # --- the transparent baseline: a weighted average, nothing hidden ---
     df["overall_score"] = sum(df[col] * weight for col, weight in WEIGHTS.items())
