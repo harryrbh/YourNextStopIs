@@ -39,7 +39,7 @@ Run it with:
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import GroupKFold, cross_val_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier
 from sqlalchemy import text
@@ -54,8 +54,10 @@ FEATURES = [
 
 MODELS = {
     "Logistic Regression": LogisticRegression(max_iter=1000),
-    "Decision Tree": DecisionTreeClassifier(max_depth=4, random_state=42),
-    "Random Forest": RandomForestClassifier(n_estimators=200, random_state=42),
+    # Depth/leaf limits stop trees memorising individual cities (with 200 trees and
+    # no limits a forest scores ~100% on cities it has seen but ~55% on new ones).
+    "Decision Tree": DecisionTreeClassifier(max_depth=3, min_samples_leaf=3, random_state=42),
+    "Random Forest": RandomForestClassifier(n_estimators=200, max_depth=3, min_samples_leaf=3, random_state=42),
 }
 
 
@@ -63,7 +65,7 @@ def load_data() -> pd.DataFrame:
     engine = get_engine()
     other_features = [f for f in FEATURES if f != "population"]
     query = f"""
-        SELECT cf.city_id, cf.gdp_per_capita, c.population, {', '.join(f'cf.{f}' for f in other_features)}
+        SELECT cf.city_id, c.country_id, cf.gdp_per_capita, c.population, {', '.join(f'cf.{f}' for f in other_features)}
         FROM city_features cf
         JOIN cities c ON c.city_id = cf.city_id
     """
@@ -117,23 +119,32 @@ def build_labels(df: pd.DataFrame) -> pd.Series:
 
 
 def compare_models(df: pd.DataFrame, labels: pd.Series, folds: int = 5) -> pd.DataFrame:
-    """Cross-validated accuracy for each candidate model, so the
-    comparison is fair (each model is tested on cities it wasn't
-    trained on) rather than just reporting whichever model happened
-    to memorise the training data best.
+    """Honest accuracy for each model, plus the numbers that reveal overfitting.
+
+    * cv_accuracy    : tested on cities the model was NOT trained on. Folds are split
+                       BY COUNTRY (GroupKFold): GDP and visitor numbers are country-level,
+                       so with ordinary folds a Paris-trained model "recognises" Lyon by its
+                       country's identical numbers — that is leakage, not skill.
+    * train_accuracy : on the cities it was trained on. A big gap to cv_accuracy = overfitting.
+    * baseline       : accuracy of always guessing the most common tier. A model must beat this.
     """
     X = StandardScaler().fit_transform(df[FEATURES])
+    groups = df["country_id"].to_numpy()
+    n_splits = min(folds, len(set(groups)))
+    baseline = labels.value_counts(normalize=True).max()
     results = []
     for name, model in MODELS.items():
-        scores = cross_val_score(model, X, labels, cv=min(folds, labels.value_counts().min()))
-        results.append({"model": name, "accuracy": scores.mean()})
-    return pd.DataFrame(results).sort_values("accuracy", ascending=False)
+        cv = cross_val_score(model, X, labels, cv=GroupKFold(n_splits=n_splits), groups=groups).mean()
+        train = model.fit(X, labels).score(X, labels)
+        results.append({"model": name, "cv_accuracy": cv, "train_accuracy": train,
+                        "gap": train - cv, "baseline": baseline})
+    return pd.DataFrame(results).sort_values("cv_accuracy", ascending=False)
 
 
 def fit_best_model(df: pd.DataFrame, labels: pd.Series, comparison: pd.DataFrame):
     """Fit the model with the best cross-validated accuracy on all
     the data, ready to label every city."""
-    best_name = comparison.iloc[0]["model"]
+    best_name = comparison.iloc[0]["model"]  # best accuracy on unseen countries
     model = MODELS[best_name]
     scaler = StandardScaler()
     X = scaler.fit_transform(df[FEATURES])
@@ -156,8 +167,11 @@ def run():
     labels = build_labels(df)
 
     comparison = compare_models(df, labels)
-    print("Model comparison (cross-validated accuracy — small sample, treat as illustrative):")
-    print(comparison.to_string(index=False))
+    print("Model comparison (cv_accuracy = on unseen countries; gap = train - cv, large gap = overfitting):")
+    print(comparison.round(2).to_string(index=False))
+    if comparison.iloc[0]["cv_accuracy"] <= comparison.iloc[0]["baseline"] + 0.05:
+        print("WARNING: the best model barely beats always guessing the most common tier — treat "
+              "price_tier as a rough label, not a reliable prediction.")
 
     model, scaler, best_name = fit_best_model(df, labels, comparison)
     print(f"\nUsing {best_name} (best cross-validated accuracy) to label every city.")
