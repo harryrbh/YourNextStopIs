@@ -1,10 +1,7 @@
-# Streamlit reads this file automatically to theme the whole app —
-# no code required. Change any of these hex codes to change the
-# app's colours everywhere at once. Match these to theme.py's
-# PAGE_TINT/CARD_TINT/GREEN if you change either.
+# Keep these colours in sync with themeStyles.py
 [theme]
-primaryColor = "#1E8E5A"            # green — buttons, sliders, highlights
-backgroundColor = "#F4F9F7"          # main background: faint green tint
-secondaryBackgroundColor = "#EEF5FB" # sidebar/cards: faint blue tint
-textColor = "#1B2A32"                # near-black, easy to read
+primaryColor = "#1E8E5A"
+backgroundColor = "#F4F9F7"
+secondaryBackgroundColor = "#EEF5FB"
+textColor = "#1B2A32"
 font = "sans serif"

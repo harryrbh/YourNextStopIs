@@ -6,10 +6,10 @@ venv/
 .pytest_cache/
 .DS_Store
 
-# The database is generated from the CSVs in data/ by src/db.py and
-# src/load_data.py — no need to commit it, and it'll just get out of
+# The database is generated from the CSVs in data/ by src/database.py and
+# src/loadDataToDatabase.py — no need to commit it, and it'll just get out of
 # sync with the CSVs if you do.
-data/city_breaks.db
+data/cityBreaks.db
 
-# Raw downloaded extracts (large; re-create with python src/download_raw_data.py)
+# Raw downloaded extracts (large; re-create with python src/downloadRawData.py)
 data/raw/

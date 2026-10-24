@@ -1,23 +1,5 @@
--- ============================================================
--- City Break Recommender — Database Schema (SQLite)
--- ============================================================
--- One file, one job: create every table the app needs.
--- Run it with:  python src/db.py
---
--- Table order matters here because of foreign keys: countries
--- must exist before cities, cities before airports, etc.
---
--- Note: SQLite's types are more relaxed than PostgreSQL's — it
--- doesn't strictly enforce that a REAL column always holds a number,
--- for example. We still declare types (INTEGER, TEXT, REAL) because
--- it documents what each column is *for*, even though SQLite itself
--- is lenient about it.
--- ============================================================
+-- Database schema
 
--- Drop tables first so this script is safe to re-run while you're
--- learning. Order matters here too: you must drop tables that
--- reference other tables (like city_features, which references
--- cities) before the tables they reference.
 DROP TABLE IF EXISTS city_features;
 DROP TABLE IF EXISTS routes;
 DROP TABLE IF EXISTS airports;
@@ -26,20 +8,20 @@ DROP TABLE IF EXISTS tourism;
 DROP TABLE IF EXISTS cities;
 DROP TABLE IF EXISTS countries;
 
--- One row per country.
+-- Country facts
 CREATE TABLE countries (
     country_id          INTEGER PRIMARY KEY AUTOINCREMENT,
-    iso2                TEXT UNIQUE NOT NULL,  -- e.g. 'FR'
+    iso2                TEXT UNIQUE NOT NULL,
     name                TEXT NOT NULL,
     region               TEXT,
     population           INTEGER,
-    gdp_per_capita        REAL,                -- used as a "cost" proxy
-    urban_population_pct   REAL,               -- % of the country living in urban areas
+    gdp_per_capita        REAL,
+    urban_population_pct   REAL,
     latitude                REAL,
     longitude                REAL
 );
 
--- One row per city. Every city belongs to one country.
+-- Candidate city list
 CREATE TABLE cities (
     city_id         INTEGER PRIMARY KEY AUTOINCREMENT,
     name            TEXT NOT NULL,
@@ -47,16 +29,16 @@ CREATE TABLE cities (
     population      INTEGER,
     latitude        REAL NOT NULL,
     longitude       REAL NOT NULL,
-    heritage_sites  INTEGER DEFAULT 0,   -- from data/culture.csv
-    attractions     INTEGER DEFAULT 0,   -- from data/culture.csv
-    attraction_1    TEXT,                -- from data/culture.csv
-    attraction_2    TEXT,                -- from data/culture.csv
-    attraction_3    TEXT,                -- from data/culture.csv
+    heritage_sites  INTEGER DEFAULT 0,
+    attractions     INTEGER DEFAULT 0,
+    attraction_1    TEXT,
+    attraction_2    TEXT,
+    attraction_3    TEXT,
     CHECK (latitude BETWEEN -90 AND 90),
     CHECK (longitude BETWEEN -180 AND 180)
 );
 
--- Twelve rows per city: one average per calendar month.
+-- Monthly climate per city
 CREATE TABLE weather (
     weather_id       INTEGER PRIMARY KEY AUTOINCREMENT,
     city_id          INTEGER REFERENCES cities(city_id),
@@ -66,18 +48,16 @@ CREATE TABLE weather (
     UNIQUE (city_id, month)
 );
 
--- One row per country per year. Our sample data has one year plus a
--- growth percentage, which build_features.py uses to derive what the
--- previous year's figure would have been (see that file for how).
+-- Visitor numbers per country
 CREATE TABLE tourism (
     tourism_id         INTEGER PRIMARY KEY AUTOINCREMENT,
     country_id         INTEGER REFERENCES countries(country_id),
     year                INTEGER NOT NULL,
     arrivals             INTEGER,
-    tourism_growth_pct    REAL   -- year-on-year change in arrivals, %
+    tourism_growth_pct    REAL
 );
 
--- Real airports, from the OpenFlights dataset, matched to our cities.
+-- Airports linked to cities
 CREATE TABLE airports (
     airport_id  INTEGER PRIMARY KEY AUTOINCREMENT,
     iata_code   TEXT,
@@ -87,7 +67,7 @@ CREATE TABLE airports (
     longitude   REAL
 );
 
--- Real flight routes between two airports (also from OpenFlights).
+-- Flight routes between airports
 CREATE TABLE routes (
     route_id                INTEGER PRIMARY KEY AUTOINCREMENT,
     source_airport_id       INTEGER REFERENCES airports(airport_id),
@@ -95,47 +75,35 @@ CREATE TABLE routes (
     airline                 TEXT
 );
 
--- The "ready to use" table: one row per city with every calculated
--- feature, score, and classification. Everything in the app reads
--- from here.
+-- Scores and facts per city
 CREATE TABLE city_features (
     city_id               INTEGER PRIMARY KEY REFERENCES cities(city_id),
 
-    -- raw numbers, calculated from the tables above
     avg_temperature_c     REAL,
     avg_precipitation_mm  REAL,
     airport_count         INTEGER DEFAULT 0,
     route_count           INTEGER DEFAULT 0,
-    connectivity          REAL DEFAULT 0,   -- from NetworkX, see build_features.py
+    connectivity          REAL DEFAULT 0,
     heritage_sites        INTEGER DEFAULT 0,
     attractions            INTEGER DEFAULT 0,
     gdp_per_capita          REAL,
     urban_population_pct     REAL,
     tourist_arrivals           INTEGER,
-    previous_arrivals            INTEGER,   -- derived from tourism_growth_pct
+    previous_arrivals            INTEGER,
     tourism_growth_pct             REAL,
 
-    -- nearest real airport to this city, calculated with geopy —
-    -- see build_features.py's nearest_airport() function
     nearest_airport_name  TEXT,
     nearest_airport_km    REAL,
 
-    -- every score below is rescaled to 0-100, higher = better
     weather_score        REAL,
     accessibility_score  REAL,
     culture_score        REAL,
-    cost_score            REAL,   -- higher score = cheaper
+    cost_score            REAL,
     tourism_score           REAL,
 
-    -- the plain weighted-average overall score (see build_features.py)
     overall_score            REAL,
 
-    -- filled in by cluster.py — an unsupervised, descriptive grouping
     category                   TEXT,
 
-    -- filled in by classify.py — a supervised prediction, trained on
-    -- constructed labels. See classify.py's docstring for exactly how
-    -- the labels were built and why they are a proxy, not verified
-    -- ground truth.
     price_tier                    TEXT
 );
