@@ -1,217 +1,198 @@
-# City Breaks
+# City Break Finder
 
-Recommends city-break destinations using real flight-route data,
-sample weather/culture/tourism data, a local SQLite database, and
-machine learning (K-Means clustering, a KNN recommender, a regression
-model, and a supervised price-tier classifier), served through a
-Streamlit app.
+A Streamlit application for comparing city-break destinations. Each city is scored on weather, ease of travel, culture, affordability and popularity. The app supports filtering, side-by-side comparison, preference-based recommendations and a per-city detail view.
 
-> Want to swap the sample data for real, live data from four
-> different free APIs? See **[apiGuide.md](apiGuide.md)**. Curious
-> how Docker actually works in this project, line by line? See
-> **[setupGuide.md](setupGuide.md)**. This file just covers running
-> what's already here.
+## Contents
 
-## Requirements
+1. [Overview](#1-overview)
+2. [Quick start](#2-quick-start)
+3. [Application pages](#3-application-pages)
+4. [Scoring method](#4-scoring-method)
+5. [Models](#5-models)
+6. [Data](#6-data)
+7. [Project structure](#7-project-structure)
+8. [Testing](#8-testing)
+9. [Limitations](#9-limitations)
 
-- Python 3.10+
-- That's it — no database server to install. The whole database is
-  one file (`data/cityBreaks.db`), created by the setup steps below.
+Related documents: [setupGuide.md](setupGuide.md) (building the project and Docker), [dataSources.md](dataSources.md) (data extracts), [apiGuide.md](apiGuide.md) (pipeline script reference).
 
-## Option A: Run locally (recommended — simplest option)
+## 1. Overview
 
-```bash
-# 1. Create and activate a virtual environment
+| Item | Detail |
+|---|---|
+| Interface | Streamlit, six pages |
+| Storage | SQLite (`data/cityBreaks.db`), built from CSV files |
+| Analytics | pandas, scikit-learn, networkx, geopy |
+| Charts | Plotly |
+| Packaging | Docker (optional) |
+
+The repository includes a 46-city sample dataset so the application runs without any downloads. A full dataset of up to 250 tourist cities can be built with the scripts in `src/` (see [Section 6](#6-data)).
+
+## 2. Quick start
+
+Requires Python 3.10 or later. No database server is needed.
+
+**Windows (Command Prompt)**
+
+```
 python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
-
-# 2. Install dependencies
+.venv\Scripts\activate
 pip install -r requirements.txt
+python src\database.py
+python src\loadDataToDatabase.py
+python src\buildCityFeatures.py
+python src\clusterCities.py
+python src\classifyPriceTier.py
+streamlit run app.py
+```
 
-# 3. Create the database, load data, and run every model
+**macOS / Linux**
+
+```
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 python src/database.py
 python src/loadDataToDatabase.py
 python src/buildCityFeatures.py
 python src/clusterCities.py
 python src/classifyPriceTier.py
-
-# 4. Run the app
 streamlit run app.py
 ```
 
-Open **http://localhost:8501**.
+The application opens at http://localhost:8501.
 
-## Option B: Run with Docker
+**Docker**
 
-```bash
+```
 docker build -t city-breaks .
 docker run -p 8501:8501 city-breaks
 ```
 
-Open **http://localhost:8501**. The image builds its own database
-during `docker build`, so there's nothing extra to run afterwards.
+The image builds its database during `docker build`. See [setupGuide.md](setupGuide.md) for details.
 
-If you'd like the database to survive rebuilding the image (rather
-than starting fresh every time), mount the `data/` folder from your
-own machine instead:
-```bash
-docker run -p 8501:8501 -v $(pwd)/data:/app/data city-breaks
+**Rebuilding.** After changing a CSV file or the scoring code, delete `data/cityBreaks.db` and repeat the five `python` commands above. `buildCityFeatures.py` recalculates all scores on every run.
+
+## 3. Application pages
+
+| Page | Purpose |
+|---|---|
+| Home | Map of all cities, counts by travel style, top ten cities by overall score |
+| Explore | Filter by travel style, price tier, country and minimum scores; sort by distance from a chosen city; card or table view |
+| Recommend | Five importance sliders; returns the nearest matching cities with a match percentage |
+| Compare | Radar chart, score table, pairwise distances and direct flights for two to five cities |
+| Tourism | Visitor numbers and growth by country; regression-based demand estimate |
+| City details | Weather by month, country indicators, best-known attractions, airports, flight map and three similar cities |
+
+City photos are requested from the Wikipedia summary API when a card is displayed. If the request fails, the card is shown without a photo.
+
+## 4. Scoring method
+
+Each city receives five scores on a 0 to 100 scale, calculated in `src/buildCityFeatures.py`.
+
+| Score | Raw measure |
+|---|---|
+| Weather | `100 - (abs(mean temperature - 22) * 4 + mean monthly rainfall / 20)` |
+| Ease of travel | `airports * 2 + routes * 0.1 + network centrality * 100` |
+| Culture | `UNESCO sites * 3 + attractions / 20` |
+| Affordability | Country GDP per person, inverted (lower GDP gives a higher score) |
+| Popularity | Country tourist arrivals |
+
+Network centrality is the degree centrality of each city's airports in the route graph.
+
+**Scaling.** Raw values are scaled to 0 to 100 as follows: counts and monetary values are log-transformed, the lowest and highest 5% of values are clipped to 0 and 100, and the result is min-max scaled. This prevents a single outlier, such as a major hub airport, from compressing all other cities towards zero. Weather is clipped but not log-transformed. The constants `defaultClipPercent` and `defaultUseLogScale` at the top of `buildCityFeatures.py` control this. Setting them to `0` and `False` gives plain min-max scaling.
+
+**Overall score.** A weighted average of the five scores:
+
+| Weather | Ease of travel | Culture | Affordability | Popularity |
+|---|---|---|---|---|
+| 0.30 | 0.25 | 0.20 | 0.15 | 0.10 |
+
+The weights are defined in the `weights` dictionary in the same file.
+
+## 5. Models
+
+| Feature | Method | Module |
+|---|---|---|
+| Travel style | K-Means clustering (4 clusters) on standardised scores. Each cluster is named after its strongest trait. | `clusterCities.py` |
+| Price tier | Classification into Budget, Mid-range and Luxury. The label is derived from country GDP per person split into thirds, and the model predicts it from other city attributes. Logistic regression, a decision tree and a random forest are compared by cross-validation, and the best is used. | `classifyPriceTier.py` |
+| Recommendations | Nearest neighbours (cosine distance) between the user's slider values and each city's scores; also used for similar cities. | `recommendSimilarCities.py` |
+| Demand estimate | Linear regression predicting country tourist arrivals from population, GDP per person, connectivity, heritage sites and weather. | `predictTourismDemand.py` |
+
+**Validation.** Cross-validation for the price tier classifier is split by country, because GDP and arrivals are country-level values and ordinary folds would place cities from the same country in both training and test sets. The comparison table reports training accuracy, cross-validated accuracy and the majority-class baseline so that overfitting is visible. Tree depth is limited to reduce it.
+
+## 6. Data
+
+| Dataset | Source |
+|---|---|
+| City coordinates and population | GeoNames `cities15000` |
+| Country facts | countries.dev |
+| Tourist arrivals, GDP per person, urbanisation | World Bank indicators |
+| Monthly temperature and rainfall | NASA POWER climatology |
+| Attractions | GeoNames per-country files |
+| World Heritage sites | UNESCO World Heritage List |
+| Airports and routes | OpenFlights |
+
+Building the full dataset:
+
+```
+python src/fetchCities.py
+python src/fetchCountries.py
+python src/fetchTourism.py
+python src/fetchWeather.py
+python src/downloadRawData.py
+python src/fetchAirports.py
+python src/buildCulture.py
 ```
 
-See [setupGuide.md](setupGuide.md) for a full explanation of what a
-container actually is and what each line of the `Dockerfile` does.
+Then run the database and model steps from Section 2.
 
-## What's in the app
+`src/touristCityList.py` holds a curated pool of about 370 candidate cities, ordered by prominence. `loadDataToDatabase.py` keeps the first 250 that have complete data (country statistics, 12 months of weather, at least one attraction, and an airport with routes) and prints the reason for each city it drops. See [dataSources.md](dataSources.md) for the extracts and [apiGuide.md](apiGuide.md) for each script.
 
-- **Home** — an interactive, scrollable map of every city (hover for
-  weather, top attraction, and travel style), quick browsing by
-  travel-style category, and a top-10 chart.
-- **Explore** — filter by travel style, price tier, country, or
-  score; search by name; sort by distance from a city you pick (using
-  `geopy`); view results as photo cards or a table with real flag
-  icons.
-- **Recommend** — set your preferences on five sliders and get your
-  closest-matching cities, each with a match percentage.
-- **Compare** — a radar chart, side-by-side scores, real distances
-  between cities, and a map showing which of your chosen cities have
-  a tracked direct flight between them.
-- **Tourism** — visitor numbers and growth by country, and an
-  interactive "estimate demand for a destination" calculator powered
-  by a regression model.
-- **City Details** — a full dossier for one city: location, country
-  indicators (GDP, urbanisation), a 12-month weather chart, its three
-  best-known attractions, nearest airport, a flight-connections map,
-  and its three most similar cities.
-
-City cards try to show a real photo, pulled live from Wikipedia
-(`cityImages.py`) — this needs an internet connection at the time the app
-runs; if it's unavailable, the card just shows without a photo rather
-than erroring.
-
-## Project layout
+## 7. Project structure
 
 ```
-city-break-simple/
-├── app.py                    # home page (run this)
-├── dataAccess.py             # shared, cached database queries used by every page
-├── uiComponents.py               # the reusable "city card" (image, flag, badges, flights)
-├── displayLabels.py                    # plain-English names, rounding, and flags for anything shown on screen
-├── themeStyles.py                      # shared colours, chart palette, card styling
-├── distanceCalculator.py                    # real-world distance between two coordinates (geopy)
-├── cityImages.py                       # fetches a city photo from Wikipedia
-├── pages/                            # pages registered in app.py
-│   ├── homePage.py
-│   ├── exploreCities.py
-│   ├── recommendCities.py
-│   ├── compareCities.py
-│   ├── tourismTrends.py
-│   └── cityDetails.py
-├── src/
-│   ├── database.py                            # database connection (one function)
-│   ├── loadDataToDatabase.py                      # reads data/*.csv, inserts into SQLite
-│   ├── buildCityFeatures.py                  # turns raw data into 0-100 scores + nearest airport
-│   ├── clusterCities.py                          # K-Means: unsupervised travel-style categories
-│   ├── recommendSimilarCities.py                         # KNN: matches preferences to cities, and city-to-city similarity
-│   ├── predictTourismDemand.py                          # predicts visitor numbers from city/country attributes
-│   ├── classifyPriceTier.py                              # Budget/Mid-range/Luxury price-tier prediction
-│   ├── touristCityList.py, selectCompleteCities.py, httpClient.py
-│   └── fetch*.py                                # optional: pull real data instead of the sample CSVs
-├── data/                                          # the CSV files loadDataToDatabase.py reads, plus the database file
-├── sql/schema.sql                                    # database table definitions
-├── tests/                                              # pytest tests
-├── .streamlit/config.toml                                # app colour theme
-└── Dockerfile
+app.py                      Navigation entry point
+pages/                      One file per page
+uiComponents.py             City card component
+dataAccess.py               Cached database queries
+displayLabels.py            Display names, rounding and flag helpers
+themeStyles.py              Colours and card styling
+distanceCalculator.py       Distance between coordinates (geopy)
+cityImages.py               Wikipedia photo lookup
+src/
+  database.py               Engine and schema creation
+  loadDataToDatabase.py     CSV import and city selection
+  selectCompleteCities.py   Completeness checks
+  buildCityFeatures.py      Score calculation
+  clusterCities.py          Travel style clusters
+  classifyPriceTier.py      Price tier classifier
+  recommendSimilarCities.py Recommendations
+  predictTourismDemand.py   Demand regression
+  touristCityList.py        Candidate city pool
+  httpClient.py             HTTP client with retries
+  fetch*.py, build*.py      Data acquisition scripts
+  downloadRawData.py        Raw extract downloader
+  diagnoseAirports.py       Airport matching diagnostics
+sql/schema.sql              Table definitions
+data/                       CSV files and database
+tests/                      Unit tests
+Dockerfile
 ```
 
+## 8. Testing
 
-## Using real data (250 tourist cities)
-
-The repo ships a 46-city sample so the app runs immediately. To build the real
-dataset, follow **[dataSources.md](dataSources.md)** (exactly which extracts to
-download and how each file is interpreted). In short:
-
-```bash
-python src/fetchCities.py       # ~370 curated tourist candidates, matched to GeoNames
-python src/fetchCountries.py    # country facts
-python src/fetchTourism.py      # visitor numbers + GDP + urbanisation (World Bank)
-python src/fetchWeather.py      # NASA POWER monthly climate normals (1 request/city, resumable)
-python src/downloadRawData.py  # GeoNames per-country files, OpenFlights, UNESCO -> data/raw/
-python src/fetchAirports.py     # airports + routes; an airport serves every city within 100 km
-python src/buildCulture.py      # UNESCO sites + attractions + top-3 sights per city
-python src/database.py && python src/loadDataToDatabase.py && python src/buildCityFeatures.py
-python src/clusterCities.py && python src/classifyPriceTier.py
+```
+python -m pytest -q
 ```
 
-`loadDataToDatabase.py` keeps the first 250 candidates (in `src/touristCityList.py` order) that have
-complete data for every tourist attribute, and prints why each dropped city was dropped.
-Full from-scratch build instructions (including git commits): **[setupGuide.md](setupGuide.md)**.
+The suite has 23 tests covering score scaling, city selection, airport matching, culture parsing, retry behaviour and recommendations. Four tests that query the database are skipped if it has not been built. The fetch scripts' network calls are not tested; their parsing functions are.
 
-## Re-running the pipeline
+## 9. Limitations
 
-Whenever you change `data/*.csv` or the scoring logic, re-run:
-
-```bash
-python src/loadDataToDatabase.py        # only if the CSVs changed
-python src/buildCityFeatures.py   # always, after any change
-python src/clusterCities.py          # refreshes the travel-style categories
-python src/classifyPriceTier.py         # refreshes the price-tier predictions
-```
-
-`buildCityFeatures.py` recalculates the whole `city_features` table from
-scratch each time, so it's always safe to re-run. If you ever want a
-completely clean slate, delete `data/cityBreaks.db` and start again
-from `python src/database.py`.
-
-## Data note
-
-The airport and route data in `data/airports.csv` and
-`data/routes.csv` is **real**, from the
-[OpenFlights](https://openflights.org/data.html) project. The
-country/city/weather/culture/tourism data is a small **hand-picked
-sample** — it exists so you can run this project immediately without
-needing any accounts or API keys. **See
-[apiGuide.md](apiGuide.md)** for a step-by-step guide to swapping in
-real data from countries.dev, GeoNames, Open-Meteo and the World
-Bank — all free, no key needed — and for what's honestly missing from
-the sample data (museum/park/restaurant-level detail, multi-year
-tourism history).
-
-## A note on the two classification-style features
-
-This app has two different ways of grouping cities, and they mean
-different things:
-
-- **Travel style** (`clusterCities.py`) is *unsupervised* — K-Means finds
-  groups of cities with similar scores and we name each group after
-  its most dominant trait. There's no "correct" grouping being
-  learned here, just a useful way to browse.
-- **Price tier** (`classifyPriceTier.py`) is *supervised* — Budget/Mid-range/
-  Luxury labels are first constructed from a rule (country GDP per
-  person, split into thirds), then a model (whichever of Logistic
-  Regression, a Decision Tree, or Random Forest cross-validates best)
-  is trained to predict that label from *other* attributes. The label
-  is a proxy, not a verified fact, and the module's docstring explains
-  exactly why and how it was built — read it before treating "price
-  tier" as ground truth for a real decision. Because gdp_per_capita is
-  a country-level number, many cities in the same country share the
-  exact same value, which can occasionally put several cities exactly
-  on a tercile boundary — `buildLabels()` handles that gracefully
-  (falls back to two tiers rather than crashing) rather than assuming
-  the data will always split cleanly into three.
-
-## Changing what the recommender prioritises
-
-Open `src/buildCityFeatures.py` and edit the `WEIGHTS` dictionary near
-the top — it's a plain weighted average, nothing hidden.
-
-## Changing the colours
-
-Edit `.streamlit/config.toml` (controls Streamlit's own buttons and
-sliders) and `themeStyles.py` (controls the Plotly charts, score badges,
-and card styling) — keep the colours in both roughly matching.
-
-> **Windows:** run each command on its own line and don't paste the `# comments` (cmd.exe treats them as arguments, e.g. `python -m pytest -q # ...` fails). Use `del data\cityBreaks.db` instead of `rm`.
-
-## Tuning the scores
-
-`src/buildCityFeatures.py` has two constants near the top: `CLIP_PERCENT` (default 5) and `LOG_SCALE` (default True). They stop one outlier city (a mega-hub airport, a country with huge visitor numbers) from squashing every other city's score towards 0. Set `CLIP_PERCENT = 0` and `LOG_SCALE = False` for the old plain min-max behaviour; raise `CLIP_PERCENT` for more generous scores. `WEIGHTS` controls the overall score. Re-run `buildCityFeatures.py`, `clusterCities.py` and `classifyPriceTier.py` after changing them.
+- Popularity and affordability are country-level figures, so cities in the same country share them.
+- Attraction and heritage counts depend on how completely GeoNames and UNESCO cover each country. They are suitable for relative comparison only.
+- OpenFlights route data dates from around 2014.
+- The price tier is predicted from a label derived from GDP, so it is a proxy and not a measured price level.
+- The sample dataset is small, so model accuracy figures are indicative only.
+- The curated city list is a judgement, not a measured ranking.
