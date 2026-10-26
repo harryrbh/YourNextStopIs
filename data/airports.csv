@@ -1,159 +1,1580 @@
-iata_code,icao_code,airport_name,city_name,latitude,longitude
-KEF,BIKF,Keflavik International Airport,Reykjavik,63.985000610352,-22.605600357056
-RKV,BIRK,Reykjavik Airport,Reykjavik,64.1299972534,-21.9405994415
-YKZ,CYKZ,Buttonville Municipal Airport,Toronto,43.86220169067383,-79.37000274658203
-YTZ,CYTZ,Billy Bishop Toronto City Centre Airport,Toronto,43.627499,-79.396202
-YYZ,CYYZ,Lester B. Pearson International Airport,Toronto,43.6772003174,-79.63059997559999
-YZD,CYZD,Downsview Airport,Toronto,43.74250030517578,-79.4655990600586
-QXH,EDAZ,Schönhagen Airport,Berlin,52.203609,13.156389
-SXF,EDDB,Berlin-Schönefeld Airport,Berlin,52.380001,13.5225
-THF,EDDI,Berlin-Tempelhof International Airport,Berlin,52.47299957275391,13.403900146484377
-MUC,EDDM,Munich Airport,Munich,48.353802,11.7861
-TXL,EDDT,Berlin-Tegel Airport,Berlin,52.5597,13.2877
-AGB,EDMA,Augsburg Airport,Munich,48.425278,10.931667
-OBF,EDMO,Oberpfaffenhofen Airport,Munich,48.081402,11.2831
-LTN,EGGW,London Luton Airport,London,51.874698638916016,-0.3683330118656158
-BQH,EGKB,London Biggin Hill Airport,London,51.33079910279999,0.0324999988079
-LGW,EGKK,London Gatwick Airport,London,51.148102,-0.190278
-LCY,EGLC,London City Airport,London,51.505299,0.055278
-FAB,EGLF,Farnborough Airport,London,51.2757987976,-0.776332974434
-BBS,EGLK,Blackbushe Airport,London,51.32389831542969,-0.8475000262260437
-LHR,EGLL,London Heathrow Airport,London,51.4706,-0.461941
-SEN,EGMC,Southend Airport,London,51.5713996887207,0.6955559849739075
-EDI,EGPH,Edinburgh Airport,Edinburgh,55.95000076293945,-3.372499942779541
-DND,EGPN,Dundee Airport,Edinburgh,56.45249938964844,-3.025830030441284
-ADX,EGQL,RAF Leuchars,Edinburgh,56.37289810180664,-2.8684399127960205
-STN,EGSS,London Stansted Airport,London,51.8849983215,0.234999999404
-NHT,EGWU,RAF Northolt,London,51.5530014038,-0.418166995049
-AMS,EHAM,Amsterdam Airport Schiphol,Amsterdam,52.308601,4.76389
-LEY,EHLE,Lelystad Airport,Amsterdam,52.4603,5.52722
-RTM,EHRD,Rotterdam The Hague Airport,Amsterdam,51.956902,4.43722
-UTC,EHSB,Soesterberg Air Base,Amsterdam,52.1273002625,5.27618980408
-LID,EHVB,Valkenburg Naval Air Base,Amsterdam,52.1660995483,4.41794013977
-KRK,EPKK,Kraków John Paul II International Airport,Krakow,50.077702,19.7848
-FEL,ETSF,Fürstenfeldbruck Air Base,Munich,48.205555,11.266944
-CPT,FACT,Cape Town International Airport,Cape Town,-33.9648017883,18.6016998291
-RAK,GMMX,Menara Airport,Marrakesh,31.6068992615,-8.03629970551
-CAI,HECA,Cairo International Airport,Cairo,30.12190055847168,31.40559959411621
-CWE,HECW,Cairo West Airport,Cairo,30.116399765,30.9153995514
-DBV,LDDU,Dubrovnik Airport,Dubrovnik,42.5614013671875,18.268199920654297
-BCN,LEBL,Barcelona International Airport,Barcelona,41.2971,2.07846
-MAD,LEMD,Adolfo Suárez Madrid–Barajas Airport,Madrid,40.471926,-3.56264
-OZP,LEMO,Moron Air Base,Seville,37.17490005493164,-5.615940093994141
-TOJ,LETO,Torrejón Airport,Madrid,40.496700286865234,-3.4458699226379395
-SVQ,LEZL,Sevilla Airport,Seville,37.417999267578125,-5.8931097984313965
-CEQ,LFMD,Cannes-Mandelieu Airport,Nice,43.542,6.95348
-NCE,LFMN,Nice-Côte d'Azur Airport,Nice,43.6584014893,7.215869903560001
-LBG,LFPB,Paris-Le Bourget Airport,Paris,48.96939849853516,2.441390037536621
-CSF,LFPC,Creil Air Base,Paris,49.25350189208984,2.5191400051116943
-CDG,LFPG,Charles de Gaulle International Airport,Paris,49.012798,2.55
-TNF,LFPN,Toussus-le-Noble Airport,Paris,48.75189971923828,2.1061899662017822
-ORY,LFPO,Paris-Orly Airport,Paris,48.7233333,2.3794444
-POX,LFPT,Pontoise - Cormeilles-en-Vexin Airport,Paris,49.096667,2.040833
-VIY,LFPV,Villacoublay-Vélizy (BA 107) Air Base,Paris,48.7741667,2.1916667
-BUD,LHBP,Budapest Liszt Ferenc International Airport,Budapest,47.42976,19.261093
-TSF,LIPH,Treviso-Sant'Angelo Airport,Venice,45.648399,12.1944
-QPA,LIPU,Padova Airport,Venice,45.395802,11.8479
-VCE,LIPZ,Venice Marco Polo Airport,Venice,45.505299,12.3519
-SAY,LIQS,Siena-Ampugnano Airport,Florence,43.256302,11.255
-CIA,LIRA,Ciampino–G. B. Pastine International Airport,Rome,41.7994,12.5949
-FCO,LIRF,Leonardo da Vinci–Fiumicino Airport,Rome,41.8002778,12.2388889
-QLT,LIRL,Latina Air Base,Rome,41.5424,12.909
-FLR,LIRQ,Peretola Airport,Florence,43.810001,11.2051
-PRG,LKPR,Václav Havel Airport Prague,Prague,50.1008,14.26
-VOD,LKVO,Vodochody Airport,Prague,50.216599,14.3958
-VIE,LOWW,Vienna International Airport,Vienna,48.110298156738,16.569700241089
-AVR,LPAR,Alverca Air Base,Lisbon,38.883301,-9.0301
-BGZ,LPBR,Braga Municipal Aerodrome,Porto,41.5871009827,-8.445139884949999
-CAT,LPCS,Cascais Airport,Lisbon,38.724998,-9.35523
-OPO,LPPR,Francisco de Sá Carneiro Airport,Porto,41.2481002808,-8.68138980865
-LIS,LPPT,Humberto Delgado Airport (Lisbon Portela Airport),Lisbon,38.7813,-9.13592
-ISL,LTBA,Atatürk International Airport,Istanbul,40.976898,28.8146
-TIV,LYTV,Tivat Airport,Dubrovnik,42.40470123291016,18.72330093383789
-MEX,MMMX,Licenciado Benito Juarez International Airport,Mexico City,19.4363,-99.072098
-TLC,MMTO,Licenciado Adolfo Lopez Mateos International Airport,Mexico City,19.3370990753,-99.56600189210002
-ALR,NZLX,Alexandra Airport,Queenstown,-45.211700439453125,169.3730010986328
-ZQN,NZQN,Queenstown International Airport,Queenstown,-45.0210990906,168.738998413
-WKA,NZWF,Wanaka Airport,Queenstown,-44.722198486328,169.24600219727
-DXB,OMDB,Dubai International Airport,Dubai,25.2527999878,55.3643989563
-SHJ,OMSJ,Sharjah International Airport,Dubai,25.32859992980957,55.5172004699707
-ITM,RJOO,Osaka International Airport,Kyoto,34.785499572753906,135.43800354003906
-NJA,RJTA,Atsugi Naval Air Facility,Tokyo,35.4546012878418,139.4499969482422
-HND,RJTT,Tokyo Haneda International Airport,Tokyo,35.552299,139.779999
-OKO,RJTY,Yokota Air Base,Tokyo,35.74850082397461,139.34800720214844
-SSN,RKSM,Seoul Air Base (K-16),Seoul,37.444744,127.112718
-OSN,RKSO,Osan Air Base,Seoul,37.090599,127.029999
-GMP,RKSS,Gimpo International Airport,Seoul,37.5583,126.791
-SWU,RKSW,Suwon Airport,Seoul,37.23939895629883,127.00700378417967
-AEP,SABE,Jorge Newbery Airpark,Buenos Aires,-34.5592,-58.4156
-FDO,SADF,San Fernando Airport,Buenos Aires,-34.4532,-58.5896
-EPA,SADP,El Palomar Airport,Buenos Aires,-34.6099,-58.6126
-GIG,SBGL,Rio Galeão – Tom Jobim International Airport,Rio de Janeiro,-22.8099994659,-43.2505569458
-SDU,SBRJ,Santos Dumont Airport,Rio de Janeiro,-22.9104995728,-43.1631011963
-SNZ,SBSC,Santa Cruz Air Force Base,Rio de Janeiro,-22.9324,-43.719101
-CUZ,SPZO,Alejandro Velasco Astete International Airport,Cusco,-13.535699844400002,-71.9387969971
-JAI,VIJP,Jaipur International Airport,Jaipur,26.8242,75.812202
-DMK,VTBD,Don Mueang International Airport,Bangkok,13.9125995636,100.607002258
-HAN,VVNB,Noi Bai International Airport,Hanoi,21.221200942993164,105.80699920654295
-JHB,WMKJ,Senai International Airport,Singapore,1.64131,103.669998
-QPG,WSAP,Paya Lebar Air Base,Singapore,1.360419988632202,103.91000366210938
-TGA,WSAT,Tengah Air Base,Singapore,1.38725996017,103.708999634
-XSP,WSSL,Seletar Airport,Singapore,1.416949987411499,103.86799621582033
-SIN,WSSS,Singapore Changi Airport,Singapore,1.35019,103.994003
-AVV,YMAV,Avalon Airport,Melbourne,-38.039398,144.468994
-MEB,YMEN,Melbourne Essendon Airport,Melbourne,-37.7281,144.901993
-MBW,YMMB,Melbourne Moorabbin Airport,Melbourne,-37.97579956054688,145.1020050048828
-MEL,YMML,Melbourne International Airport,Melbourne,-37.673302,144.843002
-BWU,YSBK,Sydney Bankstown Airport,Sydney,-33.924400329589844,150.98800659179688
-CDU,YSCN,Camden Airport,Sydney,-34.04029846191406,150.68699645996094
-XRH,YSRI,RAAF Base Richmond,Sydney,-33.600601,150.781006
-SYD,YSSY,Sydney Kingsford Smith International Airport,Sydney,-33.94609832763672,151.177001953125
-PEK,ZBAA,Beijing Capital International Airport,Beijing,40.0801010131836,116.58499908447266
-OAK,KOAK,Metropolitan Oakland International Airport,San Francisco,37.721298,-122.221001
-SFO,KSFO,San Francisco International Airport,San Francisco,37.61899948120117,-122.375
-EWR,KEWR,Newark Liberty International Airport,New York,40.692501068115234,-74.168701171875
-HPN,KHPN,Westchester County Airport,New York,41.06700134277344,-73.70760345458984
-TEB,KTEB,Teterboro Airport,New York,40.85010147089999,-74.060798645
-LGA,KLGA,La Guardia Airport,New York,40.77719879,-73.87259674
-NUQ,KNUQ,Moffett Federal Airfield,San Francisco,37.4161,-122.049004
-JFK,KJFK,John F Kennedy International Airport,New York,40.63980103,-73.77890015
-BKK,VTBS,Suvarnabhumi Airport,Bangkok,13.681099891662598,100.74700164794922
-BTH,WIDD,Hang Nadim International Airport,Singapore,1.12102997303,104.119003296
-ICN,RKSI,Incheon International Airport,Seoul,37.46910095214844,126.45099639892578
-DPS,WADD,Ngurah Rai (Bali) International Airport,Bali (Denpasar),-8.7481698989868,115.16699981689
-ATH,LGAV,Eleftherios Venizelos International Airport,Athens,37.9364013672,23.9444999695
-EZE,SAEZ,Ministro Pistarini International Airport,Buenos Aires,-34.8222,-58.5358
-HEW,LGAT,Athen Helenikon Airport,Athens,37.893299,23.726101
-JRB,KJRB,Downtown-Manhattan/Wall St Heliport,New York,40.70119858,-74.00900269
-SAW,LTFJ,Sabiha Gökçen International Airport,Istanbul,40.898601532,29.3092002869
-NAY,ZBNY,Beijing Nanyuan Airport,Beijing,39.78279876708984,116.38800048828124
-QSA,LELL,Sabadell Airport,Barcelona,41.52090072631836,2.1050798892974854
-CYR,SUCA,Laguna de Los Patos International Airport,Buenos Aires,-34.456401824951,-57.770599365234
-LVK,KLVK,Livermore Municipal Airport,San Francisco,37.6934013367,-121.819999695
-MMU,KMMU,Morristown Municipal Airport,New York,40.79940032958984,-74.41490173339844
-APC,KAPC,Napa County Airport,San Francisco,38.2132,-122.280998
-QNV,SDNY,Aeroclube Airport,Rio de Janeiro,-22.74530029296875,-43.46030044555664
-SQL,KSQL,San Carlos Airport,San Francisco,37.511901855469,-122.25
-FRJ,LFTU,Fréjus Airport,Nice,43.4175,6.7357
-JRA,KJRA,West 30th St. Heliport,New York,40.754501,-74.007103
-HYC,EGTB,Wycombe Air Park,London,51.6116981506,-0.8083329796790001
-NHD,OMDM,Al Minhad Air Base,Dubai,25.0268001556,55.3661994934
-CCR,KCCR,Buchanan Field,San Francisco,37.9897003174,-122.056999207
-YOO,CYOO,Toronto/Oshawa Executive Airport,Toronto,43.922798,-78.894997
-CDW,KCDW,Essex County Airport,New York,40.875198364300005,-74.2814025879
-FRG,KFRG,Republic Airport,New York,40.7288017273,-73.4133987427
-DWC,OMDW,Al Maktoum International Airport,Dubai,24.896356,55.161389
-NOT,KDVO,Marin County Airport - Gnoss Field,San Francisco,38.143600463867,-122.55599975586
-LDJ,KLDJ,Linden Airport,New York,40.617401123,-74.2445983887
-PSL,EGPT,Perth/Scone Airport,Edinburgh,56.43920135498047,-3.372220039367676
-PAO,KPAO,Palo Alto Airport of Santa Clara County,San Francisco,37.461101532,-122.114997864
-RCS,EGTO,Rochester Airport,London,51.351898193359375,0.5033329725265503
-KRH,EGKR,Redhill Aerodrome,London,51.2136001587,-0.138611003757
-HWD,KHWD,Hayward Executive Airport,San Francisco,37.659198761,-122.122001648
-NGZ,KNGZ,Alameda Naval Air Station,San Francisco,37.78889846801758,-122.31999969482422
-YCM,CYSN,Niagara District Airport,Toronto,43.19169998168945,-79.17169952392578
-PKX,ZBAD,Beijing Daxing International Airport,Beijing,39.509945,116.41092
-HAF,KHAF,Half Moon Bay Airport,San Francisco,37.5134010315,-122.500999451
-ECV,LECU,Cuatro Vientos Airport,Madrid,40.370701,-3.78514
-TJB,WIBT,Sei Bati Airport,Singapore,1.0527,103.3931
-IST,LTFM,Istanbul Airport,Istanbul,41.275278,28.751944
+iata_code,icao_code,airport_name,city_name,latitude,longitude,distance_km,is_nearest
+KEF,BIKF,Keflavik International Airport,Reykjavik,63.985000610352,-22.605600357056,38.4,True
+RKV,BIRK,Reykjavik Airport,Reykjavik,64.1299972534,-21.9405994415,2.3,True
+YCD,CYCD,Nanaimo Airport,Vancouver,49.054970224899996,-123.869862556,58.7,True
+YCD,CYCD,Nanaimo Airport,Victoria,49.054970224899996,-123.869862556,78.6,False
+YCW,CYCW,Chilliwack Airport,Vancouver,49.1528015137,-121.939002991,86.4,True
+YHM,CYHM,John C. Munro Hamilton International Airport,Toronto,43.173599243199995,-79.93499755859999,73.4,True
+YHU,CYHU,Montréal / Saint-Hubert Airport,Montreal,45.5175018311,-73.4169006348,13.4,True
+YHZ,CYHZ,Halifax / Stanfield International Airport,Halifax,44.8807983398,-63.5085983276,27.0,True
+YJN,CYJN,St Jean Airport,Montreal,45.29439926147461,-73.28109741210938,33.8,True
+YKF,CYKF,Waterloo Airport,Toronto,43.460800170899994,-80.3786010742,83.5,True
+YKZ,CYKZ,Buttonville Municipal Airport,Toronto,43.86220169067383,-79.37000274658203,17.5,True
+YMW,CYMW,Maniwaki Airport,Ottawa,46.2728004456,-75.9906005859,98.5,True
+YMX,CYMX,Montreal International (Mirabel) Airport,Montreal,45.679501,-74.038696,39.9,True
+YND,CYND,Ottawa / Gatineau Airport,Ottawa,45.521701812699995,-75.5635986328,16.2,True
+YOW,CYOW,Ottawa Macdonald-Cartier International Airport,Ottawa,45.3224983215332,-75.66919708251953,10.1,True
+YQB,CYQB,Quebec Jean Lesage International Airport,Quebec City,46.7911,-71.393303,13.8,True
+YTZ,CYTZ,Billy Bishop Toronto City Centre Airport,Toronto,43.627499,-79.396202,8.8,True
+YUL,CYUL,Montreal / Pierre Elliott Trudeau International Airport,Montreal,45.4706001282,-73.7407989502,12.7,True
+YVR,CYVR,Vancouver International Airport,Vancouver,49.193901062,-123.183998108,7.8,True
+YVR,CYVR,Vancouver International Airport,Victoria,49.193901062,-123.183998108,85.2,False
+YXX,CYXX,Abbotsford Airport,Vancouver,49.025299072265625,-122.36100006103516,60.5,True
+YXX,CYXX,Abbotsford Airport,Victoria,49.025299072265625,-122.36100006103516,97.8,False
+YYJ,CYYJ,Victoria International Airport,Vancouver,48.646900177,-123.426002502,70.7,False
+YYJ,CYYJ,Victoria International Airport,Victoria,48.646900177,-123.426002502,24.1,True
+YYZ,CYYZ,Lester B. Pearson International Airport,Toronto,43.6772003174,-79.63059997559999,18.9,True
+YZD,CYZD,Downsview Airport,Toronto,43.74250030517578,-79.4655990600586,6.7,True
+ACC,DGAA,Kotoka International Airport,Accra,5.605189800262451,-0.16678600013256073,6.4,True
+MIR,DTMB,Monastir Habib Bourguiba International Airport,Sousse,35.75809860229492,10.75469970703125,13.0,True
+TUN,DTTA,Tunis Carthage International Airport,Tunis,36.85100173950195,10.22719955444336,6.5,True
+ANR,EBAW,Antwerp International Airport (Deurne),Brussels,51.1893997192,4.46027994156,38.5,False
+ANR,EBAW,Antwerp International Airport (Deurne),Bruges,51.1893997192,4.46027994156,86.1,False
+ANR,EBAW,Antwerp International Airport (Deurne),Ghent,51.1893997192,4.46027994156,54.2,False
+ANR,EBAW,Antwerp International Airport (Deurne),Antwerp,51.1893997192,4.46027994156,5.4,True
+ANR,EBAW,Antwerp International Airport (Deurne),Rotterdam,51.1893997192,4.46027994156,81.5,False
+BRU,EBBR,Brussels Airport,Brussels,50.901401519800004,4.48443984985,11.1,True
+BRU,EBBR,Brussels Airport,Bruges,50.901401519800004,4.48443984985,94.5,False
+BRU,EBBR,Brussels Airport,Ghent,50.901401519800004,4.48443984985,56.2,False
+BRU,EBBR,Brussels Airport,Antwerp,50.901401519800004,4.48443984985,36.0,False
+CRL,EBCI,Brussels South Charleroi Airport,Brussels,50.459202,4.45382,44.1,True
+CRL,EBCI,Brussels South Charleroi Airport,Ghent,50.459202,4.45382,83.7,False
+CRL,EBCI,Brussels South Charleroi Airport,Antwerp,50.459202,4.45382,84.7,False
+KJK,EBKT,Wevelgem Airport,Brussels,50.817199707,3.20472002029,80.4,False
+KJK,EBKT,Wevelgem Airport,Bruges,50.817199707,3.20472002029,43.6,True
+KJK,EBKT,Wevelgem Airport,Ghent,50.817199707,3.20472002029,44.2,False
+KJK,EBKT,Wevelgem Airport,Antwerp,50.817199707,3.20472002029,94.9,False
+LGG,EBLG,Liège Airport,Brussels,50.63740158081055,5.443220138549805,80.6,True
+LGG,EBLG,Liège Airport,Antwerp,50.63740158081055,5.443220138549805,97.7,False
+OST,EBOS,Ostend-Bruges International Airport,Bruges,51.198898315399994,2.8622200489,25.2,True
+OST,EBOS,Ostend-Bruges International Airport,Ghent,51.198898315399994,2.8622200489,61.9,False
+OBL,EBZR,Zoersel (Oostmalle) Airfield,Brussels,51.264702,4.75333,54.0,False
+OBL,EBZR,Zoersel (Oostmalle) Airfield,Ghent,51.264702,4.75333,76.1,False
+OBL,EBZR,Zoersel (Oostmalle) Airfield,Antwerp,51.264702,4.75333,25.1,True
+OBL,EBZR,Zoersel (Oostmalle) Airfield,Rotterdam,51.264702,4.75333,75.6,False
+OBL,EBZR,Zoersel (Oostmalle) Airfield,Utrecht,51.264702,4.75333,95.3,False
+AOC,EDAC,Altenburg-Nobitz Airport,Dresden,50.981945,12.506389,86.5,False
+AOC,EDAC,Altenburg-Nobitz Airport,Leipzig,50.981945,12.506389,40.9,True
+AOC,EDAC,Altenburg-Nobitz Airport,Karlovy Vary,50.981945,12.506389,87.2,False
+IES,EDAU,Riesa-Göhlis Airport,Dresden,51.2936096191,13.3561105728,37.9,True
+IES,EDAU,Riesa-Göhlis Airport,Leipzig,51.2936096191,13.3561105728,68.6,False
+REB,EDAX,Rechlin-Lärz Airport,Berlin,53.306388855,12.7522220612,97.5,True
+QXH,EDAZ,Schönhagen Airport,Berlin,52.203609,13.156389,39.6,True
+ZMG,EDBM,"Magdeburg ""City"" Airport",Leipzig,52.073612,11.626389,96.4,True
+SXF,EDDB,Berlin-Schönefeld Airport,Berlin,52.380001,13.5225,17.8,True
+DRS,EDDC,Dresden Airport,Dresden,51.1328010559082,13.767200469970703,9.3,True
+DRS,EDDC,Dresden Airport,Leipzig,51.1328010559082,13.767200469970703,99.9,False
+FRA,EDDF,Frankfurt am Main Airport,Frankfurt,50.033333,8.570556,12.2,True
+FRA,EDDF,Frankfurt am Main Airport,Heidelberg,50.033333,8.570556,70.1,False
+HAM,EDDH,Hamburg Airport,Hamburg,53.630401611328,9.9882297515869,8.9,True
+THF,EDDI,Berlin-Tempelhof International Airport,Berlin,52.472999572753906,13.403900146484375,5.7,True
+CGN,EDDK,Cologne Bonn Airport,Cologne,50.8658981323,7.1427397728,15.5,True
+DUS,EDDL,Düsseldorf Airport,Cologne,51.289501,6.76678,41.6,True
+MUC,EDDM,Munich Airport,Munich,48.353802,11.7861,28.7,True
+NUE,EDDN,Nuremberg Airport,Nuremberg,49.498699,11.078056,4.9,True
+LEJ,EDDP,Leipzig/Halle Airport,Leipzig,51.423889,12.236389,13.2,True
+SCN,EDDR,Saarbrücken Airport,Strasbourg,49.214599609400004,7.10950994492,84.1,False
+SCN,EDDR,Saarbrücken Airport,Luxembourg,49.214599609400004,7.10950994492,83.2,True
+STR,EDDS,Stuttgart Airport,Heidelberg,48.689899444599995,9.22196006775,88.7,True
+TXL,EDDT,Berlin-Tegel Airport,Berlin,52.5597,13.2877,9.2,True
+BRE,EDDW,Bremen Airport,Hamburg,53.0475006104,8.78666973114,97.8,True
+QEF,EDFE,Frankfurt-Egelsbach Airport,Frankfurt,49.959999,8.645833,17.5,True
+QEF,EDFE,Frankfurt-Egelsbach Airport,Heidelberg,49.959999,8.645833,61.5,False
+HHN,EDFH,Frankfurt-Hahn Airport,Luxembourg,49.9487,7.26389,89.5,True
+MHG,EDFM,Mannheim-City Airport,Frankfurt,49.473057,8.514167,72.5,False
+MHG,EDFM,Mannheim-City Airport,Heidelberg,49.473057,8.514167,14.7,True
+SGE,EDGS,Siegerland Airport,Cologne,50.707698822021484,8.082969665527344,83.4,False
+SGE,EDGS,Siegerland Airport,Frankfurt,50.707698822021484,8.082969665527344,78.4,True
+XFW,EDHI,Hamburg-Finkenwerder Airport,Hamburg,53.5352783203125,9.835556030273438,10.5,True
+KEL,EDHK,Kiel-Holtenau Airport,Hamburg,54.37944412231445,10.145277976989746,92.7,True
+LBC,EDHL,Lübeck Blankensee Airport,Hamburg,53.8054008484,10.7192001343,55.6,True
+ESS,EDLE,Essen Mulheim Airport,Cologne,51.40230178833008,6.9373297691345215,52.2,True
+MGL,EDLN,Mönchengladbach Airport,Cologne,51.230278,6.504444,45.4,True
+DTM,EDLW,Dortmund Airport,Cologne,51.51829910279999,7.61223983765,79.7,True
+AGB,EDMA,Augsburg Airport,Munich,48.425278,10.931667,57.4,True
+OBF,EDMO,Oberpfaffenhofen Airport,Munich,48.081402,11.2831,22.6,True
+OBF,EDMO,Oberpfaffenhofen Airport,Innsbruck,48.081402,11.2831,91.4,False
+FDH,EDNY,Friedrichshafen Airport,Zurich,47.671298980699994,9.51148986816,79.8,True
+BYU,EDQD,Bayreuth Airport,Nuremberg,49.985001,11.64,71.5,True
+BYU,EDQD,Bayreuth Airport,Karlovy Vary,49.985001,11.64,92.0,False
+URD,EDQE,Burg Feuerstein Airport,Nuremberg,49.794166564941,11.133610725403,38.0,True
+HOQ,EDQM,Hof-Plauen Airport,Karlovy Vary,50.288612365722656,11.856389045715332,72.4,True
+ZQW,EDRZ,Zweibrücken Airport,Strasbourg,49.2094,7.40056,74.0,True
+ZQW,EDRZ,Zweibrücken Airport,Heidelberg,49.2094,7.40056,96.1,False
+ZQL,EDTD,Donaueschingen-Villingen Airport,Zurich,47.97333145139999,8.52222156525,67.5,True
+ZQL,EDTD,Donaueschingen-Villingen Airport,Strasbourg,47.97333145139999,8.52222156525,89.0,False
+BRV,EDWB,Bremerhaven Airport,Hamburg,53.506943,8.572778,94.0,True
+TLL,EETN,Lennart Meri Tallinn Airport,Helsinki,59.41329956049999,24.832799911499997,84.3,False
+TLL,EETN,Lennart Meri Tallinn Airport,Tallinn,59.41329956049999,24.832799911499997,5.2,True
+KEV,EFHA,Halli Airport,Tampere,61.856039,24.786686,66.0,True
+HEM,EFHF,Helsinki Malmi Airport,Helsinki,60.254600524902344,25.042800903320312,11.2,True
+HEM,EFHF,Helsinki Malmi Airport,Tallinn,60.254600524902344,25.042800903320312,92.3,False
+HEL,EFHK,Helsinki Vantaa Airport,Helsinki,60.317199707031,24.963300704956,16.5,True
+HEL,EFHK,Helsinki Vantaa Airport,Tallinn,60.317199707031,24.963300704956,98.6,False
+HYV,EFHV,Hyvinkää Airfield,Helsinki,60.6543998718,24.8810997009,54.0,True
+KEM,EFKE,Kemi-Tornio Airport,Rovaniemi,65.778701782227,24.582099914551,94.3,True
+RVN,EFRO,Rovaniemi Airport,Rovaniemi,66.564796447754,25.830400466919,9.6,True
+TMP,EFTP,Tampere-Pirkkala Airport,Tampere,61.414100646973,23.604400634766,13.5,True
+TKU,EFTU,Turku Airport,Turku,60.514099121094,22.262800216675,7.0,True
+BFS,EGAA,Belfast International Airport,Belfast,54.6575012207,-6.2158298492399995,19.9,True
+BHD,EGAC,George Best Belfast City Airport,Belfast,54.618099212646484,-5.872499942779541,4.1,True
+LDY,EGAE,City of Derry Airport,Belfast,55.04280090332031,-7.161109924316406,93.4,True
+BHX,EGBB,Birmingham International Airport,Oxford,52.453899383499994,-1.74802994728,85.0,True
+CVT,EGBE,Coventry Airport,Oxford,52.3697013855,-1.4797199964499999,70.3,True
+GLO,EGBJ,Gloucestershire Airport,Bath,51.89419937133789,-2.167220115661621,59.3,True
+GLO,EGBJ,Gloucestershire Airport,Oxford,51.89419937133789,-2.167220115661621,64.6,False
+GLO,EGBJ,Gloucestershire Airport,Cardiff,51.89419937133789,-2.167220115661621,83.6,False
+GBA,EGBP,Cotswold Airport,Bath,51.668095,-2.05694,38.8,True
+GBA,EGBP,Cotswold Airport,Oxford,51.668095,-2.05694,56.0,False
+GBA,EGBP,Cotswold Airport,Cardiff,51.668095,-2.05694,80.4,False
+MAN,EGCC,Manchester Airport,Manchester,53.35369873046875,-2.2749500274658203,14.4,True
+MAN,EGCC,Manchester Airport,Liverpool,53.35369873046875,-2.2749500274658203,47.1,False
+LYE,EGDL,RAF Lyneham,Bath,51.5051,-1.99343,29.3,True
+LYE,EGDL,RAF Lyneham,Oxford,51.5051,-1.99343,57.8,False
+LYE,EGDL,RAF Lyneham,Cardiff,51.5051,-1.99343,82.2,False
+YEO,EGDY,RNAS Yeovilton,Bath,51.0093994140625,-2.638819932937622,45.0,True
+YEO,EGDY,RNAS Yeovilton,Cardiff,51.0093994140625,-2.638819932937622,64.5,False
+CWL,EGFF,Cardiff International Airport,Bath,51.39670181274414,-3.343329906463623,68.2,False
+CWL,EGFF,Cardiff International Airport,Cardiff,51.39670181274414,-3.343329906463623,14.6,True
+SWS,EGFH,Swansea Airport,Cardiff,51.60530090332031,-4.0678300857543945,63.0,True
+BRS,EGGD,Bristol Airport,Bath,51.382702,-2.71909,24.8,True
+BRS,EGGD,Bristol Airport,Cardiff,51.382702,-2.71909,33.7,False
+LPL,EGGP,Liverpool John Lennon Airport,Manchester,53.33359909057617,-2.849720001220703,43.8,False
+LPL,EGGP,Liverpool John Lennon Airport,Liverpool,53.33359909057617,-2.849720001220703,12.1,True
+LTN,EGGW,London Luton Airport,London,51.874698638916016,-0.36833301186561584,44.0,True
+LTN,EGGW,London Luton Airport,Oxford,51.874698638916016,-0.36833301186561584,62.5,False
+LTN,EGGW,London Luton Airport,Cambridge,51.874698638916016,-0.36833301186561584,49.1,False
+BOH,EGHH,Bournemouth Airport,Bath,50.779998779296875,-1.8424999713897705,75.5,True
+SOU,EGHI,Southampton Airport,Bath,50.95029830932617,-1.3567999601364136,84.5,True
+SOU,EGHI,Southampton Airport,Oxford,50.95029830932617,-1.3567999601364136,89.4,False
+SOU,EGHI,Southampton Airport,Brighton,50.95029830932617,-1.3567999601364136,86.5,False
+QLA,EGHL,Lasham Airport,London,51.187198638916016,-1.0334999561309814,72.5,False
+QLA,EGHL,Lasham Airport,Bath,51.187198638916016,-1.0334999561309814,94.7,False
+QLA,EGHL,Lasham Airport,Oxford,51.187198638916016,-1.0334999561309814,64.7,True
+QLA,EGHL,Lasham Airport,Brighton,51.187198638916016,-1.0334999561309814,74.2,False
+ESH,EGKA,Shoreham Airport,London,50.835602,-0.297222,75.8,False
+ESH,EGKA,Shoreham Airport,Brighton,50.835602,-0.297222,11.1,True
+BQH,EGKB,London Biggin Hill Airport,London,51.33079910279999,0.0324999988079,22.6,True
+BQH,EGKB,London Biggin Hill Airport,Cambridge,51.33079910279999,0.0324999988079,96.8,False
+BQH,EGKB,London Biggin Hill Airport,Brighton,51.33079910279999,0.0324999988079,57.1,False
+BQH,EGKB,London Biggin Hill Airport,Canterbury,51.33079910279999,0.0324999988079,73.0,False
+LGW,EGKK,London Gatwick Airport,London,51.148102,-0.190278,40.3,False
+LGW,EGKK,London Gatwick Airport,Oxford,51.148102,-0.190278,99.8,False
+LGW,EGKK,London Gatwick Airport,Brighton,51.148102,-0.190278,35.7,True
+LGW,EGKK,London Gatwick Airport,Canterbury,51.148102,-0.190278,89.7,False
+LCY,EGLC,London City Airport,London,51.505299,0.055278,12.5,True
+LCY,EGLC,London City Airport,Oxford,51.505299,0.055278,94.6,False
+LCY,EGLC,London City Airport,Cambridge,51.505299,0.055278,77.4,False
+LCY,EGLC,London City Airport,Brighton,51.505299,0.055278,76.5,False
+LCY,EGLC,London City Airport,Canterbury,51.505299,0.055278,75.4,False
+FAB,EGLF,Farnborough Airport,London,51.2757987976,-0.776332974434,52.0,True
+FAB,EGLF,Farnborough Airport,Oxford,51.2757987976,-0.776332974434,62.5,False
+FAB,EGLF,Farnborough Airport,Brighton,51.2757987976,-0.776332974434,66.8,False
+BBS,EGLK,Blackbushe Airport,London,51.32389831542969,-0.8475000262260437,54.1,True
+BBS,EGLK,Blackbushe Airport,Oxford,51.32389831542969,-0.8475000262260437,55.4,False
+BBS,EGLK,Blackbushe Airport,Brighton,51.32389831542969,-0.8475000262260437,74.0,False
+LHR,EGLL,London Heathrow Airport,London,51.4706,-0.461941,23.7,True
+LHR,EGLL,London Heathrow Airport,Oxford,51.4706,-0.461941,63.1,False
+LHR,EGLL,London Heathrow Airport,Cambridge,51.4706,-0.461941,90.3,False
+LHR,EGLL,London Heathrow Airport,Brighton,51.4706,-0.461941,74.9,False
+SEN,EGMC,Southend Airport,London,51.5713996887207,0.6955559849739075,57.2,False
+SEN,EGMC,Southend Airport,Cambridge,51.5713996887207,0.6955559849739075,80.4,False
+SEN,EGMC,Southend Airport,Canterbury,51.5713996887207,0.6955559849739075,42.0,True
+LYX,EGMD,Lydd Airport,London,50.95610046386719,0.9391670227050781,96.3,False
+LYX,EGMD,Lydd Airport,Brighton,50.95610046386719,0.9391670227050781,77.0,False
+LYX,EGMD,Lydd Airport,Canterbury,50.95610046386719,0.9391670227050781,37.2,True
+MSE,EGMH,Kent International Airport,Canterbury,51.342201,1.34611,19.8,True
+BLK,EGNH,Blackpool International Airport,Manchester,53.77170181274414,-3.0286099910736084,61.4,False
+BLK,EGNH,Blackpool International Airport,Liverpool,53.77170181274414,-3.0286099910736084,40.3,True
+HUY,EGNJ,Humberside Airport,York,53.57440185546875,-0.350832998752594,64.3,True
+BWF,EGNL,Barrow Walney Island Airport,Manchester,54.1286111,-3.2675,98.8,False
+BWF,EGNL,Barrow Walney Island Airport,Liverpool,54.1286111,-3.2675,82.1,True
+LBA,EGNM,Leeds Bradford Airport,York,53.86589813232422,-1.6605700254440308,39.2,True
+LBA,EGNM,Leeds Bradford Airport,Manchester,53.86589813232422,-1.6605700254440308,57.2,False
+WRT,EGNO,Warton Airport,Manchester,53.745098,-2.88306,51.7,False
+WRT,EGNO,Warton Airport,Liverpool,53.745098,-2.88306,37.7,True
+CEG,EGNR,Hawarden Airport,Manchester,53.1781005859375,-2.9777801036834717,59.6,False
+CEG,EGNR,Hawarden Airport,Liverpool,53.1781005859375,-2.9777801036834717,25.9,True
+MME,EGNV,Durham Tees Valley Airport,York,54.50920104980469,-1.4294099807739258,65.3,True
+EMA,EGNX,East Midlands Airport,Manchester,52.8311004639,-1.32806003094,94.3,True
+GLA,EGPF,Glasgow International Airport,Edinburgh,55.8718986511,-4.43306016922,77.6,False
+GLA,EGPF,Glasgow International Airport,Glasgow,55.8718986511,-4.43306016922,11.0,True
+EDI,EGPH,Edinburgh Airport,Edinburgh,55.95000076293945,-3.372499942779541,11.0,True
+EDI,EGPH,Edinburgh Airport,Glasgow,55.95000076293945,-3.372499942779541,56.0,False
+PIK,EGPK,Glasgow Prestwick Airport,Edinburgh,55.5093994140625,-4.586669921875,100.0,False
+PIK,EGPK,Glasgow Prestwick Airport,Glasgow,55.5093994140625,-4.586669921875,44.6,True
+DND,EGPN,Dundee Airport,Edinburgh,56.45249938964844,-3.025830030441284,56.6,True
+ADX,EGQL,RAF Leuchars,Edinburgh,56.37289810180664,-2.8684399127960205,51.0,True
+CBG,EGSC,Cambridge Airport,London,52.205002,0.175,80.2,False
+CBG,EGSC,Cambridge Airport,Cambridge,52.205002,0.175,4.0,True
+NWI,EGSH,Norwich International Airport,Cambridge,52.6758003235,1.28278005123,95.1,True
+STN,EGSS,London Stansted Airport,London,51.8849983215,0.234999999404,48.7,False
+STN,EGSS,London Stansted Airport,Cambridge,51.8849983215,0.234999999404,35.9,True
+STN,EGSS,London Stansted Airport,Canterbury,51.8849983215,0.234999999404,89.2,False
+EXT,EGTE,Exeter International Airport,Cardiff,50.73440170288086,-3.4138898849487305,84.5,True
+FZO,EGTG,Bristol Filton Airport,Bath,51.5194015503,-2.59083008766,22.6,True
+FZO,EGTG,Bristol Filton Airport,Oxford,51.5194015503,-2.59083008766,95.7,False
+FZO,EGTG,Bristol Filton Airport,Cardiff,51.5194015503,-2.59083008766,41.0,False
+OXF,EGTK,Oxford (Kidlington) Airport,London,51.8368988037,-1.32000005245,90.1,False
+OXF,EGTK,Oxford (Kidlington) Airport,Bath,51.8368988037,-1.32000005245,88.4,False
+OXF,EGTK,Oxford (Kidlington) Airport,Oxford,51.8368988037,-1.32000005245,10.4,True
+BEX,EGUB,RAF Benson,London,51.616401672399995,-1.09582996368,68.1,False
+BEX,EGUB,RAF Benson,Bath,51.616401672399995,-1.09582996368,91.6,False
+BEX,EGUB,RAF Benson,Oxford,51.616401672399995,-1.09582996368,18.7,True
+LKZ,EGUL,RAF Lakenheath,Cambridge,52.409301757799994,0.56099998951,38.1,True
+MHZ,EGUN,RAF Mildenhall,Cambridge,52.361900329589844,0.48640599846839905,30.9,True
+QUY,EGUY,RAF Wyton,London,52.3572006226,-0.107832998037,94.4,False
+QUY,EGUY,RAF Wyton,Cambridge,52.3572006226,-0.107832998037,23.2,True
+FFD,EGVA,RAF Fairford,Bath,51.6822013855,-1.7900300025900002,52.3,False
+FFD,EGVA,RAF Fairford,Oxford,51.6822013855,-1.7900300025900002,37.6,True
+FFD,EGVA,RAF Fairford,Cardiff,51.6822013855,-1.7900300025900002,98.6,False
+BZZ,EGVN,RAF Brize Norton,Bath,51.75,-1.58362,68.0,False
+BZZ,EGVN,RAF Brize Norton,Oxford,51.75,-1.58362,22.6,True
+ODH,EGVO,RAF Odiham,London,51.2341003418,-0.94282501936,64.4,False
+ODH,EGVO,RAF Odiham,Bath,51.2341003418,-0.94282501936,99.9,False
+ODH,EGVO,RAF Odiham,Oxford,51.2341003418,-0.94282501936,61.6,True
+ODH,EGVO,RAF Odiham,Brighton,51.2341003418,-0.94282501936,72.1,False
+NHT,EGWU,RAF Northolt,London,51.553001403799996,-0.418166995049,20.8,True
+NHT,EGWU,RAF Northolt,Oxford,51.553001403799996,-0.418166995049,61.9,False
+NHT,EGWU,RAF Northolt,Cambridge,51.553001403799996,-0.418166995049,80.8,False
+NHT,EGWU,RAF Northolt,Brighton,51.553001403799996,-0.418166995049,82.9,False
+BEQ,EGXH,RAF Honington,Cambridge,52.34260177612305,0.7729390263557434,47.4,True
+SQZ,EGXP,RAF Scampton,York,53.307800293,-0.550832986832,80.3,True
+HRT,EGXU,RAF Linton-On-Ouse,York,54.0489006042,-1.2527500391,15.0,True
+HRT,EGXU,RAF Linton-On-Ouse,Manchester,54.0489006042,-1.2527500391,90.4,False
+WTN,EGXW,RAF Waddington,York,53.1661987305,-0.523810982704,95.4,True
+KNF,EGYM,RAF Marham,Cambridge,52.648395,0.550692,57.9,True
+AMS,EHAM,Amsterdam Airport Schiphol,Amsterdam,52.308601,4.76389,11.2,True
+AMS,EHAM,Amsterdam Airport Schiphol,Rotterdam,52.308601,4.76389,47.1,False
+AMS,EHAM,Amsterdam Airport Schiphol,Utrecht,52.308601,4.76389,34.4,False
+MST,EHBK,Maastricht Aachen Airport,Brussels,50.911701,5.77014,99.9,False
+MST,EHBK,Maastricht Aachen Airport,Cologne,50.911701,5.77014,82.7,True
+EIN,EHEH,Eindhoven Airport,Brussels,51.4500999451,5.37452983856,97.8,False
+EIN,EHEH,Eindhoven Airport,Antwerp,51.4500999451,5.37452983856,72.3,True
+EIN,EHEH,Eindhoven Airport,Rotterdam,51.4500999451,5.37452983856,81.0,False
+EIN,EHEH,Eindhoven Airport,Utrecht,51.4500999451,5.37452983856,73.3,False
+GLZ,EHGR,Gilze Rijen Air Base,Amsterdam,51.56740188598633,4.931829929351807,89.7,False
+GLZ,EHGR,Gilze Rijen Air Base,Brussels,51.56740188598633,4.931829929351807,89.5,False
+GLZ,EHGR,Gilze Rijen Air Base,Antwerp,51.56740188598633,4.931829929351807,53.4,False
+GLZ,EHGR,Gilze Rijen Air Base,Rotterdam,51.56740188598633,4.931829929351807,50.3,True
+GLZ,EHGR,Gilze Rijen Air Base,Utrecht,51.56740188598633,4.931829929351807,59.7,False
+DHR,EHKD,De Kooy Airport,Amsterdam,52.92340087890625,4.780620098114014,61.5,True
+DHR,EHKD,De Kooy Airport,Utrecht,52.92340087890625,4.780620098114014,95.4,False
+LEY,EHLE,Lelystad Airport,Amsterdam,52.4603,5.52722,44.3,True
+LEY,EHLE,Lelystad Airport,Rotterdam,52.4603,5.52722,93.2,False
+LEY,EHLE,Lelystad Airport,Utrecht,52.4603,5.52722,49.5,False
+RTM,EHRD,Rotterdam The Hague Airport,Amsterdam,51.956902,4.43722,55.7,False
+RTM,EHRD,Rotterdam The Hague Airport,Antwerp,51.956902,4.43722,81.9,False
+RTM,EHRD,Rotterdam The Hague Airport,Rotterdam,51.956902,4.43722,4.8,True
+RTM,EHRD,Rotterdam The Hague Airport,Utrecht,51.956902,4.43722,49.2,False
+UTC,EHSB,Soesterberg Air Base,Amsterdam,52.1273002625,5.27618980408,38.0,False
+UTC,EHSB,Soesterberg Air Base,Rotterdam,52.1273002625,5.27618980408,59.1,False
+UTC,EHSB,Soesterberg Air Base,Utrecht,52.1273002625,5.27618980408,11.3,True
+LID,EHVB,Valkenburg Naval Air Base,Amsterdam,52.166099548300004,4.41794013977,39.6,False
+LID,EHVB,Valkenburg Naval Air Base,Rotterdam,52.166099548300004,4.41794013977,27.4,True
+LID,EHVB,Valkenburg Naval Air Base,Utrecht,52.166099548300004,4.41794013977,48.8,False
+WOE,EHWO,Woensdrecht Air Base,Brussels,51.4491,4.34203,66.6,False
+WOE,EHWO,Woensdrecht Air Base,Bruges,51.4491,4.34203,82.1,False
+WOE,EHWO,Woensdrecht Air Base,Ghent,51.4491,4.34203,62.2,False
+WOE,EHWO,Woensdrecht Air Base,Antwerp,51.4491,4.34203,25.7,True
+WOE,EHWO,Woensdrecht Air Base,Rotterdam,51.4491,4.34203,53.5,False
+WOE,EHWO,Woensdrecht Air Base,Utrecht,51.4491,4.34203,89.3,False
+ORK,EICK,Cork Airport,Cork,51.84130096435547,-8.491109848022461,6.5,True
+GWY,EICM,Galway Airport,Galway,53.300201416015625,-8.941590309143066,7.9,True
+DUB,EIDW,Dublin Airport,Dublin,53.421299,-6.27007,9.9,True
+NOC,EIKN,Ireland West Knock Airport,Galway,53.910301208496094,-8.818490028381348,72.6,True
+KIR,EIKY,Kerry Airport,Cork,52.18090057373047,-9.52377986907959,78.6,True
+SNN,EINN,Shannon Airport,Galway,52.702,-8.92482,64.0,True
+SNN,EINN,Shannon Airport,Cork,52.702,-8.92482,94.6,False
+WAT,EIWF,Waterford Airport,Cork,52.187198638916016,-7.0869598388671875,99.9,True
+AAR,EKAH,Aarhus Airport,Aarhus,56.2999992371,10.619000434899998,29.8,True
+BLL,EKBI,Billund Airport,Aarhus,55.7402992249,9.15178012848,80.6,True
+CPH,EKCH,Copenhagen Kastrup Airport,Copenhagen,55.617900848389,12.656000137329,8.6,True
+CPH,EKCH,Copenhagen Kastrup Airport,Malmo,55.617900848389,12.656000137329,21.7,False
+KRP,EKKA,Karup Airport,Aarhus,56.29750061035156,9.124629974365234,68.9,True
+BYR,EKLS,Læsø Airport,Gothenburg,57.277198791503906,11.000100135803223,75.0,True
+ODE,EKOD,Odense Airport,Aarhus,55.47669982910156,10.330900192260742,76.0,True
+RKE,EKRK,Copenhagen Roskilde Airport,Copenhagen,55.585601806640625,12.131400108337402,29.0,True
+RKE,EKRK,Copenhagen Roskilde Airport,Malmo,55.585601806640625,12.131400108337402,54.7,False
+SQW,EKSV,Skive Airport,Aarhus,56.550201416015625,9.172980308532715,77.5,True
+LUX,ELLX,Luxembourg-Findel International Airport,Luxembourg,49.6233333,6.2044444,5.4,True
+BGO,ENBR,Bergen Airport Flesland,Bergen,60.29339981,5.218140125,12.5,True
+BDU,ENDU,Bardufoss Airport,Tromso,69.055801391602,18.540399551392,67.9,True
+OSL,ENGM,Oslo Lufthavn,Oslo,60.121,11.0502,28.7,True
+NTB,ENNO,Notodden Airport,Oslo,59.565701,9.21222,94.2,True
+RYG,ENRY,"Moss Airport, Rygge",Oslo,59.378817,10.785439,59.4,True
+SRP,ENSO,Stord Airport,Bergen,59.791900634765625,5.340849876403809,66.8,True
+TOS,ENTC,"Tromsø Airport,",Tromso,69.68329620361328,18.918899536132812,4.1,True
+TRF,ENTO,"Sandefjord Airport, Torp",Oslo,59.1866989136,10.258600235,85.3,True
+GDN,EPGD,Gdańsk Lech Wałęsa Airport,Gdansk,54.377601623535156,18.46619987487793,12.2,True
+KRK,EPKK,Kraków John Paul II International Airport,Krakow,50.077702,19.7848,11.0,True
+KTW,EPKT,Katowice International Airport,Krakow,50.4743,19.08,76.3,True
+POZ,EPPO,Poznań-Ławica Airport,Poznan,52.421001434299995,16.8262996674,7.2,True
+WAW,EPWA,Warsaw Chopin Airport,Warsaw,52.1656990051,20.967100143399996,7.7,True
+WRO,EPWR,Copernicus Wrocław Airport,Wroclaw,51.1026992798,16.885799408,10.1,True
+IEG,EPZG,Zielona Góra-Babimost Airport,Poznan,52.138500213600004,15.7986001968,82.6,True
+GOT,ESGG,Gothenburg-Landvetter Airport,Gothenburg,57.662799835205,12.279800415039,19.2,True
+GSE,ESGP,Gothenburg City Airport,Gothenburg,57.7747,11.8704,9.4,True
+THN,ESGT,Trollhättan-Vänersborg Airport,Gothenburg,58.31809997558594,12.345000267028809,71.5,True
+NYO,ESKN,Stockholm Skavsta Airport,Stockholm,58.78860092163086,16.912200927734375,89.4,True
+KID,ESMK,Kristianstad Airport,Copenhagen,55.92169952392578,14.08549976348877,98.9,False
+KID,ESMK,Kristianstad Airport,Malmo,55.92169952392578,14.08549976348877,76.4,True
+MMX,ESMS,Malmö Sturup Airport,Copenhagen,55.536305364,13.376197814900001,53.2,False
+MMX,ESMS,Malmö Sturup Airport,Malmo,55.536305364,13.376197814900001,24.8,True
+VST,ESOW,Stockholm Västerås Airport,Stockholm,59.58940124511719,16.63360023498535,86.1,True
+ARN,ESSA,Stockholm-Arlanda Airport,Stockholm,59.651901245117,17.918600082397,36.9,True
+BMA,ESSB,Stockholm-Bromma Airport,Stockholm,59.354400634765625,17.941699981689453,7.7,True
+EKT,ESSU,Eskilstuna Airport,Stockholm,59.35110092163086,16.70840072631836,77.2,True
+SPM,ETAD,Spangdahlem Air Base,Luxembourg,49.9726982117,6.69250011444,56.9,True
+RMS,ETAR,Ramstein Air Base,Strasbourg,49.4369010925293,7.600279808044434,95.4,False
+RMS,ETAR,Ramstein Air Base,Heidelberg,49.4369010925293,7.600279808044434,78.9,True
+GHF,ETEU,[Duplicate] Giebelstadt Army Air Field,Heidelberg,49.648101806599996,9.966489791870002,95.9,False
+GHF,ETEU,[Duplicate] Giebelstadt Army Air Field,Nuremberg,49.648101806599996,9.966489791870002,83.0,True
+ZNF,ETID,Hanau Army Air Field,Frankfurt,50.169201,8.96159,20.7,True
+ZNF,ETID,Hanau Army Air Field,Heidelberg,50.169201,8.96159,86.9,False
+KZG,ETIN,Flugplatz Kitzingen,Nuremberg,49.743099,10.2006,70.9,True
+FCN,ETMN,Nordholz Naval Airbase,Hamburg,53.7677001953,8.658499717709999,91.2,True
+GKE,ETNG,Geilenkirchen Air Base,Cologne,50.9608,6.04242,63.7,True
+WIE,ETOU,Wiesbaden Army Airfield,Frankfurt,50.049800872802734,8.325400352478027,26.6,True
+WIE,ETOU,Wiesbaden Army Airfield,Heidelberg,50.049800872802734,8.325400352478027,76.1,False
+FEL,ETSF,Fürstenfeldbruck Air Base,Munich,48.205555,11.266944,24.1,True
+IGS,ETSI,Ingolstadt Manching Airport,Munich,48.7156982421875,11.534000396728516,64.4,True
+IGS,ETSI,Ingolstadt Manching Airport,Nuremberg,48.7156982421875,11.534000396728516,88.6,False
+CPT,FACT,Cape Town International Airport,Cape Town,-33.9648017883,18.6016998291,17.0,True
+CPT,FACT,Cape Town International Airport,Stellenbosch,-33.9648017883,18.6016998291,24.7,False
+DUR,FALE,King Shaka International Airport,Durban,-29.6144444444,31.1197222222,28.4,True
+GCJ,FAGC,Grand Central Airport,Johannesburg,-25.986299514799995,28.1401004791,25.9,True
+JNB,FAOR,OR Tambo International Airport,Johannesburg,-26.1392,28.246,21.4,True
+HLA,FALA,Lanseria Airport,Johannesburg,-25.938499450699997,27.9260997772,31.6,True
+PZB,FAPM,Pietermaritzburg Airport,Durban,-29.649000167799997,30.3987007141,65.1,True
+ROD,FARS,Robertson Airport,Stellenbosch,-33.812198638916016,19.902799606323242,96.6,True
+VIR,FAVG,Virginia Airport,Durban,-29.770599365234375,31.058399200439453,10.1,True
+PRY,FAWB,Wonderboom Airport,Johannesburg,-25.6539,28.224199,63.6,True
+WKF,FAWK,Waterkloof Air Force Base,Johannesburg,-25.829999923699997,28.222499847399998,45.1,True
+BBK,FBKE,Kasane Airport,Livingstone,-17.83289909362793,25.162399291992188,73.2,True
+MRU,FIMP,Sir Seewoosagur Ramgoolam International Airport,Port Louis,-20.430201,57.683601,35.5,True
+LVI,FLLI,Livingstone Airport,Livingstone,-17.821800231933594,25.82270050048828,4.0,True
+VFA,FVFA,Victoria Falls International Airport,Livingstone,-18.09589958190918,25.839000701904297,28.3,True
+GOM,FZNA,Goma International Airport,Kigali,-1.6708099842071533,29.238500595092773,96.3,True
+LPA,GCLP,Gran Canaria Airport,Las Palmas de Gran Canaria,27.931900024414062,-15.38659954071045,19.1,True
+FEZ,GMFF,Saïss Airport,Fes,33.9272994995,-4.977960109709999,11.9,True
+MEK,GMFM,Bassatine Airport,Fes,33.87910079956055,-5.515120029449463,50.5,True
+GMD,GMMB,Ben Slimane Airport,Casablanca,33.655399,-7.22145,36.9,True
+GMD,GMMB,Ben Slimane Airport,Rabat,33.655399,-7.22145,53.6,False
+RBA,GMME,Rabat-Salé Airport,Casablanca,34.051498,-6.75152,94.7,False
+RBA,GMME,Rabat-Salé Airport,Rabat,34.051498,-6.75152,8.6,True
+CMN,GMMN,Mohammed V International Airport,Casablanca,33.36750030517578,-7.589970111846924,24.6,True
+RAK,GMMX,Menara Airport,Marrakesh,31.606899261499997,-8.03629970551,4.6,True
+NNA,GMMY,Kenitra Airport,Rabat,34.29890060424805,-6.595880031585693,38.5,True
+TTU,GMTN,Saniat R'mel Airport,Chefchaouen,35.594299316406,-5.320020198822,47.6,False
+TTU,GMTN,Saniat R'mel Airport,Tangier,35.594299316406,-5.320020198822,47.4,True
+TNG,GMTT,Ibn Batouta Airport,Cadiz,35.726898193400004,-5.91689014435,95.0,False
+TNG,GMTT,Ibn Batouta Airport,Chefchaouen,35.726898193400004,-5.91689014435,85.8,False
+TNG,GMTT,Ibn Batouta Airport,Tangier,35.726898193400004,-5.91689014435,11.5,True
+DKR,GOOY,Léopold Sédar Senghor International Airport,Dakar,14.739700317382812,-17.49020004272461,7.1,True
+ADD,HAAB,Addis Ababa Bole International Airport,Addis Ababa,8.97789001465,38.799301147499996,7.8,True
+ALY,HEAX,El Nouzha Airport,Alexandria,31.183900833129883,29.94890022277832,3.7,True
+CAI,HECA,Cairo International Airport,Cairo,30.12190055847168,31.40559959411621,16.4,True
+CWE,HECW,Cairo West Airport,Cairo,30.116399765,30.915399551399997,32.7,True
+HRG,HEGN,Hurghada International Airport,Sharm el-Sheikh,27.178300857543945,33.799400329589844,97.3,False
+HRG,HEGN,Hurghada International Airport,Hurghada,27.178300857543945,33.799400329589844,8.9,True
+LXR,HELX,Luxor International Airport,Luxor,25.671,32.7066,7.2,True
+SKV,HESC,St Catherine International Airport,Sharm el-Sheikh,28.685300827,34.0625,89.5,True
+ASW,HESN,Aswan International Airport,Aswan,23.9643993378,32.8199996948,16.2,True
+ELT,HETR,El Tor Airport,Sharm el-Sheikh,28.208999633789062,33.64550018310547,74.7,True
+MBA,HKMO,Mombasa Moi International Airport,Mombasa,-4.034830093383789,39.594200134277344,8.0,True
+WIL,HKNW,Nairobi Wilson Airport,Nairobi,-1.321720004081726,36.81480026245117,4.3,True
+GYI,HRYG,Gisenyi Airport,Kigali,-1.6771999597549438,29.258899688720703,93.9,True
+KGL,HRYR,Kigali International Airport,Kigali,-1.96863,30.1395,9.2,True
+ARK,HTAR,Arusha Airport,Arusha,-3.3677899837493896,36.63330078125,5.6,True
+DAR,HTDA,Julius Nyerere International Airport,Zanzibar,-6.87811,39.202599,79.4,True
+JRO,HTKJ,Kilimanjaro International Airport,Arusha,-3.42940998077,37.0745010376,44.0,True
+LKY,HTLM,Lake Manyara Airport,Arusha,-3.376310110092163,35.81829833984375,96.0,True
+ZNZ,HTZA,Abeid Amani Karume International Airport,Zanzibar,-6.22202,39.224899,7.1,True
+TIA,LATI,Tirana International Airport Mother Teresa,Ohrid,41.4146995544,19.7206001282,96.2,False
+TIA,LATI,Tirana International Airport Mother Teresa,Tirana,41.4146995544,19.7206001282,12.7,True
+PDV,LBPD,Plovdiv International Airport,Plovdiv,42.067799,24.8508,12.7,True
+SOF,LBSF,Sofia Airport,Sofia,42.696693420410156,23.411436080932617,7.1,True
+SZR,LBSZ,Stara Zagora Airport,Plovdiv,42.3766667,25.655,78.5,True
+LCA,LCLK,Larnaca International Airport,Nicosia,34.875099182128906,33.624900817871094,41.3,True
+LCA,LCLK,Larnaca International Airport,Limassol,34.875099182128906,33.624900817871094,57.7,False
+PFO,LCPH,Paphos International Airport,Nicosia,34.71799850463867,32.48569869995117,93.9,False
+PFO,LCPH,Paphos International Airport,Limassol,34.71799850463867,32.48569869995117,50.6,False
+PFO,LCPH,Paphos International Airport,Paphos,34.71799850463867,32.48569869995117,8.6,True
+AKT,LCRA,RAF Akrotiri,Nicosia,34.590401,32.9879,72.9,False
+AKT,LCRA,RAF Akrotiri,Limassol,34.590401,32.9879,11.4,True
+AKT,LCRA,RAF Akrotiri,Paphos,34.590401,32.9879,55.5,False
+DBV,LDDU,Dubrovnik Airport,Dubrovnik,42.5614013671875,18.268199920654297,15.8,True
+DBV,LDDU,Dubrovnik Airport,Mostar,42.5614013671875,18.268199920654297,94.7,False
+OSI,LDOS,Osijek Airport,Novi Sad,45.46269989013672,18.810199737548828,83.6,True
+PUY,LDPL,Pula Airport,Pula,44.89350128173828,13.922200202941895,6.5,True
+RJK,LDRI,Rijeka Airport,Ljubljana,45.21689987182617,14.570300102233887,92.9,False
+RJK,LDRI,Rijeka Airport,Pula,45.21689987182617,14.570300102233887,68.7,True
+SPU,LDSP,Split Airport,Split,43.53889846801758,16.29800033569336,11.9,True
+ZAG,LDZA,Zagreb Airport,Zagreb,45.7429008484,16.0687999725,10.6,True
+ZAD,LDZD,Zadar Airport,Zadar,44.108299,15.3467,9.7,True
+ODB,LEBA,Córdoba Airport,Cordoba,37.84199905395508,-4.848879814147949,8.7,True
+BIO,LEBB,Bilbao Airport,Bilbao,43.30110168457031,-2.9106099605560303,4.4,True
+BIO,LEBB,Bilbao Airport,San Sebastian,43.30110168457031,-2.9106099605560303,75.7,False
+BCN,LEBL,Barcelona International Airport,Barcelona,41.2971,2.07846,12.2,True
+BCN,LEBL,Barcelona International Airport,Girona,41.2971,2.07846,98.3,False
+LCG,LECO,A Coruña Airport,Santiago de Compostela,43.302101,-8.37726,48.8,True
+GRO,LEGE,Girona Airport,Barcelona,41.901000977,2.7605500221,75.8,False
+GRO,LEGE,Girona Airport,Girona,41.901000977,2.7605500221,10.6,True
+GRX,LEGR,Federico Garcia Lorca Airport,Granada,37.18870162963867,-3.777359962463379,15.1,True
+GRX,LEGR,Federico Garcia Lorca Airport,Malaga,37.18870162963867,-3.777359962463379,77.3,False
+XRY,LEJR,Jerez Airport,Seville,36.744598388671875,-6.060110092163086,71.4,False
+XRY,LEJR,Jerez Airport,Cadiz,36.744598388671875,-6.060110092163086,31.7,True
+MAD,LEMD,Adolfo Suárez Madrid–Barajas Airport,Madrid,40.471926,-3.56264,13.3,False
+MAD,LEMD,Adolfo Suárez Madrid–Barajas Airport,Toledo,40.471926,-3.56264,78.7,False
+MAD,LEMD,Adolfo Suárez Madrid–Barajas Airport,Salamanca,40.471926,-3.56264,11.0,True
+AGP,LEMG,Málaga Airport,Granada,36.67490005493164,-4.499110221862793,97.7,False
+AGP,LEMG,Málaga Airport,Malaga,36.67490005493164,-4.499110221862793,8.6,True
+AGP,LEMG,Málaga Airport,Marbella,36.67490005493164,-4.499110221862793,38.8,False
+OZP,LEMO,Moron Air Base,Seville,37.17490005493164,-5.615940093994141,39.2,True
+OZP,LEMO,Moron Air Base,Cadiz,37.17490005493164,-5.615940093994141,93.7,False
+OZP,LEMO,Moron Air Base,Marbella,37.17490005493164,-5.615940093994141,98.0,False
+PNA,LEPP,Pamplona Airport,San Sebastian,42.77000045776367,-1.6463299989700317,66.0,True
+REU,LERS,Reus Air Base,Barcelona,41.14739990234375,1.1671700477600098,87.1,True
+ROZ,LERT,Rota Naval Station Airport,Seville,36.645198822,-6.34946012497,88.6,False
+ROZ,LERT,Rota Naval Station Airport,Cadiz,36.645198822,-6.34946012497,14.2,True
+EAS,LESO,San Sebastian Airport,Bilbao,43.35649871826172,-1.7906099557876587,92.4,False
+EAS,LESO,San Sebastian Airport,San Sebastian,43.35649871826172,-1.7906099557876587,15.7,True
+SCQ,LEST,Santiago de Compostela Airport,Santiago de Compostela,42.89630126953125,-8.415140151977539,10.8,True
+TOJ,LETO,Torrejón Airport,Madrid,40.496700286865234,-3.4458699226379395,23.5,False
+TOJ,LETO,Torrejón Airport,Toledo,40.496700286865234,-3.4458699226379395,86.3,False
+TOJ,LETO,Torrejón Airport,Salamanca,40.496700286865234,-3.4458699226379395,21.1,True
+VLC,LEVC,Valencia Airport,Valencia,39.4893,-0.481625,8.9,True
+VIT,LEVT,Vitoria/Foronda Airport,Bilbao,42.8828010559082,-2.7244699001312256,45.3,True
+VIT,LEVT,Vitoria/Foronda Airport,San Sebastian,42.8828010559082,-2.7244699001312256,77.4,False
+VGO,LEVX,Vigo Airport,Santiago de Compostela,42.2318000793457,-8.62677001953125,72.4,True
+VGO,LEVX,Vigo Airport,Braga,42.2318000793457,-8.62677001953125,77.5,False
+SDR,LEXJ,Santander Airport,Bilbao,43.427101135253906,-3.82000994682312,74.6,True
+SVQ,LEZL,Sevilla Airport,Seville,37.417999267578125,-5.8931097984313965,8.1,True
+CQF,LFAC,Calais-Dunkerque Airport,Bruges,50.962100982666016,1.954759955406189,92.8,False
+CQF,LFAC,Calais-Dunkerque Airport,Canterbury,50.962100982666016,1.954759955406189,70.5,True
+LTQ,LFAT,Le Touquet-Côte d'Opale Airport,Canterbury,50.517398834228516,1.6205899715423584,92.8,True
+XVS,LFAV,Valenciennes-Denain Airport,Brussels,50.325801849365234,3.4612600803375244,85.6,False
+XVS,LFAV,Valenciennes-Denain Airport,Bruges,50.325801849365234,3.4612600803375244,99.6,False
+XVS,LFAV,Valenciennes-Denain Airport,Ghent,50.325801849365234,3.4612600803375244,82.5,True
+AGF,LFBA,Agen-La Garenne Airport,Toulouse,44.17470169067383,0.5905560255050659,93.3,True
+BOD,LFBD,Bordeaux-Mérignac Airport,Bordeaux,44.828300476100004,-0.715556025505,10.7,True
+EGC,LFBE,Bergerac-Roumanière Airport,Bordeaux,44.82529830932617,0.5186110138893127,86.7,True
+CNG,LFBG,Cognac-Châteaubernard (BA 709) Air Base,Bordeaux,45.65829849243164,-0.3174999952316284,93.2,True
+TLS,LFBO,Toulouse-Blagnac Airport,Toulouse,43.629101,1.36382,7.0,True
+BIQ,LFBZ,Biarritz-Anglet-Bayonne Airport,San Sebastian,43.4683333,-1.5311111,39.8,True
+ZAO,LFCC,Cahors-Lalbenque Airport,Toulouse,44.35139846801758,1.4752800464630127,83.1,True
+LBI,LFCI,Albi-Le Séquestre Airport,Toulouse,43.91389846801758,2.1130599975585938,63.8,True
+DCM,LFCK,Castres-Mazamet Airport,Toulouse,43.55630111694336,2.289180040359497,68.3,True
+RYN,LFCY,Royan-Médis Airport,Bordeaux,45.62810134887695,-0.9725000262260437,92.7,True
+XMW,LFDB,Montauban Airport,Toulouse,44.025699615478516,1.3780399560928345,47.2,True
+CMR,LFGA,Colmar-Houssen Airport,Strasbourg,48.109901428222656,7.359010219573975,60.0,True
+OBS,LFHO,Aubenas-Ardèche Méridional Airport,Avignon,44.544203,4.372192,74.8,True
+ETZ,LFJL,Metz-Nancy-Lorraine Airport,Luxembourg,48.9821014404,6.25131988525,70.3,True
+CMF,LFLB,Chambéry-Savoie Airport,Geneva,45.638099670410156,5.880229949951172,66.0,True
+CMF,LFLB,Chambéry-Savoie Airport,Lyon,45.638099670410156,5.880229949951172,81.1,False
+QNJ,LFLI,Annemasse Airport,Geneva,46.1920013428,6.268390178680001,9.5,True
+LYS,LFLL,Lyon Saint-Exupéry Airport,Geneva,45.725556,5.081111,97.9,False
+LYS,LFLL,Lyon Saint-Exupéry Airport,Lyon,45.725556,5.081111,18.3,True
+SYT,LFLN,Saint-Yan Airport,Lyon,46.412498474121094,4.0132598876953125,97.9,True
+RNE,LFLO,Roanne-Renaison Airport,Lyon,46.05830001831055,4.001389980316162,74.0,True
+NCY,LFLP,Annecy-Haute-Savoie-Mont Blanc Airport,Geneva,45.9308333,6.1063889,30.3,True
+NCY,LFLP,Annecy-Haute-Savoie-Mont Blanc Airport,Lyon,45.9308333,6.1063889,99.6,False
+GNB,LFLS,Grenoble-Isère Airport,Lyon,45.36289978027344,5.329370021820068,57.0,True
+VAF,LFLU,Valence-Chabeuil Airport,Lyon,44.9216,4.9699,92.5,True
+LYN,LFLY,Lyon-Bron Airport,Lyon,45.72719955444336,4.944270133972168,7.9,True
+CEQ,LFMD,Cannes-Mandelieu Airport,Nice,43.542,6.95348,30.9,False
+CEQ,LFMD,Cannes-Mandelieu Airport,Cannes,43.542,6.95348,4.9,True
+EBU,LFMH,Saint-Étienne-Bouthéon Airport,Lyon,45.54059982299805,4.296390056610107,48.7,True
+CCF,LFMK,Carcassonne Airport,Toulouse,43.215999603271484,2.3063199520111084,82.0,True
+MRS,LFML,Marseille Provence Airport,Marseille,43.439271922,5.22142410278,20.4,True
+MRS,LFML,Marseille Provence Airport,Avignon,43.439271922,5.22142410278,65.6,False
+NCE,LFMN,Nice-Côte d'Azur Airport,Nice,43.6584014893,7.215869903560001,6.4,True
+NCE,LFMN,Nice-Côte d'Azur Airport,Cannes,43.6584014893,7.215869903560001,20.2,False
+XOG,LFMO,Orange-Caritat (BA 115) Air Base,Avignon,44.140499114990234,4.866720199584961,21.9,True
+PGF,LFMP,Perpignan-Rivesaltes (Llabanère) Airport,Girona,42.74039840698242,2.8706700801849365,84.3,True
+CTT,LFMQ,Le Castellet Airport,Marseille,43.252498626708984,5.785190105438232,33.1,True
+MPL,LFMT,Montpellier-Méditerranée Airport,Avignon,43.57619857788086,3.96301007270813,79.5,True
+AVN,LFMV,Avignon-Caumont Airport,Marseille,43.90729904174805,4.901830196380615,78.1,False
+AVN,LFMV,Avignon-Caumont Airport,Avignon,43.90729904174805,4.901830196380615,8.7,True
+BVA,LFOB,Paris Beauvais Tillé Airport,Paris,49.45439910888672,2.1127800941467285,69.0,True
+EVX,LFOE,Évreux-Fauville (BA 105) Air Base,Paris,49.02870178222656,1.2198599576950073,84.7,True
+LBG,LFPB,Paris-Le Bourget Airport,Paris,48.969398498535156,2.441390037536621,14.6,True
+CSF,LFPC,Creil Air Base,Paris,49.253501892089844,2.5191400051116943,46.2,True
+CDG,LFPG,Charles de Gaulle International Airport,Paris,49.012798,2.55,23.0,True
+TNF,LFPN,Toussus-le-Noble Airport,Paris,48.75189971923828,2.1061899662017822,21.1,True
+ORY,LFPO,Paris-Orly Airport,Paris,48.7233333,2.3794444,14.6,True
+POX,LFPT,Pontoise - Cormeilles-en-Vexin Airport,Paris,49.096667,2.040833,35.2,True
+VIY,LFPV,Villacoublay-Vélizy (BA 107) Air Base,Paris,48.7741667,2.1916667,14.5,True
+XME,LFQJ,Maubeuge-Élesmes Airport,Brussels,50.31050109863281,4.033120155334473,64.0,True
+XME,LFQJ,Maubeuge-Élesmes Airport,Ghent,50.31050109863281,4.033120155334473,85.2,False
+LIL,LFQQ,Lille-Lesquin Airport,Brussels,50.563332,3.086886,94.4,False
+LIL,LFQQ,Lille-Lesquin Airport,Bruges,50.563332,3.086886,72.4,False
+LIL,LFQQ,Lille-Lesquin Airport,Ghent,50.563332,3.086886,69.9,True
+HZB,LFQT,Merville-Calonne Airport,Bruges,50.61840057373047,2.642240047454834,77.3,True
+HZB,LFQT,Merville-Calonne Airport,Ghent,50.61840057373047,2.642240047454834,89.4,False
+BSL,LFSB,EuroAirport Basel-Mulhouse-Freiburg Airport,Zurich,47.59,7.5291667,80.6,False
+BSL,LFSB,EuroAirport Basel-Mulhouse-Freiburg Airport,Lucerne,47.59,7.5291667,83.9,False
+BSL,LFSB,EuroAirport Basel-Mulhouse-Freiburg Airport,Bern,47.59,7.5291667,71.6,True
+MZM,LFSF,Metz-Frescaty (BA 128) Air Base,Luxembourg,49.07170104980469,6.131669998168945,59.8,True
+SXB,LFST,Strasbourg Airport,Strasbourg,48.538299560546875,7.628230094909668,10.0,True
+TLN,LFTH,Toulon-Hyères Airport,Marseille,43.0973014832,6.14602994919,65.9,True
+TLN,LFTH,Toulon-Hyères Airport,Cannes,43.0973014832,6.14602994919,86.4,False
+FNI,LFTW,Nîmes-Arles-Camargue Airport,Marseille,43.75740051269531,4.4163498878479,93.1,False
+FNI,LFTW,Nîmes-Arles-Camargue Airport,Avignon,43.75740051269531,4.4163498878479,38.0,True
+JKH,LGHI,Chios Island National Airport,Izmir,38.34320068359375,26.140600204467773,87.3,True
+IOA,LGIO,Ioannina Airport,Corfu,39.6963996887207,20.822500228881836,77.7,True
+HER,LGIR,Heraklion International Nikos Kazantzakis Airport,Heraklion,35.3396987915,25.180299758900002,3.6,True
+KSO,LGKA,Kastoria National Airport,Ohrid,40.4463005066,21.2821998596,84.8,True
+KGS,LGKO,Kos Airport,Bodrum,36.79330062866211,27.091699600219727,40.5,True
+CFU,LGKR,Ioannis Kapodistrias International Airport,Corfu,39.601898193359375,19.911699295043945,2.6,True
+LRS,LGLE,Leros Airport,Bodrum,37.184898,26.800301,58.1,True
+MJT,LGMT,Mytilene International Airport,Izmir,39.0567016602,26.5983009338,85.6,True
+RHO,LGRP,Diagoras Airport,Rhodes,36.405399322509766,28.086200714111328,12.6,True
+RHO,LGRP,Diagoras Airport,Bodrum,36.405399322509766,28.086200714111328,91.6,False
+CHQ,LGSA,Chania International Airport,Heraklion,35.531700134277344,24.149700164794922,92.8,False
+CHQ,LGSA,Chania International Airport,Chania,35.531700134277344,24.149700164794922,11.1,True
+SMI,LGSM,Samos Airport,Izmir,37.689998626708984,26.911699295043945,82.8,True
+SMI,LGSM,Samos Airport,Bodrum,37.689998626708984,26.911699295043945,85.7,False
+JSH,LGST,Sitia Airport,Heraklion,35.21609878540039,26.101299285888672,87.8,True
+SKG,LGTS,Thessaloniki Macedonia International Airport,Thessaloniki,40.51969909667969,22.97089958190918,13.8,True
+BUD,LHBP,Budapest Liszt Ferenc International Airport,Budapest,47.42976,19.261093,18.3,True
+DEB,LHDC,Debrecen International Airport,Debrecen,47.48889923095703,21.615299224853516,4.8,True
+BRI,LIBD,Bari Karol Wojtyła Airport,Bari,41.138901,16.760599,9.4,True
+TAR,LIBG,"Taranto-Grottaglie ""Marcello Arlotta"" Airport",Bari,40.517502,17.4032,80.7,False
+TAR,LIBG,"Taranto-Grottaglie ""Marcello Arlotta"" Airport",Lecce,40.517502,17.4032,67.6,True
+LCC,LIBN,Lecce Galatina Air Base,Lecce,40.239201,18.133301,13.3,True
+BDS,LIBR,Brindisi – Salento Airport,Lecce,40.6576,17.947001,38.7,True
+CTA,LICC,Catania-Fontanarossa Airport,Catania,37.466801,15.0664,2.8,True
+CTA,LICC,Catania-Fontanarossa Airport,Syracuse,37.466801,15.0664,47.7,False
+PMO,LICJ,Falcone–Borsellino Airport,Palermo,38.175999,13.091,24.7,True
+REG,LICR,Reggio Calabria Airport,Catania,38.071201,15.6516,82.2,True
+TPS,LICT,Vincenzo Florio Airport Trapani-Birgi,Palermo,37.9114,12.488,80.0,True
+NSY,LICZ,Sigonella Navy Air Base,Catania,37.401699,14.9224,16.5,True
+NSY,LICZ,Sigonella Navy Air Base,Syracuse,37.401699,14.9224,48.5,False
+DCI,LIED,Decimomannu Air Base,Cagliari,39.354198,8.97248,18.7,True
+CAG,LIEE,Cagliari Elmas Airport,Cagliari,39.251499,9.05428,6.1,True
+TTB,LIET,Tortolì Airport,Cagliari,39.9188,9.68298,90.5,True
+MXP,LIMC,Malpensa International Airport,Milan,45.6306,8.72811,40.4,True
+BGY,LIME,Il Caravaggio International Airport,Milan,45.673901,9.70417,46.3,True
+TRN,LIMF,Turin Airport,Turin,45.200802,7.64963,14.8,True
+ALL,LIMG,Villanova D'Albenga International Airport,Nice,44.050598,8.12743,79.1,False
+ALL,LIMG,Villanova D'Albenga International Airport,Genoa,44.050598,8.12743,76.1,True
+GOA,LIMJ,Genoa Cristoforo Colombo Airport,Genoa,44.4133,8.8375,8.5,True
+LIN,LIML,Milano Linate Airport,Milan,45.445099,9.27674,7.1,True
+PMF,LIMP,Parma Airport,Bologna,44.824501,10.2964,90.3,False
+PMF,LIMP,Parma Airport,Verona,44.824501,10.2964,87.5,True
+CUF,LIMZ,Cuneo International Airport,Nice,44.547001,7.62322,98.1,False
+CUF,LIMZ,Cuneo International Airport,Turin,44.547001,7.62322,58.4,True
+AVB,LIPA,Aviano Air Base,Venice,46.031898,12.596503,69.2,True
+AVB,LIPA,Aviano Air Base,Padua,46.031898,12.596503,88.6,False
+BZO,LIPB,Bolzano Airport,Innsbruck,46.460201,11.3264,89.4,True
+BLQ,LIPE,Bologna Guglielmo Marconi Airport,Florence,44.5354,11.2887,84.1,False
+BLQ,LIPE,Bologna Guglielmo Marconi Airport,Bologna,44.5354,11.2887,6.1,True
+BLQ,LIPE,Bologna Guglielmo Marconi Airport,Lucca,44.5354,11.2887,99.1,False
+TSF,LIPH,Treviso-Sant'Angelo Airport,Venice,45.648399,12.1944,25.8,True
+TSF,LIPH,Treviso-Sant'Angelo Airport,Verona,45.648399,12.1944,96.4,False
+TSF,LIPH,Treviso-Sant'Angelo Airport,Padua,45.648399,12.1944,36.0,False
+FRL,LIPK,Forlì Airport,Florence,44.194801,12.0701,80.5,False
+FRL,LIPK,Forlì Airport,Bologna,44.194801,12.0701,67.0,True
+VBS,LIPO,Brescia Airport,Milan,45.428902,10.3306,89.1,False
+VBS,LIPO,Brescia Airport,Verona,45.428902,10.3306,51.8,True
+TRS,LIPQ,Trieste–Friuli Venezia Giulia Airport,Venice,45.827499,13.4722,98.7,False
+TRS,LIPQ,Trieste–Friuli Venezia Giulia Airport,Ljubljana,45.827499,13.4722,83.7,True
+VIC,LIPT,Vicenza Airport,Venice,45.573399,11.5295,64.4,False
+VIC,LIPT,Vicenza Airport,Verona,45.573399,11.5295,44.4,False
+VIC,LIPT,Vicenza Airport,Padua,45.573399,11.5295,33.3,True
+QPA,LIPU,Padova Airport,Venice,45.395802,11.8479,38.1,False
+QPA,LIPU,Padova Airport,Verona,45.395802,11.8479,66.8,False
+QPA,LIPU,Padova Airport,Padua,45.395802,11.8479,3.3,True
+VRN,LIPX,Verona Villafranca Airport,Verona,45.395699,10.8885,9.5,True
+VRN,LIPX,Verona Villafranca Airport,Padua,45.395699,10.8885,77.9,False
+VCE,LIPZ,Venice Marco Polo Airport,Venice,45.505299,12.3519,7.7,True
+VCE,LIPZ,Venice Marco Polo Airport,Padua,45.505299,12.3519,37.9,False
+SAY,LIQS,Siena-Ampugnano Airport,Florence,43.256302,11.255,58.2,False
+SAY,LIQS,Siena-Ampugnano Airport,Siena,43.256302,11.255,9.2,True
+SAY,LIQS,Siena-Ampugnano Airport,Pisa,43.256302,11.255,85.1,False
+SAY,LIQS,Siena-Ampugnano Airport,Perugia,43.256302,11.255,93.3,False
+SAY,LIQS,Siena-Ampugnano Airport,Lucca,43.256302,11.255,89.0,False
+CIA,LIRA,Ciampino–G. B. Pastine International Airport,Rome,41.7994,12.5949,12.4,True
+FCO,LIRF,Leonardo da Vinci–Fiumicino Airport,Rome,41.8002778,12.2388889,24.8,True
+QLT,LIRL,Latina Air Base,Rome,41.5424,12.909,51.0,True
+NAP,LIRN,Naples International Airport,Naples,40.886002,14.2908,4.2,True
+PSA,LIRP,Pisa International Airport,Florence,43.683899,10.3927,69.4,False
+PSA,LIRP,Pisa International Airport,Siena,43.683899,10.3927,85.9,False
+PSA,LIRP,Pisa International Airport,Pisa,43.683899,10.3927,2.9,True
+PSA,LIRP,Pisa International Airport,Lucca,43.683899,10.3927,19.9,False
+FLR,LIRQ,Peretola Airport,Florence,43.810001,11.2051,4.8,True
+FLR,LIRQ,Peretola Airport,Bologna,43.810001,11.2051,76.8,False
+FLR,LIRQ,Peretola Airport,Siena,43.810001,11.2051,55.6,False
+FLR,LIRQ,Peretola Airport,Pisa,43.810001,11.2051,65.4,False
+FLR,LIRQ,Peretola Airport,Lucca,43.810001,11.2051,56.3,False
+GRS,LIRS,Grosseto Air Base,Siena,42.759701,11.0719,65.6,True
+PEG,LIRZ,Perugia San Francesco d'Assisi – Umbria International Airport,Siena,43.095901,12.5132,99.0,False
+PEG,LIRZ,Perugia San Francesco d'Assisi – Umbria International Airport,Perugia,43.095901,12.5132,10.3,True
+LJU,LJLJ,Ljubljana Jože Pučnik Airport,Ljubljana,46.223701,14.4576,19.5,True
+MBX,LJMB,Maribor Airport,Zagreb,46.47990036010742,15.686100006103516,77.3,False
+MBX,LJMB,Maribor Airport,Graz,46.47990036010742,15.686100006103516,67.9,True
+POW,LJPZ,Portoroz Airport,Ljubljana,45.4734001159668,13.614999771118164,94.3,False
+POW,LJPZ,Portoroz Airport,Pula,45.4734001159668,13.614999771118164,69.7,True
+UHE,LKKU,Kunovice Airport,Brno,49.02939987182617,17.439699172973633,63.3,True
+KLV,LKKV,Karlovy Vary International Airport,Karlovy Vary,50.202999114990234,12.914999961853027,4.5,True
+PED,LKPD,Pardubice Airport,Prague,50.01340103149414,15.73859977722168,94.5,True
+PRV,LKPO,Přerov Air Base,Brno,49.42580032348633,17.404699325561523,63.2,True
+PRG,LKPR,Václav Havel Airport Prague,Prague,50.1008,14.26,11.6,True
+BRQ,LKTB,Brno-Tuřany Airport,Brno,49.15129852294922,16.694400787353516,8.0,True
+VOD,LKVO,Vodochody Airport,Prague,50.216599,14.3958,14.4,True
+TLV,LLBG,Ben Gurion International Airport,Jerusalem,32.01139831542969,34.88669967651367,41.2,False
+TLV,LLBG,Ben Gurion International Airport,Tel Aviv,32.01139831542969,34.88669967651367,12.6,True
+TLV,LLBG,Ben Gurion International Airport,Haifa,32.01139831542969,34.88669967651367,89.8,False
+BEV,LLBS,Beersheba (Teyman) Airport,Jerusalem,31.287000656128,34.722999572754,71.1,True
+BEV,LLBS,Beersheba (Teyman) Airport,Tel Aviv,31.287000656128,34.722999572754,88.4,False
+HFA,LLHA,Haifa International Airport,Tel Aviv,32.80939865112305,35.04309844970703,84.7,False
+HFA,LLHA,Haifa International Airport,Haifa,32.80939865112305,35.04309844970703,4.1,True
+RPN,LLIB,Ben Ya'akov Airport,Haifa,32.98099899291992,35.5718994140625,56.6,True
+MTZ,LLMZ,Bar Yehuda Airfield,Amman,31.32819938659668,35.38859939575195,87.4,False
+MTZ,LLMZ,Bar Yehuda Airfield,Jerusalem,31.32819938659668,35.38859939575195,51.7,True
+VTM,LLNV,Nevatim Air Base,Jerusalem,31.208299636799996,35.012298584,65.3,True
+VTM,LLNV,Nevatim Air Base,Tel Aviv,31.208299636799996,35.012298584,99.5,False
+SDV,LLSD,Sde Dov Airport,Jerusalem,32.11470031738281,34.78219985961914,56.2,False
+SDV,LLSD,Sde Dov Airport,Tel Aviv,32.11470031738281,34.78219985961914,3.8,True
+SDV,LLSD,Sde Dov Airport,Haifa,32.11470031738281,34.78219985961914,80.3,False
+GRZ,LOWG,Graz Airport,Graz,46.9911003112793,15.439599990844727,8.5,True
+INN,LOWI,Innsbruck Airport,Munich,47.260201,11.344,99.1,False
+INN,LOWI,Innsbruck Airport,Innsbruck,47.260201,11.344,3.8,True
+LNZ,LOWL,Linz Hörsching Airport,Salzburg,48.2332,14.1875,97.8,True
+SZG,LOWS,Salzburg Airport,Salzburg,47.793300628699996,13.0043001175,3.0,True
+VIE,LOWW,Vienna International Airport,Vienna,48.110298156738,16.569700241089,18.3,True
+VIE,LOWW,Vienna International Airport,Bratislava,48.110298156738,16.569700241089,40.1,False
+AVR,LPAR,Alverca Air Base,Lisbon,38.883301,-9.0301,20.4,True
+BGZ,LPBR,Braga Municipal Aerodrome,Porto,41.5871009827,-8.445139884949999,50.7,False
+BGZ,LPBR,Braga Municipal Aerodrome,Braga,41.5871009827,-8.445139884949999,4.4,True
+CAT,LPCS,Cascais Airport,Lisbon,38.724998,-9.35523,17.8,True
+FAO,LPFR,Faro Airport,Faro,37.0144004822,-7.96590995789,3.5,True
+QLR,LPMR,Monte Real Air Base,Coimbra,39.828335,-8.8875,57.9,True
+PRM,LPPM,Portimão Airport,Faro,37.1493,-8.58396,60.0,True
+OPO,LPPR,Francisco de Sá Carneiro Airport,Porto,41.2481002808,-8.68138980865,12.5,True
+OPO,LPPR,Francisco de Sá Carneiro Airport,Braga,41.2481002808,-8.68138980865,40.0,False
+PXO,LPPS,Porto Santo Airport,Funchal,33.0733985901,-16.3500003815,70.3,True
+LIS,LPPT,Humberto Delgado Airport (Lisbon Portela Airport),Lisbon,38.7813,-9.13592,6.4,True
+VRL,LPVR,Vila Real Airport,Porto,41.2743,-7.72047,75.8,False
+VRL,LPVR,Vila Real Airport,Braga,41.2743,-7.72047,66.2,True
+VSE,LPVZ,Aerodromo Goncalves Lobato (Viseu Airport),Porto,40.725498,-7.88899,76.7,False
+VSE,LPVZ,Aerodromo Goncalves Lobato (Viseu Airport),Coimbra,40.725498,-7.88899,73.1,True
+OMO,LQMO,Mostar International Airport,Dubrovnik,43.282901763916016,17.84589958190918,74.5,False
+OMO,LQMO,Mostar International Airport,Sarajevo,43.282901763916016,17.84589958190918,75.2,False
+OMO,LQMO,Mostar International Airport,Mostar,43.282901763916016,17.84589958190918,7.4,True
+SJJ,LQSA,Sarajevo International Airport,Sarajevo,43.82460021972656,18.331499099731445,3.3,True
+SJJ,LQSA,Sarajevo International Airport,Mostar,43.82460021972656,18.331499099731445,68.1,False
+ARW,LRAR,Arad International Airport,Timisoara,46.17660140991211,21.261999130249023,47.1,True
+BAY,LRBM,Tautii Magheraus Airport,Cluj-Napoca,47.65840148925781,23.469999313354492,99.6,True
+BBU,LRBS,Băneasa International Airport,Bucharest,44.50320053100586,26.102100372314453,7.9,True
+CLJ,LRCL,Cluj-Napoca International Airport,Cluj-Napoca,46.78519821166992,23.686199188232422,6.9,True
+CSB,LRCS,Caransebeş Airport,Timisoara,45.41999816894531,22.253299713134766,88.2,True
+IAS,LRIA,Iaşi Airport,Chisinau,47.17850112915039,27.6205997467041,95.7,True
+OMR,LROD,Oradea International Airport,Debrecen,47.025299072265625,21.90250015258789,60.1,True
+OTP,LROP,Henri Coandă International Airport,Bucharest,44.5711111,26.085,15.5,True
+SBZ,LRSB,Sibiu International Airport,Sibiu,45.78559875488281,24.091299057006836,4.8,True
+SUJ,LRSM,Satu Mare Airport,Debrecen,47.70330047607422,22.885700225830078,96.4,True
+TGM,LRTM,Transilvania Târgu Mureş International Airport,Sibiu,46.46770095825195,24.412500381469727,77.0,False
+TGM,LRTM,Transilvania Târgu Mureş International Airport,Cluj-Napoca,46.46770095825195,24.412500381469727,70.4,True
+TSR,LRTR,Timişoara Traian Vuia Airport,Timisoara,45.809898376464844,21.337900161743164,10.7,True
+GVA,LSGG,Geneva Cointrin International Airport,Geneva,46.23809814453125,6.108950138092041,4.9,True
+SIR,LSGS,Sion Airport,Geneva,46.219600677500004,7.326759815220001,90.9,False
+SIR,LSGS,Sion Airport,Bern,46.219600677500004,7.326759815220001,81.5,True
+EML,LSME,Emmen Air Base,Zurich,47.092444,8.305184,35.7,False
+EML,LSME,Emmen Air Base,Lucerne,47.092444,8.305184,4.7,True
+EML,LSME,Emmen Air Base,Bern,47.092444,8.305184,67.0,False
+LUG,LSZA,Lugano Airport,Milan,46.00429916379999,8.9105796814,63.8,True
+BRN,LSZB,Bern Belp Airport,Zurich,46.914100647,7.497149944309999,94.2,False
+BRN,LSZB,Bern Belp Airport,Lucerne,46.914100647,7.497149944309999,63.2,False
+BRN,LSZB,Bern Belp Airport,Bern,46.914100647,7.497149944309999,5.3,True
+ZHI,LSZG,Grenchen Airport,Zurich,47.181599,7.41719,87.9,False
+ZHI,LSZG,Grenchen Airport,Lucerne,47.181599,7.41719,68.8,False
+ZHI,LSZG,Grenchen Airport,Bern,47.181599,7.41719,26.1,True
+ZRH,LSZH,Zürich Airport,Zurich,47.464699,8.54917,10.9,True
+ZRH,LSZH,Zürich Airport,Lucerne,47.464699,8.54917,49.6,False
+ACH,LSZR,St Gallen Altenrhein Airport,Zurich,47.4850006104,9.560770034789998,77.2,True
+ESB,LTAC,Esenboğa International Airport,Ankara,40.128101348899996,32.995098114,26.1,True
+ANK,LTAD,Etimesgut Air Base,Ankara,39.949798584,32.6885986328,14.5,True
+AYT,LTAI,Antalya International Airport,Antalya,36.898701,30.800501,9.4,True
+ISL,LTBA,Atatürk International Airport,Istanbul,40.976898,28.8146,12.1,True
+ADB,LTBJ,Adnan Menderes International Airport,Izmir,38.2924003601,27.156999588,13.5,True
+IGL,LTBL,Çiğli Airport,Izmir,38.513000488299994,27.010099411,15.8,True
+DLM,LTBS,Dalaman International Airport,Rhodes,36.7131004333,28.7924995422,59.6,True
+BXN,LTBV,Imsık Airport,Rhodes,37.140098571777344,27.669700622558594,92.5,False
+BXN,LTBV,Imsık Airport,Bodrum,37.140098571777344,27.669700622558594,24.2,True
+KIV,LUKK,Chişinău International Airport,Chisinau,46.92770004272461,28.930999755859375,10.5,True
+OHD,LWOH,Ohrid St. Paul the Apostle Airport,Ohrid,41.18,20.7423,8.6,True
+OHD,LWOH,Ohrid St. Paul the Apostle Airport,Tirana,41.18,20.7423,78.9,False
+SKP,LWSK,Skopje Alexander the Great Airport,Skopje,41.961601,21.621401,16.2,True
+GIB,LXGB,Gibraltar Airport,Cadiz,36.1511993408,-5.3496599197400005,93.9,False
+GIB,LXGB,Gibraltar Airport,Marbella,36.1511993408,-5.3496599197400005,58.0,True
+GIB,LXGB,Gibraltar Airport,Tangier,36.1511993408,-5.3496599197400005,58.9,False
+BEG,LYBE,Belgrade Nikola Tesla Airport,Belgrade,44.8184013367,20.3090991974,12.4,True
+BEG,LYBE,Belgrade Nikola Tesla Airport,Novi Sad,44.8184013367,20.3090991974,60.8,False
+TGD,LYPG,Podgorica Airport,Dubrovnik,42.359402,19.2519,98.8,True
+PRN,BKPR,Priština International Airport,Skopje,42.5728,21.035801,71.9,True
+TIV,LYTV,Tivat Airport,Dubrovnik,42.404701232910156,18.72330093383789,56.8,True
+BTS,LZIB,M. R. Štefánik Airport,Vienna,48.17020034790039,17.21269989013672,62.5,False
+BTS,LZIB,M. R. Štefánik Airport,Bratislava,48.17020034790039,17.21269989013672,8.2,True
+KSC,LZKZ,Košice Airport,Kosice,48.66310119628906,21.241100311279297,5.8,True
+PZY,LZPP,Piešťany Airport,Bratislava,48.62519836425781,17.828399658203125,75.2,True
+TAT,LZTT,Poprad-Tatry Airport,Kosice,49.073600769,20.2411003113,84.4,True
+SDQ,MDSD,Las Américas International Airport,Santo Domingo,18.42970085144,-69.668899536133,24.0,True
+GUA,MGGT,La Aurora Airport,Antigua Guatemala,14.5833,-90.527496,22.3,True
+GSJ,MGSJ,San José Airport,Antigua Guatemala,13.936200141899999,-90.83580017090001,69.8,True
+OCJ,MKBS,Boscobel Aerodrome,Kingston,18.404199600219727,-76.96900177001953,48.9,True
+KIN,MKJP,Norman Manley International Airport,Kingston,17.935699462890625,-76.7874984741211,6.8,True
+MBJ,MKJS,Sangster International Airport,Montego Bay,18.503700256347656,-77.91339874267578,3.7,True
+POT,MKKJ,Ken Jones Airport,Kingston,18.1987991333,-76.53450012210001,35.4,True
+KTP,MKTP,Tinson Pen Airport,Kingston,17.98859977722168,-76.82379913330078,3.3,True
+CVJ,MMCB,General Mariano Matamoros Airport,Mexico City,18.834800720214844,-99.26129913330078,67.5,True
+CZM,MMCZ,Cozumel International Airport,Cancun,20.52239990234375,-86.92559814453125,73.0,False
+CZM,MMCZ,Cozumel International Airport,Playa del Carmen,20.52239990234375,-86.92559814453125,19.9,True
+TPQ,MMEP,Amado Nervo National Airport,Puerto Vallarta,21.4195,-104.843002,97.9,True
+GDL,MMGL,Don Miguel Hidalgo Y Costilla International Airport,Guadalajara,20.521799087524414,-103.31099700927734,17.7,True
+ISJ,MMIM,Isla Mujeres Airport,Cancun,21.2450008392334,-86.73999786376953,13.6,True
+ISJ,MMIM,Isla Mujeres Airport,Playa del Carmen,21.2450008392334,-86.73999786376953,77.2,False
+BJX,MMLO,Del Bajío International Airport,Guanajuato,20.9935,-101.481003,23.2,True
+BJX,MMLO,Del Bajío International Airport,San Miguel de Allende,20.9935,-101.481003,77.0,False
+MID,MMMD,Licenciado Manuel Crescencio Rejon Int Airport,Merida,20.937000274699997,-89.657699585,4.9,True
+MEX,MMMX,Licenciado Benito Juarez International Airport,Mexico City,19.4363,-99.072098,5.9,True
+OAX,MMOX,Xoxocotlán International Airport,Oaxaca,16.9999008179,-96.726600647,6.7,True
+PBC,MMPB,Hermanos Serdán International Airport,Mexico City,19.1581001282,-98.3713989258,84.9,False
+PBC,MMPB,Hermanos Serdán International Airport,Puebla,19.1581001282,-98.3713989258,21.2,True
+PVR,MMPR,Licenciado Gustavo Díaz Ordaz International Airport,Puerto Vallarta,20.680099487304688,-105.25399780273438,7.4,True
+QRO,MMQT,Querétaro Intercontinental Airport,San Miguel de Allende,20.6173,-100.185997,66.8,True
+TIJ,MMTJ,General Abelardo L. Rodríguez International Airport,San Diego,32.541099548339844,-116.97000122070312,26.6,True
+TLC,MMTO,Licenciado Adolfo Lopez Mateos International Airport,Mexico City,19.3370990753,-99.56600189210002,47.1,True
+CUN,MMUN,Cancún International Airport,Cancun,21.036500930800003,-86.8770980835,15.6,True
+CUN,MMUN,Cancún International Airport,Playa del Carmen,21.036500930800003,-86.8770980835,50.1,False
+BLB,MPHO,Panama Pacific International Airport,Panama City,8.91479,-79.599602,12.4,True
+PAC,MPMG,Marcos A. Gelabert International Airport,Panama City,8.973340034484863,-79.55560302734375,4.5,True
+PTY,MPTO,Tocumen International Airport,Panama City,9.0713596344,-79.3834991455,17.3,True
+JAP,MRCH,Chacarita Airport,San Jose,9.98141002655,-84.7726974487,75.5,True
+GPL,MRGP,Guapiles Airport,San Jose,10.2172002792,-83.79699707030001,44.6,True
+SJO,MROC,Juan Santamaria International Airport,San Jose,9.993860244750977,-84.20880126953125,15.1,True
+XQP,MRQP,Quepos Managua Airport,San Jose,9.443160057067871,-84.12979888916016,54.8,True
+HAV,MUHA,José Martí International Airport,Havana,22.989200592041016,-82.40910339355469,16.2,True
+UPB,MUPB,Playa Baracoa Airport,Havana,23.032800674399997,-82.5793991089,23.0,True
+VRA,MUVR,Juan Gualberto Gomez International Airport,Havana,23.034400939941406,-81.435302734375,97.6,False
+VRA,MUVR,Juan Gualberto Gomez International Airport,Varadero,23.034400939941406,-81.435302734375,23.8,True
+MAY,MYAB,Clarence A. Bain Airport,Nassau,24.287700653076172,-77.68460083007812,92.4,True
+ASD,MYAF,Andros Town Airport,Nassau,24.697900772094727,-77.79560089111328,60.7,True
+SAQ,MYAN,San Andros Airport,Nassau,25.053800582885742,-78.04900360107422,71.1,True
+CCZ,MYBC,Chub Cay Airport,Nassau,25.41710090637207,-77.88089752197266,67.2,True
+GHC,MYBG,Great Harbour Cay Airport,Nassau,25.7383,-77.840103,90.6,True
+BIM,MYBS,South Bimini Airport,Miami,25.6998996735,-79.2647018433,93.4,True
+ELH,MYEH,North Eleuthera Airport,Nassau,25.474899292,-76.6835021973,80.9,True
+NMC,MYEN,Normans Cay Airport,Nassau,24.59429931640625,-76.82019805908203,73.8,True
+NAS,MYNN,Lynden Pindling International Airport,Nassau,25.0389995575,-77.46620178219999,12.6,True
+NAN,NFFN,Nadi International Airport,Nadi,-17.755399703979492,177.4429931640625,6.0,True
+MOZ,NTTM,Moorea Airport,Papeete,-17.49,-149.761993,21.1,True
+AKL,NZAA,Auckland International Airport,Auckland,-37.008098602299995,174.792007446,17.9,True
+TUO,NZAP,Taupo Airport,Rotorua,-38.73970031738281,176.08399963378906,68.3,True
+AMZ,NZAR,Ardmore Airport,Auckland,-37.029701232910156,174.97300720214844,27.4,True
+CHC,NZCH,Christchurch International Airport,Christchurch,-43.48939895629883,172.53199768066406,9.5,True
+HLZ,NZHN,Hamilton International Airport,Rotorua,-37.8666992188,175.332000732,85.5,True
+MRO,NZMS,Hood Airport,Wellington,-40.97330093383789,175.63400268554688,79.9,True
+PPQ,NZPP,Paraparaumu Airport,Wellington,-40.904701232910156,174.98899841308594,46.1,True
+ROT,NZRO,Rotorua Regional Airport,Rotorua,-38.10919952392578,176.31700134277344,7.1,True
+TRG,NZTG,Tauranga Airport,Rotorua,-37.67190170288086,176.1959991455078,52.1,True
+BHE,NZWB,Woodbourne Airport,Wellington,-41.5182991027832,173.8699951171875,79.8,True
+WHK,NZWK,Whakatane Airport,Rotorua,-37.92060089111328,176.91400146484375,63.4,True
+WLG,NZWN,Wellington International Airport,Wellington,-41.3272018433,174.804992676,5.1,True
+BAH,OBBI,Bahrain International Airport,Manama,26.27079963684082,50.63359832763672,6.8,True
+DMM,OEDF,King Fahd International Airport,Manama,26.471200942993164,49.79790115356445,83.0,True
+DHA,OEDR,King Abdulaziz Air Base,Manama,26.265399932900003,50.152000427199994,43.4,True
+AEU,OIBA,Abu Musa Island Airport,Dubai,25.8757,55.033001,93.0,True
+IFH,OIFE,Hesa Airport,Isfahan,32.92890167236328,51.561100006103516,32.5,True
+IFN,OIFM,Esfahan Shahid Beheshti International Airport,Isfahan,32.75080108642578,51.86130142211914,20.6,True
+SYZ,OISS,Shiraz Shahid Dastghaib International Airport,Shiraz,29.539199829101562,52.58980178833008,9.7,True
+AMM,OJAI,Queen Alia International Airport,Amman,31.7226009369,35.9931983948,26.3,True
+AMM,OJAI,Queen Alia International Airport,Jerusalem,31.7226009369,35.9931983948,73.6,False
+ADJ,OJAM,Amman-Marka International Airport,Amman,31.972700119018555,35.991600036621094,4.8,True
+ADJ,OJAM,Amman-Marka International Airport,Jerusalem,31.972700119018555,35.991600036621094,76.6,False
+OMF,OJMF,King Hussein Air College,Amman,32.3564,36.259201,53.5,True
+BEY,OLBA,Beirut Rafic Hariri International Airport,Beirut,33.820899963378906,35.488399505615234,8.1,True
+KYE,OLKA,Rene Mouawad Air Base,Beirut,34.589298248291016,36.01129913330078,90.5,True
+AUH,OMAA,Abu Dhabi International Airport,Dubai,24.433000564575195,54.651100158691406,97.7,False
+AUH,OMAA,Abu Dhabi International Airport,Abu Dhabi,24.433000564575195,54.651100158691406,25.8,True
+AZI,OMAD,Bateen Airport,Abu Dhabi,24.428300857543945,54.458099365234375,6.7,True
+DHF,OMAM,Al Dhafra Air Base,Abu Dhabi,24.248199462900004,54.547698974599996,27.3,True
+DXB,OMDB,Dubai International Airport,Dubai,25.2527999878,55.3643989563,20.3,True
+RKT,OMRK,Ras Al Khaimah International Airport,Dubai,25.613500595092773,55.93880081176758,86.9,True
+SHJ,OMSJ,Sharjah International Airport,Dubai,25.32859992980957,55.5172004699707,34.9,True
+MCT,OOMS,Muscat International Airport,Muscat,23.593299865722656,58.284400939941406,12.6,True
+LHE,OPLA,Alama Iqbal International Airport,Amritsar,31.5216007232666,74.40360260009766,46.1,True
+DIA,OTBD,Doha International Airport,Doha,25.261101,51.565102,4.4,True
+TTT,RCFN,Taitung Airport,Tainan,22.7549991607666,121.10199737548828,95.6,True
+KHH,RCKH,Kaohsiung International Airport,Tainan,22.57710075378418,120.3499984741211,48.5,True
+CYI,RCKU,Chiayi Airport,Tainan,23.46179962158203,120.39299774169922,55.6,True
+TNN,RCNN,Tainan Airport,Tainan,22.95039939880371,120.20600128173828,4.7,True
+HSZ,RCPO,Hsinchu Air Base,Taipei,24.8180007935,120.939002991,64.7,True
+MZG,RCQC,Makung Airport,Tainan,23.568700790405273,119.62799835205078,87.1,True
+PIF,RCSQ,Pingtung North Airport,Tainan,22.700199127197266,120.48200225830078,43.2,True
+TSA,RCSS,Taipei Songshan Airport,Taipei,25.069400787353516,121.552001953125,3.2,True
+TPE,RCTP,Taiwan Taoyuan International Airport,Taipei,25.0777,121.233002,29.7,True
+WOT,RCWA,Wang-an Airport,Tainan,23.367372512817383,119.50277709960938,83.0,True
+NRT,RJAA,Narita International Airport,Tokyo,35.7647018433,140.386001587,63.2,True
+NRT,RJAA,Narita International Airport,Kamakura,35.7647018433,140.386001587,91.2,False
+IBR,RJAH,Hyakuri Airport,Tokyo,36.181098938,140.414993286,85.0,True
+IBR,RJAH,Hyakuri Airport,Nikko,36.181098938,140.414993286,95.4,False
+CTS,RJCC,New Chitose Airport,Sapporo,42.77519989013672,141.69200134277344,42.7,True
+IKI,RJDB,Iki Airport,Fukuoka,33.7490005493,129.785003662,60.8,True
+UBJ,RJDC,Yamaguchi Ube Airport,Fukuoka,33.930000305200004,131.279006958,87.8,True
+TSJ,RJDT,Tsushima Airport,Busan,34.2849006653,129.330993652,94.9,True
+FUJ,RJFE,Fukue Airport,Nagasaki,32.66630172729492,128.83299255371094,98.7,True
+FUK,RJFF,Fukuoka Airport,Fukuoka,33.585899353027344,130.4510040283203,3.5,True
+KKJ,RJFR,Kitakyūshū Airport,Fukuoka,33.8459014893,131.035003662,63.4,True
+KMJ,RJFT,Kumamoto Airport,Fukuoka,32.83729934692383,130.85499572753906,94.1,False
+KMJ,RJFT,Kumamoto Airport,Nagasaki,32.83729934692383,130.85499572753906,91.3,True
+NGS,RJFU,Nagasaki Airport,Fukuoka,32.916900634799994,129.914001465,89.2,False
+NGS,RJFU,Nagasaki Airport,Nagasaki,32.916900634799994,129.914001465,18.8,True
+FKJ,RJNF,Fukui Airport,Kanazawa,36.1427993774,136.223999023,61.8,True
+KMQ,RJNK,Komatsu Airport,Kanazawa,36.39459991455078,136.40699768066406,29.5,True
+TOY,RJNT,Toyama Airport,Kanazawa,36.64830017089844,137.18800354003906,51.3,True
+HIJ,RJOA,Hiroshima Airport,Hiroshima,34.4361000061,132.919006348,43.2,True
+MYJ,RJOM,Matsuyama Airport,Hiroshima,33.82720184326172,132.6999969482422,67.7,True
+ITM,RJOO,Osaka International Airport,Kyoto,34.785499572753906,135.43800354003906,38.9,False
+ITM,RJOO,Osaka International Airport,Osaka,34.785499572753906,135.43800354003906,11.7,True
+ITM,RJOO,Osaka International Airport,Nara,34.785499572753906,135.43800354003906,35.3,False
+NJA,RJTA,Atsugi Naval Air Facility,Tokyo,35.4546012878418,139.4499969482422,34.1,False
+NJA,RJTA,Atsugi Naval Air Facility,Kamakura,35.4546012878418,139.4499969482422,18.2,True
+OIM,RJTO,Oshima Airport,Kamakura,34.782001495399996,139.36000061,61.2,True
+HND,RJTT,Tokyo Haneda International Airport,Tokyo,35.552299,139.779999,17.2,True
+HND,RJTT,Tokyo Haneda International Airport,Kamakura,35.552299,139.779999,34.2,False
+OKO,RJTY,Yokota Air Base,Tokyo,35.74850082397461,139.34800720214844,31.7,True
+OKO,RJTY,Yokota Air Base,Kamakura,35.74850082397461,139.34800720214844,51.9,False
+KWJ,RKJJ,Gwangju Airport,Jeonju,35.123173,126.805444,84.0,True
+CHN,RKJU,Jeon Ju Airport (G-703),Jeonju,35.87808,127.119112,6.5,True
+CJU,RKPC,Jeju International Airport,Jeju,33.51129913330078,126.49299621582031,2.7,True
+CHF,RKPE,Jinhae Airbase/Airport (G-813/K-10),Busan,35.140248,128.696229,30.7,True
+CHF,RKPE,Jinhae Airbase/Airport (G-813/K-10),Gyeongju,35.140248,128.696229,91.0,False
+PUS,RKPK,Gimhae International Airport,Busan,35.1795005798,128.93800354,12.0,True
+PUS,RKPK,Gimhae International Airport,Gyeongju,35.1795005798,128.93800354,77.8,False
+USN,RKPU,Ulsan Airport,Busan,35.59349823,129.352005005,62.0,False
+USN,RKPU,Ulsan Airport,Gyeongju,35.59349823,129.352005005,30.5,True
+SSN,RKSM,Seoul Air Base (K-16),Seoul,37.444744,127.112718,17.9,True
+OSN,RKSO,Osan Air Base,Seoul,37.090599,127.029999,53.1,True
+GMP,RKSS,Gimpo International Airport,Seoul,37.5583,126.791,16.5,True
+SWU,RKSW,Suwon Airport,Seoul,37.23939895629883,127.00700378417969,36.4,True
+KPO,RKTH,Pohang Airport (G-815/K-3),Gyeongju,35.987955,129.420383,24.8,True
+TAE,RKTN,Daegu Airport,Busan,35.896872,128.65531,94.7,False
+TAE,RKTN,Daegu Airport,Gyeongju,35.896872,128.65531,50.5,True
+MNL,RPLL,Ninoy Aquino International Airport,Manila,14.5086,121.019997,11.4,True
+PPS,RPVP,Puerto Princesa Airport,Puerto Princesa,9.742119789123535,118.75900268554688,2.6,True
+AEP,SABE,Jorge Newbery Airpark,Buenos Aires,-34.5592,-58.4156,7.0,True
+FDO,SADF,San Fernando Airport,Buenos Aires,-34.4532,-58.5896,26.4,True
+LPG,SADL,La Plata Airport,Buenos Aires,-34.9722,-57.8947,59.5,True
+EPA,SADP,El Palomar Airport,Buenos Aires,-34.6099,-58.6126,21.5,True
+MDZ,SAME,El Plumerillo Airport,Mendoza,-32.8316993713,-68.7929000854,8.1,True
+IGR,SARI,Cataratas Del Iguazú International Airport,Foz do Iguacu,-25.737301,-54.4734,24.0,True
+SLA,SASA,Martin Miguel De Guemes International Airport,Salta,-24.856000900299996,-65.4861984253,8.7,True
+JUJ,SASJ,Gobernador Horacio Guzman International Airport,Salta,-24.392799,-65.097801,56.4,True
+ELO,SATD,El Dorado Airport,Foz do Iguacu,-26.3974990845,-54.5746994019,94.5,True
+EHL,SAVB,El Bolson Airport,San Carlos de Bariloche,-41.9431991577,-71.5323028564,90.6,True
+BRC,SAZS,San Carlos De Bariloche Airport,San Carlos de Bariloche,-41.151199,-71.157501,12.6,True
+IGU,SBFI,Cataratas International Airport,Foz do Iguacu,-25.600278854370117,-54.48500061035156,11.9,True
+FLN,SBFL,Hercílio Luz International Airport,Florianopolis,-27.670278549194336,-48.5525016784668,8.2,True
+GIG,SBGL,Rio Galeão – Tom Jobim International Airport,Rio de Janeiro,-22.8099994659,-43.2505569458,12.8,True
+GRU,SBGR,Guarulhos - Governador André Franco Montoro International Airport,Sao Paulo,-23.435556411743164,-46.47305679321289,20.8,True
+VCP,SBKP,Viracopos International Airport,Sao Paulo,-23.0074005127,-47.1344985962,78.7,True
+NVT,SBNF,Ministro Victor Konder International Airport,Florianopolis,-26.879999,-48.651402,80.3,True
+SDU,SBRJ,Santos Dumont Airport,Rio de Janeiro,-22.910499572799996,-43.1631011963,2.0,True
+SNZ,SBSC,Santa Cruz Air Force Base,Rio de Janeiro,-22.9324,-43.719101,55.1,True
+SJK,SBSJ,Professor Urbano Ernesto Stumpf Airport,Sao Paulo,-23.22920036315918,-45.86149978637695,86.6,True
+CGH,SBSP,Congonhas Airport,Sao Paulo,-23.626110076904297,-46.65638732910156,9.0,True
+SSZ,SBST,Base Aérea de Santos Airport,Sao Paulo,-23.928056716918945,-46.299720764160156,54.4,True
+SSA,SBSV,Deputado Luiz Eduardo Magalhães International Airport,Salvador,-12.9086112976,-38.3224983215,19.7,True
+SCL,SCEL,Comodoro Arturo Merino Benítez International Airport,Santiago,-33.393001556396484,-70.78579711914062,14.6,True
+SCL,SCEL,Comodoro Arturo Merino Benítez International Airport,Valparaiso,-33.393001556396484,-70.78579711914062,88.0,False
+QRC,SCRG,De La Independencia Airport,Santiago,-34.17369842529297,-70.77570343017578,80.6,True
+CUE,SECU,Mariscal Lamar Airport,Cuenca,-2.88947,-78.984398,1.5,True
+LTX,SELT,Cotopaxi International Airport,Quito,-0.906833,-78.615799,76.0,True
+UIO,SEQM,Mariscal Sucre International Airport,Quito,-0.129166666667,-78.3575,21.7,True
+BOG,SKBO,El Dorado International Airport,Bogota,4.70159,-74.1469,12.5,True
+BAQ,SKBQ,Ernesto Cortissoz International Airport,Cartagena,10.8896,-74.7808,95.1,True
+CTG,SKCG,Rafael Nuñez International Airport,Cartagena,10.4424,-75.513,5.4,True
+GIR,SKGI,Santiago Vila Airport,Bogota,4.27624,-74.7967,87.5,True
+EOH,SKMD,Enrique Olaya Herrera Airport,Medellin,6.220549,-75.590582,3.4,True
+MDE,SKRG,Jose Maria Córdova International Airport,Medellin,6.16454,-75.4231,18.7,True
+VVC,SKVV,Vanguardia Airport,Bogota,4.16787,-73.6138,71.5,True
+LPB,SLLP,El Alto International Airport,La Paz,-16.5132999420166,-68.19229888916016,4.7,True
+POI,SLPO,Capitan Nicolas Rojas Airport,Sucre,-19.5431003571,-65.72370147710001,74.5,True
+SRE,SLSU,Juana Azurduy De Padilla Airport,Sucre,-19.007099151611328,-65.2886962890625,4.0,True
+LIM,SPIM,Jorge Chávez International Airport,Lima,-12.0219,-77.114305,9.7,True
+AQP,SPQU,Rodríguez Ballón International Airport,Arequipa,-16.3411006927,-71.5830993652,8.1,True
+CUZ,SPZO,Alejandro Velasco Astete International Airport,Cusco,-13.535699844400002,-71.9387969971,3.1,True
+MVD,SUMU,Carrasco International /General C L Berisso Airport,Montevideo,-34.838402,-56.0308,16.1,True
+BGI,TBPB,Sir Grantley Adams International Airport,Bridgetown,13.0746002197,-59.4925003052,14.3,True
+FAJ,TJFA,Diego Jimenez Torres Airport,San Juan,18.308900833129883,-65.66190338134766,50.0,True
+SIG,TJIG,Fernando Luis Ribas Dominicci Airport,San Juan,18.45680046081543,-66.09809875488281,1.3,True
+PSE,TJPS,Mercedita Airport,San Juan,18.00830078125,-66.56300354003906,70.2,True
+SJU,TJSJ,Luis Munoz Marin International Airport,San Juan,18.4393997192,-66.0018005371,11.4,True
+ALA,UAAA,Almaty Airport,Almaty,43.35210037231445,77.04049682617188,15.2,True
+GYD,UBBB,Heydar Aliyev International Airport,Baku,40.467498779296875,50.04669952392578,16.5,True
+KBP,UKBB,Boryspil International Airport,Kyiv,50.345001220703125,30.894699096679688,29.0,True
+IEV,UKKK,Kiev Zhuliany International Airport,Kyiv,50.40194,30.45194,7.8,True
+LWO,UKLL,Lviv International Airport,Lviv,49.8125,23.956100463867188,5.6,True
+ODS,UKOO,Odessa International Airport,Odessa,46.42679977416992,30.67650032043457,8.3,True
+BHK,UTSB,Bukhara Airport,Bukhara,39.775001525878906,64.4832992553711,4.5,True
+SKD,UTSS,Samarkand Airport,Samarkand,39.70050048828125,66.98380279541016,5.4,True
+TAS,UTTT,Tashkent International Airport,Tashkent,41.257900238,69.2811965942,5.5,True
+BOM,VABB,Chhatrapati Shivaji International Airport,Mumbai,19.0886993408,72.8678970337,2.3,True
+IXG,VABM,Belgaum Airport,Panaji,15.859299659700001,74.6183013916,93.9,True
+GOI,VAGO,Dabolim Airport,Panaji,15.3808002472,73.8313980103,12.8,True
+UDR,VAUD,Maharana Pratap Airport,Udaipur,24.617700576799997,73.89610290530001,18.8,True
+CMB,VCBI,Bandaranaike International Colombo Airport,Colombo,7.180759906768799,79.88410186767578,27.6,True
+CMB,VCBI,Bandaranaike International Colombo Airport,Kandy,7.180759906768799,79.88410186767578,83.6,False
+RML,VCCC,Colombo Ratmalana Airport,Colombo,6.821990013122559,79.88619995117188,13.3,True
+RML,VCCC,Colombo Ratmalana Airport,Kandy,6.821990013122559,79.88619995117188,97.6,False
+RML,VCCC,Colombo Ratmalana Airport,Galle,6.821990013122559,79.88619995117188,93.4,False
+KZC,VDKH,Kampong Chhnang Airport,Phnom Penh,12.255200386,104.564002991,86.0,True
+PNH,VDPP,Phnom Penh International Airport,Phnom Penh,11.546600341796875,104.84400177001953,8.0,True
+REP,VDSR,Siem Reap International Airport,Siem Reap,13.410699844400002,103.81300354,7.5,True
+HKG,VHHH,Hong Kong International Airport,Hong Kong,22.308901,113.915001,26.9,True
+HKG,VHHH,Hong Kong International Airport,Macau,22.308901,113.915001,39.8,False
+AGR,VIAG,Agra Airport,Agra,27.155799865722656,77.96089935302734,6.3,True
+ATQ,VIAR,Sri Guru Ram Dass Jee International Airport,Amritsar,31.7096004486,74.7973022461,12.2,True
+VNS,VIBN,Lal Bahadur Shastri Airport,Varanasi,25.4524002075,82.8592987061,21.4,True
+DED,VIDN,Dehradun Airport,Rishikesh,30.189699,78.180298,14.1,True
+DEL,VIDP,Indira Gandhi International Airport,Delhi,28.5665,77.103104,15.7,True
+JDH,VIJO,Jodhpur Airport,Jodhpur,26.251100540161133,73.04889678955078,4.7,True
+JAI,VIJP,Jaipur International Airport,Jaipur,26.8242,75.812202,10.9,True
+JSA,VIJR,Jaisalmer Airport,Jaisalmer,26.888700485229492,70.86499786376953,5.0,True
+IXP,VIPK,Pathankot Airport,Amritsar,32.233611,75.634444,98.8,True
+LPQ,VLLB,Luang Phabang International Airport,Luang Prabang,19.897300720214844,102.16100311279297,1.0,True
+VTE,VLVT,Wattay International Airport,Vientiane,17.988300323500003,102.56300354,4.6,True
+MFM,VMMC,Macau International Airport,Hong Kong,22.149599,113.592003,61.7,False
+MFM,VMMC,Macau International Airport,Macau,22.149599,113.592003,7.4,True
+KTM,VNKT,Tribhuvan International Airport,Kathmandu,27.6966,85.3591,3.8,True
+PKR,VNPK,Pokhara Airport,Pokhara,28.200899124145508,83.98210144042969,7.5,True
+SIF,VNSI,Simara Airport,Kathmandu,27.159500122070312,84.9801025390625,69.0,True
+COK,VOCI,Cochin International Airport,Kochi,10.152,76.401901,28.2,True
+PBH,VQPR,Paro Airport,Thimphu,27.403200149499998,89.42459869380001,22.6,True
+MLE,VRMM,Malé International Airport,Male,4.191830158233643,73.52909851074219,2.9,True
+DMK,VTBD,Don Mueang International Airport,Bangkok,13.9125995636,100.607002258,21.0,True
+KDT,VTBK,Kamphaeng Saen Airport,Bangkok,14.1020002365,99.9171981812,74.0,True
+UTP,VTBU,U-Tapao International Airport,Pattaya,12.679900169372559,101.00499725341797,31.1,True
+LPT,VTCL,Lampang Airport,Chiang Mai,18.27090072631836,99.50420379638672,79.6,True
+KBV,VTSG,Krabi Airport,Phuket,8.09912014008,98.9861984253,68.8,False
+KBV,VTSG,Krabi Airport,Krabi,8.09912014008,98.9861984253,8.8,True
+HKT,VTSP,Phuket International Airport,Phuket,8.1132,98.316902,26.3,True
+HKT,VTSP,Phuket International Airport,Krabi,8.1132,98.316902,65.5,False
+TST,VTST,Trang Airport,Krabi,7.508739948272705,99.6166000366211,99.9,True
+UTH,VTUD,Udon Thani Airport,Vientiane,17.386400222800003,102.788002014,67.5,True
+DAD,VVDN,Da Nang International Airport,Da Nang,16.043899536132812,108.1989974975586,3.5,True
+DAD,VVDN,Da Nang International Airport,Hoi An,16.043899536132812,108.1989974975586,23.4,False
+DAD,VVDN,Da Nang International Airport,Hue,16.043899536132812,108.1989974975586,79.4,False
+HAN,VVNB,Noi Bai International Airport,Hanoi,21.221200942993164,105.80699920654297,22.2,True
+NHA,VVNT,Nha Trang Air Base,Nha Trang,12.2275,109.192001,2.0,True
+NHA,VVNT,Nha Trang Air Base,Dalat,12.2275,109.192001,87.3,False
+HUI,VVPB,Phu Bai Airport,Da Nang,16.401500701899998,107.70300293,66.6,False
+HUI,VVPB,Phu Bai Airport,Hoi An,16.401500701899998,107.70300293,89.0,False
+HUI,VVPB,Phu Bai Airport,Hue,16.401500701899998,107.70300293,13.3,True
+SGN,VVTS,Tan Son Nhat International Airport,Ho Chi Minh City,10.8187999725,106.652000427,2.5,True
+MDL,VYMD,Mandalay International Airport,Mandalay,21.702199935913086,95.97789764404297,32.2,True
+MOG,VYMS,Mong Hsat Airport,Chiang Rai,20.516799926757812,99.25679779052734,90.5,True
+THL,VYTL,Tachileik Airport,Chiang Rai,20.483800888061523,99.9354019165039,64.9,True
+RGN,VYYY,Yangon International Airport,Yangon,16.907300949099998,96.1332015991,11.6,True
+KCH,WBGG,Kuching International Airport,Kuching,1.4846999645233154,110.34700012207031,7.4,True
+BKI,WBKK,Kota Kinabalu International Airport,Kota Kinabalu,5.9372100830078125,116.0510025024414,4.8,True
+AOR,WMKA,Sultan Abdul Halim Airport,George Town,6.189670085906982,100.39800262451172,86.8,True
+BWH,WMKB,Butterworth Airport,George Town,5.4659199714660645,100.39099884033203,8.6,True
+JHB,WMKJ,Senai International Airport,Singapore,1.64131,103.669998,43.9,True
+KUL,WMKK,Kuala Lumpur International Airport,Kuala Lumpur,2.745579957962,101.70999908447,44.1,True
+KUL,WMKK,Kuala Lumpur International Airport,Malacca,2.745579957962,101.70999908447,84.9,False
+MKZ,WMKM,Malacca Airport,Malacca,2.2633600235,102.251998901,7.6,True
+PEN,WMKP,Penang International Airport,George Town,5.297140121459961,100.2770004272461,14.2,True
+QPG,WSAP,Paya Lebar Air Base,Singapore,1.3604199886322021,103.91000366210938,10.3,True
+TGA,WSAT,Tengah Air Base,Singapore,1.38725996017,103.708999634,19.1,True
+XSP,WSSL,Seletar Airport,Singapore,1.416949987411499,103.86799621582031,14.3,True
+SIN,WSSS,Singapore Changi Airport,Singapore,1.35019,103.994003,17.4,True
+ACF,YBAF,Brisbane Archerfield Airport,Brisbane,-27.5702991486,153.007995605,11.6,True
+ACF,YBAF,Brisbane Archerfield Airport,Gold Coast,-27.5702991486,153.007995605,63.4,False
+BNE,YBBN,Brisbane International Airport,Brisbane,-27.384199142456055,153.11700439453125,12.8,True
+BNE,YBBN,Brisbane International Airport,Gold Coast,-27.384199142456055,153.11700439453125,75.2,False
+OOL,YBCG,Gold Coast Airport,Brisbane,-28.1644001007,153.505004883,90.5,False
+OOL,YBCG,Gold Coast Airport,Gold Coast,-28.1644001007,153.505004883,19.6,True
+CNS,YBCS,Cairns International Airport,Cairns,-16.885799408,145.755004883,4.4,True
+MCY,YBMC,Sunshine Coast Airport,Brisbane,-26.6033,153.091003,96.3,True
+AVV,YMAV,Avalon Airport,Melbourne,-38.039398,144.468994,50.1,True
+MEB,YMEN,Melbourne Essendon Airport,Melbourne,-37.7281,144.901993,11.0,True
+HBA,YMHB,Hobart International Airport,Hobart,-42.836101532,147.509994507,15.5,True
+MBW,YMMB,Melbourne Moorabbin Airport,Melbourne,-37.975799560546875,145.1020050048828,21.7,True
+MEL,YMML,Melbourne International Airport,Melbourne,-37.673302,144.843002,18.9,True
+ADL,YPAD,Adelaide International Airport,Adelaide,-34.945,138.531006,6.4,True
+JAD,YPJT,Perth Jandakot Airport,Perth,-32.09749984741211,115.88099670410156,16.3,True
+PER,YPPH,Perth International Airport,Perth,-31.94029998779297,115.96700286865234,10.1,True
+BWU,YSBK,Sydney Bankstown Airport,Sydney,-33.924400329589844,150.98800659179688,21.2,True
+CDU,YSCN,Camden Airport,Sydney,-34.04029846191406,150.68699645996094,51.7,True
+XRH,YSRI,RAAF Base Richmond,Sydney,-33.600601,150.781006,49.4,True
+SYD,YSSY,Sydney Kingsford Smith International Airport,Sydney,-33.94609832763672,151.177001953125,9.1,True
+PEK,ZBAA,Beijing Capital International Airport,Beijing,40.080101013183594,116.58499908447266,25.0,True
+KWL,ZGKL,Guilin Liangjiang International Airport,Guilin,25.21809959411621,110.03900146484375,26.8,True
+SZX,ZGSZ,Shenzhen Bao'an International Airport,Hong Kong,22.639299392700195,113.81099700927734,54.8,True
+SZX,ZGSZ,Shenzhen Bao'an International Airport,Macau,22.639299392700195,113.81099700927734,55.9,False
+XIY,ZLXY,Xi'an Xianyang International Airport,Xi'an,34.447102,108.751999,26.5,True
+ULN,ZMUB,Chinggis Khaan International Airport,Ulaanbaatar,47.843102,106.766998,11.3,True
+KMG,ZPPP,Kunming Changshui International Airport,Kunming,25.1019444,102.9291667,22.4,True
+HGH,ZSHC,Hangzhou Xiaoshan International Airport,Hangzhou,30.22949981689453,120.43399810791016,27.1,True
+SHA,ZSSS,Shanghai Hongqiao International Airport,Shanghai,31.197900772094727,121.33599853515625,11.9,True
+SHA,ZSSS,Shanghai Hongqiao International Airport,Suzhou,31.197900772094727,121.33599853515625,71.4,False
+CTU,ZUUU,Chengdu Shuangliu International Airport,Chengdu,30.578500747680664,103.9469985961914,15.1,True
+PVG,ZSPD,Shanghai Pudong International Airport,Shanghai,31.143400192260742,121.80500030517578,34.1,True
+SZB,WMSA,Sultan Abdul Aziz Shah International Airport,Kuala Lumpur,3.130579948425293,101.54900360107422,15.3,True
+NTQ,RJNW,Noto Airport,Kanazawa,37.2930984497,136.962005615,83.0,True
+HBE,HEBA,Borg El Arab International Airport,Alexandria,30.917699813842773,29.696399688720703,37.9,True
+ORL,KORL,Orlando Executive Airport,Orlando,28.5455,-81.332901,4.6,True
+BED,KBED,Laurence G Hanscom Field,Boston,42.47000122,-71.28900146,22.5,True
+SVN,KSVN,Hunter Army Air Field,Savannah,32.00999832,-81.14569855,9.2,True
+TTN,KTTN,Trenton Mercer Airport,New York City,40.27669906616211,-74.8134994506836,83.8,False
+TTN,KTTN,Trenton Mercer Airport,Philadelphia,40.27669906616211,-74.8134994506836,46.8,True
+BOS,KBOS,General Edward Lawrence Logan International Airport,Boston,42.36429977,-71.00520325,4.5,True
+SUU,KSUU,Travis Air Force Base,San Francisco,38.262699127197,-121.92700195312,69.3,True
+OAK,KOAK,Metropolitan Oakland International Airport,San Francisco,37.721298,-122.221001,18.4,True
+FXE,KFXE,Fort Lauderdale Executive Airport,Miami,26.1972999573,-80.1707000732,47.1,True
+HWO,KHWO,North Perry Airport,Miami,26.0012,-80.2407,25.7,True
+SFO,KSFO,San Francisco International Airport,San Francisco,37.61899948120117,-122.375,17.8,True
+LAX,KLAX,Los Angeles International Airport,Los Angeles,33.94250107,-118.4079971,19.5,True
+DOV,KDOV,Dover Air Force Base,Philadelphia,39.12950134,-75.46600342,95.1,True
+FME,KFME,Tipton Airport,Washington,39.08539962769999,-76.7593994141,31.9,True
+EWR,KEWR,Newark Liberty International Airport,New York City,40.692501068115234,-74.168701171875,13.9,True
+INS,KINS,Creech Air Force Base,Las Vegas,36.587200164799995,-115.672996521,66.3,True
+HHI,PHHI,Wheeler Army Airfield,Honolulu,21.48349953,-158.0399933,27.2,True
+NKX,KNKX,Miramar Marine Corps Air Station - Mitscher Field,San Diego,32.86840057,-117.1429977,17.1,True
+HHR,KHHR,Jack Northrop Field Hawthorne Municipal Airport,Los Angeles,33.922798,-118.334999,16.7,True
+NTD,KNTD,Point Mugu Naval Air Station (Naval Base Ventura Co),Los Angeles,34.120300293,-119.121002197,81.1,True
+HOP,KHOP,Campbell AAF (Fort Campbell) Air Field,Nashville,36.668598175,-87.49620056150002,84.7,True
+DCA,KDCA,Ronald Reagan Washington National Airport,Washington,38.8521,-77.037697,4.8,True
+NHK,KNHK,Patuxent River Naval Air Station (Trapnell Field),Washington,38.285999,-76.411797,86.8,True
+ACY,KACY,Atlantic City International Airport,Philadelphia,39.45759963989258,-74.57720184326172,74.5,True
+GRF,KGRF,Gray Army Air Field,Seattle,47.07920074,-122.5810013,61.5,True
+FLL,KFLL,Fort Lauderdale Hollywood International Airport,Miami,26.072599,-80.152702,33.4,True
+MSS,KMSS,Massena International Richards Field,Ottawa,44.93579864501953,-74.84559631347656,85.2,True
+ADW,KADW,Joint Base Andrews,Washington,38.810799,-76.866997,17.4,True
+VCV,KVCV,Southern California Logistics Airport,Los Angeles,34.597499847399995,-117.383003235,99.6,True
+BFK,KBKF,Buckley Air Force Base,Denver,39.701698303200004,-104.751998901,20.3,True
+NUW,KNUW,Whidbey Island Naval Air Station (Ault Field),Seattle,48.351799,-122.655998,86.3,False
+NUW,KNUW,Whidbey Island Naval Air Station (Ault Field),Victoria,48.351799,-122.655998,52.2,True
+MIA,KMIA,Miami International Airport,Miami,25.79319953918457,-80.29060363769531,9.9,True
+SEA,KSEA,Seattle Tacoma International Airport,Seattle,47.449001,-122.308998,17.6,True
+BDR,KBDR,Igor I Sikorsky Memorial Airport,New York City,41.16350173950195,-73.1261978149414,89.2,True
+LGB,KLGB,Long Beach /Daugherty Field/ Airport,Los Angeles,33.81769943,-118.1520004,27.4,True
+HDH,PHDH,Dillingham Airfield,Honolulu,21.5795001984,-158.197006226,46.3,True
+HPN,KHPN,Westchester County Airport,New York City,41.06700134277344,-73.70760345458984,46.6,True
+LNA,KLNA,Palm Beach County Park Airport,Miami,26.59300041,-80.08509827,91.7,True
+NZY,KNZY,North Island Naval Air Station-Halsey Field,San Diego,32.69919968,-117.2149963,5.0,True
+SAV,KSAV,Savannah Hilton Head International Airport,Savannah,32.12760162,-81.20210266,10.8,True
+SAT,KSAT,San Antonio International Airport,San Antonio,29.533700942993164,-98.46980285644531,12.4,True
+COF,KCOF,Patrick Air Force Base,Orlando,28.2348995209,-80.6100997925,82.5,True
+TEB,KTEB,Teterboro Airport,New York City,40.85010147089999,-74.060798645,15.8,True
+IAG,KIAG,Niagara Falls International Airport,Toronto,43.1072998046875,-78.94619750976562,76.0,True
+LIY,KLHW,Wright AAF (Fort Stewart)/Midcoast Regional Airport,Savannah,31.889099,-81.562303,48.7,True
+IKK,KIKK,Greater Kankakee Airport,Chicago,41.07139968869999,-87.8462982178,88.1,True
+PVD,KPVD,Theodore Francis Green State Airport,Boston,41.732601,-71.420403,75.7,True
+BUR,KBUR,Bob Hope Airport,Los Angeles,34.20069885253906,-118.35900115966797,19.6,True
+WRI,KWRI,Mc Guire Air Force Base,New York City,40.0155983,-74.59169769,92.2,False
+WRI,KWRI,Mc Guire Air Force Base,Philadelphia,40.0155983,-74.59169769,49.2,True
+SWF,KSWF,Stewart International Airport,New York City,41.50410079956055,-74.10479736328125,88.2,True
+MLB,KMLB,Melbourne International Airport,Orlando,28.102800369262695,-80.64530181884766,86.6,True
+TCM,KTCM,McChord Air Force Base,Seattle,47.1376991272,-122.475997925,53.2,True
+AUS,KAUS,Austin Bergstrom International Airport,Austin,30.194499969482422,-97.6698989868164,10.7,True
+HLR,KHLR,Hood Army Air Field,Austin,31.138700485199998,-97.71450042720001,97.0,True
+MIV,KMIV,Millville Municipal Airport,Philadelphia,39.367802,-75.072197,65.5,True
+BNA,KBNA,Nashville International Airport,Nashville,36.1245002746582,-86.6781997680664,10.6,True
+LGA,KLGA,La Guardia Airport,New York City,40.77719879,-73.87259674,13.2,True
+DPA,KDPA,Dupage Airport,Chicago,41.90779877,-88.24859619,50.0,True
+MKK,PHMK,Molokai Airport,Honolulu,21.15290069580078,-157.0959930419922,80.9,True
+IAD,KIAD,Washington Dulles International Airport,Washington,38.94449997,-77.45580292,36.7,True
+PDX,KPDX,Portland International Airport,Portland,45.58869934,-122.5979996,9.5,True
+TNT,KTNT,Dade Collier Training and Transition Airport,Miami,25.861799240112,-80.897003173828,71.1,True
+OGS,KOGS,Ogdensburg International Airport,Ottawa,44.6819000244,-75.46549987790002,83.1,True
+FMH,KFMH,Cape Cod Coast Guard Air Station,Boston,41.6584014893,-70.5214004517,89.7,True
+BFI,KBFI,Boeing Field King County International Airport,Seattle,47.529998779296875,-122.302001953125,8.8,True
+SKF,KSKF,Lackland Air Force Base,San Antonio,29.38419914,-98.58110046,9.6,True
+HNL,PHNL,Daniel K Inouye International Airport,Honolulu,21.32062,-157.924228,7.0,True
+SAN,KSAN,San Diego International Airport,San Diego,32.7336006165,-117.190002441,3.1,True
+ONT,KONT,Ontario International Airport,Los Angeles,34.055999755859375,-117.60099792480469,59.2,True
+NQX,KNQX,Naval Air Station Key West/Boca Chica Field,Key West,24.57579994,-81.68890381,9.7,True
+MDW,KMDW,Chicago Midway International Airport,Chicago,41.785999,-87.752403,11.1,True
+SJC,KSJC,Norman Y. Mineta San Jose International Airport,San Francisco,37.362598,-121.929001,63.0,True
+PNE,KPNE,Northeast Philadelphia Airport,Philadelphia,40.081902,-75.010597,19.4,True
+DEN,KDEN,Denver International Airport,Denver,39.861698150635,-104.672996521,29.9,True
+PHL,KPHL,Philadelphia International Airport,Philadelphia,39.87189865112305,-75.24109649658203,11.1,True
+PMD,KPMD,Palmdale Regional/USAF Plant 42 Airport,Los Angeles,34.62939835,-118.0849991,65.8,True
+RND,KRND,Randolph Air Force Base,Austin,29.52969933,-98.27890015,96.9,False
+RND,KRND,Randolph Air Force Base,San Antonio,29.52969933,-98.27890015,23.9,True
+NBG,KNBG,New Orleans NAS JRB/Alvin Callender Field,New Orleans,29.82530022,-90.03500366,14.9,True
+BFT,KARW,Beaufort County Airport,Savannah,32.4122009277,-80.6343994141,57.0,True
+BFT,KARW,Beaufort County Airport,Charleston,32.4122009277,-80.6343994141,77.2,False
+PBG,KPBG,Plattsburgh International Airport,Montreal,44.650901794433594,-73.46810150146484,95.9,True
+APG,KAPG,Phillips Army Air Field,Washington,39.466202,-76.1688,98.1,True
+GRK,KGRK,Robert Gray  Army Air Field Airport,Austin,31.067199707,-97.82890319820001,89.3,True
+BLI,KBLI,Bellingham International Airport,Vancouver,48.79280090332031,-122.53800201416016,66.2,True
+BLI,KBLI,Bellingham International Airport,Victoria,48.79280090332031,-122.53800201416016,71.8,False
+SFZ,KSFZ,North Central State Airport,Boston,41.9207992554,-71.49140167239999,60.3,True
+NUQ,KNUQ,Moffett Federal Airfield,San Francisco,37.4161,-122.049004,51.5,True
+SAF,KSAF,Santa Fe Municipal Airport,Santa Fe,35.617099762,-106.088996887,15.7,True
+OPF,KOPF,Opa-locka Executive Airport,Miami,25.907,-80.278397,17.0,True
+JFK,KJFK,John F Kennedy International Airport,New York City,40.63980103,-73.77890015,20.9,True
+HST,KHST,Homestead ARB Airport,Miami,25.48859978,-80.38359833,37.0,True
+RAL,KRAL,Riverside Municipal Airport,Los Angeles,33.95190048,-117.4449997,74.5,True
+NXX,KNXX,Willow Grove Naval Air Station/Joint Reserve Base,Philadelphia,40.19979858,-75.14820099,27.5,True
+CHS,KCHS,Charleston Air Force Base-International Airport,Charleston,32.89860153,-80.04049683,16.9,True
+NEL,KNEL,Lakehurst Maxfield Field Airport,New York City,40.03329849,-74.353302,81.2,False
+NEL,KNEL,Lakehurst Maxfield Field Airport,Philadelphia,40.03329849,-74.353302,69.6,True
+LSV,KLSV,Nellis Air Force Base,Las Vegas,36.2361984253,-115.033996582,11.5,True
+RIV,KRIV,March ARB Airport,Los Angeles,33.880699,-117.259003,92.8,True
+UGN,KUGN,Waukegan National Airport,Chicago,42.422199249268,-87.867897033691,66.1,True
+PAE,KPAE,Snohomish County (Paine Field) Airport,Seattle,47.90629959,-122.2819977,33.6,True
+PAE,KPAE,Snohomish County (Paine Field) Airport,Victoria,47.90629959,-122.2819977,98.8,False
+ORD,KORD,Chicago O'Hare International Airport,Chicago,41.9786,-87.9048,25.5,True
+BCT,KBCT,Boca Raton Airport,Miami,26.3784999847,-80.1076965332,67.7,True
+NGF,PHNG,Kaneohe Bay MCAS (Marion E. Carl Field) Airport,Honolulu,21.4505004883,-157.768005371,18.5,True
+BWI,KBWI,Baltimore/Washington International Thurgood Marshall Airport,Washington,39.1754,-76.668297,44.5,True
+ISP,KISP,Long Island Mac Arthur Airport,New York City,40.79520035,-73.10019684,76.8,True
+ILG,KILG,New Castle Airport,Philadelphia,39.67869949,-75.60649872,48.5,True
+MSY,KMSY,Louis Armstrong New Orleans International Airport,New Orleans,29.99340057373047,-90.25800323486328,18.1,True
+SNA,KSNA,John Wayne Airport-Orange County Airport,Los Angeles,33.67570114,-117.8679962,54.4,True
+TMB,KTMB,Kendall-Tamiami Executive Airport,Miami,25.6478996277,-80.432800293,27.8,True
+EYW,KEYW,Key West International Airport,Key West,24.556100845336914,-81.75959777832031,2.2,True
+LAS,KLAS,McCarran International Airport,Las Vegas,36.08010101,-115.1520004,10.6,True
+MCO,KMCO,Orlando International Airport,Orlando,28.429399490356445,-81.30899810791016,13.9,True
+BKK,VTBS,Suvarnabhumi Airport,Bangkok,13.681099891662598,100.74700164794922,27.7,True
+BKK,VTBS,Suvarnabhumi Airport,Pattaya,13.681099891662598,100.74700164794922,84.4,False
+JOG,WARJ,Adi Sutjipto International Airport,Yogyakarta,-7.788179874420166,110.43199920654297,7.6,True
+SRG,WARS,Achmad Yani Airport,Yogyakarta,-6.97273,110.375,92.1,True
+BTH,WIDD,Hang Nadim International Airport,Singapore,1.12102997303,104.119003296,35.3,True
+TNJ,WIDN,Raja Haji Fisabilillah International Airport,Singapore,0.922683000565,104.531997681,86.1,True
+AMI,WADA,Selaparang Airport,Denpasar,-8.560709953309999,116.095001221,97.1,True
+SOC,WARQ,Adi Sumarmo Wiryokusumo Airport,Yogyakarta,-7.516089916229248,110.75700378417969,53.6,True
+ICN,RKSI,Incheon International Airport,Seoul,37.46910095214844,126.45099639892578,47.7,True
+CNX,VTCC,Chiang Mai International Airport,Chiang Mai,18.766799926799997,98.962600708,3.5,True
+CEI,VTCT,Chiang Rai International Airport,Chiang Rai,19.952299118,99.88289642330001,7.2,True
+DPS,WADD,Ngurah Rai (Bali) International Airport,Denpasar,-8.7481698989868,115.16699981689,12.2,True
+ATH,LGAV,Eleftherios Venizelos International Airport,Athens,37.9364013672,23.9444999695,19.7,True
+NGO,RJGG,Chubu Centrair International Airport,Kyoto,34.8583984375,136.80499267578125,97.5,False
+NGO,RJGG,Chubu Centrair International Airport,Nara,34.8583984375,136.80499267578125,93.4,True
+UKB,RJBE,Kobe Airport,Kyoto,34.6328010559082,135.2239990234375,64.8,False
+UKB,RJBE,Kobe Airport,Osaka,34.6328010559082,135.2239990234375,26.2,True
+UKB,RJBE,Kobe Airport,Nara,34.6328010559082,135.2239990234375,53.4,False
+DAB,KDAB,Daytona Beach International Airport,Orlando,29.179899,-81.058098,77.9,True
+RIX,EVRA,Riga International Airport,Riga,56.92359924316406,23.971099853515625,8.5,True
+KUN,EYKA,Kaunas International Airport,Vilnius,54.96390151977539,24.084800720214844,82.4,True
+VNO,EYVI,Vilnius International Airport,Vilnius,54.634102,25.285801,6.1,True
+EVN,UDYZ,Zvartnots International Airport,Yerevan,40.1473007202,44.3959007263,10.5,True
+LWN,UDSG,Gyumri Shirak Airport,Yerevan,40.7504005432,43.859298706100006,84.3,True
+BUS,UGSB,Batumi International Airport,Batumi,41.6102981567,41.5997009277,4.3,True
+KUT,UGKO,Kopitnari Airport,Batumi,42.176700592,42.4826011658,92.3,True
+TBS,UGTB,Tbilisi International Airport,Tbilisi,41.6692008972,44.95470047,10.3,True
+EZE,SAEZ,Ministro Pistarini International Airport,Buenos Aires,-34.8222,-58.5358,27.4,True
+HEW,LGAT,Athen Helenikon Airport,Athens,37.893299,23.726101,10.1,True
+KIX,RJBB,Kansai International Airport,Kyoto,34.42729949951172,135.24400329589844,80.8,False
+KIX,RJBB,Kansai International Airport,Osaka,34.42729949951172,135.24400329589844,37.8,True
+KIX,RJBB,Kansai International Airport,Nara,34.42729949951172,135.24400329589844,58.8,False
+JRB,KJRB,Downtown-Manhattan/Wall St Heliport,New York City,40.70119858,-74.00900269,1.5,True
+TAG,RPVT,Tagbilaran Airport,Cebu City,9.665442,123.853533,72.5,True
+PMI,LEPA,Palma De Mallorca Airport,Palma,39.551700592,2.73881006241,7.8,True
+MHT,KMHT,Manchester-Boston Regional Airport,Boston,42.932598,-71.435699,70.9,True
+ABQ,KABQ,Albuquerque International Sunport,Santa Fe,35.040199,-106.609001,94.2,True
+SSH,HESH,Sharm El Sheikh International Airport,Sharm el-Sheikh,27.9773006439,34.3950004578,9.4,True
+SSH,HESH,Sharm El Sheikh International Airport,Hurghada,27.9773006439,34.3950004578,98.5,False
+NBO,HKJK,Jomo Kenyatta International Airport,Nairobi,-1.31923997402,36.9277992249,13.0,True
+VNY,KVNY,Van Nuys Airport,Los Angeles,34.209800720215,-118.48999786377,28.7,True
+PPT,NTAA,Faa'a International Airport,Papeete,-17.553699,-149.606995,4.6,True
+CLD,KCRQ,Mc Clellan-Palomar Airport,San Diego,33.12829971,-117.2799988,47.1,True
+FNC,LPMA,Madeira Airport,Funchal,32.697899,-16.7745,14.6,True
+PCN,NZPN,Picton Aerodrome,Wellington,-41.346099853516,173.95599365234,68.8,True
+YWH,CYWH,Victoria Harbour Seaplane Base,Vancouver,48.4249858939,-123.388867378,93.8,False
+YWH,CYWH,Victoria Harbour Seaplane Base,Victoria,48.4249858939,-123.388867378,3.0,True
+CRK,RPLC,Diosdado Macapagal International Airport,Manila,15.186,120.559998,79.0,True
+ODY,VLOS,Oudomsay Airport,Luang Prabang,20.68269920349121,101.99400329589844,89.3,True
+DLI,VVDL,Lien Khuong Airport,Dalat,11.75,108.366997,23.3,True
+VCL,VVCA,Chu Lai International Airport,Da Nang,15.403300285299999,108.706001282,90.3,False
+VCL,VVCA,Chu Lai International Airport,Hoi An,15.403300285299999,108.706001282,66.2,True
+TBB,VVTH,Dong Tac Airport,Nha Trang,13.049599647500001,109.333999634,90.7,True
+PYY,VTCI,Mae Hong Son Airport,Chiang Mai,19.3719997406,98.43699646,86.6,True
+BWK,LDSB,Bol Airport,Split,43.285701751708984,16.67970085144043,31.5,True
+BWK,LDSB,Bol Airport,Mostar,43.285701751708984,16.67970085144043,91.5,False
+AAH,EDKA,Aachen-Merzbrück Airport,Cologne,50.823055267333984,6.186388969421387,55.0,True
+FKB,EDSB,Karlsruhe Baden-Baden Airport,Strasbourg,48.7793998718,8.08049964905,32.8,True
+FKB,EDSB,Karlsruhe Baden-Baden Airport,Heidelberg,48.7793998718,8.08049964905,82.8,False
+SFB,KSFB,Orlando Sanford International Airport,Orlando,28.777599334716797,-81.23750305175781,30.0,True
+JMO,VNJS,Jomsom Airport,Pokhara,28.780426,83.723,61.9,True
+NGX,VNMA,Manang Airport,Pokhara,28.641399,84.089203,43.3,True
+JKL,LGKY,Kalymnos Airport,Bodrum,36.9632987976,26.9405994415,44.2,True
+NRN,EDLV,Weeze Airport,Cologne,51.6024017334,6.14216995239,93.2,False
+NRN,EDLV,Weeze Airport,Utrecht,51.6024017334,6.14216995239,88.6,True
+CEB,RPVM,Mactan Cebu International Airport,Cebu City,10.307499885559,123.97899627686,9.7,True
+APA,KAPA,Centennial Airport,Denver,39.57009888,-104.848999,22.1,True
+LVS,KLVS,Las Vegas Municipal Airport,Santa Fe,35.6542015076,-105.141998291,72.0,True
+FNL,KFNL,Northern Colorado Regional Airport,Denver,40.451804,-105.011,79.3,True
+BNK,YBNA,Ballina Byron Gateway Airport,Gold Coast,-28.8339004517,153.56199646,93.6,True
+NZJ,KNZJ,El Toro Marine Corps Air Station,Los Angeles,33.67610168457031,-117.73100280761719,63.2,True
+AGT,SGES,Guarani International Airport,Foz do Iguacu,-25.454516,-54.842682,27.6,True
+AOI,LIPY,Ancona Falconara Airport,Perugia,43.616299,13.3623,96.6,True
+BJV,LTFE,Milas Bodrum International Airport,Bodrum,37.25059890749999,27.6643009186,31.5,True
+SAW,LTFJ,Sabiha Gökçen International Airport,Istanbul,40.898601532,29.3092002869,32.8,True
+KLU,LOWK,Klagenfurt Airport,Ljubljana,46.642502,14.3377,67.0,True
+KLU,LOWK,Klagenfurt Airport,Graz,46.642502,14.3377,96.3,False
+FBU,ENFB,"Oslo, Fornebu Airport",Oslo,59.89580154418945,10.617199897766113,7.4,True
+ABE,KABE,Lehigh Valley International Airport,Philadelphia,40.652099609375,-75.44080352783203,81.3,True
+HHP,VHST,Shun Tak Heliport,Hong Kong,22.2893714905,114.152153015,2.6,True
+HHP,VHST,Shun Tak Heliport,Macau,22.2893714905,114.152153015,63.2,False
+CXH,CYHC,Vancouver Harbour Water Aerodrome,Vancouver,49.2943992615,-123.111000061,5.0,True
+CXH,CYHC,Vancouver Harbour Water Aerodrome,Victoria,49.2943992615,-123.111000061,97.1,False
+HEI,EDXB,Heide-Büsum Airport,Hamburg,54.153331756600004,8.90166664124,98.0,True
+NQT,EGBN,Nottingham Airport,Manchester,52.91999816894531,-1.0791699886322021,99.2,True
+DSA,EGCN,Robin Hood Doncaster Sheffield Airport,York,53.4805378105,-1.01065635681,53.3,True
+DSA,EGCN,Robin Hood Doncaster Sheffield Airport,Manchester,53.4805378105,-1.01065635681,81.2,False
+CAL,EGEC,Campbeltown Airport,Belfast,55.437198638916016,-5.686389923095703,94.7,True
+SOJ,ENSR,Sørkjosen Airport,Tromso,69.786796569824,20.959400177002,78.8,True
+AGH,ESTA,Ängelholm-Helsingborg Airport,Copenhagen,56.29610061645508,12.847100257873535,71.1,True
+AGH,ESTA,Ängelholm-Helsingborg Airport,Malmo,56.29610061645508,12.847100257873535,77.3,False
+QRA,FAGM,Rand Airport,Johannesburg,-26.2425003052,28.1511993408,11.6,True
+ESU,GMMI,Mogador Airport,Essaouira,31.3974990845,-9.6816701889,15.3,True
+BQK,KBQK,Brunswick Golden Isles Airport,Savannah,31.258800506591797,-81.46649932861328,98.1,True
+CLM,KCLM,William R Fairchild International Airport,Victoria,48.120201110839844,-123.5,36.8,True
+EWB,KEWB,New Bedford Regional Airport,Boston,41.67610168457031,-70.95690155029297,76.3,True
+LNS,KLNS,Lancaster Airport,Philadelphia,40.121700286865234,-76.29609680175781,98.2,True
+PSM,KPSM,Portsmouth International at Pease Airport,Boston,43.0778999329,-70.8233032227,82.3,True
+RDG,KRDG,Reading Regional Carl A Spaatz Field,Philadelphia,40.378501892089844,-75.96520233154297,83.0,True
+ECN,LCEN,Ercan International Airport,Nicosia,35.154701232910156,33.49610137939453,13.1,True
+ECN,LCEN,Ercan International Airport,Limassol,35.154701232910156,33.49610137939453,67.0,False
+RJL,LELO,Logroño-Agoncillo Airport,San Sebastian,42.4609534888,-2.32223510742,98.9,True
+LTT,LFTZ,La Môle Airport,Nice,43.205399,6.482,84.1,False
+LTT,LFTZ,La Môle Airport,Marseille,43.205399,6.482,89.7,False
+LTT,LFTZ,La Môle Airport,Cannes,43.205399,6.482,57.6,True
+AOT,LIMW,Aosta Airport,Turin,45.738499,7.36872,78.3,True
+QSR,LIRI,Salerno Costa d'Amalfi Airport,Naples,40.620399,14.9113,60.0,True
+AZS,MDCY,Samaná El Catey International Airport,Santo Domingo,19.2670001984,-69.7419967651,89.8,True
+JBQ,MDJB,La Isabela International Airport,Santo Domingo,18.572500228881836,-69.98560333251953,14.9,True
+AAZ,MGQZ,Quezaltenango Airport,Antigua Guatemala,14.8656,-91.501999,89.5,True
+CYW,MMCY,Captain Rogelio Castillo National Airport,Guanajuato,20.546,-100.887001,65.3,False
+CYW,MMCY,Captain Rogelio Castillo National Airport,San Miguel de Allende,20.546,-100.887001,43.7,True
+ONX,MPEJ,Enrique Adolfo Jimenez Airport,Panama City,9.356639862060547,-79.86740112304688,55.6,True
+TTQ,MRAO,Aerotortuguero Airport,San Jose,10.42,-83.6095,75.0,True
+SYQ,MRPV,Tobias Bolanos International Airport,San Jose,9.957050323486328,-84.13980102539062,6.5,True
+PID,MYPI,Nassau Paradise Island Airport,Nassau,25.08300018310547,-77.30000305175781,5.1,True
+PTF,NFFO,Malolo Lailai Island Airport,Nadi,-17.7779006958,177.197006226,23.4,True
+MNF,NFMA,Mana Island Airport,Nadi,-17.6730995178,177.098007202,36.7,True
+AAN,OMAL,Al Ain International Airport,Dubai,24.261699676513672,55.60919952392578,95.6,True
+LUP,PHLU,Kalaupapa Airport,Honolulu,21.21100044,-156.973999,92.3,True
+OKD,RJCO,Okadama Airport,Sapporo,43.117447,141.38134,6.2,True
+HSG,RJFS,Saga Airport,Fukuoka,33.149700164799995,130.302001953,51.2,True
+HSG,RJFS,Saga Airport,Nagasaki,33.149700164799995,130.302001953,59.2,False
+IWJ,RJOW,Iwami Airport,Hiroshima,34.676399231,131.789993286,67.8,True
+FKS,RJSF,Fukushima Airport,Nikko,37.22740173339844,140.43099975585938,89.7,True
+KUV,RKJK,Kunsan Air Base,Jeonju,35.90380096435547,126.61599731445312,48.7,True
+WJU,RKNW,Wonju/Hoengseong Air Base (K-38/K-46),Seoul,37.441201,127.963858,88.0,True
+HIN,RKPS,Sacheon Air Base/Airport,Busan,35.088591,128.071747,87.2,True
+SFS,RPLB,Subic Bay International Airport,Manila,14.794400215148926,120.27100372314453,79.4,True
+SOD,SDCO,Sorocaba Airport,Sao Paulo,-23.478001,-47.490002,87.4,True
+UDJ,UKLU,Uzhhorod International Airport,Kosice,48.634300231933594,22.263399124145508,74.4,True
+LPS,S31,Lopez Island Airport,Vancouver,48.4838981628418,-122.93800354003906,86.2,False
+LPS,S31,Lopez Island Airport,Victoria,48.4838981628418,-122.93800354003906,31.0,True
+KCT,VCCK,Koggala Airport,Galle,5.993680000305176,80.32029724121094,13.5,True
+BBM,VDBG,Battambang Airport,Siem Reap,13.095600128173828,103.2239990234375,75.0,True
+HOE,VLHS,Ban Huoeisay Airport,Chiang Rai,20.2572994232,100.43699646,74.1,True
+BHR,VNBP,Bharatpur Airport,Kathmandu,27.678101,84.429398,87.8,False
+BHR,VNBP,Bharatpur Airport,Pokhara,27.678101,84.429398,79.6,True
+MEY,VNMG,Meghauli Airport,Pokhara,27.5774,84.22875,80.8,True
+BMV,VVBM,Buon Ma Thuot Airport,Dalat,12.668299675,108.120002747,87.6,True
+HPH,VVCI,Cat Bi International Airport,Hanoi,20.819400787353516,106.7249984741211,94.6,True
+CXR,VVCR,Cam Ranh Airport,Nha Trang,11.998200416564941,109.21900177001953,27.6,True
+CXR,VVCR,Cam Ranh Airport,Dalat,11.998200416564941,109.21900177001953,84.7,False
+LSY,YLIS,Lismore Airport,Gold Coast,-28.8302993774,153.259994507,93.8,True
+WOL,YWOL,Wollongong Airport,Sydney,-34.561100006103516,150.78900146484375,86.1,True
+NAY,ZBNY,Beijing Nanyuan Airport,Beijing,39.782798767089844,116.38800048828125,13.9,True
+ZUH,ZGSD,Zhuhai Jinwan Airport,Hong Kong,22.006399,113.375999,87.6,False
+ZUH,ZGSD,Zhuhai Jinwan Airport,Macau,22.006399,113.375999,27.8,True
+WUX,ZSWX,Sunan Shuofang International Airport,Suzhou,31.494400024399997,120.429000854,26.4,True
+IOR,EIIM,Inishmore Aerodrome,Galway,53.1067008972168,-9.653610229492188,44.2,True
+NNR,EICA,Connemara Regional Airport,Galway,53.23030090332031,-9.467780113220215,28.1,True
+ORH,KORH,Worcester Regional Airport,Boston,42.26729965209961,-71.87570190429688,67.9,True
+PWT,KPWT,Bremerton National Airport,Seattle,47.490200042725,-122.76499938965,35.0,True
+PVC,KPVC,Provincetown Municipal Airport,Boston,42.0718994141,-70.2213973999,76.0,True
+OBN,EGEO,Oban Airport,Glasgow,56.4635009765625,-5.399670124053955,97.1,True
+CVF,LFLJ,Courchevel Airport,Geneva,45.39670181274414,6.6347198486328125,97.3,False
+CVF,LFLJ,Courchevel Airport,Turin,45.39670181274414,6.6347198486328125,90.0,True
+FUL,KFUL,Fullerton Municipal Airport,Los Angeles,33.8720016479,-117.980003357,31.5,True
+NVI,UTSA,Navoi Airport,Bukhara,40.1171989440918,65.1707992553711,74.0,True
+FON,MRAN,Arenal Airport,San Jose,10.478,-84.634499,85.3,True
+CQD,OIFS,Shahrekord Airport,Isfahan,32.2971992493,50.842201232899995,87.5,True
+PDP,SULS,Capitan Corbeta CA Curbelo International Airport,Montevideo,-34.855098724365234,-55.09429931640625,99.9,True
+TEQ,LTBU,Tekirdağ Çorlu Airport,Istanbul,41.13819885253906,27.919099807739258,87.5,True
+YEI,LTBR,Bursa Yenişehir Airport,Istanbul,40.2551994324,29.5625991821,99.0,True
+VQS,TJCG,Vieques Airport,San Juan,18.115800857500002,-65.4226989746,82.0,True
+HOH,LOIH,Hohenems-Dornbirn Airport,Zurich,47.3849983215,9.69999980927,86.6,True
+CPX,TJCP,Benjamin Rivera Noriega Airport,San Juan,18.313289,-65.304324,86.3,True
+OCN,KOKB,Oceanside Municipal Airport,San Diego,33.217300415039,-117.35399627686,58.5,True
+XJD,OTBH,Al Udeid Air Base,Doha,25.1173000336,51.3149986267,28.7,True
+GBZ,NZGB,Great Barrier Aerodrome,Auckland,-36.24140167236328,175.4720001220703,92.5,True
+MGC,KMGC,Michigan City Municipal Airport,Chicago,41.703300476100004,-86.8211975098,70.6,True
+QSA,LELL,Sabadell Airport,Barcelona,41.52090072631836,2.1050798892974854,15.4,True
+QSA,LELL,Sabadell Airport,Girona,41.52090072631836,2.1050798892974854,78.8,False
+VGT,KVGT,North Las Vegas Airport,Las Vegas,36.21070098877,-115.19400024414,6.5,True
+ENW,KENW,Kenosha Regional Airport,Chicago,42.59569931,-87.92780304,86.0,True
+LYM,EGMK,Lympne Airport,London,51.08,1.013,92.4,False
+LYM,EGMK,Lympne Airport,Brighton,51.08,1.013,85.4,False
+LYM,EGMK,Lympne Airport,Canterbury,51.08,1.013,22.6,True
+PKH,LGHL,Porto Cheli Airport,Athens,37.297501,23.1478,91.8,True
+ARE,TJAB,Antonio Nery Juarbe Pol Airport,San Juan,18.4500007629,-66.6753005981,60.1,True
+QLS,LSGL,Lausanne-Blécherette Airport,Geneva,46.54529953,6.61667013168,52.5,True
+QLS,LSGL,Lausanne-Blécherette Airport,Bern,46.54529953,6.61667013168,77.5,False
+ZJI,LSZL,Locarno Airport,Milan,46.160800933800004,8.87860965729,81.1,True
+QNC,LSGN,Neuchatel Airport,Bern,46.9575004578,6.86471986771,44.2,True
+TZL,LQTZ,Tuzla International Airport,Sarajevo,44.45869827270508,18.72480010986328,73.9,True
+GYY,KGYY,Gary Chicago International Airport,Chicago,41.61629867553711,-87.41280364990234,32.6,True
+OXR,KOXR,Oxnard Airport,Los Angeles,34.200801849365,-119.20700073242,90.2,True
+RHP,VNRC,Ramechhap Airport,Kathmandu,27.393999099731445,86.0614013671875,80.7,True
+STS,KSTS,Charles M. Schulz Sonoma County Airport,San Francisco,38.50899887,-122.8130035,88.6,True
+ISM,KISM,Kissimmee Gateway Airport,Orlando,28.2898006439,-81.4371032715,28.2,True
+ERV,KERV,Kerrville Municipal Louis Schreiner Field,San Antonio,29.9766998291,-99.08570098879999,83.9,True
+AVX,KAVX,Catalina Airport,Los Angeles,33.4049,-118.416,73.7,True
+ZIN,LSMI,Interlaken Air Base,Zurich,46.6766014,7.8790798,92.1,False
+ZIN,LSMI,Interlaken Air Base,Lucerne,46.6766014,7.8790798,52.8,False
+ZIN,LSMI,Interlaken Air Base,Bern,46.6766014,7.8790798,44.6,True
+INQ,EIIR,Inisheer Aerodrome,Galway,53.064701080322266,-9.510899543762207,38.4,True
+SIA,ZLSN,Xi'an Xiguan Airport,Xi'an,34.376701,109.120003,22.0,True
+TOA,KTOA,Zamperini Field,Los Angeles,33.803398132324,-118.33999633789,29.1,True
+MTH,KMTH,The Florida Keys Marathon Airport,Key West,24.726101,-81.051399,76.2,True
+FRD,KFHR,Friday Harbor Airport,Vancouver,48.5219993591,-123.024002075,81.2,False
+FRD,KFHR,Friday Harbor Airport,Victoria,48.5219993591,-123.024002075,26.0,True
+ESD,KORS,Orcas Island Airport,Vancouver,48.7081985474,-122.910003662,62.1,False
+ESD,KORS,Orcas Island Airport,Victoria,48.7081985474,-122.910003662,44.4,True
+CYR,SUCA,Laguna de Los Patos International Airport,Buenos Aires,-34.456401824951,-57.770599365234,58.2,True
+CPQ,SDAM,Amarais Airport,Sao Paulo,-22.85919952392578,-47.10820007324219,90.5,True
+ZNA,CAC8,Nanaimo Harbour Water Airport,Vancouver,49.1833000183,-123.949996948,60.8,True
+ZNA,CAC8,Nanaimo Harbour Water Airport,Victoria,49.1833000183,-123.949996948,94.0,False
+YGG,CAX6,Ganges Seaplane Base,Vancouver,48.8545,-123.4969,51.8,False
+YGG,CAX6,Ganges Seaplane Base,Victoria,48.8545,-123.4969,47.8,True
+YDT,CZBB,Boundary Bay Airport,Vancouver,49.0742,-123.012001,21.0,True
+YDT,CZBB,Boundary Bay Airport,Victoria,49.0742,-123.012001,75.2,False
+YLY,CYNJ,Langley Airport,Vancouver,49.10079956049999,-122.630996704,39.2,True
+YLY,CYNJ,Langley Airport,Victoria,49.10079956049999,-122.630996704,90.9,False
+COZ,MDCZ,Constanza - Expedición 14 de Junio National Airport,Santo Domingo,18.907499313354,-70.721900939941,99.9,True
+NEG,MKNG,Negril Airport,Montego Bay,18.34280014038086,-78.33209991455078,45.9,True
+NRR,TJRV,José Aponte de la Torre Airport,San Juan,18.245300293,-65.6434020996,54.6,True
+TLU,SKTL,Golfo de Morrosquillo Airport,Cartagena,9.50945,-75.5854,99.3,True
+MRB,KMRB,Eastern WV Regional Airport/Shepherd Field,Washington,39.40190125,-77.98459625,99.3,True
+QHR,HAHM,Harar Meda Airport,Addis Ababa,8.7163,39.0059,44.6,True
+NBE,DTNH,Enfidha - Hammamet International Airport,Tunis,36.075833,10.438611,86.2,False
+NBE,DTNH,Enfidha - Hammamet International Airport,Sousse,36.075833,10.438611,33.1,True
+HUZ,ZGHZ,Huizhou Airport,Hong Kong,23.0499992371,114.599998474,96.3,True
+IIA,EIMN,Inishmaan Aerodrome,Galway,53.09299850463867,-9.568059921264648,39.8,True
+AXJ,RJDA,Amakusa Airport,Nagasaki,32.482498,130.158997,39.4,True
+CMJ,RCCM,Chi Mei Airport,Tainan,23.2131004333,119.417999268,84.2,True
+LAM,KLAM,Los Alamos Airport,Santa Fe,35.8797988892,-106.268997192,36.8,True
+WTZ,NZWT,Whitianga Airport,Auckland,-36.83169937133789,175.6790008544922,81.5,True
+BOW,KBOW,Bartow Municipal Airport,Orlando,27.943399429299998,-81.78340148930002,77.1,True
+LVK,KLVK,Livermore Municipal Airport,San Francisco,37.6934013367,-121.819999695,53.5,True
+SMO,KSMO,Santa Monica Municipal Airport,Los Angeles,34.015800476100004,-118.450996399,19.5,True
+OLM,KOLM,Olympia Regional Airport,Seattle,46.9693985,-122.9029999,82.9,True
+MMU,KMMU,Morristown Municipal Airport,New York City,40.799400329589844,-74.41490173339844,35.7,True
+APC,KAPC,Napa County Airport,San Francisco,38.2132,-122.280998,50.2,True
+SDM,KSDM,Brown Field Municipal Airport,San Diego,32.572299957275,-116.98000335693,23.5,True
+SBD,KSBD,San Bernardino International Airport,Los Angeles,34.0954017639,-117.23500061,93.0,True
+VAL,SNVB,Valença Airport,Salvador,-13.2965,-38.992401,65.0,True
+QNV,SDNY,Aeroclube Airport,Rio de Janeiro,-22.74530029296875,-43.46030044555664,33.7,True
+SQL,KSQL,San Carlos Airport,San Francisco,37.511901855469,-122.25,32.8,True
+SEE,KSEE,Gillespie Field,San Diego,32.826198577881,-116.97200012207,21.8,True
+PHA,VVPR,Phan Rang Airport,Nha Trang,11.6335000992,108.952003479,72.9,False
+PHA,VVPR,Phan Rang Airport,Dalat,11.6335000992,108.952003479,65.5,True
+FRJ,LFTU,Fréjus Airport,Nice,43.4175,6.7357,53.2,False
+FRJ,LFTU,Fréjus Airport,Cannes,43.4175,6.7357,26.9,True
+GEX,YGLG,Geelong Airport,Melbourne,-38.224998474121094,144.33299255371094,71.7,True
+JRA,KJRA,West 30th St. Heliport,New York City,40.754501,-74.007103,4.5,True
+LAL,KLAL,Lakeland Linder International Airport,Orlando,27.988899,-82.018602,87.5,True
+RBK,KF70,French Valley Airport,San Diego,33.5741996765,-117.127998352,95.5,True
+FNU,LIER,Oristano-Fenosu Airport,Cagliari,39.895308,8.642661,84.5,True
+MYQ,VOMY,Mysore Airport,Mysore,12.23,76.655833,7.8,True
+HYC,EGTB,Wycombe Air Park,London,51.6116981506,-0.8083329796790001,48.6,False
+HYC,EGTB,Wycombe Air Park,Oxford,51.6116981506,-0.8083329796790001,34.6,True
+HYC,EGTB,Wycombe Air Park,Cambridge,51.6116981506,-0.8083329796790001,91.1,False
+HYC,EGTB,Wycombe Air Park,Brighton,51.6116981506,-0.8083329796790001,98.8,False
+BBP,EGHJ,Bembridge Airport,Brighton,50.6781005859,-1.10943996906,70.3,True
+QYD,EPOK,Oksywie Military Air Base,Gdansk,54.57970047,18.51720047,26.7,True
+KNA,SCVM,Viña del mar Airport,Santiago,-32.9496,-71.4786,95.7,False
+KNA,SCVM,Viña del mar Airport,Valparaiso,-32.9496,-71.4786,17.1,True
+BJC,KBJC,Rocky Mountain Metropolitan Airport,Denver,39.90879822,-105.1169968,22.0,True
+SLE,KSLE,Salem Municipal Airport/McNary Field,Portland,44.90950012,-123.0029984,72.9,True
+BWG,KBWG,Bowling Green Warren County Regional Airport,Nashville,36.964500427199994,-86.41970062259999,94.6,True
+NHD,OMDM,Al Minhad Air Base,Dubai,25.0268001556,55.3661994934,8.0,True
+ESN,KESN,Easton Newnam Field,Washington,38.8041992188,-76.06900024410001,84.4,True
+LOT,KLOT,Lewis University Airport,Chicago,41.6072998,-88.09619904,45.8,True
+CCR,KCCR,Buchanan Field,San Francisco,37.9897003174,-122.056999207,39.8,True
+OCA,07FA,Ocean Reef Club Airport,Miami,25.325399398804,-80.274803161621,50.6,True
+YOO,CYOO,Toronto/Oshawa Executive Airport,Toronto,43.922798,-78.894997,47.0,True
+LHA,EDTL,Lahr Airport,Strasbourg,48.3693008423,7.82772016525,24.6,True
+HEX,MDHE,Herrera Airport,Santo Domingo,18.4696998596,-69.9693984985,8.1,True
+MQY,KMQY,Smyrna Airport,Nashville,36.0089988708,-86.5201034546,29.5,True
+CSO,EDBC,Cochstedt Airport,Leipzig,51.8563995361,11.42029953,87.3,True
+PWK,KPWK,Chicago Executive Airport,Chicago,42.114222,-87.901494,36.0,True
+KLS,KKLS,Southwest Washington Regional Airport,Portland,46.11800003049999,-122.898002625,68.3,True
+UKA,HKUK,Ukunda Airstrip,Mombasa,-4.29333,39.571098,28.5,True
+CDW,KCDW,Essex County Airport,New York City,40.875198364300005,-74.2814025879,29.3,True
+HSH,KHND,Henderson Executive Airport,Las Vegas,35.9728012085,-115.134002686,22.5,True
+GML,UKKM,Gostomel Airport,Kyiv,50.60350036621094,30.1919002532959,28.7,True
+RDO,EPRA,Radom Airport,Warsaw,51.3891983032,21.213300705,94.5,True
+RDO,EPRA,Radom Airport,Lublin,51.3891983032,21.213300705,95.5,False
+FRG,KFRG,Republic Airport,New York City,40.7288017273,-73.4133987427,50.0,True
+DWC,OMDW,Al Maktoum International Airport,Dubai,24.896356,55.161389,25.0,True
+DWC,OMDW,Al Maktoum International Airport,Abu Dhabi,24.896356,55.161389,91.7,False
+MVV,LFHM,Megève Airport,Geneva,45.82080078125,6.652219772338867,57.7,True
+MFX,LFKX,Méribel Altiport,Geneva,45.407003,6.577942,94.6,False
+MFX,LFKX,Méribel Altiport,Turin,45.407003,6.577942,94.5,True
+KOQ,EDCK,Köthen Airport,Leipzig,51.7211112976,11.952777862500001,51.4,True
+TTD,KTTD,Portland Troutdale Airport,Portland,45.54940032959,-122.40100097656,21.6,True
+HIO,KHIO,Portland Hillsboro Airport,Portland,45.540401,-122.949997,21.4,True
+NOT,KDVO,Marin County Airport - Gnoss Field,San Francisco,38.143600463867,-122.55599975586,42.7,True
+OTK,KTMK,Tillamook Airport,Portland,45.4182014465,-123.814002991,89.5,True
+GAI,KGAI,Montgomery County Airpark,Washington,39.168300628699996,-77.1660003662,32.4,True
+YCC,CYCC,Cornwall Regional Airport,Montreal,45.09280014038086,-74.56330108642578,89.2,True
+YCC,CYCC,Cornwall Regional Airport,Ottawa,45.09280014038086,-74.56330108642578,95.6,False
+WHP,KWHP,Whiteman Airport,Los Angeles,34.2593002319,-118.413002014,27.8,True
+PYM,KPYM,Plymouth Municipal Airport,Boston,41.909,-70.728798,56.9,True
+NCO,KOQU,Quonset State Airport,Boston,41.597099304199,-71.412101745605,89.5,True
+OWD,KOWD,Norwood Memorial Airport,Boston,42.1904983521,-71.1728973389,20.9,True
+MGJ,KMGJ,Orange County Airport,New York City,41.50999832,-74.26460266,91.1,True
+DXR,KDXR,Danbury Municipal Airport,New York City,41.371498107899995,-73.48220062259999,85.3,True
+ASH,KASH,Boire Field,Boston,42.7817001343,-71.51480102539999,60.0,True
+LWM,KLWM,Lawrence Municipal Airport,Boston,42.717201232899995,-71.1233978271,40.2,True
+HHH,KHXD,Hilton Head Airport,Savannah,32.2243995667,-80.6975021362,41.0,True
+HHH,KHXD,Hilton Head Airport,Charleston,32.2243995667,-80.6975021362,94.4,False
+RTS,YRTI,Rottnest Island Airport,Perth,-32.006699,115.540001,30.9,True
+PPM,KPMP,Pompano Beach Airpark,Miami,26.247100830078,-80.111099243164,53.2,True
+WMI,EPMO,Modlin Airport,Warsaw,52.451099,20.6518,34.7,True
+JDG,RKPD,Jeongseok Airport,Jeju,33.3996009827,126.711997986,21.5,True
+TIW,KTIW,Tacoma Narrows Airport,Seattle,47.26789856,-122.5780029,41.9,True
+HIW,RJBH,Hiroshimanishi Airport,Hiroshima,34.36690139770508,132.41400146484375,4.9,True
+JOT,KJOT,Joliet Regional Airport,Chicago,41.51779938,-88.17549896,57.2,True
+BBX,KLOM,Wings Field,Philadelphia,40.1375007629,-75.2650985718,22.3,True
+GIF,KGIF,Winter Haven Regional Airport - Gilbert Field,Orlando,28.062901,-81.753304,64.3,True
+ZPH,KZPH,Zephyrhills Municipal Airport,Orlando,28.2282009125,-82.15589904790001,83.4,True
+LLY,KVAY,South Jersey Regional Airport,Philadelphia,39.942901611299995,-74.845703125,27.1,True
+LDJ,KLDJ,Linden Airport,New York City,40.617401123,-74.2445983887,22.8,True
+CGX,KCGX,Chicago Meigs Airport,Chicago,41.85879898071289,-87.60790252685547,3.6,True
+BXO,LSZC,Buochs Airport,Zurich,46.974444,8.396944,45.1,False
+BXO,LSZC,Buochs Airport,Lucerne,46.974444,8.396944,10.9,True
+BXO,LSZC,Buochs Airport,Bern,46.974444,8.396944,72.1,False
+BVY,KBVY,Beverly Municipal Airport,Boston,42.584201812699995,-70.91649627689999,27.7,True
+PSL,EGPT,Perth/Scone Airport,Edinburgh,56.43920135498047,-3.372220039367676,55.2,True
+PSL,EGPT,Perth/Scone Airport,Glasgow,56.43920135498047,-3.372220039367676,84.2,False
+BYT,EIBN,Bantry Aerodrome,Cork,51.66859817504883,-9.484169960021973,74.2,True
+CKV,KCKV,Clarksville–Montgomery County Regional Airport,Nashville,36.6218986511,-87.4150009155,75.9,True
+CTH,KMQS,Chester County G O Carlson Airport,Philadelphia,39.97900009,-75.8655014,59.9,True
+GGE,KGGE,Georgetown County Airport,Charleston,33.3116989136,-79.3196029663,82.5,True
+RNT,KRNT,Renton Municipal Airport,Seattle,47.4930992126,-122.216003418,15.3,True
+POC,KPOC,Brackett Field,Los Angeles,34.091598510742,-117.78199768066,42.7,True
+QFO,EGSU,Duxford Aerodrome,London,52.090801,0.131944,67.1,False
+QFO,EGSU,Duxford Aerodrome,Cambridge,52.090801,0.131944,12.2,True
+IFL,YIFL,Innisfail Airport,Cairns,-17.55940055847168,146.01199340820312,75.4,True
+JRF,PHJR,Kalaeloa Airport,Honolulu,21.3074,-158.070009,21.9,True
+LUZ,EPLB,Lublin Airport,Lublin,51.240278,22.713611,10.1,True
+LSZ,LDLO,Lošinj Island Airport,Zadar,44.5657997131,14.3930997849,83.0,False
+LSZ,LDLO,Lošinj Island Airport,Pula,44.5657997131,14.3930997849,54.6,True
+WBU,KBDU,Boulder Municipal Airport,Denver,40.0393981934,-105.225997925,39.2,True
+BBJ,EDRB,Bitburg Airport,Luxembourg,49.945278,6.565,48.5,True
+PAO,KPAO,Palo Alto Airport of Santa Clara County,San Francisco,37.461101532,-122.114997864,44.0,True
+VRO,MUKW,Kawama Airport,Varadero,23.1240005493,-81.3015975952,6.9,True
+RCS,EGTO,Rochester Airport,London,51.351898193359375,0.5033329725265503,47.0,False
+RCS,EGTO,Rochester Airport,Cambridge,51.351898193359375,0.5033329725265503,98.0,False
+RCS,EGTO,Rochester Airport,Brighton,51.351898193359375,0.5033329725265503,73.5,False
+RCS,EGTO,Rochester Airport,Canterbury,51.351898193359375,0.5033329725265503,40.9,True
+ANP,KANP,Lee Airport,Washington,38.942902,-76.568398,40.8,True
+ZBM,CZBM,Bromont (Roland Desourdy) Airport,Montreal,45.2907981873,-72.74140167239999,70.4,True
+KRH,EGKR,Redhill Aerodrome,London,51.2136001587,-0.138611003757,32.8,True
+KRH,EGKR,Redhill Aerodrome,Oxford,51.2136001587,-0.138611003757,97.8,False
+KRH,EGKR,Redhill Aerodrome,Brighton,51.2136001587,-0.138611003757,42.8,False
+KRH,EGKR,Redhill Aerodrome,Canterbury,51.2136001587,-0.138611003757,85.1,False
+HWD,KHWD,Hayward Executive Airport,San Francisco,37.659198761,-122.122001648,29.2,True
+IGD,LTCT,Iğdır Airport,Yerevan,39.9766273499,43.8766479492,58.5,True
+BEO,YPEC,Lake Macquarie Airport,Sydney,-33.0667,151.647995,98.0,True
+NGZ,KNGZ,Alameda Naval Air Station,San Francisco,37.78889846801758,-122.31999969482422,8.9,True
+BJP,SBBP,Estadual Arthur Siqueira Airport,Sao Paulo,-22.979162,-46.537508,64.0,True
+TTI,NTTE,Tetiaroa Airport,Papeete,-17.0132999420166,-149.58700561523438,58.0,True
+MTN,KMTN,Martin State Airport,Washington,39.325699,-76.413803,72.0,True
+NEW,KNEW,Lakefront Airport,New Orleans,30.042400360107,-90.028297424316,10.7,True
+TIX,KTIX,Space Coast Regional Airport,Orlando,28.514799118042,-80.799201965332,56.7,True
+GIU,VCCS,Sigiriya Air Force Base,Kandy,7.956669807430001,80.7285003662,74.8,True
+EUM,EDHN,Neumünster Airport,Hamburg,54.079444885253906,9.941389083862305,58.9,True
+YLK,CYLS,Barrie-Orillia (Lake Simcoe Regional Airport),Toronto,44.4852981567,-79.55560302730001,87.5,True
+YCM,CYSN,Niagara District Airport,Toronto,43.19169998168945,-79.17169952392578,60.1,True
+MNZ,KHEF,Manassas Regional Airport/Harry P. Davis Field,Washington,38.72140121,-77.51540375,45.8,True
+CIY,LICB,Comiso Airport,Catania,36.994601,14.607182,68.9,False
+CIY,LICB,Comiso Airport,Syracuse,36.994601,14.607182,61.0,True
+BOR,LFSQ,Fontaine Airport,Bern,47.655601501465,7.0108299255371,85.3,True
+AQB,MGQC,Santa Cruz del Quiche Airport,Antigua Guatemala,15.012200355529785,-91.15059661865234,67.7,True
+BTZ,LTBE,Bursa Airport,Istanbul,40.233299255371094,29.009199142456055,86.9,True
+SHN,KSHN,Sanderson Field,Seattle,47.233600616455,-123.14800262451,74.1,True
+YBW,CAB3,Bedwell Harbour Seaplane Base,Vancouver,48.75,-123.233001709,56.2,False
+YBW,CAB3,Bedwell Harbour Seaplane Base,Victoria,48.75,-123.233001709,36.0,True
+DYL,KDYL,Doylestown Airport,Philadelphia,40.3330001831,-75.1222991943,42.5,True
+SZV,ZSSZ,Suzhou Guangfu Airport,Suzhou,31.2631,120.401001,19.0,True
+EMT,KEMT,San Gabriel Valley Airport,Los Angeles,34.086102,-118.035004,19.6,True
+SSF,KSSF,Stinson Municipal Airport,San Antonio,29.336999893188,-98.471099853516,9.9,True
+CCB,KCCB,Cable Airport,Los Angeles,34.1115989685,-117.68800354,51.6,True
+RIH,MPRH,Scarlett Martinez International Airport,Panama City,8.375880241394,-80.127899169922,95.8,True
+LEE,KLEE,Leesburg International Airport,Orlando,28.82309914,-81.80870056,52.5,True
+CNO,KCNO,Chino Airport,Los Angeles,33.97470093,-117.637001,56.6,True
+PKX,ZBAD,Beijing Daxing International Airport,Beijing,39.509945,116.41092,44.2,True
+HAF,KHAF,Half Moon Bay Airport,San Francisco,37.513401031499995,-122.500999451,30.0,True
+WJF,KWJF,General WM J Fox Airfield,Los Angeles,34.74110031,-118.2190018,76.6,True
+QUG,EGHR,Chichester/Goodwood Airport,London,50.85940170288086,-0.7591670155525208,84.6,False
+QUG,EGHR,Chichester/Goodwood Airport,Brighton,50.85940170288086,-0.7591670155525208,43.6,True
+DOH,OTHH,Hamad International Airport,Doha,25.273056,51.608056,7.9,True
+GXY,KGXY,Greeley–Weld County Airport,Denver,40.4374008179,-104.633003235,83.2,True
+UKT,KUKT,Quakertown Airport,Philadelphia,40.435199737549,-75.381896972656,56.8,True
+VPZ,KVPZ,Porter County Municipal Airport,Chicago,41.45399857,-87.00710297,69.2,True
+TTL,NFUL,Turtle Island Seaplane Base,Nadi,-16.966,177.368,93.2,True
+RHV,KRHV,Reid-Hillview Airport of Santa Clara County,San Francisco,37.332901001,-121.819000244,72.2,True
+YSE,CYSE,Squamish Airport,Vancouver,49.7817001343,-123.162002563,59.2,True
+YRO,CYRO,Ottawa / Rockcliffe Airport,Ottawa,45.4603004456,-75.64610290530001,6.8,True
+YSH,CYSH,Smiths Falls-Montague (Russ Beach) Airport,Ottawa,44.94580078125,-75.94059753417969,55.1,True
+BXP,EPBP,Biała Podlaska Airfield,Lublin,52.00078,23.1325278,92.0,True
+DAA,KDAA,Davison Army Air Field,Washington,38.715000152600005,-77.1809997559,23.6,True
+DRA,KDRA,Desert Rock Airport,Las Vegas,36.6194,-116.032997,94.2,True
+ECV,LECU,Cuatro Vientos Airport,Madrid,40.370701,-3.78514,8.7,True
+ECV,LECU,Cuatro Vientos Airport,Toledo,40.370701,-3.78514,60.5,False
+ECV,LECU,Cuatro Vientos Airport,Salamanca,40.370701,-3.78514,11.1,False
+CDT,LEDS,Castellón-Costa Azahar Airport,Valencia,40.213889,0.073333,90.9,True
+QLP,LIQW,Sarzana-Luni Air Base,Genoa,44.088001,9.98795,90.3,False
+QLP,LIQW,Sarzana-Luni Air Base,Pisa,44.088001,9.98795,53.8,False
+QLP,LIQW,Sarzana-Luni Air Base,Lucca,44.088001,9.98795,49.5,True
+BJY,LYBT,Batajnica Air Base,Belgrade,44.935299,20.2575,21.9,True
+BJY,LYBT,Batajnica Air Base,Novi Sad,44.935299,20.2575,48.2,False
+QSN,MUNB,San Nicolas De Bari Airport,Havana,22.756099700927734,-81.9208984375,63.2,True
+QSN,MUNB,San Nicolas De Bari Airport,Varadero,22.756099700927734,-81.9208984375,82.4,False
+IWK,RJOI,Iwakuni Marine Corps Air Station,Hiroshima,34.143902,132.235992,34.6,True
+API,SKAP,Gomez Nino Apiay Air Base,Bogota,4.07607,-73.5627,82.7,True
+IKU,UAFL,Issyk-Kul International Airport,Almaty,42.58792,76.713046,75.6,True
+HIM,VCCH,Hingurakgoda Air Force Base,Kandy,8.04981,80.9814,92.7,True
+MRG,YMBA,Mareeba Airport,Cairns,-17.06920051574707,145.41900634765625,40.3,True
+MVW,KBVS,Skagit Regional Airport,Seattle,48.4709014893,-122.42099762,96.4,False
+MVW,KBVS,Skagit Regional Airport,Victoria,48.4709014893,-122.42099762,68.7,True
+TBR,KTBR,Statesboro Bulloch County Airport,Savannah,32.4827003479,-81.73690032959999,74.5,True
+WKI,FVWT,Hwange (Town) Airport,Livingstone,-18.362967,26.519791,91.1,True
+QND,LYNS,Cenej Airport,Belgrade,45.385799,19.839199,81.2,False
+QND,LYNS,Cenej Airport,Novi Sad,45.385799,19.839199,14.9,True
+TSM,KSKX,Taos Regional Airport,Santa Fe,36.45819855,-105.6719971,89.0,True
+BNJ,EDKB,Bonn-Hangelar Airport,Cologne,50.7688903809,7.16333293915,23.6,True
+DSS,GOBD,Blaise Diagne International Airport,Dakar,14.67,-17.073333,40.0,True
+CUD,YCDR,Caloundra Airport,Brisbane,-26.799999237060547,153.10000610351562,74.6,True
+QSI,HTMS,Moshi Airport,Arusha,-3.3633298873901367,37.326900482177734,71.4,True
+AIP,VIAX,Adampur Airport,Amritsar,31.4338,75.758797,86.3,True
+TJB,WIBT,Sei Bati Airport,Singapore,1.0527,103.3931,57.2,True
+ZBY,VLSB,Sayaboury Airport,Luang Prabang,19.2436,101.7093,85.9,True
+BGL,VNBL,Baglung Airport,Pokhara,28.212799072265625,83.66629791259766,30.2,True
+WIK,NZKE,Waiheke Reeve Airport,Auckland,-36.80889892578125,175.08599853515625,29.0,True
+AEI,LEAG,Algeciras Heliport,Cadiz,36.12888,-5.441118,87.9,False
+AEI,LEAG,Algeciras Heliport,Marbella,36.12888,-5.441118,65.7,False
+AEI,LEAG,Algeciras Heliport,Tangier,36.12888,-5.441118,51.6,True
+IST,LTFM,Istanbul Airport,Istanbul,41.275278,28.751944,33.5,True
+ZXT,UBTT,Zabrat Airport,Baku,40.4955422161,49.9768066406,14.9,True
+GEC,LCGK,Lefkoniko Airport,Nicosia,35.235947,33.724358,34.4,True
+GEC,LCGK,Lefkoniko Airport,Limassol,35.235947,33.724358,87.6,False
+MNH,OORQ,Rustaq Airport,Muscat,23.640556,57.4875,94.0,True

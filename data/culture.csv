@@ -1,47 +1,376 @@
 city_name,heritage_site_count,attraction_count,attraction_1,attraction_2,attraction_3
-Paris,5,220,Eiffel Tower,Louvre Museum,Notre-Dame Cathedral
-Nice,0,60,Promenade des Anglais,Old Town (Vieux Nice),Castle Hill
-Barcelona,3,140,Sagrada Familia,Park Guell,Gothic Quarter
-Madrid,2,120,Prado Museum,Retiro Park,Royal Palace
-Seville,3,80,Seville Cathedral,Alcazar of Seville,Plaza de Espana
-Rome,7,250,Colosseum,Trevi Fountain,Vatican Museums
-Florence,1,130,Uffizi Gallery,Florence Cathedral,Ponte Vecchio
-Venice,1,110,St Mark's Square,Grand Canal,Doge's Palace
-London,4,260,British Museum,Tower of London,Buckingham Palace
-Edinburgh,1,90,Edinburgh Castle,Royal Mile,Arthur's Seat
-Berlin,3,150,Brandenburg Gate,Museum Island,Berlin Wall Memorial
-Munich,0,100,Marienplatz,Nymphenburg Palace,English Garden
-Lisbon,1,90,Belem Tower,Jeronimos Monastery,Alfama District
-Porto,1,60,Livraria Lello,Dom Luis I Bridge,Ribeira District
-Athens,2,110,Acropolis,Parthenon,Ancient Agora
-Amsterdam,1,100,Anne Frank House,Van Gogh Museum,Rijksmuseum
-Vienna,1,120,Schonbrunn Palace,St Stephen's Cathedral,Belvedere Palace
-Prague,1,100,Charles Bridge,Prague Castle,Old Town Square
-Istanbul,4,150,Hagia Sophia,Blue Mosque,Topkapi Palace
-Marrakesh,1,70,Jemaa el-Fnaa,Bahia Palace,Majorelle Garden
-Cairo,3,90,Pyramids of Giza,Egyptian Museum,Khan el-Khalili
-Dubai,0,80,Burj Khalifa,Dubai Mall,Palm Jumeirah
-Bangkok,1,140,Grand Palace,Wat Arun,Wat Pho
-Tokyo,1,200,Senso-ji Temple,Shibuya Crossing,Tokyo Tower
-Kyoto,3,170,Fushimi Inari Shrine,Kinkaku-ji (Golden Pavilion),Arashiyama Bamboo Grove
-Seoul,1,130,Gyeongbokgung Palace,Bukchon Hanok Village,N Seoul Tower
-Singapore,1,90,Gardens by the Bay,Marina Bay Sands,Sentosa Island
-Hanoi,1,80,Hoan Kiem Lake,Temple of Literature,Old Quarter
-Bali (Denpasar),0,100,Uluwatu Temple,Tanah Lot,Ubud
-Sydney,1,120,Sydney Opera House,Sydney Harbour Bridge,Bondi Beach
-Melbourne,0,90,Federation Square,Queen Victoria Market,Royal Botanic Gardens
-Queenstown,0,30,Lake Wakatipu,Skyline Gondola,Shotover River
-New York,1,220,Statue of Liberty,Central Park,Times Square
-San Francisco,0,110,Golden Gate Bridge,Alcatraz Island,Fisherman's Wharf
-Toronto,0,90,CN Tower,Royal Ontario Museum,Distillery District
-Mexico City,2,130,Zocalo,Chapultepec Castle,Frida Kahlo Museum
-Rio de Janeiro,1,100,Christ the Redeemer,Copacabana Beach,Sugarloaf Mountain
-Buenos Aires,1,90,La Boca,Recoleta Cemetery,Teatro Colon
-Cusco,1,60,Sacsayhuaman,Plaza de Armas,San Pedro Market
-Cape Town,1,80,Table Mountain,V&A Waterfront,Robben Island
-Reykjavik,0,30,Hallgrimskirkja,Sun Voyager,Perlan
-Dubrovnik,1,40,Old City Walls,Stradun,Lovrijenac Fortress
-Krakow,2,60,Wawel Castle,Main Market Square,St Mary's Basilica
-Budapest,1,90,Fisherman's Bastion,Buda Castle,Szechenyi Thermal Bath
-Jaipur,3,80,Hawa Mahal,Amber Fort,City Palace
-Beijing,7,130,Forbidden City,Great Wall (nearby),Temple of Heaven
+Paris,3,311,Notre Dame de Paris,Sacré-Cœur de Montmartre,Arc de Triomphe
+London,4,182,British Museum,Buckingham Palace,Tower of London
+Rome,5,369,Colosseum,Castel Sant'Angelo,Trevi Fountain
+Barcelona,3,219,Catedral de Barcelona,Palau de la Música Catalana,Casa Batlló
+Amsterdam,3,127,Rijksmuseum,Van Gogh Museum,Paleis op de Dam
+Prague,1,148,Prague Zoo,Národní divadlo,Letohrádek Hvězda
+Vienna,4,243,Stephansdom,Kunsthistorisches Museum,Wiener Staatsoper
+Berlin,3,142,Pergamon museum,Zoologischer Garten Berlin,Staatsbibliothek zu Berlin
+Budapest,1,30,Hungarian State Opera House,St. Stephen's Basilica,Buda Castle
+Lisbon,2,276,Mosteiro dos Jerónimos,Torre de Belém,Padrão dos Descobrimentos
+Madrid,1,197,Museo del Prado,Museo Thyssen-Bornemisza,Museo Arqueológico Nacional
+Florence,2,139,Palazzo Pitti,Basilica of Santa Croce,Palazzo Vecchio
+Venice,2,151,Santa Maria della Salute,Church of San Giorgio Maggiore,San Zaccaria
+Athens,2,139,Parthenon,Odeion of Herodes Atticus,Metropolitan Cathedral of Athens
+Istanbul,1,89,Sultan Ahmed Mosque,Hagia Sophia,Turkish and Islamic Arts Museum
+Dublin,0,35,Dublin Castle,Kilmainham Gaol,Abbey Theatre
+Edinburgh,2,21,Edinburgh Castle,Edinburgh Zoo,Scott Monument
+Copenhagen,1,44,Den lille havfrue,Nationalmuseet,Rosenborg Slot
+Stockholm,2,176,Stockholms slott,Nationalmuseum,Naturhistoriska riksmuseet
+Oslo,0,144,Naturhistorisk Museum,Tøyen Hovedgård,Østre Aker kirke
+Helsinki,2,140,Helsinki Cathedral,National Museum of Finland,Temppeliaukio Church
+Brussels,6,30,Palais Stoclet,Manneken Pis,Justizpalast
+Munich,0,113,Schloss Nymphenburg,Staatliche Antiken-sammlungen München,BMW Museum
+Milan,1,180,Duomo di Milano,Basilica di Sant'Ambrogio,Pinacoteca di Brera
+Naples,2,186,Herculaneum,Castel dell' Ovo,Castel Sant'Elmo
+Seville,1,97,Torre del Oro,Ruinas de Itálica,Catedral de Sevilla
+Valencia,2,105,Valencia Cathedral,Jardí Botànic,Church of San Martín and San Antonio
+Porto,1,204,Clérigos Tower,Cattedrale di Porto,Museu de Arte Contemporânea de Serralves
+Krakow,2,17,Wawel,Krakau Concentration Camp (Nachrichtengerätelager),Krakau Concentration Camp (Kabelwerke)
+Warsaw,1,45,Biblioteka Narodowa,Fort Solipse Ghetto,Warsaw Ghetto
+Dubrovnik,2,17,Saint Ignatius Church,Dubrovnik Cathedral,Sponza Palace
+Split,2,11,Dalmatia,Diocletian's Palace,Palais de Dioclétien de Split
+Zagreb,0,16,Zagreb TV Tower,Crkva sv. Marka,Dotršćina Park
+Ljubljana,2,6,St. Nicholas' Cathedral,St.Cyril Orthodox Church,Prešeren monument
+Bratislava,1,8,Bratislava Castle,Mirbach Palace,Primate's Palace
+Tallinn,1,9,Tallinn TV Tower,Merimets,Bishop's Garden
+Riga,1,13,Riga Concentration Camp (Dünawerke),Riga-Mühlgraben Concentration Camp,Riga Concentration Camp (Heereskraftfahrpark)
+Vilnius,2,15,Vilnius TV Tower,Wilna Concentration Camp (Gestapogefängnis),Wilna Concentration Camp (Heereskraftfahrpark 562)
+Reykjavik,0,31,Hallgrimskirkja,Miklatún,Borgarleikhusid
+Zurich,1,26,Museum Rietberg,Grossmünster,Fraumünster
+Geneva,2,11,Chateau de Tournay,Geneva Botanical Garden,Musée Barbier-Mueller
+Lucerne,1,10,Hirschpark Luzern,Verkehrshaus der Schweiz,Toni's Zoo
+Bern,2,11,Bärenpark Bern,Tierpark Dählhölzli Bern,Burgruine Neu Bubenberg
+Nice,2,45,Nice Cathedral,Kirche der heiligen Johanna,Opéra de Nice
+Lyon,2,27,Opera House,Artothèque de Lyon Part-Dieu,"Maison du Livre, de l'Image et du Son"
+Marseille,1,9,Abbaye du Mont-Sion,"Marseille, Greek Bath",Cathédrale Vieille Major
+Bordeaux,2,14,Château du Hâ,Musée des beaux-arts,Cathédrale Saint-André
+Strasbourg,1,10,Armatagir – Script,Europe à Coeur,Notre-Dame de Strasbourg
+Toulouse,1,74,Hôtel du Vieux-Raisin,Hôtel de Bagis,Hôtel de Boysson-Cheverry
+Avignon,3,9,Palais des papes,Abbaye Sainte-Catherine d'Avignon,Notre-Dame-des-Doms d'Avignon
+Cannes,0,9,Lérins (Abbey),Picasso Museum,Musée de la Castre
+Salzburg,1,36,Schloss Mirabell,Festung Hohensalzburg,Schloss Kleßheim
+Innsbruck,0,17,Innsbrucker Dom,Schloss Ambras,Tiroler Museumsbahnen
+Graz,1,30,Schloss Lustbüchl,Schloss Reintal,Opernhaus Graz
+Bruges,3,1,Abbaye de Saint-Andre-lez-Bruges,,
+Ghent,2,3,Sint-Baafskathedraal,"Ghent, Saint Peter's Abbey",Citadelpark
+Antwerp,4,14,Museum Plantin-Moretus,Rubenshuis,Cathedral of Our Lady
+Hamburg,1,63,Deutsches Schauspielhaus,Heinrich-Hertz-Turm,Hamburg-Hammerbrook Concentration Camp (Spaldingstraße)
+Cologne,3,59,Kölner Dom,Römisch-Germanisches Museum,Kölner Zoo
+Frankfurt,2,56,Frankfurter Dom,Städel,Messeturm
+Dresden,1,37,Semperoper,Frauenkirche,Gemäldegalerie Alte Meister
+Heidelberg,2,98,Schloß Heidelberg,Schloss Schwetzingen,Peterskirche
+Nuremberg,0,54,Nürnberger Burg,Frauenkirche,Reichsparteitagsgelände
+Leipzig,0,48,Völkerschlachtdenkmal,Nikolaikirche,Zoo Leipzig
+Rotterdam,3,32,Wereldmuseum Rotterdam,Natuurhistorisch Museum Rotterdam,Diergaarde Blijdorp
+Utrecht,3,50,Centraal Museum,Museum Catharijneconvent,Nederlands Spoorwegmuseum
+Bologna,2,103,Palazzo D'Accursio,Fountain of Neptune,Palazzo della Mercanzia
+Verona,3,58,Castelvecchio Museum,Basilica di San Zeno Maggiore,Palazzo della Gran Guardia
+Turin,1,142,Museo Egizio,Basilica di Superga,Teatro Regio
+Genoa,1,86,Aquarium of Genoa,Porta Soprana,Chiesa del Gesù e dei Santi Ambrogio e Andrea
+Siena,1,68,Orto Botanico dell'Università di Siena,Chiesa di San Niccolò del Carmine,Loggia della Mercanzia
+Pisa,1,64,Torre di Pisa,Piazza dei Miracoli,Duomo di Santa Maria Assunta
+Palermo,1,88,Museo Internazionale delle Marionette,Quattro Canti,Foro Italico
+Catania,1,53,Teatro Massimo Bellini,Ente Autonomo Regionale Teatro Massimo Bellini,Museo Civico al Castello Ursino
+Syracuse,1,39,Source Aretusa,Museo archeologico regionale Paolo Orsi,Santuario Madonna delle Lacrime
+Bari,0,51,Museo Archeologico Provinciale in S. Scolastica,Giardini di Piazza Cesare Battisti,Teatro Petruzzelli
+Lecce,0,35,Anfiteatro Romano Lecce,Basilica di Santa Croce,Palazzo dei Celestini
+Padua,4,64,Chiesa di Santa Maria dei Servi,Museo di Storia della Fisica,Chiesa degli Eremitani
+Perugia,1,40,Statua Papa Giulio III,Capitularies Museum of Saint Lorenzo,Museo del Capitolo di Perugia
+Lucca,2,35,Lucca cathedral,Torre delle Ore,Santini Palace
+Cagliari,0,63,Parco di Monte Claro,City Gallery of Modern Art,Teatro Lirico di Cagliari
+Granada,1,67,Alhambra,Palacio de Carlos V,Monasterio de la Cartuja
+Cordoba,2,36,Madinat az-Zahra,Capilla Mudéjar de San Bartolomé,Templo Romano
+Toledo,1,27,Synagogue of El Transito,Mosque of Cristo de la Luz,Monastery of San Juan de los Reyes
+Bilbao,2,60,Guggenheim Museum Bilbao,Iglesia de San Nicolás,El Arenal
+San Sebastian,2,36,Miramar Palace,Donostia / San Sebastián Mediumwave Transmitter,Artzain Ona / Buen Pastor
+Malaga,0,48,Jardín Botánico Histórico La Concepción,Santuario de la Victoria,Ruine Gibralfaro
+Palma,1,50,Es Baluard Museu d'Art Modern i Contemporani de Palma,Palast Palau de l'Almudaina,Es Baluard Museum of Modern and Contemporary Art
+Salamanca,1,196,Museo del Prado,Museo Thyssen-Bornemisza,Museo Arqueológico Nacional
+Santiago de Compostela,1,31,Plaza de Platerías,Pazo de Raxoi,Cathedral of Santiago de Compostela Museum
+Girona,0,33,Palau Sacosta Castle,Catedral de Girona,Museu del Cinema-Collecció Tomàs Mallol
+Cadiz,0,43,Castillo de San Sebastián,Castillo de San Lorenzo del Puntal,Museo Arqueológico Municipal de El Puerto de Santa María
+Marbella,0,22,Marbella bulls ring at Nueva Andalucía,Parque de Alameda,Duende Flamenco Marbella
+Las Palmas de Gran Canaria,1,25,Museum Canario,Castillo de San Francisco,Teatro Guiniguada
+Coimbra,1,51,Biblioteca Joanina,Monument in honor of Pope João Paulo II,Aqueduto de São Sebastião
+Faro,0,41,Igreja do Carmo,Museu Arqueologico,Cathedral of Faro
+Braga,2,52,Citânia de Briteiros,Sé de Braga,Fonte do Ídolo
+Funchal,1,41,Catedral da Sé do Funchal,Monte Palace Botanical Garden,Igreja de São Tiago
+Bergen,1,30,Korskirken,Nykirken,Åsane gamle kirke
+Gothenburg,0,60,Göteborgsoperan,Nasir Moskén,Gustavi domkyrka
+Malmo,0,33,Sankt Petri,S:t Petri kyrka,Sankt Johannes kyrka
+Aarhus,0,40,Den Gamle By,Det Kgl. Bibliotek - Aarhus,Marselisborg
+Tromso,0,15,Arctic Cathedral,Tromsdalen,Tromsø domkirke
+York,0,13,York Minster,National Railway Museum,York Castle
+Bath,2,13,Bath Abbey,Jane Austen Centre,Fashion Museum
+Oxford,1,12,Oxford Castle,"Saint Bernard's College, Oxford","Bodleian Library, University of Oxford"
+Cambridge,0,6,The Fitzwilliam Museum,Museum of Archaeology and Anthropology,Cambridge University Botanic Garden
+Manchester,0,27,Darul Amaan Mosque,Holy Trinity Armenian Church,Manchester Central Library
+Liverpool,0,15,Stanley Park,Sefton Park,World Museum Liverpool
+Glasgow,0,16,Baitur Rahman Mosque,Dawsholm Park,Bellahouston Park
+Belfast,0,12,Belfast Castle,Ulster Museum,Stormont Castle
+Cardiff,0,27,Cardiff Castle,Morgraig Castle,Baitur Raheem Mosque
+Brighton,0,6,Southwick Mediumwave Transmitter,Southwick Mediumwave Transmitter ( 1323 kHz),St Mary de Hora Shoreham
+Canterbury,1,8,Canterbury Cathedral,Canterbury Castle,St Peter
+Galway,0,11,Galway Cathedral,Lynch's Castle,Collegiate Church of St Nicholas
+Cork,0,8,Blarney Castle,The Marina,Blackrock Castle
+Tampere,0,52,Arbetarmuseet Werstas,Heliga Korsets Kyrka,Muminmuseet
+Turku,0,45,Turun Kaupungin Taidemuseo,Klosterbacken,Kurala Bybacke
+Rovaniemi,0,11,Lapplands Skogsmuseum,Rovaniemi Konstmuseum,Lootinpetäjä
+Luxembourg,1,11,Vue prise du Grund.,Vue prise de Verlorenkost.,Vue prise de Clausen.
+Zadar,1,7,Saint Anastasia Cathedral,Église Saint-Donat,St. Mary's Church
+Pula,0,6,Dari Sališ,Temple d'Auguste,Arheološki muzej Istre
+Sarajevo,1,20,Vječnica,Historical Museum of Bosnia and Herzegovina,Vječna vatra
+Mostar,1,7,Koski Mehmed Pasha Mosque,Mali Grad,Sveta Gora
+Belgrade,0,19,Police Custody Camp Sajmište,Eternal flame,Police Custody Camp Banjica
+Novi Sad,0,2,Marija Snežna,Adice Mediumwave Transmitter,
+Skopje,0,12,Archeological Museum Of Macedonia,Macedonian Philharmonic,Skopje TV Tower
+Ohrid,1,7,Sveta Petka,Sveti Ilija,Sveti Erazmo
+Tirana,0,4,National Historical Museum(Albania),National History Museum,National Museum of History
+Sofia,1,21,Ivan Vazov National Theatre,Earth and Man National Museum,City Garden
+Plovdiv,0,7,Shahbedinova Imaret dzhamia,Saint Constantine and Helena Church,Dormition of the Holy Mother of God
+Bucharest,0,37,Stavropoleos Monastery,National Theatre Bucharest,Romanian Academy Library
+Brasov,2,3,Black Church,"St. Nicholas Church, Braşov",White Tower
+Sibiu,1,28,"Turnul Bisericii ""Sfanta Treime"" Sibiu",Sinagogă Sibiu,Biserica Ortodoxă Naşterea Domnului
+Cluj-Napoca,1,130,Biserica Creştină Baptistă Numărul Zece Teofania,Biserica Reformată I Matia Cluj-Napoca,Biserica Penticostală Numărul Cinci
+Timisoara,0,110,Capela Revoluţiei din Decembrie 1989 Timişoara,Biserica Baptistă Doi Timişoara,Biserica Baptistă Opt Timişoara
+Gdansk,1,12,Danzig Concentration Camp (Reichsnährstand),Müggenhahl Concentration Camp,Danzig Concentration Camp (Fa. August Czerwinski)
+Wroclaw,1,16,Panorama Racławicka,Breslau I Concentration Camp,Breslau II Concentration Camp
+Poznan,0,5,Poznań,Poznań  Nowe Miasto - Pałac barokowy,
+Lublin,0,3,Lublin Concentration Camp (Lipowastraße),Lublin Ghetto,Majdanek Concentration and Extermination Camp
+Brno,1,60,Brünn Concentration Camp,[Brno] st.James church t.,sady Osvobození
+Karlovy Vary,2,55,Hrad Loket,Neurohlau Concentration Camp,Schlackenwerth Concentration Camp
+Kosice,0,3,Kassa Ghetto,Košice Ghetto,Chválabohu
+Debrecen,0,2,Debrecen Ghetto,Pallag TV tower,
+Thessaloniki,1,43,Thessaloniki Concert Hall,Lefkós Pýrgos,Ágios Dimítrios
+Heraklion,1,8,Heraklion Archaeological Museum,Historical Museum of Crete,Knosós
+Rhodes,1,33,Archaeological Site of the Church of St. John,Castellania,Loggia of St. John - Λότζια Αγίου Ιωάννου
+Corfu,2,13,Ieros Naos Agion Panton,Ionios Vouli,Maitland Monument
+Chania,1,12,Monastíri Agías Kyriakís,Moní Chrysopigís,Moní Prodrómou
+Nicosia,0,79,Notre Dame de Tyre,Ágioi Omologités,Archángelos Michaíl
+Limassol,1,40,Kástro Kolossíou,Ágios Tychikós,Ágios Sýllas
+Paphos,1,69,Anatolikó,Táfoi ton Vasiléon,Kástro Saránta Kolónes
+Kyiv,1,13,Memorialnyi Kompleks Babyn Yar,Kiew Concentration Camp,Muromets Park
+Lviv,2,2,Armenian Cathedral of Lviv,Lwów Ghetto,
+Odessa,1,99,Khram Na Chest Chudotvornoi Ikony Presviatoi Bohorodytsi Znamennia,Rosiiska Istynno-Pravoslavna Sviato-Mykhailivska Tserkva,Sviato-Dmytrivska Tserkva
+Chisinau,0,3,Chisinau Ghetto,Parcul Catedralei,Chisinau Mediumwave Transmitter
+Tbilisi,1,23,Church of the Red Gospel of Shamkor,Church of Holy Etchmiadzin,Norashen Church
+Batumi,0,3,Surb Prkich Church,Batumi Botanical garden,Batumi Mediumwave Transmitter
+Yerevan,1,333,Yerevan TV Tower,Teishebaini,Holy Mother of God Church Complex of Avan
+Baku,1,4,Tofiq Bahramov Stadium,Church of Saint Gregory the Illuminator,Azeri TV Tower
+Antalya,0,20,Hadrian Kale Kapısı,Hıdırlık Kulesi,Düdenbaşı Piknik Yeri
+Izmir,0,20,Cici Parkı,Agora Açık Hava Müzesi,Bahribaba Parkı
+Bodrum,0,23,Türkkuyusu Meydanı Camii,Mavzaloz’ un Mezar Odası,Çarşı Camii
+Ankara,1,69,Ankara Kalesi,Elli Yıl Parkı,Zafer Anıtı
+Tokyo,1,636,Tokyo National Museum,Tokyo Tower,Yasukuni Shrine
+Kyoto,1,33,Kiyomizu-dera,Kinkaku-ji,Ginkaku-ji
+Osaka,2,9,Osaka Castle,Ōsakajō Ato,Osaka tenmangu shrine
+Nara,5,6,Kōfukuji,Kasuga Shrine,Nara Kōen
+Kanazawa,0,0,,,
+Hiroshima,2,1,Hiroshima castle,,
+Sapporo,0,101,Ryūshō Ji,Ōdōri Kōen,Hokkaidō Jingū Tongū
+Fukuoka,0,189,Fukuoka Castle ruins,Fukuoka Tower,Jizō Bosatsuzō Iatabi
+Nagasaki,2,2,Oura Church,Miniature Model of Dejima,
+Kamakura,0,62,Chōshō Ji,Kōmyō Ji,Myōhon Ji
+Nikko,1,2,Nikkō Tōshō-gū,Futarasan Shrine,
+Beijing,5,74,Palace Museum,Xuanwu Men,Guangqu Men
+Shanghai,0,5,Oriental Pearl Tower,Shanghai World Financial Center,Jin Mao Tower
+Xi'an,1,4,Qingzhen Dasi,Xiaoyan Ta,Hancheng Yizhi
+Chengdu,0,6,Chengdu Dongwuyuan,Wenshu Yuan Monastery,Qingyang Palace
+Guilin,0,0,,,
+Hangzhou,2,5,Wulin Academy of Arts,Jinglian Hall,Zizhu Garden
+Suzhou,2,0,,,
+Kunming,0,0,,,
+Hong Kong,0,37,Bank of China Tower,Hong Kong Space Museum,Hong Kong Museum of History
+Macau,1,19,A-Ma Temple,Templo de Kun Iam,Baigechao Gongyuan
+Taipei,0,53,Gugong Bowuyuan,Xin Gongyuan,Rongxing Huayuan
+Tainan,0,68,National Museum of Taiwan History,Yanpingjun Ci,Qiumaoyuan
+Seoul,4,201,Sungnyemun,Gyeongbokgung,Jogyesa
+Busan,1,32,Daesingongwon,Gayagongwon,Eden Gongwon
+Gyeongju,4,56,Namsalli Sam Cheungseoktap,Beopjangsa,Michuwangneungseonggobungongwon
+Jeju,1,11,Gwanmyeongsa,Wondangbult’ap-sa,Hyerim-sa
+Jeonju,1,40,Seongbulsa,Daeseungsa,Hakgwa-am
+Bangkok,0,430,Grand Palace,Democracy Monument,Wat Phra Kaew
+Chiang Mai,0,101,Wat Suan Dok,Wat Kan Thom,Wat Phrasing Wora maha Wihan
+Phuket,0,37,Wat Chalong,Wat Charoen Samanakit,Wat Wichit Sangkharam
+Pattaya,0,25,Wat Chong Lom,Wat Chai Mong Khon,Wat Nong O
+Chiang Rai,0,79,Wat Doi Phrabat,Wat Phrathat Chom Sak,Wat Klang Wiang
+Krabi,0,30,Wat Krabi Noi,Wat Pan Rat,San Lak Mueang
+Hanoi,1,8,Turtle Tower,Temple of Literature,Ho Chi Minh Mausoleum
+Ho Chi Minh City,0,14,Giải Trí Đầm Sen,Công Viên Tao Đàn,Hội trường Thống Nhất
+Da Nang,1,0,,,
+Hoi An,1,6,Quan Cong Temple,Phuoc Kien Assembly Hall,Museum of Trade Ceramics
+Hue,1,3,Hue Imperial City,Điện Voi Ré,Tiger Arena Hổ Quyền
+Nha Trang,0,1,Tháp Bà Pônaga,,
+Dalat,0,1,Da Lat Eiffel Tower,,
+Siem Reap,1,27,Angkor Wat,Bayon,Ta Prohm
+Phnom Penh,1,1,Tuol Sleng Genocide Museum,,
+Luang Prabang,1,0,,,
+Vientiane,0,9,Lao National Cultural Hall,Laos National Museum,Presidential Palace
+Yangon,0,1,Ananda Temple,,
+Mandalay,0,0,,,
+Kuala Lumpur,1,3,Petronas Twin Towers,Kerinchi Pylon,Kuala Lumpur Bird Park
+George Town,1,5,Gereja Saint Pier,Keramat Che Nah,Keramat Chendana
+Malacca,1,5,Makam Hang Jebat,Muzium Budaya,Memorial Kemerdekaan
+Kota Kinabalu,0,2,Taman Negara Tunku Abdul Rahman,Bangunan Yayasan Sabah,
+Kuching,0,1,Istana,,
+Singapore,1,26,Nationalmuseum Singapur,Merlion,Church of Saint Gregory the Illuminator
+Denpasar,1,1,Bali Zoo - Kebun Binatang Bali,,
+Yogyakarta,2,1,"Tugu,Yogyakarta",,
+Manila,1,14,San Agustin Church,Rizal Park,Quezon Monument Circle
+Cebu City,0,2,Taoist Temple Cebu,San Nicolas de Tolentino Church,
+Puerto Princesa,0,0,,,
+Delhi,3,34,India Gate,Akshardham,Pitampura TV Tower
+Mumbai,3,3,Bhaidas Hall,Bhailal K Patel Maidan,Mumbai TV Tower
+Agra,2,8,Rām Bāgh,Anguri Bagh,Mehtab Bagh
+Jaipur,3,8,Hawa Mahal,Jal Mahal,Albert Hall Museum
+Udaipur,0,6,Monsoon Palace,Shilpgram Museum,"City Palace, Udaipur"
+Jodhpur,0,0,,,
+Jaisalmer,1,1,Bara Bagh,,
+Varanasi,1,1,Vishwanāth Mandir,,
+Panaji,1,0,,,
+Kochi,0,6,Mattancherry Palace,Dhobi Khana Public Laundry,Santa Cruz Basilica
+Amritsar,0,5,Golden Temple,Bāba Atl,Jallianwala Bagh
+Rishikesh,0,0,,,
+Mysore,0,9,Mysore Zoo,Shri Prasanna Krishna Swami Gudi,Shri Shvethavaraha Swami Gudi
+Kathmandu,1,16,Baudhanāth Stupa,Swayambhunāth,Pashupati̇̄nāth
+Pokhara,0,9,Bindhyābāsini̇̄ Temple,Pokharā View Tower,Māle Pāṭan
+Colombo,0,10,Temple Trees,Price Park,Wolvendaal Church
+Kandy,1,3,Sri Dalada Maligawa,International Buddhist Museum,Royal Botanical Garden
+Galle,1,1,Jayasumanarama Viharaya,,
+Male,0,1,National Museum of Maldives,,
+Thimphu,0,2,Tango Bhuddist College,Folk Heritage museum,
+Ulaanbaatar,0,2,Gandan Monastery,The Museum of the Bogd Khaan,
+Samarkand,2,1,Razvaliny Kreposti Chungul’,,
+Bukhara,2,0,,,
+Tashkent,1,0,,,
+Almaty,0,1,Almaty TV Tower,,
+Dubai,0,0,,,
+Abu Dhabi,0,44,Qaşr al Manhal,Masjid Anas Bin Mālik,Kanīsat al Qiddīs Andrū
+Doha,0,383,‘Alī Muḩsin ‘Abd Allāh Rāshid Faţīs al Murrī,Rawḑah Bint Jāsim Bin Jabr Āl Thānī,Āl Aḩmad
+Muscat,0,15,Matḩaf aţ Ţifl,Masraḩ al Madīnah,Masjid at Tawbah
+Manama,3,640,Qal‘at al ‘Ajāj,Masjid Muḩammad Sharīf Shakr Allāh,Masjid Aḩmad al Fātiḩ
+Amman,1,648,Rujm ash Shumaysānī,Al Ḩanāyifah,Ra’s al ‘Ayn
+Jerusalem,4,20,Yad VaShem,H̱orbat Qovi,Monastery of the Cross
+Tel Aviv,1,168,St. Peter's Church,Shmurat Teva‘ Safari,H̱orbat Bne Braq
+Haifa,4,13,Mahmood Mosque,Tel Shiqmona,H̱orbat Qastra
+Beirut,0,41,Deïr Mar Roukoss,Deïr Mar Doumit,Qanater Zbeïdé
+Isfahan,4,71,Cathedral of the Holy Savior,Church of Saint Jacob of Nisibis,Church of the Holy Mother of God
+Shiraz,1,40,Qaşr Abūnaşr,Church of Saint Mary,Pārk-e Āzādī
+Marrakesh,1,12,Majorelle Garden,El Badi Palace,Bahia Palace
+Fes,1,20,University of al-Karaouine,Sidi Bel Kacem,Sidi Allal
+Casablanca,0,7,Sidi Abdallah Ben Haj,Sidi Ali el Hajjam,Sidi Mohammed Chiheb
+Rabat,1,40,Dār al Funūn,Matḩaf al Barīd,Kātidrā’īyat Sānt Biyīr
+Chefchaouen,0,11,Sidi Boualdi,Sidi Malek,Mosquée Espagnole de Chefchaouen
+Essaouira,1,6,Sidi Abderrahmane,Squala du port d'Essaouira,Mzarat Ragragui
+Tangier,0,16,Sidi Ahmed Zarrouq,Jardins de Corniche,Beni Makada Mediumwave Transmitter
+Cairo,2,818,Masjid al Ḩākim bi Amr Allāh,Mosque Madrasa of Qaytbay,Mosque and mausoleum of Qaytbay
+Luxor,1,121,Thebes,Deir el-Medina,Colossi of Memnon
+Aswan,1,5,Dayr Sim‘ān,Aswan Botanical Garden,Aswan Archaeological Museum
+Alexandria,0,126,Masjid al Mursī Abū al ‘Abbās,Bibliotheca Alexandrina,Al Arman
+Sharm el-Sheikh,0,0,,,
+Hurghada,0,1,Hurghada Mediumwave Transmitter,,
+Tunis,3,36,Mosquée el Kasbah,Parc du Belvédère,Musée National de la Médecine
+Sousse,1,55,El Knissia,Bibliothèque Sidi Bouraoui,La Grande Mosquée
+Cape Town,1,8,Iziko South African Museum,Heart of Cape Town Museum,Kirstenbosch National Botanical Gardens
+Stellenbosch,0,0,,,
+Durban,1,1,UShaka Marine World,,
+Johannesburg,1,3,Apartheid Museum,South African National Museum of Military History,Liliesleaf Farm
+Nairobi,0,59,Jeevanjee Gardens,Uhuru Park,Nairobi Arboretum
+Mombasa,2,1,Fort Jesus,,
+Zanzibar,1,14,Michezani Mosque,English Church,David Livingstone's House
+Arusha,0,1,Arusha Mediumwave Transmitter,,
+Livingstone,1,11,Mosi-Oa-Tunya National Park No. 17,Old Government House,Legg’s Farm
+Dakar,1,5,Parc Forestier de Hann,Place de l’Independence,Parc National de l’Île des Madeleines
+Accra,0,3,Osu Castle,Holy Trinity Cathedral,The Flagstaff house
+Addis Ababa,0,5,Lideta Gebri’ēl Bēte Kristīyan,Gebre Kristos Bēte Kristīyan,St. Joseph Church
+Kigali,1,2,Palais du Mouvement Revolutionaire Natinale pour le Developpement,Nyarutarama Recreation Park,
+Port Louis,1,7,Robert E. Hart Garden,Port Louis Mediumwave Transmitter,Martello Tower
+New York City,2,1812,American Museum of Natural History,Statue of Liberty,Metropolitan Museum of Art
+Los Angeles,1,791,U.S. Bank Tower,Cathedral of Our Lady of the Angels,Japanese American National Museum
+San Francisco,0,611,Golden Gate Park,Mission San Francisco de Asís,Coit Tower
+Chicago,1,1531,Museum of Science and Industry,Field Museum of Natural History,Clarence F. Buckingham Memorial Fountain
+Miami,0,311,Miami Seaquarium,Miami Art Museum,Miami Museum of Science and Planetarium
+New Orleans,0,1097,National World War II Museum,New Orleans Public Library - Cita Dennis Hubbell Branch,Saint Georges Episcopal Church
+Boston,0,918,Museum of Fine Arts,Boston Public Library,Old North Church
+Washington,0,1768,White House,Library of Congress,Lincoln Memorial
+Las Vegas,0,389,Las Vegas Community Healing Garden,Lied Library,Saint Garabed Armenian Apostolic Church
+Seattle,0,523,Seattle Art Museum,Museum of Pop Culture,Woodland Park Zoo
+San Diego,0,646,San Diego Zoo,San Diego Museum of Man,San Diego Aerospace Museum
+Honolulu,0,353,"World Mission Society Church of God (WMC) in Moanalua, Honolulu",Kawaiahao Church,Ke‘ehi Lagoon Park
+Austin,0,481,Texas Memorial Museum,Austin Public Library,The Contemporary Austin - Betty and Edward Marcus Sculpture Park at Laguna Gloria
+Nashville,0,767,Tennessee State Museum,Gay-Lea Christian Church,Saint Anns Episcopal Church
+Savannah,0,335,Ellis Square (historical),Telfair Square,Tomo-Chi-Chi's Grave Monument
+Charleston,0,221,First Scots Presbyterian Church,Circular Congregational Church,Saint Philips Episcopal Church
+Santa Fe,0,136,Orlando Fernandez Park,Wheelwright Museum,Gregory Lopez Park
+Portland,0,741,Jeld - Wen Field,Oregon Jewish Museum,Governor Tom McCall Waterfront Park
+Denver,0,568,Denver Art Museum,Denver Museum of Nature and Science,Denver Public Library
+Orlando,0,484,Joy Metropolitan Community Church,Orlando Science Center,Orlando Museum of Art
+Philadelphia,1,383,Philadelphia Museum of Art,Rodin Museum,Philadelphia Zoo
+San Antonio,1,794,Basilica of The National Shrine of The Little Flower,Mission Concepcion,Alamodome
+Key West,0,35,Greater Keys Baptist Church,Big Coppitt First Baptist Church,Saint Pauls Episcopal Church
+Montreal,0,351,Parc de la Cité-du-Havre,Parc Jarry,L'Île-de-la-Visitation Nature Park
+Toronto,0,28,CN Tower,Art Gallery of Ontario,Hockey Hall of Fame
+Vancouver,0,37,Vancouver Public Library,Vancouver Aquarium,Gastown
+Quebec City,1,4,Plaines d'Abraham,Citadelle de Québec,Notre Dame de la Garde
+Victoria,0,6,Cedar Hill Golf Course,Point Ellice House Museum and Gardens,Royal BC museum
+Ottawa,0,16,National Gallery of Canada,Canadian Museum of Nature,National War Memorial
+Halifax,0,28,Victoria Park,Halifax Public Gardens,Wanderer Grounds
+Mexico City,4,52,Palacio de Bellas Artes,Museo Nacional de Arte,Templo Mayor
+Cancun,0,1,El Meco,,
+Playa del Carmen,0,3,Sitio arqueológico de Playa del Carmen,Xcaret,Rancho Ina
+Oaxaca,1,5,Monte Albán,Parque Ecologico Presas de Huayápm,"Museo de Arte Prehispánico de México ""Rufino Tamayo"""
+Merida,0,8,Zoológico el Centenario,Macay Museum,Palace of Government
+Guanajuato,2,1,Auditorio del Estado de Guanajuato,,
+San Miguel de Allende,2,0,,,
+Puebla,2,2,Manzanilla,Laguna de San Baltazar,
+Guadalajara,1,4,Palacio de Gobierno del Estado de Jalisco,"Biblioteca Iberoamericana, Antiguo Templo de Santo Tomás",Teatro Degollado
+Puerto Vallarta,0,0,,,
+Havana,1,9,Revolutionsmuseum,Great Theatre of Havana,Festung San Salvador de la Punta
+Varadero,0,0,,,
+San Juan,1,154,Plaza de Armas,Plaza Colón,Catedral de San Juan
+Santo Domingo,1,1,Signal Tower,,
+Nassau,0,2,The Retreat National Park,Harold and Wilson Ponds National Park,
+Kingston,1,25,Hope Royal Botanical Gardens,Stony Hill Barracks,St Peter and St Paul Prep School
+Montego Bay,0,3,Old Fort,Mount Carey Baptist Church,Sudbury Baptist Church
+Bridgetown,1,25,Saint Leonard’s Church,Saint Mary’s Church,Caribbean Wax Museum
+San Jose,0,27,Museo Nacional de Costa Rica,Parque Metropolitano La Sabana,Parque Nacional
+Antigua Guatemala,1,1,Parque Central Antigua Guatemala,,
+Panama City,1,52,Old Panama,Santuario Nacional de María,Iglesia Nuestra Señora de Guadalupe
+Cartagena,1,7,Iglesia San Roque,Castillo San Felipe de Barajas,Botas Viejas
+Bogota,0,19,National Colombian Herbarium,Iglesia del Veinte de Julio,Museo del Oro
+Medellin,0,39,Parque Ecoturístico Arví,Seminarío Mayor,Fátima
+Lima,1,11,"World Mission Society Church of God (WMC) in Bellavista, Callao, Lima",Huaca Mateo Salado,Ruinas Mangomarca
+Cusco,2,4,Sacsayhuamán,Qurikancha,Puka Pukara
+Arequipa,1,4,Basilica Cathedral of Arequipa,Museo Santuarios Andinos,Iglesia de la Compañía
+Quito,1,6,Iglesia San José,Urna Virgen de La Dolorosa,Capilla Virgen del Cinto
+Cuenca,2,7,Catedral de la Inmaculada Concepción,Miraflores Park,Carlos Cueva Tamariz Theater
+La Paz,0,4,Saint Francisco Church,Plaza E. Avaroa,Iglesia Cuerpo de Cristo
+Sucre,1,6,Archivo y Biblioteca Nacionales de Bolivia,Parque Bolívar,Parque cretácico
+Santiago,0,19,Chilean National Museum of Fine Arts,La Moneda Palace,Parque Padre Hurtado
+Valparaiso,1,16,Museo Marítimo Nacional de Chile,Catedral de Santiago en Valparaíso,Monumento a los Héroes de Iquique
+Buenos Aires,1,24,National Museum of Fine Arts,Catedral de Nuestra Señora de Narek,Teatro Colón
+Mendoza,0,2,Acuario de Mendoza,Museo del Área Fundacional,
+Salta,0,7,Plaza Alvardo,Museo de Arqueología de Alta Montaña,Iglesia San Francisco de Salta
+San Carlos de Bariloche,0,0,,,
+Rio de Janeiro,2,28,Museum of Tomorrow,Palácio Guanabara,Jardim Zoológico
+Sao Paulo,0,123,Paróquia Armênia Católica São Gregório Iluminador,Catedral Armênia de São Jorge,Sao Paulo Museum of Art
+Salvador,1,26,Modern Art Museum of Bahia,Igreja do São Francisco,Catedral Basílica de Salvador
+Florianopolis,0,0,,,
+Foz do Iguacu,0,0,,,
+Montevideo,0,31,Catedral San Nerses Shnorhali,Catedral de Nuestra Señora de Bzommar,Nuestra Señora de los Dolores
+Sydney,2,498,Sydney Opera House,Australian Museum,Sydney Tower
+Melbourne,1,128,National Gallery of Victoria,Melbourne Zoo,St Patrick's Cathedral
+Brisbane,0,12,Albert Street Uniting Church,South Bank Parkland,New Farm Park
+Perth,1,213,Foundation Park,Langley Park,Robertson Park
+Adelaide,0,148,Adelaide Oval,Norwood Oval,Glover Playground
+Cairns,0,9,Watson Park,Anderson Street Conservation Park,Mount Whitfield Conservation Park
+Hobart,1,51,Queens Domain,A J White Park,Arthur Circus
+Gold Coast,0,2,Burleigh Knoll Conservation Park,Gold Coast Regional Botanic Gardens,
+Auckland,0,12,Auckland Zoo,Auckland Art Gallery,The Domain
+Wellington,0,6,Wellington Botanic Garden,Massey Memorial,Wahine Memorial
+Christchurch,0,15,ChristChurch Cathedral,Christchurch Botanic Gardens,South Hagley Park
+Rotorua,0,6,Government Gardens,Kuirau Park,Redwood Grove
+Nadi,0,0,,,
+Papeete,0,3,Tour Perot,Tour de Bréa,Pointe Vénus Radio Mast
